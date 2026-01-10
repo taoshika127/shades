@@ -4,7 +4,7 @@ import Hero from '../components/Hero'
 import BrowseRange from '../components/BrowseRange'
 import HowItWorksSection from '../components/HowItWorksSection'
 import WhyUs from '../components/WhyUs'
-import OurProducts from '../components/OurProducts'
+import OurGallery from '../components/OurGallery'
 import RoomInspiration from '../components/RoomInspiration'
 import SocialGallery from '../components/SocialGallery'
 import Footer from '../components/Footer'
@@ -80,7 +80,7 @@ function Home() {
       <BrowseRange categories={categories} />
       <HowItWorksSection />
       <WhyUs />
-      <OurProducts products={products} />
+      <OurGallery images={inspirations.map((insp, idx) => ({ id: insp.id, image: insp.image, alt: insp.title }))} />
       <RoomInspiration inspirations={inspirations} />
       <SocialGallery images={socialImages} />
       <Footer />

@@ -40,3 +40,22 @@
 .animate-fade-in {
   animation: fade-in 1s ease-in-out;
 }
+
+/* PDF iframe styling to remove black background gaps */
+iframe[title*="Fabric Catalog"] {
+  background-color: white !important;
+  background: white !important;
+}
+
+/* Target PDF viewer content */
+iframe[title*="Fabric Catalog"]::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: white;
+  z-index: -1;
+}

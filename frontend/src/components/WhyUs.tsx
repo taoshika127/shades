@@ -79,7 +79,7 @@ function WhyUs() {
         <h2 className="text-3xl md:text-4xl font-bold text-brown text-center mb-4">
           Why Choose Light & Shade?
         </h2>
-        <p className="text-base md:text-xl text-brown text-center mb-12 md:mb-16">
+        <p className="text-base md:text-xl text-center mb-12 md:mb-16" style={{ color: '#937125' }}>
           Quality, affordability, and service you can trust.
         </p>
 

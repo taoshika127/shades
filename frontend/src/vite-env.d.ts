@@ -25,3 +25,12 @@ declare module '*.svg' {
   export default value
 }
 
+// PDF.js type declarations
+declare global {
+  interface Window {
+    pdfjsLib: any
+  }
+}
+
+export {}
+
