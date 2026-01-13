@@ -21,10 +21,10 @@ function OurGallery({ images }: OurGalleryProps) {
   const smallImages = displayImages.slice(1)
 
   return (
-    <section className="py-10 md:py-20 px-5 md:px-20 bg-white">
+    <section id="our-gallery" className="py-10 md:py-20 px-5 md:px-20 bg-white">
       <div className="max-w-container mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-brown text-center mb-4">Our Gallery</h2>
-        <p className="text-base text-center mb-12 max-w-2xl mx-auto" style={{ color: '#937125' }}>
+        <p className="text-base md:text-xl text-center mb-12 md:mb-16 max-w-3xl mx-auto" style={{ color: '#937125' }}>
           Explore our curated collection of stunning window shade installations. From modern minimalism to classic elegance, discover the perfect inspiration for your space.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">

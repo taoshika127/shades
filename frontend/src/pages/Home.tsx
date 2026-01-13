@@ -5,6 +5,7 @@ import BrowseRange from '../components/BrowseRange'
 import HowItWorksSection from '../components/HowItWorksSection'
 import WhyUs from '../components/WhyUs'
 import OurGallery from '../components/OurGallery'
+import FAQ from '../components/FAQ'
 import RoomInspiration from '../components/RoomInspiration'
 import SocialGallery from '../components/SocialGallery'
 import Footer from '../components/Footer'
@@ -63,7 +64,7 @@ function Home() {
   useEffect(() => {
     // Handle hash navigation to scroll to sections
     const hash = window.location.hash
-    if (hash === '#browse-the-range' || hash === '#how-it-works' || hash === '#why-us') {
+    if (hash === '#browse-the-range' || hash === '#how-it-works' || hash === '#why-us' || hash === '#faq' || hash === '#our-gallery') {
       setTimeout(() => {
         const section = document.getElementById(hash.substring(1))
         if (section) {
@@ -81,6 +82,7 @@ function Home() {
       <HowItWorksSection />
       <WhyUs />
       <OurGallery images={inspirations.map((insp, idx) => ({ id: insp.id, image: insp.image, alt: insp.title }))} />
+      <FAQ />
       <RoomInspiration inspirations={inspirations} />
       <SocialGallery images={socialImages} />
       <Footer />

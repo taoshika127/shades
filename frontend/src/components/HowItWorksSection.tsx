@@ -47,13 +47,6 @@ function HowItWorksSection() {
     },
   ]
 
-  const diyBenefits = [
-    'Even more affordable pricing',
-    'Install on your own schedule',
-    'Comprehensive installation guides',
-    'Phone support available',
-  ]
-
   const getImageSrc = (imageLabel: string, isOption2: boolean = false, stepNumber: number = 1) => {
     if (imageLabel.includes('Measuring Window with Tape Measure') || imageLabel.includes('Person Measuring Window')) {
       // Use different image for Option 2, Step 1
@@ -120,7 +113,7 @@ function HowItWorksSection() {
         <h2 className="text-4xl md:text-5xl font-bold text-brown text-center mb-4">
           How It Works
         </h2>
-        <p className="text-lg md:text-xl text-center mb-12 md:mb-[80px] mx-auto w-1/2" style={{ color: '#937125' }}>
+        <p className="text-base md:text-xl text-center mb-12 md:mb-16 max-w-3xl mx-auto" style={{ color: '#937125' }}>
           <span className="font-bold">Choose the service option that works best for you. </span>Whether you want a hands-off, professionally managed experience or prefer to take care of installation yourself, we make the process simple and transparent.
         </p>
 
