@@ -9,16 +9,15 @@ interface OurGalleryProps {
 }
 
 function OurGallery({ images }: OurGalleryProps) {
-  // Display first 4 images in the special layout
-  const displayImages = images.slice(0, 4)
+  // Use first image or a placeholder for all images (as requested, reusing the same image)
+  const placeholderImage = images.length > 0 ? images[0].image : 'https://images.unsplash.com/photo-1631889993950-9e9352e6b688?w=800&h=600&fit=crop'
 
-  if (displayImages.length === 0) {
-    return null
-  }
-
-  // First image is large (left side), rest are smaller (right side)
-  const largeImage = displayImages[0]
-  const smallImages = displayImages.slice(1)
+  // Create 15 images for the collage layout
+  const collageImages = Array.from({ length: 15 }, (_, i) => ({
+    id: i + 1,
+    image: placeholderImage,
+    alt: `Gallery image ${i + 1}`
+  }))
 
   return (
     <section id="our-gallery" className="py-10 md:py-20 px-5 md:px-20 bg-white">
@@ -27,32 +26,140 @@ function OurGallery({ images }: OurGalleryProps) {
         <p className="text-base md:text-xl text-center mb-12 md:mb-16 max-w-3xl mx-auto" style={{ color: '#937125' }}>
           Explore our curated collection of stunning window shade installations. From modern minimalism to classic elegance, discover the perfect inspiration for your space.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-          {/* Large image on the left */}
-          {largeImage && (
-            <div className="w-full h-full min-h-[400px] md:min-h-[500px] rounded-lg overflow-hidden">
-              <img
-                src={largeImage.image}
-                alt={largeImage.alt || 'Window shade installation'}
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-              />
-            </div>
-          )}
+        <div className="grid grid-cols-4 gap-3 md:gap-4 auto-rows-[150px] md:auto-rows-[200px]">
+          {/* Image 1: Large (top left, spans 2 columns, 2 rows) */}
+          <div className="col-span-2 row-span-2 rounded-lg overflow-hidden">
+            <img
+              src={collageImages[0].image}
+              alt={collageImages[0].alt}
+              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+            />
+          </div>
 
-          {/* Smaller images on the right */}
-          <div className="flex flex-col gap-4 md:gap-6">
-            {smallImages.map((image) => (
-              <div
-                key={image.id}
-                className="w-full h-[250px] md:h-[240px] rounded-lg overflow-hidden"
-              >
-                <img
-                  src={image.image}
-                  alt={image.alt || 'Window shade installation'}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-            ))}
+          {/* Image 2: Tall (top middle, spans 2 rows) */}
+          <div className="col-span-1 row-span-2 rounded-lg overflow-hidden">
+            <img
+              src={collageImages[1].image}
+              alt={collageImages[1].alt}
+              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+
+          {/* Image 3: Medium (top right-middle) */}
+          <div className="col-span-1 row-span-1 rounded-lg overflow-hidden">
+            <img
+              src={collageImages[2].image}
+              alt={collageImages[2].alt}
+              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+
+          {/* Image 4: Medium (top far right) */}
+          <div className="col-span-1 row-span-1 rounded-lg overflow-hidden">
+            <img
+              src={collageImages[3].image}
+              alt={collageImages[3].alt}
+              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+
+          {/* Image 5: Tall (middle left, spans 2 rows) */}
+          <div className="col-span-1 row-span-2 rounded-lg overflow-hidden">
+            <img
+              src={collageImages[4].image}
+              alt={collageImages[4].alt}
+              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+
+          {/* Image 6: Medium (middle left-middle) */}
+          <div className="col-span-1 row-span-1 rounded-lg overflow-hidden">
+            <img
+              src={collageImages[5].image}
+              alt={collageImages[5].alt}
+              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+
+          {/* Image 7: Medium (middle right-middle) */}
+          <div className="col-span-1 row-span-1 rounded-lg overflow-hidden">
+            <img
+              src={collageImages[6].image}
+              alt={collageImages[6].alt}
+              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+
+          {/* Image 8: Large (middle far right, spans 2 rows) */}
+          <div className="col-span-1 row-span-2 rounded-lg overflow-hidden">
+            <img
+              src={collageImages[7].image}
+              alt={collageImages[7].alt}
+              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+
+          {/* Image 9: Medium (bottom left) */}
+          <div className="col-span-1 row-span-1 rounded-lg overflow-hidden">
+            <img
+              src={collageImages[8].image}
+              alt={collageImages[8].alt}
+              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+
+          {/* Image 10: Medium (bottom left-middle) */}
+          <div className="col-span-1 row-span-1 rounded-lg overflow-hidden">
+            <img
+              src={collageImages[9].image}
+              alt={collageImages[9].alt}
+              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+
+          {/* Image 11: Small (bottom left, 4th row) */}
+          <div className="col-span-1 row-span-1 rounded-lg overflow-hidden">
+            <img
+              src={collageImages[10].image}
+              alt={collageImages[10].alt}
+              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+
+          {/* Image 12: Small (bottom middle, 4th row) */}
+          <div className="col-span-1 row-span-1 rounded-lg overflow-hidden">
+            <img
+              src={collageImages[11].image}
+              alt={collageImages[11].alt}
+              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+
+          {/* Image 13: Small (bottom right-middle, 4th row) */}
+          <div className="col-span-1 row-span-1 rounded-lg overflow-hidden">
+            <img
+              src={collageImages[12].image}
+              alt={collageImages[12].alt}
+              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+
+          {/* Image 14: Small (bottom right, 4th row) */}
+          <div className="col-span-1 row-span-1 rounded-lg overflow-hidden">
+            <img
+              src={collageImages[13].image}
+              alt={collageImages[13].alt}
+              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+
+          {/* Image 15: Small (additional) */}
+          <div className="col-span-1 row-span-1 rounded-lg overflow-hidden">
+            <img
+              src={collageImages[14].image}
+              alt={collageImages[14].alt}
+              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+            />
           </div>
         </div>
       </div>

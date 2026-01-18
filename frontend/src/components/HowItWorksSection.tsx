@@ -35,14 +35,14 @@ function HowItWorksSection() {
     },
     {
       number: 2,
-      title: 'Follow the measuring instruction and place order',
+      title: 'Remeasure and place order',
       description: "If you're happy with the quote and ready to move forward, we'll send you detailed measuring instructions to ensure your shades are made to the correct dimensions. Once measurements are confirmed, you can go ahead and place your order.",
       imageLabel: 'Measuring Instructions and Order Placement',
     },
     {
       number: 3,
       title: 'Order and Install by Yourself',
-      description: "Place your order for custom-made shades based on your measurements. We'll deliver your shades with detailed installation instructions and all necessary hardware. Install at your own pace with our easy-to-follow guide and video tutorials.",
+      description: "We'll deliver your shades with detailed installation instructions and all necessary hardware. Install at your own pace with our easy-to-follow guide and video tutorials.",
       imageLabel: 'Homeowner Installing Shade with Instructions',
     },
   ]
@@ -85,23 +85,25 @@ function HowItWorksSection() {
             </h3>
           </div>
         </div>
-        <p className="text-lg md:text-xl text-brown leading-relaxed mb-10 ml-4">
-          {step.description}
-        </p>
-        <div className={`overflow-hidden ml-4 rounded-lg`}>
-          {imageSrc ? (
-            <img
-              src={imageSrc}
-              alt={step.imageLabel}
-              className="w-[570px] h-[397px] object-cover rounded-lg"
-            />
-          ) : (
-            <div className="w-full h-full bg-gray-200 rounded-lg flex items-center justify-center">
-              <span className="text-white text-base md:text-lg font-medium">
-                {step.imageLabel}
-              </span>
-            </div>
-          )}
+        <div className="flex flex-col md:flex-row gap-4 md:gap-6 ml-4 items-start">
+          <p className="text-lg md:text-xl text-brown leading-relaxed flex-1">
+            {step.description}
+          </p>
+          <div className="overflow-hidden rounded-lg flex-shrink-0">
+            {imageSrc ? (
+              <img
+                src={imageSrc}
+                alt={step.imageLabel}
+                className="w-[200px] md:w-[250px] h-[140px] md:h-[175px] object-cover rounded-lg"
+              />
+            ) : (
+              <div className="w-[200px] md:w-[250px] h-[140px] md:h-[175px] bg-gray-200 rounded-lg flex items-center justify-center">
+                <span className="text-white text-base md:text-lg font-medium">
+                  {step.imageLabel}
+                </span>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     )
@@ -120,11 +122,21 @@ function HowItWorksSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 relative">
           {/* Option 1: Full Service */}
           <div className="flex flex-col">
-            <div className="rounded-lg p-6 md:p-8 mb-6 md:mb-[80px] bg-white" style={{ boxShadow: '0 0 24px rgba(0, 0, 0, 0.24)' }}>
-              <h3 className="text-2xl md:text-3xl font-bold text-brown mb-2 text-center">
+            <div className="rounded-lg p-6 md:p-8 mb-6 md:mb-[80px] relative md:h-[280px] md:flex md:flex-col" style={{ backgroundColor: '#FFF3E3', boxShadow: '0 0 24px rgba(0, 0, 0, 0.24)' }}>
+              {/* Recommended tag */}
+              <div className="absolute top-0 left-0 bg-primary text-white px-3 py-1.5 rounded-tl-lg flex items-center gap-2 text-xs md:text-sm font-bold z-10" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 75%, 85% 100%, 0 100%)' }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M20 6L9 17L4 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                <span>Recommended</span>
+              </div>
+              <h3 className="text-2xl md:text-3xl font-bold text-brown mb-2 mt-8">
                 Option 1: Full Service
               </h3>
-              <p className="text-lg md:text-xl text-brown text-center">
+              <p className="text-base md:text-lg mb-4" style={{ color: '#937125' }}>
+                Hands-off, worry-free experience
+              </p>
+              <p className="text-lg md:text-xl text-brown md:flex-1">
                 Our team handles everything for you, from precise measurements to expert installation. You'll get <span className="font-bold">personalized recommendations</span>, <span className="font-bold">professional installation and maintenance</span> for a seamless, worry-free experience.
               </p>
             </div>
@@ -133,7 +145,7 @@ function HowItWorksSection() {
                 <div key={step.number}>
                   {renderStep(step, false)}
                   {index < fullServiceSteps.length - 1 && (
-                    <div className="flex justify-center items-center my-8 md:my-12">
+                    <div className="flex justify-center items-center my-10 md:my-15">
                       <div className="flex flex-col items-center gap-1">
                         <div className="w-2 h-2 rounded-full bg-brown"></div>
                         <div className="w-2 h-2 rounded-full bg-brown"></div>
@@ -151,11 +163,14 @@ function HowItWorksSection() {
 
           {/* Option 2: DIY Installation */}
           <div className="flex flex-col md:pl-8 md:border-l md:border-gray-300">
-            <div className="rounded-lg p-6 md:p-8 mb-6 md:mb-[80px] bg-white" style={{ boxShadow: '0 0 24px rgba(0, 0, 0, 0.24)' }}>
-              <h3 className="text-2xl md:text-3xl font-bold text-brown mb-2 text-center">
+            <div className="rounded-lg p-6 md:p-8 mb-6 md:mb-[80px] bg-white md:h-[280px] md:flex md:flex-col" style={{ boxShadow: '0 0 24px rgba(0, 0, 0, 0.24)' }}>
+              <h3 className="text-2xl md:text-3xl font-bold text-brown mb-2">
                 Option 2: DIY Installation
               </h3>
-              <p className="text-lg md:text-xl text-brown text-center">
+              <p className="text-base md:text-lg mb-4" style={{ color: '#937125' }}>
+                Best for confident DIYers
+              </p>
+              <p className="text-lg md:text-xl text-brown md:flex-1">
                 Select your custom shades online and install them on your own schedule. We provide <span className="font-bold">clear measuring instructions</span> and <span className="font-bold">easy-to-follow installation guidance</span> so you can achieve a great fit with confidence.
               </p>
             </div>
@@ -164,7 +179,7 @@ function HowItWorksSection() {
                 <div key={step.number}>
                   {renderStep(step, true)}
                   {index < diySteps.length - 1 && (
-                    <div className="flex justify-center items-center my-8 md:my-12">
+                    <div className="flex justify-center items-center my-10 md:my-15">
                       <div className="flex flex-col items-center gap-1">
                         <div className="w-2 h-2 rounded-full bg-brown"></div>
                         <div className="w-2 h-2 rounded-full bg-brown"></div>

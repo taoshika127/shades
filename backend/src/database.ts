@@ -52,12 +52,12 @@ export function initializeDatabase() {
     const insert = database.prepare('INSERT INTO categories (name, image) VALUES (?, ?)');
 
     const initialCategories = [
-      ['Zebra Shades', '/assets/home/zebra_shades.png'],
+      ['Zebra Shades', '/assets/home/zebra_shades.jpg'],
       ['Honeycomb Shades', '/assets/home/honeycomb_shades.png'],
       ['Roller Shades', '/assets/home/roller_shades.png'],
-      ['Shangri-La Shades', '/assets/home/shangri-la_shades.png'],
-      ['Roman Shades', '/assets/home/roman_shades.png'],
-      ['Bamboo Shades', '/assets/home/bamboo_woven_wood_shades.png'],
+      ['Shangri-La Shades', '/assets/home/shangri-la_shades.jpg'],
+      ['Roman Shades', '/assets/home/roman_shades.jpg'],
+      ['Bamboo Shades', '/assets/home/bamboo_shades.jpg'],
       ['Draperies', '/assets/home/draperies.jpg'],
       ['Outdoor Shades', '/assets/home/outdoor_shades.jpg'],
       ['Dream Shades', '/assets/home/dream_shades.png'],

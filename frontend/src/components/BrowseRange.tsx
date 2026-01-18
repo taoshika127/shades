@@ -37,7 +37,7 @@ function BrowseRange({ categories }: BrowseRangeProps) {
                 <img
                   src={category.image}
                   alt={category.name}
-                  className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-all duration-300"
                 />
               </div>
               <h3 className="text-xl md:text-2xl font-semibold text-brown text-center m-0 group-hover:text-medium-gray transition-colors">
