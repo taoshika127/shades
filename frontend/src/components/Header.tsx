@@ -56,6 +56,21 @@ function Header({ currentPage = 'home' }: HeaderProps) {
     }
   }
 
+  const handleGalleryClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+
+    if (currentPage === 'home') {
+      // If already on home page, scroll to the section
+      const gallerySection = document.getElementById('our-gallery')
+      if (gallerySection) {
+        gallerySection.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    } else {
+      // If on another page, navigate to home with hash
+      window.location.href = '/#our-gallery'
+    }
+  }
+
   const handleWhyUsClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
 
@@ -89,15 +104,6 @@ function Header({ currentPage = 'home' }: HeaderProps) {
       }
     } else if (item === 'FAQ') {
       navigate('/#faq')
-    } else if (item === 'Our Gallery') {
-      if (currentPage === 'home') {
-        const gallerySection = document.getElementById('our-gallery')
-        if (gallerySection) {
-          gallerySection.scrollIntoView({ behavior: 'smooth', block: 'start' })
-        }
-      } else {
-        window.location.href = '/#our-gallery'
-      }
     }
     setShowWhyUsDropdown(false)
   }
@@ -137,6 +143,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
             )}
           </div>
           <a href="/#how-it-works" onClick={handleHowItWorksClick} className="no-underline text-brown text-md md:text-base font-medium hover:text-primary transition-colors">Service</a>
+          <a href="/#our-gallery" onClick={handleGalleryClick} className="no-underline text-brown text-md md:text-base font-medium hover:text-primary transition-colors">Gallery</a>
           <div
             className="relative"
             onMouseEnter={() => setShowWhyUsDropdown(true)}
@@ -155,16 +162,6 @@ function Header({ currentPage = 'home' }: HeaderProps) {
                     className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200 cursor-pointer"
                   >
                     Why Choose Light & Shade
-                  </a>
-                  <a
-                    href="/#our-gallery"
-                    onClick={(e) => {
-                      e.preventDefault()
-                      handleWhyUsDropdownClick('Our Gallery')
-                    }}
-                    className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200 cursor-pointer"
-                  >
-                    Our Gallery
                   </a>
                   <a
                     href="/#faq"

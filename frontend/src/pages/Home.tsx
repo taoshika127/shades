@@ -72,8 +72,8 @@ function Home() {
       <Hero />
       <BrowseRange categories={categories} />
       <HowItWorksSection />
-      <WhyUs />
       <OurGallery images={galleryImages} />
+      <WhyUs />
       <FAQ />
       <Footer />
     </div>

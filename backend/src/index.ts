@@ -346,23 +346,38 @@ const galleryImageMap: { [key: number]: GalleryData | string[] } = {
   },
   12: {
     images: ['/assets/our-gallery/gallery12/gallery12.jpg', '/assets/our-gallery/gallery12/gallery12-1.jpg', '/assets/our-gallery/gallery12/gallery12-2.jpg'],
-    location: '',
-    description: ''
+    location: 'Bay Area, CA',
+    description: 'This customer customized motorizedfabric curtains for the entire house. The system allows smooth, quiet operation and can be controlled easily by remote, making daily use both convenient and comfortable. After installation, the overall space felt more cohesive and elevated, and the customer was very satisfied with both the functionality and the final look.',
+    design: {
+      'Living Room': 'Motorized fabric curtains made from cotton and linen blend'
+    }
   },
   13: {
     images: ['/assets/our-gallery/gallery13/gallery13.jpg', '/assets/our-gallery/gallery13/gallery13-1.jpg', '/assets/our-gallery/gallery13/gallery13-2.jpg', '/assets/our-gallery/gallery13/gallery13-3.jpg', '/assets/our-gallery/gallery13/gallery13-4.jpg', '/assets/our-gallery/gallery13/gallery13-5.jpg', '/assets/our-gallery/gallery13/gallery13-6.jpg', '/assets/our-gallery/gallery13/gallery13-7.jpg', '/assets/our-gallery/gallery13/gallery13-8.jpg'],
-    location: '',
-    description: ''
+    location: 'Ottawa, Canada',
+    description: 'This customer customized different window treatments throughout the home, including Shangri-La shades, Roman shades, honeycomb shades, and zebra blinds. The order was produced domestically and shipped quickly, with local installation arranged, and the customer felt the quality and service far exceeded expectations. After nearly two years of use, they shared that the shades are still performing beautifully and confidently recommended us to others.',
+    design: {
+      'Living Room': 'Motorized Shangri-La (silhouette-style) shades',
+      'Second Floor / Guest Bedroom': 'Manual Shangri-La shades',
+      'Master Bedroom': 'Motorized day & night honeycomb (cellular) shades',
+      'Basement': 'Manual black zebra blinds'
+    }
   },
   14: {
     images: ['/assets/our-gallery/gallery14/gallery14.jpg', '/assets/our-gallery/gallery14/gallery14-1.jpg', '/assets/our-gallery/gallery14/gallery14-2.jpg'],
-    location: '',
-    description: ''
+    location: 'New York, NY',
+    description: 'This customer chose linen Roman shades for the bedroom to complement the outdoor view, especially during the spring bloom season. The natural linen texture blends seamlessly with the scenery outside, making the window view part of the interior design. The customer shared that the room feels brighter, fresher, and more relaxing every day.',
+    design: {
+      'Bedroom': 'Linen Roman shades'
+    }
   },
   15: {
     images: ['/assets/our-gallery/gallery15/gallery15.jpg', '/assets/our-gallery/gallery15/gallery15-1.jpg', '/assets/our-gallery/gallery15/gallery15-2.jpg', '/assets/our-gallery/gallery15/gallery15-3.jpg', '/assets/our-gallery/gallery15/gallery15-4.jpg'],
-    location: '',
-    description: ''
+    location: 'Bay Area, CA',
+    description: 'This customer customized natural linen curtains made from a linen and jute blend, using pure plant-based materials with no synthetic fibers. After installation, the space felt calm, warm, and full of atmosphere, and the customer shared the photos in a North American renovation group. This post even led to new customers placing orders after seeing the real-life results.',
+    design: {
+      'Living Room': 'Natural linen curtains made from a linen and jute blend, using pure plant-based materials with no synthetic fibers'
+    }
   },
 };
 

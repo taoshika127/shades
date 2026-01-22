@@ -22,7 +22,7 @@ function OurGallery({ images }: OurGalleryProps) {
       }))
 
   return (
-    <section id="our-gallery" className="py-5 md:py-10 px-3 md:px-5 bg-white">
+    <section id="our-gallery" className="py-5 md:py-10 px-3 md:px-5 bg-gray-50">
       <div className="max-w-container mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-brown text-center mb-4">Our Gallery</h2>
         <p className="text-base md:text-xl text-center mb-12 md:mb-16 max-w-3xl mx-auto" style={{ color: '#937125' }}>
