@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: auto;
+    scroll-padding-top: 2rem; /* Account for sticky header so anchor targets aren't hidden */
+  }
+
   body {
     color: #5c4717;
     @apply bg-white;

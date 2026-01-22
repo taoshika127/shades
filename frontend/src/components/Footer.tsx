@@ -31,27 +31,25 @@ function Footer() {
       <div className="max-w-container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1.5fr] gap-8 md:gap-15 mb-10">
           <div className="flex flex-col gap-6">
-            <h3 className="text-2xl font-bold text-brown m-0">Funiro.</h3>
+            <h3 className="text-2xl font-bold text-brown m-0">Light & Shade.</h3>
             <p className="text-base text-light-gray leading-relaxed m-0">
-              400 University Drive Suite 200 Coral Gables,<br />
-              FL 33134 USA
+              Contact us for any questions or inquiries.
             </p>
           </div>
           <div className="flex flex-col gap-6">
             <h4 className="text-base font-medium text-light-gray m-0 mb-4">Links</h4>
             <ul className="list-none p-0 m-0 flex flex-col gap-4">
               <li><a href="/" className="text-brown no-underline text-base hover:text-primary transition-colors">Home</a></li>
-              <li><a href="/shop" className="text-brown no-underline text-base hover:text-primary transition-colors">Shop</a></li>
-              <li><a href="/about" className="text-brown no-underline text-base hover:text-primary transition-colors">About</a></li>
+              <li><a href="/zebra-shades" className="text-brown no-underline text-base hover:text-primary transition-colors">Zebra Shades</a></li>
+              <li><a href="/honeycomb-shades" className="text-brown no-underline text-base hover:text-primary transition-colors">Honeycomb Shades</a></li>
+              <li><a href="/roller-shades" className="text-brown no-underline text-base hover:text-primary transition-colors">Roller Shades</a></li>
               <li><a href="/contact" className="text-brown no-underline text-base hover:text-primary transition-colors">Contact</a></li>
             </ul>
           </div>
           <div className="flex flex-col gap-6">
-            <h4 className="text-base font-medium text-light-gray m-0 mb-4">Help</h4>
+            <h4 className="text-base font-medium text-light-gray m-0 mb-4">FAQ</h4>
             <ul className="list-none p-0 m-0 flex flex-col gap-4">
-              <li><a href="/payment" className="text-brown no-underline text-base hover:text-primary transition-colors">Payment Options</a></li>
-              <li><a href="/returns" className="text-brown no-underline text-base hover:text-primary transition-colors">Returns</a></li>
-              <li><a href="/privacy" className="text-brown no-underline text-base hover:text-primary transition-colors">Privacy Policies</a></li>
+              <li><a href="/faq" className="text-brown no-underline text-base hover:text-primary transition-colors">FAQ</a></li>
             </ul>
           </div>
           <div className="flex flex-col gap-6">
@@ -70,7 +68,7 @@ function Footer() {
           </div>
         </div>
         <div className="pt-10 border-t border-gray-100">
-          <p className="text-base text-light-gray m-0">2023 funiro. All rights reserved</p>
+          <p className="text-base text-light-gray m-0">2026 Light & Shade. All rights reserved</p>
         </div>
       </div>
     </footer>

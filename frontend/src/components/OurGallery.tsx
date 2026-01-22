@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom'
+
 interface GalleryImage {
   id: number
   image: string
@@ -9,26 +11,32 @@ interface OurGalleryProps {
 }
 
 function OurGallery({ images }: OurGalleryProps) {
-  // Use first image or a placeholder for all images (as requested, reusing the same image)
-  const placeholderImage = images.length > 0 ? images[0].image : 'https://images.unsplash.com/photo-1631889993950-9e9352e6b688?w=800&h=600&fit=crop'
-
-  // Create 15 images for the collage layout
-  const collageImages = Array.from({ length: 15 }, (_, i) => ({
-    id: i + 1,
-    image: placeholderImage,
-    alt: `Gallery image ${i + 1}`
-  }))
+  const navigate = useNavigate()
+  // Use the images array directly, or fallback to placeholder if empty
+  const collageImages = images.length > 0
+    ? images
+    : Array.from({ length: 15 }, (_, i) => ({
+        id: i + 1,
+        image: 'https://images.unsplash.com/photo-1631889993950-9e9352e6b688?w=800&h=600&fit=crop',
+        alt: `Gallery image ${i + 1}`
+      }))
 
   return (
-    <section id="our-gallery" className="py-10 md:py-20 px-5 md:px-20 bg-white">
+    <section id="our-gallery" className="py-5 md:py-10 px-3 md:px-5 bg-white">
       <div className="max-w-container mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-brown text-center mb-4">Our Gallery</h2>
         <p className="text-base md:text-xl text-center mb-12 md:mb-16 max-w-3xl mx-auto" style={{ color: '#937125' }}>
           Explore our curated collection of stunning window shade installations. From modern minimalism to classic elegance, discover the perfect inspiration for your space.
         </p>
-        <div className="grid grid-cols-4 gap-3 md:gap-4 auto-rows-[150px] md:auto-rows-[200px]">
-          {/* Image 1: Large (top left, spans 2 columns, 2 rows) */}
-          <div className="col-span-2 row-span-2 rounded-lg overflow-hidden">
+        <div className="grid grid-cols-10 gap-3 md:gap-4" style={{ gridAutoRows: 'minmax(120px, auto)' }}>
+          {/* TOP ROW - Mix of sizes with some top edge alignment */}
+
+          {/* Image 1: Tall (top left, tall portrait-like) */}
+          <div
+            className="col-span-2 rounded-lg overflow-hidden cursor-pointer"
+            style={{ gridRowStart: 1, gridRowEnd: 2, height: '350px' }}
+            onClick={() => navigate(`/gallery${collageImages[0].id}`)}
+          >
             <img
               src={collageImages[0].image}
               alt={collageImages[0].alt}
@@ -36,8 +44,12 @@ function OurGallery({ images }: OurGalleryProps) {
             />
           </div>
 
-          {/* Image 2: Tall (top middle, spans 2 rows) */}
-          <div className="col-span-1 row-span-2 rounded-lg overflow-hidden">
+          {/* Image 2: Taller (top left-middle, tallest) */}
+          <div
+            className="col-span-3 rounded-lg overflow-hidden cursor-pointer"
+            style={{ gridRowStart: 1, gridRowEnd: 2, height: '480px' }}
+            onClick={() => navigate(`/gallery${collageImages[1].id}`)}
+          >
             <img
               src={collageImages[1].image}
               alt={collageImages[1].alt}
@@ -45,8 +57,12 @@ function OurGallery({ images }: OurGalleryProps) {
             />
           </div>
 
-          {/* Image 3: Medium (top right-middle) */}
-          <div className="col-span-1 row-span-1 rounded-lg overflow-hidden">
+          {/* Image 3: Wide (top middle, landscape) */}
+          <div
+            className="col-span-3 rounded-lg overflow-hidden cursor-pointer"
+            style={{ gridRowStart: 1, gridRowEnd: 2, height: '400px' }}
+            onClick={() => navigate(`/gallery${collageImages[2].id}`)}
+          >
             <img
               src={collageImages[2].image}
               alt={collageImages[2].alt}
@@ -54,8 +70,12 @@ function OurGallery({ images }: OurGalleryProps) {
             />
           </div>
 
-          {/* Image 4: Medium (top far right) */}
-          <div className="col-span-1 row-span-1 rounded-lg overflow-hidden">
+          {/* Image 4: Small square (top right, small square) */}
+          <div
+            className="col-span-2 rounded-lg overflow-hidden cursor-pointer"
+            style={{ gridRowStart: 1, gridRowEnd: 2, height: '300px' }}
+            onClick={() => navigate(`/gallery${collageImages[3].id}`)}
+          >
             <img
               src={collageImages[3].image}
               alt={collageImages[3].alt}
@@ -63,8 +83,12 @@ function OurGallery({ images }: OurGalleryProps) {
             />
           </div>
 
-          {/* Image 5: Tall (middle left, spans 2 rows) */}
-          <div className="col-span-1 row-span-2 rounded-lg overflow-hidden">
+          {/* Image 5: Small square (top far right, stacked below Image 4) */}
+          <div
+            className="col-span-3 rounded-lg overflow-hidden cursor-pointer"
+            style={{ gridRowStart: 2, gridRowEnd: 3, height: '320px' }}
+            onClick={() => navigate(`/gallery${collageImages[4].id}`)}
+          >
             <img
               src={collageImages[4].image}
               alt={collageImages[4].alt}
@@ -72,8 +96,12 @@ function OurGallery({ images }: OurGalleryProps) {
             />
           </div>
 
-          {/* Image 6: Medium (middle left-middle) */}
-          <div className="col-span-1 row-span-1 rounded-lg overflow-hidden">
+          {/* Image 6: Medium wide (middle left, landscape, offset) */}
+          <div
+            className="col-span-4 rounded-lg overflow-hidden cursor-pointer"
+            style={{ gridRowStart: 2, gridRowEnd: 3, height: '490px' }}
+            onClick={() => navigate(`/gallery${collageImages[5].id}`)}
+          >
             <img
               src={collageImages[5].image}
               alt={collageImages[5].alt}
@@ -81,8 +109,12 @@ function OurGallery({ images }: OurGalleryProps) {
             />
           </div>
 
-          {/* Image 7: Medium (middle right-middle) */}
-          <div className="col-span-1 row-span-1 rounded-lg overflow-hidden">
+          {/* Image 7: Medium (middle, square-ish, offset) */}
+          <div
+            className="col-span-2 rounded-lg overflow-hidden cursor-pointer"
+            style={{ gridRowStart: 2, gridRowEnd: 3, height: '350px'}}
+            onClick={() => navigate(`/gallery${collageImages[6].id}`)}
+          >
             <img
               src={collageImages[6].image}
               alt={collageImages[6].alt}
@@ -90,8 +122,12 @@ function OurGallery({ images }: OurGalleryProps) {
             />
           </div>
 
-          {/* Image 8: Large (middle far right, spans 2 rows) */}
-          <div className="col-span-1 row-span-2 rounded-lg overflow-hidden">
+          {/* Image 8: Small square (middle right, offset) */}
+          <div
+            className="col-span-2 rounded-lg overflow-hidden cursor-pointer"
+            style={{ gridRowStart: 3, gridRowEnd: 4, height: '390px'}}
+            onClick={() => navigate(`/gallery${collageImages[7].id}`)}
+          >
             <img
               src={collageImages[7].image}
               alt={collageImages[7].alt}
@@ -99,8 +135,12 @@ function OurGallery({ images }: OurGalleryProps) {
             />
           </div>
 
-          {/* Image 9: Medium (bottom left) */}
-          <div className="col-span-1 row-span-1 rounded-lg overflow-hidden">
+          {/* Image 9: Small square (top far right, third stacked) */}
+          <div
+            className="col-span-2 rounded-lg overflow-hidden cursor-pointer"
+            style={{ gridRowStart: 3, gridRowEnd: 4, height: '250px' }}
+            onClick={() => navigate(`/gallery${collageImages[8].id}`)}
+          >
             <img
               src={collageImages[8].image}
               alt={collageImages[8].alt}
@@ -108,8 +148,14 @@ function OurGallery({ images }: OurGalleryProps) {
             />
           </div>
 
-          {/* Image 10: Medium (bottom left-middle) */}
-          <div className="col-span-1 row-span-1 rounded-lg overflow-hidden">
+          {/* BOTTOM ROW - Mix of sizes with some bottom edge alignment */}
+
+          {/* Image 10: Wide (bottom left, wide landscape) */}
+          <div
+            className="col-span-2 rounded-lg overflow-hidden cursor-pointer"
+            style={{ gridRowStart: 3, gridRowEnd: 4, height: '340px' }}
+            onClick={() => navigate(`/gallery${collageImages[9].id}`)}
+          >
             <img
               src={collageImages[9].image}
               alt={collageImages[9].alt}
@@ -117,8 +163,12 @@ function OurGallery({ images }: OurGalleryProps) {
             />
           </div>
 
-          {/* Image 11: Small (bottom left, 4th row) */}
-          <div className="col-span-1 row-span-1 rounded-lg overflow-hidden">
+          {/* Image 11: Tall (bottom left-middle, tall portrait-like) */}
+          <div
+            className="col-span-2 rounded-lg overflow-hidden cursor-pointer"
+            style={{ gridRowStart: 3, gridRowEnd: 4, height: '500px' }}
+            onClick={() => navigate(`/gallery${collageImages[10].id}`)}
+          >
             <img
               src={collageImages[10].image}
               alt={collageImages[10].alt}
@@ -126,8 +176,12 @@ function OurGallery({ images }: OurGalleryProps) {
             />
           </div>
 
-          {/* Image 12: Small (bottom middle, 4th row) */}
-          <div className="col-span-1 row-span-1 rounded-lg overflow-hidden">
+          {/* Image 12: Square-ish (bottom middle, almost square) */}
+          <div
+            className="col-span-2 rounded-lg overflow-hidden cursor-pointer"
+            style={{ gridRowStart: 3, gridRowEnd: 4, height: '295px' }}
+            onClick={() => navigate(`/gallery${collageImages[11].id}`)}
+          >
             <img
               src={collageImages[11].image}
               alt={collageImages[11].alt}
@@ -135,8 +189,12 @@ function OurGallery({ images }: OurGalleryProps) {
             />
           </div>
 
-          {/* Image 13: Small (bottom right-middle, 4th row) */}
-          <div className="col-span-1 row-span-1 rounded-lg overflow-hidden">
+          {/* Image 13: Medium wide (bottom right, landscape) */}
+          <div
+            className="col-span-3 rounded-lg overflow-hidden cursor-pointer"
+            style={{ gridRowStart: 4, gridRowEnd: 5, height: '350px' }}
+            onClick={() => navigate(`/gallery${collageImages[12].id}`)}
+          >
             <img
               src={collageImages[12].image}
               alt={collageImages[12].alt}
@@ -144,8 +202,12 @@ function OurGallery({ images }: OurGalleryProps) {
             />
           </div>
 
-          {/* Image 14: Small (bottom right, 4th row) */}
-          <div className="col-span-1 row-span-1 rounded-lg overflow-hidden">
+          {/* Image 14: Medium (bottom section, square-ish) */}
+          <div
+            className="col-span-3 rounded-lg overflow-hidden cursor-pointer"
+            style={{ gridRowStart: 4, gridRowEnd: 5, height: '580px' }}
+            onClick={() => navigate(`/gallery${collageImages[13].id}`)}
+          >
             <img
               src={collageImages[13].image}
               alt={collageImages[13].alt}
@@ -153,8 +215,12 @@ function OurGallery({ images }: OurGalleryProps) {
             />
           </div>
 
-          {/* Image 15: Small (additional) */}
-          <div className="col-span-1 row-span-1 rounded-lg overflow-hidden">
+          {/* Image 15: Medium (bottom section, landscape) */}
+          <div
+            className="col-span-4 rounded-lg overflow-hidden cursor-pointer"
+            style={{ gridRowStart: 4, gridRowEnd: 5, height: '390px' }}
+            onClick={() => navigate(`/gallery${collageImages[14].id}`)}
+          >
             <img
               src={collageImages[14].image}
               alt={collageImages[14].alt}

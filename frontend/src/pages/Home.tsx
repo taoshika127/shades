@@ -6,8 +6,6 @@ import HowItWorksSection from '../components/HowItWorksSection'
 import WhyUs from '../components/WhyUs'
 import OurGallery from '../components/OurGallery'
 import FAQ from '../components/FAQ'
-import RoomInspiration from '../components/RoomInspiration'
-import SocialGallery from '../components/SocialGallery'
 import Footer from '../components/Footer'
 
 interface Product {
@@ -26,18 +24,16 @@ interface Category {
   image: string
 }
 
-interface Inspiration {
+interface GalleryImage {
   id: number
-  title: string
-  category: string
   image: string
+  alt: string
 }
 
 function Home() {
   const [products, setProducts] = useState<Product[]>([])
   const [categories, setCategories] = useState<Category[]>([])
-  const [inspirations, setInspirations] = useState<Inspiration[]>([])
-  const [socialImages, setSocialImages] = useState<string[]>([])
+  const [galleryImages, setGalleryImages] = useState<GalleryImage[]>([])
 
   useEffect(() => {
     // Fetch products
@@ -50,27 +46,23 @@ function Home() {
       .then(res => res.json())
       .then(data => setCategories(data))
 
-    // Fetch inspirations
-    fetch('/api/inspirations')
+    // Fetch gallery images
+    fetch('/api/gallery-images')
       .then(res => res.json())
-      .then(data => setInspirations(data))
-
-    // Fetch social images
-    fetch('/api/social-images')
-      .then(res => res.json())
-      .then(data => setSocialImages(data))
+      .then(data => setGalleryImages(data))
   }, [])
 
   useEffect(() => {
     // Handle hash navigation to scroll to sections
     const hash = window.location.hash
+
     if (hash === '#browse-the-range' || hash === '#how-it-works' || hash === '#why-us' || hash === '#faq' || hash === '#our-gallery') {
       setTimeout(() => {
         const section = document.getElementById(hash.substring(1))
         if (section) {
-          section.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          section.scrollIntoView({ behavior: 'auto', block: 'start' })
         }
-      }, 100) // Small delay to ensure DOM is ready
+      }, 0) // Small delay to ensure DOM is ready
     }
   }, [])
 
@@ -81,10 +73,8 @@ function Home() {
       <BrowseRange categories={categories} />
       <HowItWorksSection />
       <WhyUs />
-      <OurGallery images={inspirations.map((insp, idx) => ({ id: insp.id, image: insp.image, alt: insp.title }))} />
+      <OurGallery images={galleryImages} />
       <FAQ />
-      <RoomInspiration inspirations={inspirations} />
-      <SocialGallery images={socialImages} />
       <Footer />
     </div>
   )

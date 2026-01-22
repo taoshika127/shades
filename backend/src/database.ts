@@ -53,10 +53,10 @@ export function initializeDatabase() {
 
     const initialCategories = [
       ['Zebra Shades', '/assets/home/zebra_shades.jpg'],
-      ['Honeycomb Shades', '/assets/home/honeycomb_shades.png'],
+      ['Honeycomb Shades', '/assets/home/honeycomb_shades.jpg'],
       ['Roller Shades', '/assets/home/roller_shades.png'],
       ['Shangri-La Shades', '/assets/home/shangri-la_shades.jpg'],
-      ['Roman Shades', '/assets/home/roman_shades.jpg'],
+      ['Roman Shades', '/assets/home/roman_shades.jpeg'],
       ['Bamboo Shades', '/assets/home/bamboo_shades.jpg'],
       ['Draperies', '/assets/home/draperies.jpg'],
       ['Outdoor Shades', '/assets/home/outdoor_shades.jpg'],
