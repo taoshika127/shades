@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { categoryNameToSlug } from '../utils/slug'
+import Logo from './Logo'
 
 interface HeaderProps {
   currentPage?: 'home' | 'shades'
@@ -85,34 +86,15 @@ function Header({ currentPage = 'home' }: HeaderProps) {
   return (
     <header className="sticky top-0 z-50 py-2 md:py-3 px-5 md:px-20 bg-white border-b border-gray-100 shadow-sm">
       <div className="max-w-container mx-auto flex justify-between items-center">
-        <a href="/" className="flex flex-col gap-0 no-underline">
-          <h1 className="text-3xl md:text-4xl font-bold m-0 leading-tight flex items-baseline" style={{ fontFamily: 'Fjalla One, sans-serif', color: '#102A3A' }}>
-            PACIFIC L
-            <span
-              className="inline-block mx-0.5"
-              style={{
-                width: '0.4em',
-                height: '0.9em',
-                backgroundColor: '#102A3A',
-                backgroundImage: 'repeating-linear-gradient(0deg, #102A3A 0%, #102A3A 25%, white 25%, white 50%)',
-                backgroundSize: '100% 20%',
-                verticalAlign: 'baseline'
-              }}
-            />
-            GHT
-          </h1>
-          <h2 className="text-sm md:text-base font-semibold m-0 leading-tight uppercase text-center" style={{ fontFamily: 'Montserrat, sans-serif', color: '#273f4d' }}>
-            SHADES & BLINDS
-          </h2>
-        </a>
+        <Logo />
         <nav className="flex gap-[60px] md:gap-20">
-          <a href="/" className={`no-underline text-brown text-md md:text-base font-medium hover:text-primary transition-colors ${currentPage === 'home' ? 'text-primary' : ''}`}>Home</a>
+          <a href="/" className={`no-underline text-brown text-xl md:text-lg font-medium hover:text-primary transition-colors uppercase ${currentPage === 'home' ? 'text-primary' : ''}`} style={{ fontFamily: 'Fjalla One, sans-serif' }}>Home</a>
           <div
             className="relative"
             onMouseEnter={() => setShowShadesDropdown(true)}
             onMouseLeave={() => setShowShadesDropdown(false)}
           >
-            <a href="/#browse-the-range" onClick={handleShadesClick} className={`no-underline text-brown text-md md:text-base font-medium hover:text-primary transition-colors ${currentPage === 'shades' ? 'text-primary' : ''}`}>Shades</a>
+            <a href="/#browse-the-range" onClick={handleShadesClick} className={`no-underline text-brown text-xl md:text-lg font-medium hover:text-primary transition-colors uppercase ${currentPage === 'shades' ? 'text-primary' : ''}`} style={{ fontFamily: 'Fjalla One, sans-serif' }}>Shades</a>
             {showShadesDropdown && categories.length > 0 && (
               <div className="absolute top-full left-0 pt-1 w-48 bg-transparent z-50">
                 <div className="bg-white border border-gray-200 rounded-lg shadow-lg py-2">
@@ -125,6 +107,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
                         handleCategoryClick(category)
                       }}
                       className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200 cursor-pointer"
+                      style={{ fontFamily: 'Fjalla One, sans-serif' }}
                     >
                       {category.name}
                     </a>
@@ -133,14 +116,14 @@ function Header({ currentPage = 'home' }: HeaderProps) {
               </div>
             )}
           </div>
-          <a href="/#how-it-works" onClick={handleHowItWorksClick} className="no-underline text-brown text-md md:text-base font-medium hover:text-primary transition-colors">Service</a>
-          <a href="/#our-gallery" onClick={handleGalleryClick} className="no-underline text-brown text-md md:text-base font-medium hover:text-primary transition-colors">Gallery</a>
+          <a href="/#how-it-works" onClick={handleHowItWorksClick} className="no-underline text-brown text-xl md:text-lg font-medium hover:text-primary transition-colors uppercase" style={{ fontFamily: 'Fjalla One, sans-serif' }}>Service</a>
+          <a href="/#our-gallery" onClick={handleGalleryClick} className="no-underline text-brown text-xl md:text-lg font-medium hover:text-primary transition-colors uppercase" style={{ fontFamily: 'Fjalla One, sans-serif' }}>Gallery</a>
           <div
             className="relative"
             onMouseEnter={() => setShowWhyUsDropdown(true)}
             onMouseLeave={() => setShowWhyUsDropdown(false)}
           >
-            <a href="/#why-us" onClick={handleWhyUsClick} className="no-underline text-brown text-md md:text-base font-medium hover:text-primary transition-colors">Why Us</a>
+            <a href="/#why-us" onClick={handleWhyUsClick} className="no-underline text-brown text-xl md:text-lg font-medium hover:text-primary transition-colors uppercase" style={{ fontFamily: 'Fjalla One, sans-serif' }}>Why Us</a>
             {showWhyUsDropdown && (
               <div className="absolute top-full left-0 pt-1 w-56 bg-transparent z-50">
                 <div className="bg-white border border-gray-200 rounded-lg shadow-lg py-2">
@@ -151,6 +134,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
                       handleWhyUsDropdownClick('Why Choose Pacific Light Shades & Blinds')
                     }}
                     className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200 cursor-pointer"
+                    style={{ fontFamily: 'Montserrat, sans-serif' }}
                   >
                     Why Choose Pacific Light Shades & Blinds
                   </a>
@@ -161,6 +145,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
                       handleFAQClick(e)
                     }}
                     className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200 cursor-pointer"
+                    style={{ fontFamily: 'Montserrat, sans-serif' }}
                   >
                     FAQ
                   </a>
@@ -170,10 +155,10 @@ function Header({ currentPage = 'home' }: HeaderProps) {
           </div>
         </nav>
         <div className="flex gap-3">
-          <a href="/quote" className="px-3 md:px-4 py-1.5 md:py-2 bg-primary text-white rounded-[5px] font-semibold text-xs md:text-sm hover:bg-opacity-90 transition-all duration-300 no-underline flex items-center justify-center">
+          <a href="/quote" className="px-3 md:px-4 py-1.5 md:py-2 bg-primary text-white rounded-[5px] font-semibold text-xs md:text-sm hover:bg-opacity-90 transition-all duration-300 no-underline flex items-center justify-center uppercase" style={{ fontFamily: 'Montserrat, sans-serif' }}>
             Get Free Quote
           </a>
-          <a href="/contact" className="px-3 md:px-4 py-1.5 md:py-2 bg-white text-primary border-2 border-primary rounded-[5px] font-semibold text-xs md:text-sm hover:bg-gray-50 transition-all duration-300 no-underline">
+          <a href="/contact" className="px-3 md:px-4 py-1.5 md:py-2 bg-white text-primary border-2 border-primary rounded-[5px] font-semibold text-xs md:text-sm hover:bg-gray-50 transition-all duration-300 no-underline uppercase" style={{ fontFamily: 'Montserrat, sans-serif' }}>
             Contact Us
           </a>
         </div>

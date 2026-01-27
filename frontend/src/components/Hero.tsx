@@ -83,8 +83,8 @@ function Hero() {
       <div className="relative z-10 w-full h-full max-h-[100vh] flex items-center justify-center md:justify-start px-5 md:px-20 overflow-hidden">
         <div className="max-w-container w-full flex justify-center md:justify-start">
           <div className="p-6 md:p-10 relative top-[-20px] rounded-[10px] max-w-full md:max-w-[643px] md:ml-20">
-            <p className="text-[28px] md:text-[28px] mb-6 font-weight-[400] text-[#f0e8d5]">We <span className="font-bold">customize</span>, <span className="font-bold">measure</span> and <span className="font-bold">install</span></p>
-            <h2 className="text-[60px] md:text-[60px] font-bold text-[#dbc697] leading-tight m-0 mb-10">Shades that fit your lifestyle and budget</h2>
+            <p className="text-[28px] md:text-[28px] mb-6 font-weight-[400] text-[#f0e8d5]" style={{ fontFamily: 'Montserrat, sans-serif' }}>We <span className="font-bold">customize</span>, <span className="font-bold">measure</span> and <span className="font-bold">install</span></p>
+            <h2 className="text-[60px] md:text-[60px] font-bold text-[#dbc697] leading-tight m-0 mb-10" style={{ fontFamily: 'Fjalla One, sans-serif' }}>Shades that fit your lifestyle and budget</h2>
 
             {/* Benefits List */}
             <ul className="space-y-5 mb-10">
@@ -101,17 +101,17 @@ function Hero() {
                       <path d="M2 6L5 9L10 2" stroke="#5c4717" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </div>
-                  <span className="text-base md:text-[20px] text-[#f0e8d5] font-semibold">{benefit}</span>
+                  <span className="text-base md:text-[20px] text-[#f0e8d5] font-semibold" style={{ fontFamily: 'Montserrat, sans-serif' }}>{benefit}</span>
                 </li>
               ))}
             </ul>
 
             {/* Call-to-Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-start">
-              <button className="bg-primary text-white px-8 py-3 md:px-10 md:py-4 rounded-[5px] font-semibold text-base md:text-lg hover:bg-opacity-90 transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-100">
+              <button className="bg-primary text-white px-8 py-3 md:px-10 md:py-4 rounded-[5px] font-semibold text-base md:text-lg hover:bg-opacity-90 transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-100 uppercase" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                 Get Free Quote
               </button>
-              <button className="bg-white text-primary px-8 py-3 md:px-10 md:py-4 rounded-[5px] font-semibold text-base md:text-lg hover:bg-gray-50 transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-100">
+              <button className="bg-white text-primary px-8 py-3 md:px-10 md:py-4 rounded-[5px] font-semibold text-base md:text-lg hover:bg-gray-50 transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-100 uppercase" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                 View Our Shades
               </button>
             </div>

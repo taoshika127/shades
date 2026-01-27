@@ -266,7 +266,8 @@ function Quote() {
                   <button
                     type="button"
                     onClick={addWindow}
-                    className="px-3 md:px-4 py-1.5 md:py-2 bg-white text-primary border-2 border-primary rounded-[5px] font-semibold text-xs md:text-sm hover:bg-gray-50 transition-all duration-300 flex items-center gap-2"
+                    className="px-3 md:px-4 py-1.5 md:py-2 bg-white text-primary border-2 border-primary rounded-[5px] font-semibold text-xs md:text-sm hover:bg-gray-50 transition-all duration-300 flex items-center gap-2 uppercase"
+                    style={{ fontFamily: 'Montserrat, sans-serif' }}
                   >
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M12 5V19M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -283,7 +284,8 @@ function Quote() {
                         <button
                           type="button"
                           onClick={() => removeWindow(window.id)}
-                          className="text-red-500 hover:text-red-700 text-sm font-medium"
+                          className="text-red-500 hover:text-red-700 text-sm font-medium uppercase"
+                          style={{ fontFamily: 'Montserrat, sans-serif' }}
                         >
                           Remove
                         </button>
@@ -386,7 +388,8 @@ function Quote() {
               <div className="flex flex-col items-center gap-4">
                 <button
                   type="submit"
-                  className="px-8 py-4 bg-primary text-white rounded-lg font-bold text-lg hover:bg-[#9a7828] transition-colors flex items-center gap-2"
+                  className="px-8 py-4 bg-primary text-white rounded-lg font-bold text-lg hover:bg-[#9a7828] transition-colors flex items-center gap-2 uppercase"
+                  style={{ fontFamily: 'Montserrat, sans-serif' }}
                 >
                   Get My Quote
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -88,10 +88,10 @@ function FAQ() {
   return (
     <section id="faq" className="py-10 md:py-20 px-5 md:px-20 bg-white">
       <div className="max-w-container mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-brown text-center mb-4">
+        <h2 className="text-3xl md:text-4xl font-bold text-brown text-center mb-4" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
           Frequently Asked Questions
         </h2>
-        <p className="text-base md:text-xl text-center mb-5 md:mb-10 max-w-3xl mx-auto" style={{ color: '#937125' }}>
+        <p className="text-base md:text-xl text-center mb-5 md:mb-10 max-w-3xl mx-auto" style={{ color: '#937125', fontFamily: 'Montserrat, sans-serif' }}>
           Get clear answers about our pricing, quality, and service.
         </p>
 
@@ -100,16 +100,17 @@ function FAQ() {
           <div className="rounded-lg p-6 md:p-8 bg-white" style={{ boxShadow: '0 0 24px rgba(0, 0, 0, 0.24)' }}>
             <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6">
               <div className="flex flex-col items-start text-center">
-                <p className="text-base md:text-2xl font-bold mb-1 text-brown">
+                <p className="text-base md:text-2xl font-bold mb-1 text-brown" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
                   Still have questions?
                 </p>
-                <p className="text-base md:text-lg text-brown">
+                <p className="text-base md:text-lg text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                   Our team is ready to help. Reach out any time!
                 </p>
               </div>
               <a
                 href="/contact"
-                className="px-3 md:px-4 py-1.5 md:py-2 bg-white text-primary border-2 border-primary rounded-[5px] font-semibold text-xs md:text-sm hover:bg-gray-50 transition-all duration-300 no-underline whitespace-nowrap"
+                className="px-3 md:px-4 py-1.5 md:py-2 bg-white text-primary border-2 border-primary rounded-[5px] font-semibold text-xs md:text-sm hover:bg-gray-50 transition-all duration-300 no-underline whitespace-nowrap uppercase"
+                style={{ fontFamily: 'Montserrat, sans-serif' }}
               >
                 Contact Us
               </a>
@@ -134,7 +135,7 @@ function FAQ() {
               >
                 {/* Question text */}
                 <div className="flex-1 px-4 md:px-6 py-4 md:py-5 text-left">
-                  <span className="text-white text-base md:text-lg font-bold">
+                  <span className="text-white text-base md:text-lg font-semibold" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                     {faq.question}
                   </span>
                 </div>
@@ -181,6 +182,7 @@ function FAQ() {
                 <div className="mt-2 pb-4 pl-[4.5rem] md:pl-[5rem] pr-4 md:pr-6">
                   <div
                     className="text-base text-brown leading-relaxed mb-6"
+                    style={{ fontFamily: 'Montserrat, sans-serif' }}
                     dangerouslySetInnerHTML={{ __html: faq.answer }}
                   />
                   {index === 0 && (

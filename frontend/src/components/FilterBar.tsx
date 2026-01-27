@@ -34,7 +34,7 @@ function FilterBar({
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M2.5 5H17.5M5 10H15M7.5 15H12.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
             </svg>
-            <span className="text-base text-brown">Filter</span>
+            <span className="text-base text-brown uppercase" style={{ fontFamily: 'Montserrat, sans-serif' }}>Filter</span>
           </button>
           <div className="flex items-center gap-2">
             <button

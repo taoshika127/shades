@@ -75,10 +75,10 @@ function WhyUs() {
   return (
     <section id="why-us" className="py-10 md:py-20 px-5 md:px-20 bg-gray-50">
       <div className="max-w-container mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-brown text-center mb-4">
+        <h2 className="text-3xl md:text-4xl font-bold text-brown text-center mb-4" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
           Why Choose Pacific Light Shades & Blinds?
         </h2>
-        <p className="text-base md:text-xl text-center mb-12 md:mb-16 max-w-3xl mx-auto" style={{ color: '#937125' }}>
+        <p className="text-base md:text-xl text-center mb-12 md:mb-16 max-w-3xl mx-auto" style={{ color: '#937125', fontFamily: 'Montserrat, sans-serif' }}>
           Quality, affordability, and service you can trust.
         </p>
 
@@ -103,11 +103,11 @@ function WhyUs() {
                     {feature.icon}
                   </div>
                 </div>
-                <h3 className="text-xl md:text-2xl font-bold text-brown m-0">
+                <h3 className="text-xl md:text-2xl font-bold text-brown m-0" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
                   {feature.title}
                 </h3>
               </div>
-              <p className="text-base text-brown leading-relaxed m-0">
+              <p className="text-base text-brown leading-relaxed m-0" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                 {feature.description}
               </p>
             </div>

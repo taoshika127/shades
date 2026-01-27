@@ -165,7 +165,8 @@ function ContactSection() {
               <div className="flex justify-center">
                 <button
                   type="submit"
-                  className="px-12 py-3 bg-primary text-white text-base font-semibold rounded hover:bg-[#9a7828] transition-colors"
+                  className="px-12 py-3 bg-primary text-white text-base font-semibold rounded hover:bg-[#9a7828] transition-colors uppercase"
+                  style={{ fontFamily: 'Montserrat, sans-serif' }}
                 >
                   Submit
                 </button>

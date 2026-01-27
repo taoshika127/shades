@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Logo from './Logo'
 
 function Footer() {
   const [email, setEmail] = useState('')
@@ -27,29 +28,32 @@ function Footer() {
   }
 
   return (
-    <footer className="bg-white border-t border-gray-100 py-10 md:py-20 px-5 md:px-20">
+    <footer className="bg-light-beige border-t border-gray-100 py-10 md:py-20 px-5 md:px-20">
       <div className="max-w-container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1.5fr] gap-8 md:gap-15 mb-10">
           <div className="flex flex-col gap-6">
-            <h3 className="text-2xl font-bold text-brown m-0">Pacific Light Shades & Blinds.</h3>
+            <div style={{ width: '191px' }}>
+              <Logo />
+            </div>
             <p className="text-base text-light-gray leading-relaxed m-0">
               Contact us for any questions or inquiries.
             </p>
           </div>
           <div className="flex flex-col gap-6">
-            <h4 className="text-base font-medium text-light-gray m-0 mb-4">Links</h4>
+            <h4 className="text-base font-medium text-light-gray m-0 mb-4">Navigation</h4>
             <ul className="list-none p-0 m-0 flex flex-col gap-4">
               <li><a href="/" className="text-brown no-underline text-base hover:text-primary transition-colors">Home</a></li>
-              <li><a href="/zebra-shades" className="text-brown no-underline text-base hover:text-primary transition-colors">Zebra Shades</a></li>
-              <li><a href="/honeycomb-shades" className="text-brown no-underline text-base hover:text-primary transition-colors">Honeycomb Shades</a></li>
-              <li><a href="/roller-shades" className="text-brown no-underline text-base hover:text-primary transition-colors">Roller Shades</a></li>
-              <li><a href="/contact" className="text-brown no-underline text-base hover:text-primary transition-colors">Contact</a></li>
+              <li><a href="/#our-gallery" className="text-brown no-underline text-base hover:text-primary transition-colors">Gallery</a></li>
+              <li><a href="/#how-it-works" className="text-brown no-underline text-base hover:text-primary transition-colors">Service</a></li>
+              <li><a href="/#why-us" className="text-brown no-underline text-base hover:text-primary transition-colors">Why Us</a></li>
             </ul>
           </div>
           <div className="flex flex-col gap-6">
-            <h4 className="text-base font-medium text-light-gray m-0 mb-4">FAQ</h4>
+            <h4 className="text-base font-medium text-light-gray m-0 mb-4">Pages</h4>
             <ul className="list-none p-0 m-0 flex flex-col gap-4">
-              <li><a href="/faq" className="text-brown no-underline text-base hover:text-primary transition-colors">FAQ</a></li>
+              <li><a href="/contact" className="text-brown no-underline text-base hover:text-primary transition-colors">Contact</a></li>
+              <li><a href="/quote" className="text-brown no-underline text-base hover:text-primary transition-colors">Get Free Quote</a></li>
+              <li><a href="/#faq" className="text-brown no-underline text-base hover:text-primary transition-colors">FAQ</a></li>
             </ul>
           </div>
           <div className="flex flex-col gap-6">
@@ -63,7 +67,7 @@ function Footer() {
                 className="px-4 py-3 border border-light-gray rounded text-base text-brown bg-white placeholder:text-light-gray focus:outline-none focus:border-primary"
                 required
               />
-              <button type="submit" className="px-8 py-3 bg-white border border-brown text-brown text-base font-semibold rounded cursor-pointer hover:bg-brown hover:text-white transition-all w-full md:w-fit">SUBSCRIBE</button>
+              <button type="submit" className="px-8 py-3 bg-white border border-brown text-brown text-base font-semibold rounded cursor-pointer hover:bg-brown hover:text-white transition-all w-full md:w-fit uppercase" style={{ fontFamily: 'Montserrat, sans-serif' }}>SUBSCRIBE</button>
             </form>
           </div>
         </div>

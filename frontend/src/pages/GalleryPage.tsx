@@ -138,7 +138,8 @@ function GalleryPage() {
             <div className="flex gap-6">
               {parseInt(idNumber) > 1 && (
                 <button
-                  className="px-4 py-2.5 bg-primary text-white text-base font-semibold border-0 rounded cursor-pointer w-fit hover:bg-[#9a7828] transition-colors"
+                  className="px-4 py-2.5 bg-primary text-white text-base font-semibold border-0 rounded cursor-pointer w-fit hover:bg-[#9a7828] transition-colors uppercase"
+                  style={{ fontFamily: 'Montserrat, sans-serif' }}
                   onClick={() => navigate(`/gallery${parseInt(idNumber) - 1}`)}
                 >
                   Previous Gallery
@@ -146,7 +147,8 @@ function GalleryPage() {
               )}
               {parseInt(idNumber) < 15 && (
                 <button
-                  className="px-4 py-2.5 bg-primary text-white text-base font-semibold border-0 rounded cursor-pointer w-fit hover:bg-[#9a7828] transition-colors"
+                  className="px-4 py-2.5 bg-primary text-white text-base font-semibold border-0 rounded cursor-pointer w-fit hover:bg-[#9a7828] transition-colors uppercase"
+                  style={{ fontFamily: 'Montserrat, sans-serif' }}
                   onClick={() => navigate(`/gallery${parseInt(idNumber) + 1}`)}
                 >
                   Next Gallery
