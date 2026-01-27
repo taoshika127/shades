@@ -1,7 +1,7 @@
 {
   "name": "light-shade",
   "version": "1.0.0",
-  "description": "Light & Shade E-commerce Website",
+  "description": "Pacific Light Shades & Blinds E-commerce Website",
   "scripts": {
     "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install",
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",

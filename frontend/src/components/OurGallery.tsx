@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 interface GalleryImage {
@@ -12,8 +13,11 @@ interface OurGalleryProps {
 
 function OurGallery({ images }: OurGalleryProps) {
   const navigate = useNavigate()
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
+
   // Use the images array directly, or fallback to placeholder if empty
-  const collageImages = images.length > 0
+  const galleryImages = images.length > 0
     ? images
     : Array.from({ length: 15 }, (_, i) => ({
         id: i + 1,
@@ -21,211 +25,158 @@ function OurGallery({ images }: OurGalleryProps) {
         alt: `Gallery image ${i + 1}`
       }))
 
+  const totalImages = galleryImages.length
+
+  const getVisibleImages = () => {
+    // Show 5 images: 2 before, current, 2 after
+    // Wrap around the array boundaries
+    const visible: GalleryImage[] = []
+
+    for (let i = -2; i <= 2; i++) {
+      let index = currentIndex + i
+      // Wrap around if index is negative
+      if (index < 0) {
+        index = totalImages + index
+      }
+      // Wrap around if index is beyond array length
+      if (index >= totalImages) {
+        index = index % totalImages
+      }
+      visible.push(galleryImages[index])
+    }
+
+    return visible
+  }
+
+  const resetTimer = () => {
+    // Clear existing timer
+    if (timerRef.current) {
+      clearInterval(timerRef.current)
+    }
+    // Start new timer
+    if (totalImages > 1) {
+      timerRef.current = setInterval(() => {
+        setCurrentIndex((prev) => (prev + 1) % totalImages)
+      }, 5000)
+    }
+  }
+
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % totalImages)
+    resetTimer()
+  }
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev - 1 + totalImages) % totalImages)
+    resetTimer()
+  }
+
+  const goToSlide = (index: number) => {
+    setCurrentIndex(index)
+    resetTimer()
+  }
+
+  // Auto-rotate carousel every 5 seconds
+  useEffect(() => {
+    resetTimer()
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current)
+      }
+    }
+  }, [totalImages])
+
+  const visibleImages = getVisibleImages()
+
   return (
-    <section id="our-gallery" className="py-5 md:py-10 px-3 md:px-5 bg-gray-50">
+    <section id="our-gallery" className="py-10 md:py-20 px-5 md:px-20 bg-white">
       <div className="max-w-container mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-brown text-center mb-4">Our Gallery</h2>
+      <h2 className="text-3xl md:text-4xl font-bold text-brown text-center mb-4">Our Gallery</h2>
         <p className="text-base md:text-xl text-center mb-12 md:mb-16 max-w-3xl mx-auto" style={{ color: '#937125' }}>
-          Explore our curated collection of stunning window shade installations. From modern minimalism to classic elegance, discover the perfect inspiration for your space.
+          Explore our curated collection of stunning window shade installations. From modern minimalism to classic elegance, discover the
+          perfect inspiration for your space.
         </p>
-        <div className="grid grid-cols-10 gap-3 md:gap-4" style={{ gridAutoRows: 'minmax(120px, auto)' }}>
-          {/* TOP ROW - Mix of sizes with some top edge alignment */}
 
-          {/* Image 1: Tall (top left, tall portrait-like) */}
-          <div
-            className="col-span-2 rounded-lg overflow-hidden cursor-pointer"
-            style={{ gridRowStart: 1, gridRowEnd: 2, height: '350px' }}
-            onClick={() => navigate(`/gallery${collageImages[0].id}`)}
-          >
-            <img
-              src={collageImages[0].image}
-              alt={collageImages[0].alt}
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-            />
+        <div className="relative">
+          {/* Carousel Container */}
+          <div className="flex items-center justify-center gap-4 md:gap-6">
+            {visibleImages.map((img, index) => {
+              const isOuter = index === 0 || index === 4
+              const isCenter = index >= 1 && index <= 3
+              const isLeftmost = index === 0
+              const isRightmost = index === 4
+
+              return (
+                <div
+                  key={img.id}
+                  className={`relative overflow-hidden cursor-pointer ${
+                    isOuter
+                      ? 'opacity-50 scale-90 flex-1 max-w-[200px]'
+                      : isCenter
+                      ? 'opacity-100 scale-100 flex-1 max-w-[350px]'
+                      : 'flex-1'
+                  }`}
+                  onClick={() => img.id > 0 && navigate(`/gallery${img.id}`)}
+                  style={{ height: isCenter ? '400px' : '300px' }}
+                >
+                  <img
+                    src={img.image}
+                    alt={img.alt || `Gallery image ${img.id}`}
+                    className="w-full h-full object-cover"
+                  />
+                  {/* Grey overlay for side images to make arrows more visible */}
+                  {(isLeftmost || isRightmost) && (
+                    <div className="absolute inset-0 bg-gray-800 bg-opacity-60 z-0" />
+                  )}
+                  {/* Left Arrow - positioned in the middle of leftmost image */}
+                  {isLeftmost && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        prevSlide()
+                      }}
+                      className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex items-center justify-center transition-all hover:opacity-80 cursor-pointer"
+                      aria-label="Previous images"
+                    >
+                      <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 18L9 12L15 6" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))' }}/>
+                      </svg>
+                    </button>
+                  )}
+                  {/* Right Arrow - positioned in the middle of rightmost image */}
+                  {isRightmost && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        nextSlide()
+                      }}
+                      className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex items-center justify-center transition-all hover:opacity-80 cursor-pointer"
+                      aria-label="Next images"
+                    >
+                      <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 18L15 12L9 6" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))' }}/>
+                      </svg>
+                    </button>
+                  )}
+                </div>
+              )
+            })}
           </div>
 
-          {/* Image 2: Taller (top left-middle, tallest) */}
-          <div
-            className="col-span-3 rounded-lg overflow-hidden cursor-pointer"
-            style={{ gridRowStart: 1, gridRowEnd: 2, height: '480px' }}
-            onClick={() => navigate(`/gallery${collageImages[1].id}`)}
-          >
-            <img
-              src={collageImages[1].image}
-              alt={collageImages[1].alt}
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-            />
-          </div>
-
-          {/* Image 3: Wide (top middle, landscape) */}
-          <div
-            className="col-span-3 rounded-lg overflow-hidden cursor-pointer"
-            style={{ gridRowStart: 1, gridRowEnd: 2, height: '400px' }}
-            onClick={() => navigate(`/gallery${collageImages[2].id}`)}
-          >
-            <img
-              src={collageImages[2].image}
-              alt={collageImages[2].alt}
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-            />
-          </div>
-
-          {/* Image 4: Small square (top right, small square) */}
-          <div
-            className="col-span-2 rounded-lg overflow-hidden cursor-pointer"
-            style={{ gridRowStart: 1, gridRowEnd: 2, height: '300px' }}
-            onClick={() => navigate(`/gallery${collageImages[3].id}`)}
-          >
-            <img
-              src={collageImages[3].image}
-              alt={collageImages[3].alt}
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-            />
-          </div>
-
-          {/* Image 5: Small square (top far right, stacked below Image 4) */}
-          <div
-            className="col-span-3 rounded-lg overflow-hidden cursor-pointer"
-            style={{ gridRowStart: 2, gridRowEnd: 3, height: '320px' }}
-            onClick={() => navigate(`/gallery${collageImages[4].id}`)}
-          >
-            <img
-              src={collageImages[4].image}
-              alt={collageImages[4].alt}
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-            />
-          </div>
-
-          {/* Image 6: Medium wide (middle left, landscape, offset) */}
-          <div
-            className="col-span-4 rounded-lg overflow-hidden cursor-pointer"
-            style={{ gridRowStart: 2, gridRowEnd: 3, height: '490px' }}
-            onClick={() => navigate(`/gallery${collageImages[5].id}`)}
-          >
-            <img
-              src={collageImages[5].image}
-              alt={collageImages[5].alt}
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-            />
-          </div>
-
-          {/* Image 7: Medium (middle, square-ish, offset) */}
-          <div
-            className="col-span-2 rounded-lg overflow-hidden cursor-pointer"
-            style={{ gridRowStart: 2, gridRowEnd: 3, height: '350px'}}
-            onClick={() => navigate(`/gallery${collageImages[6].id}`)}
-          >
-            <img
-              src={collageImages[6].image}
-              alt={collageImages[6].alt}
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-            />
-          </div>
-
-          {/* Image 8: Small square (middle right, offset) */}
-          <div
-            className="col-span-2 rounded-lg overflow-hidden cursor-pointer"
-            style={{ gridRowStart: 3, gridRowEnd: 4, height: '390px'}}
-            onClick={() => navigate(`/gallery${collageImages[7].id}`)}
-          >
-            <img
-              src={collageImages[7].image}
-              alt={collageImages[7].alt}
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-            />
-          </div>
-
-          {/* Image 9: Small square (top far right, third stacked) */}
-          <div
-            className="col-span-2 rounded-lg overflow-hidden cursor-pointer"
-            style={{ gridRowStart: 3, gridRowEnd: 4, height: '250px' }}
-            onClick={() => navigate(`/gallery${collageImages[8].id}`)}
-          >
-            <img
-              src={collageImages[8].image}
-              alt={collageImages[8].alt}
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-            />
-          </div>
-
-          {/* BOTTOM ROW - Mix of sizes with some bottom edge alignment */}
-
-          {/* Image 10: Wide (bottom left, wide landscape) */}
-          <div
-            className="col-span-2 rounded-lg overflow-hidden cursor-pointer"
-            style={{ gridRowStart: 3, gridRowEnd: 4, height: '340px' }}
-            onClick={() => navigate(`/gallery${collageImages[9].id}`)}
-          >
-            <img
-              src={collageImages[9].image}
-              alt={collageImages[9].alt}
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-            />
-          </div>
-
-          {/* Image 11: Tall (bottom left-middle, tall portrait-like) */}
-          <div
-            className="col-span-2 rounded-lg overflow-hidden cursor-pointer"
-            style={{ gridRowStart: 3, gridRowEnd: 4, height: '500px' }}
-            onClick={() => navigate(`/gallery${collageImages[10].id}`)}
-          >
-            <img
-              src={collageImages[10].image}
-              alt={collageImages[10].alt}
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-            />
-          </div>
-
-          {/* Image 12: Square-ish (bottom middle, almost square) */}
-          <div
-            className="col-span-2 rounded-lg overflow-hidden cursor-pointer"
-            style={{ gridRowStart: 3, gridRowEnd: 4, height: '295px' }}
-            onClick={() => navigate(`/gallery${collageImages[11].id}`)}
-          >
-            <img
-              src={collageImages[11].image}
-              alt={collageImages[11].alt}
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-            />
-          </div>
-
-          {/* Image 13: Medium wide (bottom right, landscape) */}
-          <div
-            className="col-span-3 rounded-lg overflow-hidden cursor-pointer"
-            style={{ gridRowStart: 4, gridRowEnd: 5, height: '350px' }}
-            onClick={() => navigate(`/gallery${collageImages[12].id}`)}
-          >
-            <img
-              src={collageImages[12].image}
-              alt={collageImages[12].alt}
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-            />
-          </div>
-
-          {/* Image 14: Medium (bottom section, square-ish) */}
-          <div
-            className="col-span-3 rounded-lg overflow-hidden cursor-pointer"
-            style={{ gridRowStart: 4, gridRowEnd: 5, height: '580px' }}
-            onClick={() => navigate(`/gallery${collageImages[13].id}`)}
-          >
-            <img
-              src={collageImages[13].image}
-              alt={collageImages[13].alt}
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-            />
-          </div>
-
-          {/* Image 15: Medium (bottom section, landscape) */}
-          <div
-            className="col-span-4 rounded-lg overflow-hidden cursor-pointer"
-            style={{ gridRowStart: 4, gridRowEnd: 5, height: '390px' }}
-            onClick={() => navigate(`/gallery${collageImages[14].id}`)}
-          >
-            <img
-              src={collageImages[14].image}
-              alt={collageImages[14].alt}
-              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-            />
+          {/* Pagination Dots */}
+          <div className="flex justify-center gap-2 mt-8 flex-wrap">
+            {galleryImages.map((img, index) => (
+              <button
+                key={img.id}
+                onClick={() => goToSlide(index)}
+                className={`w-3 h-3 rounded-full transition-all ${
+                  index === currentIndex
+                    ? 'bg-medium-gray'
+                    : 'bg-gray-300'
+                }`}
+                aria-label={`Go to image ${index + 1}`}
+              />
+            ))}
           </div>
         </div>
       </div>

@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
-import { initializeDatabase, categoryDb } from './database';
+import { initializeDatabase, categoryDb, zipcodeDb } from './database';
 
 dotenv.config();
 
@@ -409,6 +409,18 @@ app.get('/api/gallery/:id', (req, res) => {
       design: galleryData.design
     });
   }
+});
+
+// Check if zipcode is in service area
+app.get('/api/check-zipcode/:zipcode', (req, res) => {
+  const { zipcode } = req.params;
+
+  if (!zipcode || zipcode.trim() === '') {
+    return res.status(400).json({ error: 'Zipcode is required' });
+  }
+
+  const isInServiceArea = zipcodeDb.isInServiceArea(zipcode.trim());
+  res.json({ inServiceArea: isInServiceArea });
 });
 
 app.post('/api/newsletter', (req, res) => {

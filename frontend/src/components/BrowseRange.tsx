@@ -20,7 +20,7 @@ function BrowseRange({ categories }: BrowseRangeProps) {
   }
 
   return (
-    <section id="browse-the-range" className="py-10 md:py-20 px-5 md:px-20 bg-gray-50">
+    <section id="browse-the-range" className="py-10 md:py-20 px-5 md:px-20 bg-white">
       <div className="max-w-container mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-brown text-center mb-4">Browse The Range</h2>
         <p className="text-base md:text-xl text-center mb-12 md:mb-16 max-w-3xl mx-auto" style={{ color: '#937125' }}>
@@ -33,7 +33,7 @@ function BrowseRange({ categories }: BrowseRangeProps) {
               className="flex flex-col gap-4 cursor-pointer group"
               onClick={() => handleCategoryClick(category)}
             >
-              <div className="w-full h-[300px] md:h-[480px] overflow-hidden rounded-[10px]">
+              <div className="w-full h-[300px] md:h-[480px] overflow-hidden">
                 <img
                   src={category.image}
                   alt={category.name}

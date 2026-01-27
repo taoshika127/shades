@@ -89,15 +89,15 @@ function HowItWorksSection() {
           <p className="text-lg md:text-xl text-brown leading-relaxed flex-1">
             {step.description}
           </p>
-          <div className="overflow-hidden rounded-lg flex-shrink-0">
+          <div className="overflow-hidden flex-shrink-0">
             {imageSrc ? (
               <img
                 src={imageSrc}
                 alt={step.imageLabel}
-                className="w-[200px] md:w-[250px] h-[140px] md:h-[175px] object-cover rounded-lg"
+                className="w-[200px] md:w-[250px] h-[140px] md:h-[175px] object-cover"
               />
             ) : (
-              <div className="w-[200px] md:w-[250px] h-[140px] md:h-[175px] bg-gray-200 rounded-lg flex items-center justify-center">
+              <div className="w-[200px] md:w-[250px] h-[140px] md:h-[175px] bg-gray-200 flex items-center justify-center">
                 <span className="text-white text-base md:text-lg font-medium">
                   {step.imageLabel}
                 </span>
@@ -110,7 +110,7 @@ function HowItWorksSection() {
   }
 
   return (
-    <section id="how-it-works" className="py-10 md:py-20 px-5 md:px-20 bg-white">
+    <section id="how-it-works" className="py-10 md:py-20 px-5 md:px-20 bg-gray-50">
       <div className="max-w-container mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold text-brown text-center mb-4">
           How It Works

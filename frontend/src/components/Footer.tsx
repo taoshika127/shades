@@ -31,7 +31,7 @@ function Footer() {
       <div className="max-w-container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1.5fr] gap-8 md:gap-15 mb-10">
           <div className="flex flex-col gap-6">
-            <h3 className="text-2xl font-bold text-brown m-0">Light & Shade.</h3>
+            <h3 className="text-2xl font-bold text-brown m-0">Pacific Light Shades & Blinds.</h3>
             <p className="text-base text-light-gray leading-relaxed m-0">
               Contact us for any questions or inquiries.
             </p>
@@ -68,7 +68,7 @@ function Footer() {
           </div>
         </div>
         <div className="pt-10 border-t border-gray-100">
-          <p className="text-base text-light-gray m-0">2026 Light & Shade. All rights reserved</p>
+          <p className="text-base text-light-gray m-0">2026 Pacific Light Shades & Blinds. All rights reserved</p>
         </div>
       </div>
     </footer>

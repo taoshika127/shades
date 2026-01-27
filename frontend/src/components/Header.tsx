@@ -29,61 +29,40 @@ function Header({ currentPage = 'home' }: HeaderProps) {
   const handleShadesClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
 
-    if (currentPage === 'home') {
-      // If already on home page, scroll to the section
-      const browseSection = document.getElementById('browse-the-range')
-      if (browseSection) {
-        browseSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }
-    } else {
+
       // If on another page, navigate to home with hash
       window.location.href = '/#browse-the-range'
-    }
   }
 
   const handleHowItWorksClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
 
-    if (currentPage === 'home') {
-      // If already on home page, scroll to the section
-      const howItWorksSection = document.getElementById('how-it-works')
-      if (howItWorksSection) {
-        howItWorksSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }
-    } else {
+
       // If on another page, navigate to home with hash
       window.location.href = '/#how-it-works'
-    }
+
   }
 
   const handleGalleryClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
 
-    if (currentPage === 'home') {
-      // If already on home page, scroll to the section
-      const gallerySection = document.getElementById('our-gallery')
-      if (gallerySection) {
-        gallerySection.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }
-    } else {
-      // If on another page, navigate to home with hash
-      window.location.href = '/#our-gallery'
-    }
+    // Always navigate to home with hash, let Home page handle the scroll
+    window.location.href = '/#our-gallery'
   }
 
   const handleWhyUsClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
 
-    if (currentPage === 'home') {
-      // If already on home page, scroll to the section
-      const whyUsSection = document.getElementById('why-us')
-      if (whyUsSection) {
-        whyUsSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }
-    } else {
+
       // If on another page, navigate to home with hash
       window.location.href = '/#why-us'
-    }
+
+  }
+
+  const handleFAQClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+    // Always navigate to home with hash, let Home page handle the scroll
+    window.location.href = '/#faq'
   }
 
   const handleCategoryClick = (category: Category) => {
@@ -93,17 +72,12 @@ function Header({ currentPage = 'home' }: HeaderProps) {
   }
 
   const handleWhyUsDropdownClick = (item: string) => {
-    if (item === 'Why Choose Light & Shade') {
-      if (currentPage === 'home') {
-        const whyUsSection = document.getElementById('why-us')
-        if (whyUsSection) {
-          whyUsSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
-        }
-      } else {
-        window.location.href = '/#why-us'
-      }
+    if (item === 'Why Choose Pacific Light Shades & Blinds') {
+      setShowWhyUsDropdown(false)
+      window.location.href = '/#why-us'
     } else if (item === 'FAQ') {
-      navigate('/#faq')
+      setShowWhyUsDropdown(false)
+      window.location.href = '/#faq'
     }
     setShowWhyUsDropdown(false)
   }
@@ -111,9 +85,26 @@ function Header({ currentPage = 'home' }: HeaderProps) {
   return (
     <header className="sticky top-0 z-50 py-2 md:py-3 px-5 md:px-20 bg-white border-b border-gray-100 shadow-sm">
       <div className="max-w-container mx-auto flex justify-between items-center">
-        <div className="flex flex-col gap-2">
-          <h1 className="text-xl md:text-2xl font-bold text-brown m-0">Light & Shade</h1>
-        </div>
+        <a href="/" className="flex flex-col gap-0 no-underline">
+          <h1 className="text-3xl md:text-4xl font-bold m-0 leading-tight flex items-baseline" style={{ fontFamily: 'Fjalla One, sans-serif', color: '#102A3A' }}>
+            PACIFIC L
+            <span
+              className="inline-block mx-0.5"
+              style={{
+                width: '0.4em',
+                height: '0.9em',
+                backgroundColor: '#102A3A',
+                backgroundImage: 'repeating-linear-gradient(0deg, #102A3A 0%, #102A3A 25%, white 25%, white 50%)',
+                backgroundSize: '100% 20%',
+                verticalAlign: 'baseline'
+              }}
+            />
+            GHT
+          </h1>
+          <h2 className="text-sm md:text-base font-semibold m-0 leading-tight uppercase text-center" style={{ fontFamily: 'Montserrat, sans-serif', color: '#273f4d' }}>
+            SHADES & BLINDS
+          </h2>
+        </a>
         <nav className="flex gap-[60px] md:gap-20">
           <a href="/" className={`no-underline text-brown text-md md:text-base font-medium hover:text-primary transition-colors ${currentPage === 'home' ? 'text-primary' : ''}`}>Home</a>
           <div
@@ -157,17 +148,17 @@ function Header({ currentPage = 'home' }: HeaderProps) {
                     href="/#why-us"
                     onClick={(e) => {
                       e.preventDefault()
-                      handleWhyUsDropdownClick('Why Choose Light & Shade')
+                      handleWhyUsDropdownClick('Why Choose Pacific Light Shades & Blinds')
                     }}
                     className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200 cursor-pointer"
                   >
-                    Why Choose Light & Shade
+                    Why Choose Pacific Light Shades & Blinds
                   </a>
                   <a
                     href="/#faq"
                     onClick={(e) => {
                       e.preventDefault()
-                      handleWhyUsDropdownClick('FAQ')
+                      handleFAQClick(e)
                     }}
                     className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200 cursor-pointer"
                   >
@@ -179,7 +170,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
           </div>
         </nav>
         <div className="flex gap-3">
-          <a href="/contact" className="px-3 md:px-4 py-1.5 md:py-2 bg-primary text-white rounded-[5px] font-semibold text-xs md:text-sm hover:bg-opacity-90 transition-all duration-300 no-underline flex items-center justify-center">
+          <a href="/quote" className="px-3 md:px-4 py-1.5 md:py-2 bg-primary text-white rounded-[5px] font-semibold text-xs md:text-sm hover:bg-opacity-90 transition-all duration-300 no-underline flex items-center justify-center">
             Get Free Quote
           </a>
           <a href="/contact" className="px-3 md:px-4 py-1.5 md:py-2 bg-white text-primary border-2 border-primary rounded-[5px] font-semibold text-xs md:text-sm hover:bg-gray-50 transition-all duration-300 no-underline">

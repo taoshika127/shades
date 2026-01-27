@@ -1,7 +1,7 @@
 # Categories API Documentation
 
 ## Overview
-The Categories API allows you to manage categories for the Light & Shade application. Categories are stored in a SQLite database.
+The Categories API allows you to manage categories for the Pacific Light Shades & Blinds application. Categories are stored in a SQLite database.
 
 ## Endpoints
 

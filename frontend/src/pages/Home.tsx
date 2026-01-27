@@ -57,12 +57,10 @@ function Home() {
     const hash = window.location.hash
 
     if (hash === '#browse-the-range' || hash === '#how-it-works' || hash === '#why-us' || hash === '#faq' || hash === '#our-gallery') {
-      setTimeout(() => {
-        const section = document.getElementById(hash.substring(1))
-        if (section) {
-          section.scrollIntoView({ behavior: 'auto', block: 'start' })
-        }
-      }, 0) // Small delay to ensure DOM is ready
+      const section = document.getElementById(hash.substring(1))
+      if (section) {
+        section.scrollIntoView({ behavior: 'auto', block: 'start' })
+      }
     }
   }, [])
 

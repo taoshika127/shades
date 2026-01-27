@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
@@ -12,6 +12,9 @@ function GalleryPage() {
   const [galleryDesign, setGalleryDesign] = useState<{ [roomType: string]: string } | undefined>(undefined)
   const [currentIndex, setCurrentIndex] = useState(0)
   const [loading, setLoading] = useState(true)
+  const [imageObjectFit, setImageObjectFit] = useState<'cover' | 'contain'>('contain')
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const imgRef = useRef<HTMLImageElement | null>(null)
 
   useEffect(() => {
     // Extract gallery ID from pathname (e.g., /gallery1 -> 1)
@@ -41,24 +44,56 @@ function GalleryPage() {
       })
   }, [location.pathname])
 
+  const resetTimer = () => {
+    // Clear existing timer
+    if (timerRef.current) {
+      clearInterval(timerRef.current)
+    }
+    // Start new timer
+    if (images.length > 1) {
+      timerRef.current = setInterval(() => {
+        setCurrentIndex((prev) => (prev + 1) % images.length)
+      }, 10000)
+    }
+  }
+
   useEffect(() => {
-    if (images.length <= 1) return
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % images.length)
-    }, 10000)
-    return () => clearInterval(timer)
+    resetTimer()
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current)
+      }
+    }
   }, [images.length, location.pathname])
 
   const nextSlide = () => {
     setCurrentIndex((prev) => (prev + 1) % images.length)
+    setImageObjectFit('contain') // Reset to default while loading
+    resetTimer()
   }
 
   const prevSlide = () => {
     setCurrentIndex((prev) => (prev - 1 + images.length) % images.length)
+    setImageObjectFit('contain') // Reset to default while loading
+    resetTimer()
   }
 
   const goToSlide = (index: number) => {
     setCurrentIndex(index)
+    setImageObjectFit('contain') // Reset to default while loading
+    resetTimer()
+  }
+
+  const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    const img = e.currentTarget
+    // Check if image is landscape (width > height) or portrait/square (height >= width)
+    if (img.naturalWidth > img.naturalHeight) {
+      // Landscape: use object-cover to crop width and fill height
+      setImageObjectFit('cover')
+    } else {
+      // Portrait/Square: use object-contain to show full image with grey space on sides
+      setImageObjectFit('contain')
+    }
   }
 
   if (loading) {
@@ -88,7 +123,7 @@ function GalleryPage() {
   return (
     <div className="min-h-screen bg-white">
       <Header />
-      <section className="py-10 md:py-20 px-5 md:px-20">
+      <section className="pt-5 md:pt-10 pb-10 md:pb-20 px-5 md:px-20">
         <div className="max-w-container mx-auto">
           <div className="mb-10 flex flex-wrap items-center gap-8">
             <button
@@ -142,10 +177,14 @@ function GalleryPage() {
               )}
             </div>
             <div className="relative">
-              <div className="relative w-full overflow-hidden flex justify-center items-center bg-gray-100 rounded-[10px] h-[400px] md:h-[450px] lg:h-[620px]">
-                <div className="relative w-auto h-full">
-                  <img src={currentImage} alt={`Gallery ${idNumber} image ${currentIndex + 1}`} className="h-full w-auto object-contain" />
-                </div>
+              <div className="relative w-full overflow-hidden flex justify-center items-center bg-gray-100 h-[400px] md:h-[450px] lg:h-[620px]">
+                <img
+                  ref={imgRef}
+                  src={currentImage}
+                  alt={`Gallery ${idNumber} image ${currentIndex + 1}`}
+                  className={`h-full w-full ${imageObjectFit === 'cover' ? 'object-cover' : 'object-contain'}`}
+                  onLoad={handleImageLoad}
+                />
                 <button
                   className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/70 backdrop-blur-sm border-0 text-brown cursor-pointer flex items-center justify-center hover:bg-white/90 transition-all opacity-80 hover:opacity-100 z-10"
                   onClick={prevSlide}

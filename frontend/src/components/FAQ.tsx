@@ -86,7 +86,7 @@ function FAQ() {
   }
 
   return (
-    <section id="faq" className="py-10 md:py-20 px-5 md:px-20 bg-gray-50">
+    <section id="faq" className="py-10 md:py-20 px-5 md:px-20 bg-white">
       <div className="max-w-container mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-brown text-center mb-4">
           Frequently Asked Questions
