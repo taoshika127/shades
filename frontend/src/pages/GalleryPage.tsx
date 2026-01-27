@@ -129,6 +129,7 @@ function GalleryPage() {
             <button
               onClick={() => navigate('/#our-gallery')}
               className="text-brown hover:text-primary flex items-center gap-2"
+              style={{ fontFamily: 'Montserrat, sans-serif' }}
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -159,17 +160,17 @@ function GalleryPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-10 md:gap-20 items-start">
             <div className="flex flex-col gap-6">
-              <h2 className="text-2xl md:text-4xl font-bold text-brown leading-tight m-0">
+              <h2 className="text-2xl md:text-4xl font-bold text-brown leading-tight m-0" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
                 {galleryLocation || 'Gallery Location'}
               </h2>
-              <p className="text-base md:text-xl text-light-gray leading-relaxed m-0 whitespace-pre-line">
+              <p className="text-base md:text-xl text-light-gray leading-relaxed m-0 whitespace-pre-line" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                 {galleryDescription || 'Our designer already made a lot of beautiful prototype of rooms that inspire you'}
               </p>
               {galleryDesign && (
                 <div className="mt-4">
                   <ul className="space-y-2">
                     {Object.entries(galleryDesign).map(([roomType, description]) => (
-                      <li key={roomType} className="text-base md:text-lg leading-relaxed">
+                      <li key={roomType} className="text-base md:text-lg leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                         <span className="font-bold text-brown italic">{roomType}:</span>{' '}
                         <span className="text-brown">{description}</span>
                       </li>

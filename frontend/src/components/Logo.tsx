@@ -27,7 +27,7 @@ function Logo({
         />
         GHT
       </h1>
-      <h2 className={`${subTextSize} font-semibold m-0 leading-tight uppercase ${centerSubtext ? 'text-center' : ''} text-primary`} style={{ fontFamily: 'Montserrat, sans-serif' }}>
+      <h2 className={`${subTextSize} font-semibold m-0 leading-tight uppercase ${centerSubtext ? 'text-center' : ''} text-brown`} style={{ fontFamily: 'Montserrat, sans-serif' }}>
         SHADES & BLINDS
       </h2>
     </a>
