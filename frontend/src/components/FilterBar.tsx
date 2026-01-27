@@ -29,7 +29,7 @@ function FilterBar({
         <div className="flex items-center gap-4 flex-wrap">
           <button
             onClick={() => setShowFilter(!showFilter)}
-            className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded hover:bg-gray-50 transition-colors"
+            className="flex items-center gap-2 px-4 py-2 border border-gray-300 hover:bg-gray-50 transition-colors"
           >
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M2.5 5H17.5M5 10H15M7.5 15H12.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
@@ -39,7 +39,7 @@ function FilterBar({
           <div className="flex items-center gap-2">
             <button
               onClick={() => setGridView('small')}
-              className={`p-2 rounded ${gridView === 'small' ? 'bg-gray-200' : 'hover:bg-gray-100'} transition-colors`}
+              className={`p-2 ${gridView === 'small' ? 'bg-gray-200' : 'hover:bg-gray-100'} transition-colors`}
               aria-label="Small grid view"
             >
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -51,7 +51,7 @@ function FilterBar({
             </button>
             <button
               onClick={() => setGridView('large')}
-              className={`p-2 rounded ${gridView === 'large' ? 'bg-gray-200' : 'hover:bg-gray-100'} transition-colors`}
+              className={`p-2 ${gridView === 'large' ? 'bg-gray-200' : 'hover:bg-gray-100'} transition-colors`}
               aria-label="Large grid view"
             >
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

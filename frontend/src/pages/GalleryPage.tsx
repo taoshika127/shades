@@ -139,7 +139,7 @@ function GalleryPage() {
             <div className="flex gap-6">
               {parseInt(idNumber) > 1 && (
                 <button
-                  className="px-4 py-2.5 bg-primary text-white text-base font-semibold border-0 rounded cursor-pointer w-fit hover:bg-[#9a7828] transition-colors uppercase"
+                  className="px-4 py-2.5 bg-primary text-white text-base font-semibold border-0 cursor-pointer w-fit hover:bg-[#9a7828] transition-colors uppercase"
                   style={{ fontFamily: 'Montserrat, sans-serif' }}
                   onClick={() => navigate(`/gallery${parseInt(idNumber) - 1}`)}
                 >
@@ -148,7 +148,7 @@ function GalleryPage() {
               )}
               {parseInt(idNumber) < 15 && (
                 <button
-                  className="px-4 py-2.5 bg-primary text-white text-base font-semibold border-0 rounded cursor-pointer w-fit hover:bg-[#9a7828] transition-colors uppercase"
+                  className="px-4 py-2.5 bg-primary text-white text-base font-semibold border-0 cursor-pointer w-fit hover:bg-[#9a7828] transition-colors uppercase"
                   style={{ fontFamily: 'Montserrat, sans-serif' }}
                   onClick={() => navigate(`/gallery${parseInt(idNumber) + 1}`)}
                 >
@@ -163,14 +163,14 @@ function GalleryPage() {
               <h2 className="text-2xl md:text-4xl font-bold text-brown leading-tight m-0" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
                 {galleryLocation || 'Gallery Location'}
               </h2>
-              <p className="text-base md:text-xl text-light-gray leading-relaxed m-0 whitespace-pre-line" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+              <p className="text-base md:text-xl text-brown leading-relaxed m-0 whitespace-pre-line font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                 {galleryDescription || 'Our designer already made a lot of beautiful prototype of rooms that inspire you'}
               </p>
               {galleryDesign && (
                 <div className="mt-4">
                   <ul className="space-y-2">
                     {Object.entries(galleryDesign).map(([roomType, description]) => (
-                      <li key={roomType} className="text-base md:text-lg leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                      <li key={roomType} className="text-base md:text-lg leading-relaxed font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                         <span className="font-bold text-brown italic">{roomType}:</span>{' '}
                         <span className="text-brown">{description}</span>
                       </li>
@@ -189,7 +189,7 @@ function GalleryPage() {
                   onLoad={handleImageLoad}
                 />
                 <button
-                  className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/70 backdrop-blur-sm border-0 text-brown cursor-pointer flex items-center justify-center hover:bg-white/90 transition-all opacity-80 hover:opacity-100 z-10"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/70 backdrop-blur-sm border-0 text-brown cursor-pointer flex items-center justify-center hover:bg-white/90 transition-all opacity-80 hover:opacity-100 z-10"
                   onClick={prevSlide}
                 >
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -197,7 +197,7 @@ function GalleryPage() {
                   </svg>
                 </button>
                 <button
-                  className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/70 backdrop-blur-sm border-0 text-brown cursor-pointer flex items-center justify-center hover:bg-white/90 transition-all opacity-80 hover:opacity-100 z-10"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/70 backdrop-blur-sm border-0 text-brown cursor-pointer flex items-center justify-center hover:bg-white/90 transition-all opacity-80 hover:opacity-100 z-10"
                   onClick={nextSlide}
                 >
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

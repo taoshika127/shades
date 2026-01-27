@@ -78,7 +78,7 @@ function WhyUs() {
         <h2 className="text-3xl md:text-4xl font-bold text-brown text-center mb-4" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
           Why Choose Pacific Light Shades & Blinds?
         </h2>
-        <p className="text-base md:text-xl text-center mb-12 md:mb-16 max-w-3xl mx-auto" style={{ color: '#937125', fontFamily: 'Montserrat, sans-serif' }}>
+        <p className="text-base md:text-xl text-center mb-6 md:mb-8 max-w-3xl mx-auto font-[500]" style={{ color: '#937125', fontFamily: 'Montserrat, sans-serif' }}>
           Quality, affordability, and service you can trust.
         </p>
 
@@ -89,7 +89,7 @@ function WhyUs() {
               className="bg-white rounded-lg p-6 md:p-8 flex flex-col gap-4 shadow-sm hover:shadow-md transition-shadow relative"
             >
               {feature.image && (
-                <div className="w-full h-[180px] md:h-[240px] overflow-hidden relative">
+                <div className="w-full h-[190px] md:h-[250px] overflow-hidden relative">
                   <img
                     src={feature.image}
                     alt={feature.title}
@@ -107,7 +107,7 @@ function WhyUs() {
                   {feature.title}
                 </h3>
               </div>
-              <p className="text-base text-brown leading-relaxed m-0" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+              <p className="text-base text-brown leading-relaxed m-0 font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                 {feature.description}
               </p>
             </div>

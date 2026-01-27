@@ -14,7 +14,7 @@ function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) 
           <button
             key={page}
             onClick={() => onPageChange(page)}
-            className={`px-4 py-2 min-w-[48px] rounded text-base font-medium transition-colors uppercase ${
+            className={`px-4 py-2 min-w-[48px] text-base font-medium transition-colors uppercase ${
               currentPage === page
                 ? 'bg-primary text-white'
                 : 'bg-light-beige text-brown hover:bg-primary hover:text-white'
@@ -27,7 +27,7 @@ function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) 
         {currentPage < totalPages && (
           <button
             onClick={() => onPageChange(currentPage + 1)}
-            className="px-4 py-2 rounded text-base font-medium bg-light-beige text-brown hover:bg-primary hover:text-white transition-colors uppercase"
+            className="px-4 py-2 text-base font-medium bg-light-beige text-brown hover:bg-primary hover:text-white transition-colors uppercase"
             style={{ fontFamily: 'Montserrat, sans-serif' }}
           >
             Next

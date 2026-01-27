@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { MdOutlineKeyboardDoubleArrowDown } from 'react-icons/md'
 
 function Hero() {
   const heroImages = [
@@ -53,6 +54,11 @@ function Hero() {
     })
   }
 
+  const handleViewShadesClick = () => {
+    // Navigate to browse-the-range section
+    window.location.href = '/#browse-the-range'
+  }
+
   return (
     <section className="w-full h-screen max-h-[100vh] relative overflow-hidden">
       <div className="w-full h-full absolute inset-0 max-h-[100vh]">
@@ -83,7 +89,7 @@ function Hero() {
       <div className="relative z-10 w-full h-full max-h-[100vh] flex items-center justify-center md:justify-start px-5 md:px-20 overflow-hidden">
         <div className="max-w-container w-full flex justify-center md:justify-start">
           <div className="p-6 md:p-10 relative top-[-20px] rounded-[10px] max-w-full md:max-w-[643px] md:ml-20">
-            <p className="text-[28px] md:text-[28px] mb-6 font-weight-[400] text-[#f0e8d5]" style={{ fontFamily: 'Montserrat, sans-serif' }}>We <span className="font-bold">customize</span>, <span className="font-bold">measure</span> and <span className="font-bold">install</span></p>
+            <p className="text-[28px] md:text-[28px] mb-6 font-[500] text-[#f0e8d5]" style={{ fontFamily: 'Montserrat, sans-serif' }}>We <span className="font-bold">customize</span>, <span className="font-bold">measure</span> and <span className="font-bold">install</span></p>
             <h2 className="text-[60px] md:text-[60px] font-bold text-[#dbc697] leading-tight m-0 mb-10" style={{ fontFamily: 'Fjalla One, sans-serif' }}>Shades that fit your lifestyle and budget</h2>
 
             {/* Benefits List */}
@@ -108,10 +114,10 @@ function Hero() {
 
             {/* Call-to-Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-start">
-              <button className="bg-primary text-white px-8 py-3 md:px-10 md:py-4 rounded-[5px] font-semibold text-base md:text-lg hover:bg-opacity-90 transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-100 uppercase" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+              <button className="bg-primary text-white px-8 py-3 md:px-10 md:py-4 font-semibold text-base md:text-lg hover:bg-opacity-90 transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-100 uppercase" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                 Get Free Quote
               </button>
-              <button className="bg-white text-primary px-8 py-3 md:px-10 md:py-4 rounded-[5px] font-semibold text-base md:text-lg hover:bg-gray-50 transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-100 uppercase" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+              <button onClick={handleViewShadesClick} className="bg-white text-primary px-8 py-3 md:px-10 md:py-4 font-semibold text-base md:text-lg hover:bg-gray-50 transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-100 uppercase" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                 View Our Shades
               </button>
             </div>
@@ -119,28 +125,15 @@ function Hero() {
         </div>
 
         {/* Scroll down arrow */}
-        <button
+        {/* <button
           onClick={handleScrollDown}
-          className="absolute bottom-[80px] left-1/2 -translate-x-1/2 z-20 cursor-pointer bg-white/80 hover:bg-white rounded-full p-3 transition-colors duration-300 shadow-lg"
+          className="absolute bottom-[80px] left-1/2 -translate-x-1/2 z-20 cursor-pointer bg-white hover:bg-white/80 p-3 transition-colors duration-300 shadow-lg"
           aria-label="Scroll down"
         >
           <div className="animate-bounce-arrow">
-            <svg
-              className="w-6 h-6 text-brown"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={4}
-                d="M19 14l-7 7m0 0l-7-7m7 7V3"
-              />
-            </svg>
+            <MdOutlineKeyboardDoubleArrowDown className="w-8 h-8 text-brown" />
           </div>
-        </button>
+        </button> */}
       </div>
     </section>
   )

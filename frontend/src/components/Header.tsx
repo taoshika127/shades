@@ -16,8 +16,10 @@ interface Category {
 function Header({ currentPage = 'home' }: HeaderProps) {
   const navigate = useNavigate()
   const [categories, setCategories] = useState<Category[]>([])
+  const [galleryLocations, setGalleryLocations] = useState<{ [key: number]: string }>({})
   const [showShadesDropdown, setShowShadesDropdown] = useState(false)
   const [showWhyUsDropdown, setShowWhyUsDropdown] = useState(false)
+  const [showGalleryDropdown, setShowGalleryDropdown] = useState(false)
 
   useEffect(() => {
     // Fetch categories
@@ -25,6 +27,25 @@ function Header({ currentPage = 'home' }: HeaderProps) {
       .then(res => res.json())
       .then(data => setCategories(data))
       .catch(err => console.error('Error fetching categories:', err))
+
+    // Fetch gallery locations
+    const fetchGalleryLocations = async () => {
+      const locations: { [key: number]: string } = {}
+      const promises = Array.from({ length: 15 }, (_, i) => i + 1).map(async (galleryNum) => {
+        try {
+          const res = await fetch(`/api/gallery/${galleryNum}`)
+          if (res.ok) {
+            const data = await res.json()
+            locations[galleryNum] = data.location || ''
+          }
+        } catch (err) {
+          console.error(`Error fetching gallery ${galleryNum}:`, err)
+        }
+      })
+      await Promise.all(promises)
+      setGalleryLocations(locations)
+    }
+    fetchGalleryLocations()
   }, [])
 
   const handleShadesClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -51,6 +72,11 @@ function Header({ currentPage = 'home' }: HeaderProps) {
     window.location.href = '/#our-gallery'
   }
 
+  const handleGalleryItemClick = (galleryNumber: number) => {
+    navigate(`/gallery${galleryNumber}`)
+    setShowGalleryDropdown(false)
+  }
+
   const handleWhyUsClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
 
@@ -58,7 +84,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
       // If on another page, navigate to home with hash
       window.location.href = '/#why-us'
 
-  }
+    }
 
   const handleFAQClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
@@ -75,7 +101,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
   const handleWhyUsDropdownClick = (item: string) => {
     if (item === 'Why Choose Pacific Light Shades & Blinds') {
       setShowWhyUsDropdown(false)
-      window.location.href = '/#why-us'
+        window.location.href = '/#why-us'
     } else if (item === 'FAQ') {
       setShowWhyUsDropdown(false)
       window.location.href = '/#faq'
@@ -106,8 +132,8 @@ function Header({ currentPage = 'home' }: HeaderProps) {
                         e.preventDefault()
                         handleCategoryClick(category)
                       }}
-                      className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200 cursor-pointer"
-                      style={{ fontFamily: 'Fjalla One, sans-serif' }}
+                      className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200 cursor-pointer font-[500]"
+                      style={{ fontFamily: 'Montserrat, sans-serif' }}
                     >
                       {category.name}
                     </a>
@@ -117,7 +143,35 @@ function Header({ currentPage = 'home' }: HeaderProps) {
             )}
           </div>
           <a href="/#how-it-works" onClick={handleHowItWorksClick} className="no-underline text-brown text-xl md:text-lg font-medium hover:text-primary transition-colors uppercase" style={{ fontFamily: 'Fjalla One, sans-serif' }}>Service</a>
-          <a href="/#our-gallery" onClick={handleGalleryClick} className="no-underline text-brown text-xl md:text-lg font-medium hover:text-primary transition-colors uppercase" style={{ fontFamily: 'Fjalla One, sans-serif' }}>Gallery</a>
+          <div
+            className="relative"
+            onMouseEnter={() => setShowGalleryDropdown(true)}
+            onMouseLeave={() => setShowGalleryDropdown(false)}
+          >
+            <a href="/#our-gallery" onClick={handleGalleryClick} className="no-underline text-brown text-xl md:text-lg font-medium hover:text-primary transition-colors uppercase" style={{ fontFamily: 'Fjalla One, sans-serif' }}>Gallery</a>
+            {showGalleryDropdown && (
+              <div className="absolute top-full left-0 pt-1 w-96 bg-transparent z-50">
+                <div className="bg-white border border-gray-200 rounded-lg shadow-lg py-2">
+                  <div className="grid grid-cols-2">
+                    {Array.from({ length: 15 }, (_, i) => i + 1).map((galleryNum) => (
+                      <a
+                        key={galleryNum}
+                        href={`/gallery${galleryNum}`}
+                        onClick={(e) => {
+                          e.preventDefault()
+                          handleGalleryItemClick(galleryNum)
+                        }}
+                        className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200 cursor-pointer font-[500]"
+                        style={{ fontFamily: 'Montserrat, sans-serif' }}
+                      >
+                        Gallery {galleryNum}{galleryLocations[galleryNum] ? `: ${galleryLocations[galleryNum]}` : ''}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
           <div
             className="relative"
             onMouseEnter={() => setShowWhyUsDropdown(true)}
@@ -133,7 +187,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
                       e.preventDefault()
                       handleWhyUsDropdownClick('Why Choose Pacific Light Shades & Blinds')
                     }}
-                    className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200 cursor-pointer"
+                    className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200 cursor-pointer font-[500]"
                     style={{ fontFamily: 'Montserrat, sans-serif' }}
                   >
                     Why Choose Pacific Light Shades & Blinds
@@ -144,7 +198,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
                       e.preventDefault()
                       handleFAQClick(e)
                     }}
-                    className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200 cursor-pointer"
+                    className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200 cursor-pointer font-[500]"
                     style={{ fontFamily: 'Montserrat, sans-serif' }}
                   >
                     FAQ
@@ -155,10 +209,10 @@ function Header({ currentPage = 'home' }: HeaderProps) {
           </div>
         </nav>
         <div className="flex gap-3">
-          <a href="/quote" className="px-3 md:px-4 py-1.5 md:py-2 bg-primary text-white rounded-[5px] font-semibold text-xs md:text-sm hover:bg-opacity-90 transition-all duration-300 no-underline flex items-center justify-center uppercase" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+          <a href="/quote" className="px-3 md:px-4 py-1.5 md:py-2 bg-primary text-white font-semibold text-xs md:text-sm hover:bg-opacity-90 transition-all duration-300 no-underline flex items-center justify-center uppercase" style={{ fontFamily: 'Montserrat, sans-serif' }}>
             Get Free Quote
           </a>
-          <a href="/contact" className="px-3 md:px-4 py-1.5 md:py-2 bg-white text-primary border-2 border-primary rounded-[5px] font-semibold text-xs md:text-sm hover:bg-gray-50 transition-all duration-300 no-underline uppercase" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+          <a href="/contact" className="px-3 md:px-4 py-1.5 md:py-2 bg-white text-primary border-2 border-primary font-semibold text-xs md:text-sm hover:bg-gray-50 transition-all duration-300 no-underline uppercase" style={{ fontFamily: 'Montserrat, sans-serif' }}>
             Contact Us
           </a>
         </div>

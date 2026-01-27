@@ -35,7 +35,7 @@ function RoomInspiration({ inspirations }: RoomInspirationProps) {
             <p className="text-base md:text-xl text-light-gray leading-relaxed m-0">
               Our designer already made a lot of beautiful prototype of rooms that inspire you
             </p>
-            <button className="px-8 py-3.5 bg-primary text-white text-base font-semibold border-0 rounded cursor-pointer w-fit hover:bg-[#9a7828] transition-colors uppercase" style={{ fontFamily: 'Montserrat, sans-serif' }}>Explore More</button>
+            <button className="px-8 py-3.5 bg-primary text-white text-base font-semibold border-0 cursor-pointer w-fit hover:bg-[#9a7828] transition-colors uppercase" style={{ fontFamily: 'Montserrat, sans-serif' }}>Explore More</button>
           </div>
           <div className="relative">
             <div className="w-full rounded-[10px] overflow-hidden">
@@ -46,7 +46,7 @@ function RoomInspiration({ inspirations }: RoomInspirationProps) {
                     <p className="text-sm md:text-base text-white/80 mb-2">{String(currentIndex + 1).padStart(2, '0')} --- {current.category}</p>
                     <h3 className="text-xl md:text-3xl font-bold text-white m-0">{current.title}</h3>
                   </div>
-                  <button className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-light-beige border-0 text-brown cursor-pointer flex items-center justify-center hover:bg-white transition-colors" onClick={nextSlide}>
+                  <button className="w-10 h-10 md:w-12 md:h-12 bg-light-beige border-0 text-brown cursor-pointer flex items-center justify-center hover:bg-white transition-colors" onClick={nextSlide}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
@@ -58,7 +58,7 @@ function RoomInspiration({ inspirations }: RoomInspirationProps) {
               {inspirations.map((_, index) => (
                 <button
                   key={index}
-                  className={`w-3 h-3 rounded-full border-2 cursor-pointer transition-all p-0 ${
+                  className={`w-3 h-3 border-2 cursor-pointer transition-all p-0 ${
                     index === currentIndex
                       ? 'bg-primary border-primary'
                       : 'border-gray-300 bg-transparent'

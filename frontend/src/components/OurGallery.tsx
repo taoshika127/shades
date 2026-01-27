@@ -20,10 +20,10 @@ function OurGallery({ images }: OurGalleryProps) {
   const galleryImages = images.length > 0
     ? images
     : Array.from({ length: 15 }, (_, i) => ({
-        id: i + 1,
+    id: i + 1,
         image: 'https://images.unsplash.com/photo-1631889993950-9e9352e6b688?w=800&h=600&fit=crop',
-        alt: `Gallery image ${i + 1}`
-      }))
+    alt: `Gallery image ${i + 1}`
+  }))
 
   const totalImages = galleryImages.length
 
@@ -92,7 +92,7 @@ function OurGallery({ images }: OurGalleryProps) {
     <section id="our-gallery" className="py-10 md:py-20 px-5 md:px-20 bg-white">
       <div className="max-w-container mx-auto">
       <h2 className="text-3xl md:text-4xl font-bold text-brown text-center mb-4" style={{ fontFamily: 'Fjalla One, sans-serif' }}>Our Gallery</h2>
-        <p className="text-base md:text-xl text-center mb-12 md:mb-16 max-w-3xl mx-auto" style={{ color: '#937125', fontFamily: 'Montserrat, sans-serif' }}>
+        <p className="text-base md:text-xl text-center mb-6 md:mb-8 max-w-3xl mx-auto font-[500]" style={{ color: '#937125', fontFamily: 'Montserrat, sans-serif' }}>
           Explore our curated collection of stunning window shade installations. From modern minimalism to classic elegance, discover the
           perfect inspiration for your space.
         </p>
@@ -119,7 +119,7 @@ function OurGallery({ images }: OurGalleryProps) {
                   onClick={() => img.id > 0 && navigate(`/gallery${img.id}`)}
                   style={{ height: isCenter ? '400px' : '300px' }}
                 >
-                  <img
+            <img
                     src={img.image}
                     alt={img.alt || `Gallery image ${img.id}`}
                     className="w-full h-full object-cover"
@@ -158,7 +158,7 @@ function OurGallery({ images }: OurGalleryProps) {
                       </svg>
                     </button>
                   )}
-                </div>
+          </div>
               )
             })}
           </div>

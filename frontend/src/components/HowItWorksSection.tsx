@@ -1,3 +1,5 @@
+import { MdOutlineKeyboardDoubleArrowDown } from 'react-icons/md'
+
 function HowItWorksSection() {
   const fullServiceSteps = [
     {
@@ -86,7 +88,7 @@ function HowItWorksSection() {
           </div>
         </div>
         <div className="flex flex-col md:flex-row gap-4 md:gap-6 ml-4 items-start">
-          <p className="text-lg md:text-xl text-brown leading-relaxed flex-1" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+          <p className="text-lg md:text-xl text-brown leading-relaxed flex-1 font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
             {step.description}
           </p>
           <div className="overflow-hidden flex-shrink-0">
@@ -112,10 +114,10 @@ function HowItWorksSection() {
   return (
     <section id="how-it-works" className="py-10 md:py-20 px-5 md:px-20 bg-gray-50">
       <div className="max-w-container mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold text-brown text-center mb-4" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
+        <h2 className="text-3xl md:text-4xl font-bold text-brown text-center mb-4" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
           How It Works
         </h2>
-        <p className="text-base md:text-xl text-center mb-12 md:mb-16 max-w-3xl mx-auto" style={{ color: '#937125', fontFamily: 'Montserrat, sans-serif' }}>
+        <p className="text-base md:text-xl text-center mb-6 md:mb-8 max-w-3xl mx-auto font-[500]" style={{ color: '#937125', fontFamily: 'Montserrat, sans-serif' }}>
           <span className="font-bold">Choose the service option that works best for you. </span>Whether you want a hands-off, professionally managed experience or prefer to take care of installation yourself, we make the process simple and transparent.
         </p>
 
@@ -130,13 +132,13 @@ function HowItWorksSection() {
                 </svg>
                 <span>Recommended</span>
               </div>
-              <h3 className="text-2xl md:text-3xl font-bold text-brown mb-2 mt-8" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
+              <h3 className="text-2xl md:text-3xl font-bold text-brown mb-2 mt-5" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
                 Option 1: Full Service
               </h3>
-              <p className="text-base md:text-lg mb-4" style={{ color: '#937125' }}>
+              <p className="text-base md:text-lg mb-4 font-[500]" style={{ color: '#937125', fontFamily: 'Montserrat, sans-serif' }}>
                 Hands-off, worry-free experience
               </p>
-              <p className="text-lg md:text-xl text-brown md:flex-1" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+              <p className="text-lg md:text-xl text-brown md:flex-1 font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                 Our team handles everything for you, from precise measurements to expert installation. You'll get <span className="font-bold">personalized recommendations</span>, <span className="font-bold">professional installation and maintenance</span> for a seamless, worry-free experience.
               </p>
             </div>
@@ -146,14 +148,7 @@ function HowItWorksSection() {
                   {renderStep(step, false)}
                   {index < fullServiceSteps.length - 1 && (
                     <div className="flex justify-center items-center my-10 md:my-15">
-                      <div className="flex flex-col items-center gap-1">
-                        <div className="w-2 h-2 rounded-full bg-brown"></div>
-                        <div className="w-2 h-2 rounded-full bg-brown"></div>
-                        <div className="w-2 h-2 rounded-full bg-brown"></div>
-                        <svg className="w-[50px] h-[50px] -mt-[12px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#5c4717' }}>
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </div>
+                      <MdOutlineKeyboardDoubleArrowDown className="w-[50px] h-[50px] text-brown" />
                     </div>
                   )}
                 </div>
@@ -167,10 +162,10 @@ function HowItWorksSection() {
               <h3 className="text-2xl md:text-3xl font-bold text-brown mb-2" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
                 Option 2: DIY Installation
               </h3>
-              <p className="text-base md:text-lg mb-4" style={{ color: '#937125' }}>
+              <p className="text-base md:text-lg mb-4 font-[500]" style={{ color: '#937125', fontFamily: 'Montserrat, sans-serif' }}>
                 Best for confident DIYers
               </p>
-              <p className="text-lg md:text-xl text-brown md:flex-1" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+              <p className="text-lg md:text-xl text-brown md:flex-1 font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                 Select your custom shades online and install them on your own schedule. We provide <span className="font-bold">clear measuring instructions</span> and <span className="font-bold">easy-to-follow installation guidance</span> so you can achieve a great fit with confidence.
               </p>
             </div>
@@ -180,14 +175,7 @@ function HowItWorksSection() {
                   {renderStep(step, true)}
                   {index < diySteps.length - 1 && (
                     <div className="flex justify-center items-center my-10 md:my-15">
-                      <div className="flex flex-col items-center gap-1">
-                        <div className="w-2 h-2 rounded-full bg-brown"></div>
-                        <div className="w-2 h-2 rounded-full bg-brown"></div>
-                        <div className="w-2 h-2 rounded-full bg-brown"></div>
-                        <svg className="w-[50px] h-[50px] -mt-[12px]" fill="none" viewBox="0 0 24 24" stroke="currentColor" style={{ color: '#5c4717' }}>
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </div>
+                      <MdOutlineKeyboardDoubleArrowDown className="w-[50px] h-[50px] text-brown" />
                     </div>
                   )}
                 </div>

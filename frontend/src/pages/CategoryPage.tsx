@@ -302,7 +302,7 @@ function CategoryPage() {
                   className="absolute top-0 left-0 w-full h-full border-4 border-primary border-t-transparent rounded-full animate-spin"
                 />
               </div>
-              <p className="text-brown text-lg font-medium">Loading PDF...</p>
+              <p className="text-brown text-lg font-medium">Loading...</p>
             </div>
           )}
           <div
