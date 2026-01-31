@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Contact from './pages/Contact'
 import Quote from './pages/Quote'
+import QuoteSummary from './pages/QuoteSummary'
 import CategoryPage from './pages/CategoryPage'
 import GalleryPage from './pages/GalleryPage'
 
@@ -38,6 +39,7 @@ function App() {
         <Route path="/gallery15" element={<GalleryPage />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/quote" element={<Quote />} />
+        <Route path="/quote-summary" element={<QuoteSummary />} />
       </Routes>
     </Router>
   )

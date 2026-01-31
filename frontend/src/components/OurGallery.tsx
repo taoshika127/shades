@@ -109,54 +109,62 @@ function OurGallery({ images }: OurGalleryProps) {
               return (
                 <div
                   key={img.id}
-                  className={`relative overflow-hidden cursor-pointer ${
+                  className={`relative overflow-hidden transition-all duration-300 ${
                     isOuter
-                      ? 'opacity-50 scale-90 flex-1 max-w-[200px]'
+                      ? 'group opacity-50 scale-90 flex-1 max-w-[200px] cursor-pointer'
                       : isCenter
-                      ? 'opacity-100 scale-100 flex-1 max-w-[350px]'
+                      ? 'group opacity-100 scale-100 flex-1 max-w-[350px] hover:scale-105 cursor-pointer'
                       : 'flex-1'
                   }`}
-                  onClick={() => img.id > 0 && navigate(`/gallery${img.id}`)}
+                  onClick={() => {
+                    if (isCenter && img.id > 0) {
+                      navigate(`/gallery${img.id}`)
+                    } else if (isLeftmost) {
+                      prevSlide()
+                    } else if (isRightmost) {
+                      nextSlide()
+                    }
+                  }}
                   style={{ height: isCenter ? '400px' : '300px' }}
                 >
             <img
                     src={img.image}
                     alt={img.alt || `Gallery image ${img.id}`}
-                    className="w-full h-full object-cover"
+                    className={`w-full h-full object-cover transition-all duration-300 ${
+                      isCenter ? 'group-hover:brightness-110 group-hover:scale-105' : ''
+                    }`}
                   />
+                  {/* Hover overlay effect - only for center images */}
+                  {isCenter && (
+                    <div className="absolute inset-0 bg-primary bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 pointer-events-none" />
+                  )}
                   {/* Grey overlay for side images to make arrows more visible */}
                   {(isLeftmost || isRightmost) && (
                     <div className="absolute inset-0 bg-gray-800 bg-opacity-60 z-0" />
                   )}
                   {/* Left Arrow - positioned in the middle of leftmost image */}
                   {isLeftmost && (
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        prevSlide()
-                      }}
-                      className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex items-center justify-center transition-all hover:opacity-80 cursor-pointer"
+                    <div
+                      className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex items-center justify-center transition-all duration-300 pointer-events-none"
                       aria-label="Previous images"
                     >
-                      <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <div className="absolute inset-0 bg-white bg-opacity-0 group-hover:bg-opacity-20 rounded-full transition-all duration-300 -z-10" style={{ width: '80px', height: '80px', left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }} />
+                      <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-all duration-300 group-hover:scale-110">
                         <path d="M15 18L9 12L15 6" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))' }}/>
                       </svg>
-                    </button>
+                    </div>
                   )}
                   {/* Right Arrow - positioned in the middle of rightmost image */}
                   {isRightmost && (
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation()
-                        nextSlide()
-                      }}
-                      className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex items-center justify-center transition-all hover:opacity-80 cursor-pointer"
+                    <div
+                      className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex items-center justify-center transition-all duration-300 pointer-events-none"
                       aria-label="Next images"
                     >
-                      <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <div className="absolute inset-0 bg-white bg-opacity-0 group-hover:bg-opacity-20 rounded-full transition-all duration-300 -z-10" style={{ width: '80px', height: '80px', left: '50%', top: '50%', transform: 'translate(-50%, -50%)' }} />
+                      <svg width="64" height="64" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-all duration-300 group-hover:scale-110">
                         <path d="M9 18L15 12L9 6" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))' }}/>
                       </svg>
-                    </button>
+                    </div>
                   )}
           </div>
               )

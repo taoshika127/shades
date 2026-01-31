@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Logo from '../components/Logo'
@@ -12,9 +13,11 @@ interface Window {
   height: string
   shadeType: string
   motorized: string
+  materialType: string
 }
 
 function Quote() {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     city: '',
     state: '',
@@ -24,7 +27,7 @@ function Quote() {
   })
 
   const [windows, setWindows] = useState<Window[]>([
-    { id: 1, roomName: '', windowName: '', width: '', height: '', shadeType: '', motorized: '' }
+    { id: 1, roomName: '', windowName: '', width: '', height: '', shadeType: '', motorized: '', materialType: 'Mid End' }
   ])
   const [zipcodeInServiceArea, setZipcodeInServiceArea] = useState<boolean | null>(null)
   const [checkingZipcode, setCheckingZipcode] = useState(false)
@@ -95,7 +98,7 @@ function Quote() {
     const newId = Math.max(...windows.map(w => w.id), 0) + 1
     setWindows(prev => [
       ...prev,
-      { id: newId, roomName: '', windowName: '', width: '', height: '', shadeType: '', motorized: '' }
+      { id: newId, roomName: '', windowName: '', width: '', height: '', shadeType: '', motorized: '', materialType: 'Mid End' }
     ])
   }
 
@@ -119,7 +122,8 @@ function Quote() {
     e.preventDefault()
     // Handle form submission here
     console.log('Form submitted:', { formData, windows })
-    // You can add API call here to submit the quote
+    // Navigate to quote summary page
+    navigate('/quote-summary')
   }
 
   const showZipcodeError = formData.serviceOption === 'Full Service' && zipcodeInServiceArea === false
@@ -391,6 +395,39 @@ function Quote() {
                           <option value="Yes">Yes</option>
                           <option value="No">No</option>
                         </select>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                          Materials <span className="text-red-500">*</span>
+                        </label>
+                        <div className="flex gap-4 justify-center">
+                          <label className="flex items-center gap-2 cursor-pointer">
+                            <input
+                              type="radio"
+                              name={`material-${window.id}`}
+                              value="Mid End"
+                              checked={window.materialType === 'Mid End'}
+                              onChange={(e) => handleWindowChange(window.id, 'materialType', e.target.value)}
+                              className="w-5 h-5 focus:ring-brown"
+                              style={{ accentColor: '#5c4717' }}
+                              required
+                            />
+                            <span className="text-sm text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>Mid End</span>
+                          </label>
+                          <label className="flex items-center gap-2 cursor-pointer">
+                            <input
+                              type="radio"
+                              name={`material-${window.id}`}
+                              value="High End"
+                              checked={window.materialType === 'High End'}
+                              onChange={(e) => handleWindowChange(window.id, 'materialType', e.target.value)}
+                              className="w-5 h-5 focus:ring-brown"
+                              style={{ accentColor: '#5c4717' }}
+                              required
+                            />
+                            <span className="text-sm text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>High End</span>
+                          </label>
+                        </div>
                       </div>
                     </div>
                   </div>
