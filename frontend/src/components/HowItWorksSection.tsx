@@ -4,7 +4,7 @@ function HowItWorksSection() {
   const fullServiceSteps = [
     {
       number: 1,
-      title: 'Get a Quote in Seconds',
+      title: 'Quote in Seconds',
       description: 'Measure the windows you want to put shade on, provide lengths and widths, and you will get the estimated cost range right away.',
       imageLabel: 'Person Measuring Window with Tape Measure',
     },
@@ -31,20 +31,26 @@ function HowItWorksSection() {
   const diySteps = [
     {
       number: 1,
-      title: 'Get a Quote in Seconds',
-      description: 'Measure the windows you want to put shade on, provide lengths and widths, and you will get the estimated cost range right away.',
+      title: 'Quote in Seconds',
+      description: 'Measure the windows you want to put shade on, and you will get the estimated cost range right away.',
       imageLabel: 'Person Measuring Window with Tape Measure',
     },
     {
       number: 2,
-      title: 'Remeasure and place order',
-      description: "If you're happy with the quote and ready to move forward, we'll send you detailed measuring instructions to ensure your shades are made to the correct dimensions. Once measurements are confirmed, you can go ahead and place your order.",
-      imageLabel: 'Measuring Instructions and Order Placement',
+      title: 'Design Recommendation',
+      description: "During follow up, after we get your requirements and room photos, our experienced interior design will recommend several shade options that matches your vibe and budget",
+      imageLabel: 'Design Consultation and Recommendations',
     },
     {
       number: 3,
-      title: 'Order and Install by Yourself',
-      description: "We'll deliver your shades with detailed installation instructions and all necessary hardware. Install at your own pace with our easy-to-follow guide and video tutorials.",
+      title: 'Remeasurement and Order Placement',
+      description: "We'll send you detailed measuring instructions to ensure your shades are made to the correct dimensions. Then you can go ahead and place your order.",
+      imageLabel: 'Measuring Instructions and Order Placement',
+    },
+    {
+      number: 4,
+      title: 'Installation',
+      description: "We'll deliver your shades with detailed installation instructions and all necessary hardware. (Note: we can also help you find your local installer for free if you need)",
       imageLabel: 'Homeowner Installing Shade with Instructions',
     },
   ]
@@ -57,12 +63,14 @@ function HowItWorksSection() {
       }
       return '/assets/how-it-works/measuring_window.jpg'
     } else if (imageLabel.includes('Measuring Instructions and Order Placement') || imageLabel.includes('Order Placement')) {
-      // Use placing_order.jpg for Option 2, Step 2
+      // Use placing_order.jpg for Option 2, Step 3
       return '/assets/how-it-works/placing_order.jpg'
-    } else if (imageLabel.includes('Homeowner Installing') || (imageLabel.includes('Installing') && isOption2 && stepNumber === 3)) {
-      // Use different image for Option 2, Step 3
+    } else if (imageLabel.includes('Homeowner Installing') || (imageLabel.includes('Installing') && isOption2 && stepNumber === 4)) {
+      // Use different image for Option 2, Step 4
       return '/assets/how-it-works/installing_shade_option2.jpg'
-    } else if (imageLabel.includes('Consultant') || imageLabel.includes('Professional Consultant')) {
+    } else if (imageLabel.includes('Design Consultation and Recommendations')) {
+      return '/assets/how-it-works/design_recommendation.jpg'
+    } else if (imageLabel.includes('Consultant') || imageLabel.includes('Professional Consultant') || imageLabel.includes('Design Consultation')) {
       return '/assets/how-it-works/consulting_shades.jpg'
     } else if (imageLabel.includes('Installer Installing') || imageLabel.includes('Installer')) {
       return '/assets/how-it-works/installing_shade.jpg'

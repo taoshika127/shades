@@ -50,6 +50,10 @@ function CategoryPage() {
     'honeycomb-shades': 'Honeycomb Blinds fabric.pdf',
     'roller-shades': 'Roller Blinds fabric.pdf',
     'shangri-la-shades': 'Shangri-la shades fabric.pdf',
+    'outdoor-shades': 'outdoor.pdf',
+    'bamboo-shades': 'natural woven.pdf',
+    'roman-shades': 'roman.pdf',
+    'draperies': 'ADM_drapery.pdf',
   }
 
   const pdfFilename = slug ? categoryPdfMap[slug] : null

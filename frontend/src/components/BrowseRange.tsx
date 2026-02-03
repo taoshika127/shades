@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom'
 import { categoryNameToSlug } from '../utils/slug'
 
 interface Category {
@@ -12,11 +11,10 @@ interface BrowseRangeProps {
 }
 
 function BrowseRange({ categories }: BrowseRangeProps) {
-  const navigate = useNavigate()
 
   const handleCategoryClick = (category: Category) => {
     const slug = categoryNameToSlug(category.name)
-    navigate(`/${slug}`)
+    window.open(`/${slug}`, '_blank', 'noopener,noreferrer')
   }
 
   return (

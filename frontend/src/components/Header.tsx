@@ -94,7 +94,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
 
   const handleCategoryClick = (category: Category) => {
     const slug = categoryNameToSlug(category.name)
-    navigate(`/${slug}`)
+    window.open(`/${slug}`, '_blank', 'noopener,noreferrer')
     setShowShadesDropdown(false)
   }
 
