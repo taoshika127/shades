@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import path from 'path';
 import { initializeDatabase, categoryDb, zipcodeDb } from './database';
 import getDatabase from './database';
+import { sendContactEmail } from './emailService';
 
 dotenv.config();
 
@@ -455,10 +456,51 @@ app.post('/api/newsletter', (req, res) => {
   res.json({ success: true, message: 'Successfully subscribed to newsletter' });
 });
 
-app.post('/api/contact', (req, res) => {
-  const { name, email, subject, message } = req.body;
-  console.log('Contact form submission:', { name, email, subject, message });
-  res.json({ success: true, message: 'Thank you for your message! We will get back to you soon.' });
+app.post('/api/contact', async (req, res) => {
+  try {
+    const { name, email, phone, zipCode, subject, message } = req.body;
+
+    // Validate required fields
+    if (!name || !email || !subject || !message) {
+      return res.status(400).json({
+        success: false,
+        error: 'Missing required fields: name, email, subject, and message are required'
+      });
+    }
+
+    // Log the submission
+    console.log('Contact form submission:', { name, email, phone, zipCode, subject, message });
+
+    // Send email
+    const emailSent = await sendContactEmail({
+      name,
+      email,
+      phone,
+      zipCode,
+      subject,
+      message
+    });
+
+    if (emailSent) {
+      res.json({
+        success: true,
+        message: 'Thank you for your message! We will get back to you soon.'
+      });
+    } else {
+      // Still return success to user, but log the error
+      console.error('Failed to send email, but form submission was received');
+      res.json({
+        success: true,
+        message: 'Thank you for your message! We will get back to you soon.'
+      });
+    }
+  } catch (error) {
+    console.error('Error processing contact form:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Failed to process your message. Please try again later.'
+    });
+  }
 });
 
 app.listen(PORT, () => {
