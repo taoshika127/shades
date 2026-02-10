@@ -3,6 +3,7 @@ import Header from '../components/Header'
 import Hero from '../components/Hero'
 import BrowseRange from '../components/BrowseRange'
 import HowItWorksSection from '../components/HowItWorksSection'
+import SeeWhatsCustomizable from '../components/SeeWhatsCustomizable'
 import WhyUs from '../components/WhyUs'
 import OurGallery from '../components/OurGallery'
 import FAQ from '../components/FAQ'
@@ -56,7 +57,7 @@ function Home() {
     // Handle hash navigation to scroll to sections
     const hash = window.location.hash
 
-    if (hash === '#browse-the-range' || hash === '#how-it-works' || hash === '#why-us' || hash === '#faq' || hash === '#our-gallery') {
+    if (hash === '#browse-the-range' || hash === '#how-it-works' || hash === '#see-whats-customizable' || hash === '#why-us' || hash === '#faq' || hash === '#our-gallery') {
       const section = document.getElementById(hash.substring(1))
       if (section) {
         section.scrollIntoView({ behavior: 'auto', block: 'start' })
@@ -69,6 +70,7 @@ function Home() {
       <Header currentPage="home" />
       <Hero />
       <BrowseRange categories={categories} />
+      <SeeWhatsCustomizable />
       <HowItWorksSection />
       <OurGallery images={galleryImages} />
       <WhyUs />

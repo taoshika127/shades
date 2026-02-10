@@ -63,7 +63,7 @@ curl http://localhost:5001/api/categories
 curl -X POST http://localhost:5001/api/categories \
   -H "Content-Type: application/json" \
   -d '{
-    "name": "Cellular Shades",
+    "name": "Honeycomb Shades",
     "image": "https://images.unsplash.com/photo-1234567890?w=600&h=400&fit=crop"
   }'
 ```
@@ -83,7 +83,7 @@ fetch('/api/categories', {
     'Content-Type': 'application/json',
   },
   body: JSON.stringify({
-    name: 'Cellular Shades',
+    name: 'Honeycomb Shades',
     image: 'https://images.unsplash.com/photo-1234567890?w=600&h=400&fit=crop'
   })
 })

@@ -37,8 +37,23 @@ function CategoryPage() {
   const [pdfContainerRef, setPdfContainerRef] = useState<HTMLDivElement | null>(null)
   const [pdfLoading, setPdfLoading] = useState(false)
 
+  // Check if this is a cassette route
+  const isCassetteRoute = location.pathname.startsWith('/cassette/')
+  // Check if this is a control options route
+  const isControlOptionsRoute = location.pathname === '/control-options'
+
   // Get slug from params or extract from pathname
-  const slug = categorySlug || location.pathname.replace(/^\/shades\//, '').replace(/^\//, '')
+  let slug = categorySlug || location.pathname.replace(/^\/shades\//, '').replace(/^\//, '')
+
+  // If it's a cassette route, extract the cassette type
+  if (isCassetteRoute) {
+    slug = location.pathname.replace(/^\/cassette\//, '')
+  }
+
+  // If it's a control options route, set the slug
+  if (isControlOptionsRoute) {
+    slug = 'control-options'
+  }
 
   // Get category name from slug
   const categoryName = slug ? slugToCategoryName(slug) : null
@@ -56,7 +71,24 @@ function CategoryPage() {
     'draperies': 'ADM_drapery.pdf',
   }
 
-  const pdfFilename = slug ? categoryPdfMap[slug] : null
+  // Map cassette types to PDF filenames
+  const cassettePdfMap: Record<string, string> = {
+    'zebra-shades': 'cassette/cassette_zebra.pdf',
+    'shangri-la-shades': 'cassette/cassette_zebra.pdf',
+    'roller-shades': 'cassette/cassette_roller.pdf',
+  }
+
+  // Map special routes to PDF filenames
+  const specialPdfMap: Record<string, string> = {
+    'control-options': 'matter_connection.pdf',
+  }
+
+  // Determine PDF filename based on route type
+  const pdfFilename = isControlOptionsRoute
+    ? specialPdfMap['control-options']
+    : isCassetteRoute
+      ? (slug ? cassettePdfMap[slug] : null)
+      : (slug ? categoryPdfMap[slug] : null)
 
   useEffect(() => {
     // Fetch products
@@ -236,14 +268,16 @@ function CategoryPage() {
     setCurrentPage(1)
   }, [itemsPerPage, sortBy])
 
-  // Redirect if category not found
+  // Redirect if category not found (but allow cassette routes and control options route)
   useEffect(() => {
-    if (slug && categories.length > 0 && !category) {
+    if (slug && categories.length > 0 && !category && !isCassetteRoute && !isControlOptionsRoute) {
       navigate('/shades', { replace: true })
     }
-  }, [slug, categories, category, navigate])
+  }, [slug, categories, category, navigate, isCassetteRoute, isControlOptionsRoute])
 
-  if (!categoryName || !category) {
+  // For cassette routes and control options route, we don't need a category, just show the PDF
+  // For regular routes, we need both categoryName and category
+  if (!isCassetteRoute && !isControlOptionsRoute && (!categoryName || !category)) {
     return (
       <div className="category-page">
         <Header currentPage="shades" />

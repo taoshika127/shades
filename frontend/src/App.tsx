@@ -21,6 +21,12 @@ function App() {
         <Route path="/draperies" element={<CategoryPage />} />
         <Route path="/outdoor-shades" element={<CategoryPage />} />
         <Route path="/dream-shades" element={<CategoryPage />} />
+        {/* Cassette routes */}
+        <Route path="/cassette/zebra-shades" element={<CategoryPage />} />
+        <Route path="/cassette/shangri-la-shades" element={<CategoryPage />} />
+        <Route path="/cassette/roller-shades" element={<CategoryPage />} />
+        {/* Control Options route */}
+        <Route path="/control-options" element={<CategoryPage />} />
         {/* Gallery routes */}
         <Route path="/gallery1" element={<GalleryPage />} />
         <Route path="/gallery2" element={<GalleryPage />} />

@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
 import { initializeDatabase, categoryDb, zipcodeDb } from './database';
+import getDatabase from './database';
 
 dotenv.config();
 
@@ -191,6 +192,31 @@ app.post('/api/categories', (req, res) => {
   } catch (error) {
     console.error('Error creating category:', error);
     res.status(500).json({ error: 'Failed to create category' });
+  }
+});
+
+// PUT endpoint to update category by name (useful for migrations)
+app.put('/api/categories/update-by-name', (req, res) => {
+  try {
+    const { oldName, newName, image } = req.body;
+
+    if (!oldName) {
+      return res.status(400).json({ error: 'oldName is required' });
+    }
+
+    const database = getDatabase();
+    const stmt = database.prepare('UPDATE categories SET name = COALESCE(?, name), image = COALESCE(?, image), updated_at = CURRENT_TIMESTAMP WHERE LOWER(name) = LOWER(?)');
+    const result = stmt.run(newName || null, image || null, oldName);
+
+    if (result.changes === 0) {
+      return res.status(404).json({ error: `Category "${oldName}" not found` });
+    }
+
+    const updated = database.prepare('SELECT * FROM categories WHERE LOWER(name) = LOWER(?)').get(newName || oldName);
+    res.json(updated);
+  } catch (error) {
+    console.error('Error updating category:', error);
+    res.status(500).json({ error: 'Failed to update category' });
   }
 });
 

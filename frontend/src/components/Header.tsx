@@ -20,6 +20,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
   const [showShadesDropdown, setShowShadesDropdown] = useState(false)
   const [showWhyUsDropdown, setShowWhyUsDropdown] = useState(false)
   const [showGalleryDropdown, setShowGalleryDropdown] = useState(false)
+  const [showServiceDropdown, setShowServiceDropdown] = useState(false)
 
   useEffect(() => {
     // Fetch categories
@@ -142,7 +143,43 @@ function Header({ currentPage = 'home' }: HeaderProps) {
               </div>
             )}
           </div>
-          <a href="/#how-it-works" onClick={handleHowItWorksClick} className="no-underline text-brown text-xl md:text-lg font-medium hover:text-primary transition-colors uppercase" style={{ fontFamily: 'Fjalla One, sans-serif' }}>Service</a>
+          <div
+            className="relative"
+            onMouseEnter={() => setShowServiceDropdown(true)}
+            onMouseLeave={() => setShowServiceDropdown(false)}
+          >
+            <a href="/#how-it-works" onClick={handleHowItWorksClick} className="no-underline text-brown text-xl md:text-lg font-medium hover:text-primary transition-colors uppercase" style={{ fontFamily: 'Fjalla One, sans-serif' }}>Service</a>
+            {showServiceDropdown && (
+              <div className="absolute top-full left-0 pt-1 w-56 bg-transparent z-50">
+                <div className="bg-white border border-gray-200 rounded-lg shadow-lg py-2">
+                  <a
+                    href="/#see-whats-customizable"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      window.location.href = '/#see-whats-customizable'
+                      setShowServiceDropdown(false)
+                    }}
+                    className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200 cursor-pointer font-[500]"
+                    style={{ fontFamily: 'Montserrat, sans-serif' }}
+                  >
+                    See What's Customizable
+                  </a>
+                  <a
+                    href="/#how-it-works"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      handleHowItWorksClick(e)
+                      setShowServiceDropdown(false)
+                    }}
+                    className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200 cursor-pointer font-[500]"
+                    style={{ fontFamily: 'Montserrat, sans-serif' }}
+                  >
+                    How It Works
+                  </a>
+                </div>
+              </div>
+            )}
+          </div>
           <div
             className="relative"
             onMouseEnter={() => setShowGalleryDropdown(true)}

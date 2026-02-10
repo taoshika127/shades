@@ -53,6 +53,27 @@ export function initializeDatabase() {
     )
   `);
 
+  // Migrate "Cellular Shades" to "Honeycomb Shades" if it exists (case-insensitive)
+  const updateCellular = database.prepare('UPDATE categories SET name = ?, image = ?, updated_at = CURRENT_TIMESTAMP WHERE LOWER(name) = LOWER(?)');
+  const result = updateCellular.run('Honeycomb Shades', '/assets/home/honeycomb_shades.jpg', 'Cellular Shades');
+  if (result.changes > 0) {
+    console.log(`Migrated ${result.changes} "Cellular Shades" entry/entries to "Honeycomb Shades"`);
+  }
+
+  // Also check for any existing "Honeycomb Shades" and ensure it has the correct image
+  const updateHoneycomb = database.prepare('UPDATE categories SET image = ?, updated_at = CURRENT_TIMESTAMP WHERE LOWER(name) = LOWER(?) AND image != ?');
+  const honeycombResult = updateHoneycomb.run('/assets/home/honeycomb_shades.jpg', 'Honeycomb Shades', '/assets/home/honeycomb_shades.jpg');
+  if (honeycombResult.changes > 0) {
+    console.log(`Updated ${honeycombResult.changes} "Honeycomb Shades" image path(s)`);
+  }
+
+  // Update "Roller Shades" to use .jpg instead of .png
+  const updateRoller = database.prepare('UPDATE categories SET image = ?, updated_at = CURRENT_TIMESTAMP WHERE LOWER(name) = LOWER(?) AND image != ?');
+  const rollerResult = updateRoller.run('/assets/home/roller_shades.jpg', 'Roller Shades', '/assets/home/roller_shades.jpg');
+  if (rollerResult.changes > 0) {
+    console.log(`Updated ${rollerResult.changes} "Roller Shades" image path(s) to use .jpg`);
+  }
+
   // Check if categories table is empty and seed with initial data
   const count = database.prepare('SELECT COUNT(*) as count FROM categories').get() as { count: number };
 
@@ -60,15 +81,14 @@ export function initializeDatabase() {
     const insert = database.prepare('INSERT INTO categories (name, image) VALUES (?, ?)');
 
     const initialCategories = [
-      ['Zebra Shades', '/assets/home/zebra_shades.jpg'],
+      ['Zebra Shades', '/assets/home/zebra_shades.jpeg'],
       ['Honeycomb Shades', '/assets/home/honeycomb_shades.jpg'],
-      ['Roller Shades', '/assets/home/roller_shades.png'],
+      ['Roller Shades', '/assets/home/roller_shades.jpg'],
       ['Shangri-La Shades', '/assets/home/shangri-la_shades.jpg'],
-      ['Roman Shades', '/assets/home/roman_shades.jpeg'],
+      ['Roman Shades', '/assets/home/roman_shades.jpg'],
       ['Bamboo Shades', '/assets/home/bamboo_shades.jpg'],
-      ['Draperies', '/assets/home/draperies.jpg'],
+      ['Draperies', '/assets/home/draperies.jpeg'],
       ['Outdoor Shades', '/assets/home/outdoor_shades.jpg'],
-      ['Dream Shades', '/assets/home/dream_shades.png'],
     ];
 
     const insertMany = database.transaction((categories) => {
