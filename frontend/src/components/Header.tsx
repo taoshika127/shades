@@ -19,6 +19,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
   const [galleryLocations, setGalleryLocations] = useState<{ [key: number]: string }>({})
   const [showShadesDropdown, setShowShadesDropdown] = useState(false)
   const [showWhyUsDropdown, setShowWhyUsDropdown] = useState(false)
+  const [showContactDropdown, setShowContactDropdown] = useState(false)
   const [showGalleryDropdown, setShowGalleryDropdown] = useState(false)
   const [showServiceDropdown, setShowServiceDropdown] = useState(false)
 
@@ -244,13 +245,59 @@ function Header({ currentPage = 'home' }: HeaderProps) {
               </div>
             )}
           </div>
+          <div
+            className="relative"
+            onMouseEnter={() => setShowContactDropdown(true)}
+            onMouseLeave={() => setShowContactDropdown(false)}
+          >
+            <a href="/contact" className="no-underline text-brown text-xl md:text-lg font-medium hover:text-primary transition-colors uppercase" style={{ fontFamily: 'Fjalla One, sans-serif' }}>Contact Us</a>
+            {showContactDropdown && (
+              <div className="absolute top-full left-0 pt-1 w-56 bg-transparent z-50">
+                <div className="bg-white border border-gray-200 rounded-lg shadow-lg py-2">
+                  <a
+                    href="/contact"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      navigate('/contact')
+                      setShowContactDropdown(false)
+                    }}
+                    className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200 cursor-pointer font-[500]"
+                    style={{ fontFamily: 'Montserrat, sans-serif' }}
+                  >
+                    General Inquiry
+                  </a>
+                  <a
+                    href="/quote"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      navigate('/quote')
+                      setShowContactDropdown(false)
+                    }}
+                    className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200 cursor-pointer font-[500]"
+                    style={{ fontFamily: 'Montserrat, sans-serif' }}
+                  >
+                    Get Free Quote
+                  </a>
+                  <a
+                    href="/contact/schedule-consultation"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      navigate('/contact/schedule-consultation')
+                      setShowContactDropdown(false)
+                    }}
+                    className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200 cursor-pointer font-[500]"
+                    style={{ fontFamily: 'Montserrat, sans-serif' }}
+                  >
+                    Schedule a Free Consultation
+                  </a>
+                </div>
+              </div>
+            )}
+          </div>
         </nav>
         <div className="flex gap-3">
-          <a href="/quote" className="px-3 md:px-4 py-1.5 md:py-2 bg-primary text-white font-semibold text-xs md:text-sm hover:bg-opacity-90 transition-all duration-300 no-underline flex items-center justify-center uppercase" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+          <a href="/quote" className="px-6 md:px-8 py-3 md:py-4 bg-primary text-white font-semibold text-sm md:text-base hover:bg-opacity-90 transition-all duration-300 no-underline flex items-center justify-center uppercase" style={{ fontFamily: 'Montserrat, sans-serif' }}>
             Get Free Quote
-          </a>
-          <a href="/contact" className="px-3 md:px-4 py-1.5 md:py-2 bg-white text-primary border-2 border-primary font-semibold text-xs md:text-sm hover:bg-gray-50 transition-all duration-300 no-underline uppercase" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-            Contact Us
           </a>
         </div>
       </div>

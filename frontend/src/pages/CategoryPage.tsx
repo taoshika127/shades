@@ -41,6 +41,8 @@ function CategoryPage() {
   const isCassetteRoute = location.pathname.startsWith('/cassette/')
   // Check if this is a control options route
   const isControlOptionsRoute = location.pathname === '/control-options'
+  // Check if this is a curtain rods route
+  const isCurtainRodsRoute = location.pathname === '/curtain-rods'
 
   // Get slug from params or extract from pathname
   let slug = categorySlug || location.pathname.replace(/^\/shades\//, '').replace(/^\//, '')
@@ -53,6 +55,11 @@ function CategoryPage() {
   // If it's a control options route, set the slug
   if (isControlOptionsRoute) {
     slug = 'control-options'
+  }
+
+  // If it's a curtain rods route, set the slug
+  if (isCurtainRodsRoute) {
+    slug = 'curtain-rods'
   }
 
   // Get category name from slug
@@ -81,14 +88,17 @@ function CategoryPage() {
   // Map special routes to PDF filenames
   const specialPdfMap: Record<string, string> = {
     'control-options': 'matter_connection.pdf',
+    'curtain-rods': 'curtain_rods.pdf',
   }
 
   // Determine PDF filename based on route type
   const pdfFilename = isControlOptionsRoute
     ? specialPdfMap['control-options']
-    : isCassetteRoute
-      ? (slug ? cassettePdfMap[slug] : null)
-      : (slug ? categoryPdfMap[slug] : null)
+    : isCurtainRodsRoute
+      ? specialPdfMap['curtain-rods']
+      : isCassetteRoute
+        ? (slug ? cassettePdfMap[slug] : null)
+        : (slug ? categoryPdfMap[slug] : null)
 
   useEffect(() => {
     // Fetch products
@@ -268,16 +278,16 @@ function CategoryPage() {
     setCurrentPage(1)
   }, [itemsPerPage, sortBy])
 
-  // Redirect if category not found (but allow cassette routes and control options route)
+  // Redirect if category not found (but allow cassette routes, control options route, and curtain rods route)
   useEffect(() => {
-    if (slug && categories.length > 0 && !category && !isCassetteRoute && !isControlOptionsRoute) {
+    if (slug && categories.length > 0 && !category && !isCassetteRoute && !isControlOptionsRoute && !isCurtainRodsRoute) {
       navigate('/shades', { replace: true })
     }
-  }, [slug, categories, category, navigate, isCassetteRoute, isControlOptionsRoute])
+  }, [slug, categories, category, navigate, isCassetteRoute, isControlOptionsRoute, isCurtainRodsRoute])
 
-  // For cassette routes and control options route, we don't need a category, just show the PDF
+  // For cassette routes, control options route, and curtain rods route, we don't need a category, just show the PDF
   // For regular routes, we need both categoryName and category
-  if (!isCassetteRoute && !isControlOptionsRoute && (!categoryName || !category)) {
+  if (!isCassetteRoute && !isControlOptionsRoute && !isCurtainRodsRoute && (!categoryName || !category)) {
     return (
       <div className="category-page">
         <Header currentPage="shades" />

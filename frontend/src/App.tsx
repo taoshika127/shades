@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Contact from './pages/Contact'
+import ScheduleConsultation from './pages/ScheduleConsultation'
 import Quote from './pages/Quote'
 import QuoteSummary from './pages/QuoteSummary'
 import CategoryPage from './pages/CategoryPage'
@@ -27,6 +28,8 @@ function App() {
         <Route path="/cassette/roller-shades" element={<CategoryPage />} />
         {/* Control Options route */}
         <Route path="/control-options" element={<CategoryPage />} />
+        {/* Curtain Rods route */}
+        <Route path="/curtain-rods" element={<CategoryPage />} />
         {/* Gallery routes */}
         <Route path="/gallery1" element={<GalleryPage />} />
         <Route path="/gallery2" element={<GalleryPage />} />
@@ -44,6 +47,7 @@ function App() {
         <Route path="/gallery14" element={<GalleryPage />} />
         <Route path="/gallery15" element={<GalleryPage />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/contact/schedule-consultation" element={<ScheduleConsultation />} />
         <Route path="/quote" element={<Quote />} />
         <Route path="/quote-summary" element={<QuoteSummary />} />
       </Routes>

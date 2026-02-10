@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { categoryNameToSlug } from '../utils/slug'
 
 interface Category {
@@ -9,7 +8,6 @@ interface Category {
 }
 
 function SeeWhatsCustomizable() {
-  const navigate = useNavigate()
   const [categories, setCategories] = useState<Category[]>([])
   const [selectedCategory, setSelectedCategory] = useState<string>('')
   const [selectedCassetteCategory, setSelectedCassetteCategory] = useState<string>('')
@@ -25,7 +23,7 @@ function SeeWhatsCustomizable() {
   const handleViewFabrics = () => {
     if (selectedCategory) {
       const slug = categoryNameToSlug(selectedCategory)
-      navigate(`/${slug}`)
+      window.open(`/${slug}`, '_blank')
     }
   }
 
@@ -38,7 +36,7 @@ function SeeWhatsCustomizable() {
       }
       const slug = cassetteSlugs[selectedCassetteCategory]
       if (slug) {
-        navigate(`/cassette/${slug}`)
+        window.open(`/cassette/${slug}`, '_blank')
       }
     }
   }
@@ -177,13 +175,15 @@ function SeeWhatsCustomizable() {
                     href="#"
                     onClick={(e) => {
                       e.preventDefault()
-                      // Navigate to appropriate section or page
+                      // Open in new tab
                       if (option.title === 'Control Options') {
-                        navigate('/control-options')
+                        window.open('/control-options', '_blank')
+                      } else if (option.title === 'Curtain Rods') {
+                        window.open('/curtain-rods', '_blank')
                       } else if (option.title === 'Motorization') {
-                        window.location.href = '/#how-it-works'
+                        window.open(`${window.location.origin}/#how-it-works`, '_blank')
                       } else {
-                        window.location.href = '/#browse-the-range'
+                        window.open(`${window.location.origin}/#browse-the-range`, '_blank')
                       }
                     }}
                     className="text-primary text-base font-[500] hover:text-opacity-80 transition-colors inline-flex items-center gap-1"
