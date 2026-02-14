@@ -6,6 +6,8 @@ import Quote from './pages/Quote'
 import QuoteSummary from './pages/QuoteSummary'
 import CategoryPage from './pages/CategoryPage'
 import GalleryPage from './pages/GalleryPage'
+import FormSuccess from './pages/FormSuccess'
+import FormError from './pages/FormError'
 
 function App() {
   return (
@@ -50,6 +52,8 @@ function App() {
         <Route path="/contact/schedule-consultation" element={<ScheduleConsultation />} />
         <Route path="/quote" element={<Quote />} />
         <Route path="/quote-summary" element={<QuoteSummary />} />
+        <Route path="/form-success" element={<FormSuccess />} />
+        <Route path="/form-error" element={<FormError />} />
       </Routes>
     </Router>
   )

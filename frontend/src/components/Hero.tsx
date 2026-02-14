@@ -82,10 +82,6 @@ function Hero() {
     return () => clearInterval(interval)
   }, [heroImages.length])
 
-  const handleViewShadesClick = () => {
-    // Navigate to browse-the-range section
-    window.location.href = '/#browse-the-range'
-  }
 
   return (
     <section className="w-full h-screen max-h-[100vh] relative overflow-hidden">
@@ -142,12 +138,12 @@ function Hero() {
             </ul>
 
             {/* Call-to-Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-start">
-              <button className="bg-primary text-white px-8 py-3 md:px-10 md:py-4 font-semibold text-base md:text-lg hover:bg-opacity-90 transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-100 uppercase" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+            <div className="flex flex-col sm:flex-row gap-8 justify-start">
+              <button className="bg-primary text-white px-8 py-3 md:px-10 md:py-4 font-semibold text-base md:text-lg hover:bg-opacity-90 transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-100 uppercase whitespace-nowrap" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                 Get Free Quote
               </button>
-              <button onClick={handleViewShadesClick} className="bg-white text-primary px-8 py-3 md:px-10 md:py-4 font-semibold text-base md:text-lg hover:bg-gray-50 transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-100 uppercase" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                View Our Shades
+              <button onClick={() => navigate('/contact/schedule-consultation')} className="bg-white text-primary px-8 py-3 md:px-10 md:py-4 font-semibold text-base md:text-lg hover:bg-gray-50 transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-100 uppercase whitespace-nowrap" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                Schedule a Consultation
               </button>
             </div>
           </div>

@@ -32,5 +32,8 @@ Thumbs.db
 backend/data/*.db
 backend/data/*.db-journal
 
+# Uploaded files
+backend/uploads/
+
 
 frontend/node_modules/

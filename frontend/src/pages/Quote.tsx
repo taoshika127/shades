@@ -13,12 +13,13 @@ interface Window {
   height: string
   shadeType: string
   motorized: string
-  materialType: string
 }
 
 function Quote() {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
     city: '',
     state: '',
     projectTimeline: '',
@@ -27,7 +28,7 @@ function Quote() {
   })
 
   const [windows, setWindows] = useState<Window[]>([
-    { id: 1, roomName: '', windowName: '', width: '', height: '', shadeType: '', motorized: '', materialType: 'Mid End' }
+    { id: 1, roomName: '', windowName: '', width: '', height: '', shadeType: '', motorized: '' }
   ])
   const [zipcodeInServiceArea, setZipcodeInServiceArea] = useState<boolean | null>(null)
   const [checkingZipcode, setCheckingZipcode] = useState(false)
@@ -98,7 +99,7 @@ function Quote() {
     const newId = Math.max(...windows.map(w => w.id), 0) + 1
     setWindows(prev => [
       ...prev,
-      { id: newId, roomName: '', windowName: '', width: '', height: '', shadeType: '', motorized: '', materialType: 'Mid End' }
+      { id: newId, roomName: '', windowName: '', width: '', height: '', shadeType: '', motorized: '' }
     ])
   }
 
@@ -118,21 +119,55 @@ function Quote() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData.serviceOption, formData.zipcode])
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission here
-    console.log('Form submitted:', { formData, windows })
-    // Navigate to quote summary page
-    navigate('/quote-summary')
+
+    try {
+      const response = await fetch('/api/quote', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ formData, windows }),
+      })
+
+      if (response.ok) {
+        // Navigate to success page
+        navigate('/form-success', { state: { formType: 'quote' } })
+      } else {
+        const errorData = await response.json().catch(() => ({}))
+        // Navigate to error page
+        navigate('/form-error', {
+          state: {
+            formType: 'quote',
+            errorMessage: errorData.error || 'Failed to submit quote request. Please try again.'
+          }
+        })
+      }
+    } catch (error) {
+      console.error('Error submitting quote form:', error)
+      // Navigate to error page
+      navigate('/form-error', {
+        state: {
+          formType: 'quote',
+          errorMessage: 'Network error. Please check your connection and try again.'
+        }
+      })
+    }
   }
 
   const showZipcodeError = formData.serviceOption === 'Full Service' && zipcodeInServiceArea === false
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen">
       <Header />
-      <section className="py-10 md:py-20 px-5 md:px-20">
-        <div className="max-w-4xl mx-auto">
+      <section
+        className="py-10 md:py-20 px-5 md:px-20 relative bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url('/assets/contact/contact_background.jpg')`
+        }}
+      >
+        <div className="mx-auto" style={{ maxWidth: '946px' }}>
           <div className="bg-white rounded-lg shadow-lg p-8 md:p-12 relative">
             {/* Logo in top right corner */}
             <div className="absolute top-6 right-6 md:top-8 md:right-12">
@@ -148,7 +183,52 @@ function Quote() {
             </div>
 
             <form onSubmit={handleSubmit}>
-              {/* Customer Information Section */}
+              {/* Personal Information Section */}
+              <div className="mb-[80px]">
+                <div className="flex items-center gap-3 mb-6">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-primary">
+                    <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  <h2 className="text-xl md:text-2xl font-bold text-brown" style={{ fontFamily: 'Fjalla One, sans-serif' }}>Personal Information</h2>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="fullName" className="block text-sm font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                      Full Name <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="fullName"
+                      name="fullName"
+                      value={formData.fullName}
+                      onChange={handleInputChange}
+                      placeholder="Enter your full name"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                      style={{ fontFamily: 'Montserrat, sans-serif' }}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                      Email Address <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      placeholder="Enter your email address"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                      style={{ fontFamily: 'Montserrat, sans-serif' }}
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Project Information Section */}
               <div className="mb-[80px]">
                 <div className="flex items-center gap-3 mb-6">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-primary">
@@ -395,39 +475,6 @@ function Quote() {
                           <option value="Yes">Yes</option>
                           <option value="No">No</option>
                         </select>
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                          Materials <span className="text-red-500">*</span>
-                        </label>
-                        <div className="flex gap-4 justify-center">
-                          <label className="flex items-center gap-2 cursor-pointer">
-                            <input
-                              type="radio"
-                              name={`material-${window.id}`}
-                              value="Mid End"
-                              checked={window.materialType === 'Mid End'}
-                              onChange={(e) => handleWindowChange(window.id, 'materialType', e.target.value)}
-                              className="w-5 h-5 focus:ring-brown"
-                              style={{ accentColor: '#5c4717' }}
-                              required
-                            />
-                            <span className="text-sm text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>Mid End</span>
-                          </label>
-                          <label className="flex items-center gap-2 cursor-pointer">
-                            <input
-                              type="radio"
-                              name={`material-${window.id}`}
-                              value="High End"
-                              checked={window.materialType === 'High End'}
-                              onChange={(e) => handleWindowChange(window.id, 'materialType', e.target.value)}
-                              className="w-5 h-5 focus:ring-brown"
-                              style={{ accentColor: '#5c4717' }}
-                              required
-                            />
-                            <span className="text-sm text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>High End</span>
-                          </label>
-                        </div>
                       </div>
                     </div>
                   </div>

@@ -1,18 +1,76 @@
-import express from 'express';
+import express, { Request } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
+import fs from 'fs';
 import { initializeDatabase, categoryDb, zipcodeDb } from './database';
 import getDatabase from './database';
-import { sendContactEmail } from './emailService';
+import { sendContactEmail, sendConsultationEmail, sendQuoteEmail } from './emailService';
 
 dotenv.config();
+
+// Multer types (will be available after npm install)
+type MulterFile = {
+  fieldname: string;
+  originalname: string;
+  encoding: string;
+  mimetype: string;
+  size: number;
+  destination: string;
+  filename: string;
+  path: string;
+  buffer: Buffer;
+};
 
 const app = express();
 const PORT = process.env.PORT || 5001;
 
 app.use(cors());
 app.use(express.json());
+
+// Configure multer for file uploads
+const uploadDir = path.join(__dirname, '../uploads');
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
+
+let multer: any;
+let upload: any;
+
+try {
+  multer = require('multer');
+
+  const storage = multer.diskStorage({
+    destination: (_req: any, _file: any, cb: any) => {
+      cb(null, uploadDir);
+    },
+    filename: (_req: any, file: any, cb: any) => {
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+      cb(null, uniqueSuffix + '-' + file.originalname);
+    }
+  });
+
+  upload = multer({
+    storage: storage,
+    limits: {
+      fileSize: 10 * 1024 * 1024, // 10MB limit per file
+    },
+    fileFilter: (_req: any, file: any, cb: any) => {
+      // Allow images and common document types
+      const allowedTypes = /jpeg|jpg|png|gif|webp|pdf|doc|docx|txt|xls|xlsx/;
+      const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
+      const mimetype = allowedTypes.test(file.mimetype);
+
+      if (extname && mimetype) {
+        cb(null, true);
+      } else {
+        cb(new Error('Invalid file type. Only images and documents are allowed.'));
+      }
+    }
+  });
+} catch (error) {
+  console.warn('Multer not installed. File uploads will not work. Run: npm install multer @types/multer');
+}
 
 // Serve static files from the assets directory
 app.use('/assets', express.static(path.join(__dirname, '../assets')));
@@ -456,12 +514,22 @@ app.post('/api/newsletter', (req, res) => {
   res.json({ success: true, message: 'Successfully subscribed to newsletter' });
 });
 
-app.post('/api/contact', async (req, res) => {
+const contactHandler = async (req: Request & { files?: MulterFile[] }, res: express.Response) => {
   try {
     const { name, email, phone, zipCode, subject, message } = req.body;
+    const files = (req.files || []) as MulterFile[];
 
     // Validate required fields
     if (!name || !email || !subject || !message) {
+      // Clean up uploaded files if validation fails
+      if (files && files.length > 0) {
+        files.forEach(file => {
+          const filePath = path.join(uploadDir, file.filename);
+          if (fs.existsSync(filePath)) {
+            fs.unlinkSync(filePath);
+          }
+        });
+      }
       return res.status(400).json({
         success: false,
         error: 'Missing required fields: name, email, subject, and message are required'
@@ -469,9 +537,9 @@ app.post('/api/contact', async (req, res) => {
     }
 
     // Log the submission
-    console.log('Contact form submission:', { name, email, phone, zipCode, subject, message });
+    console.log('Contact form submission:', { name, email, phone, zipCode, subject, message, fileCount: files?.length || 0 });
 
-    // Send email
+    // Send email with attachments
     const emailSent = await sendContactEmail({
       name,
       email,
@@ -479,7 +547,17 @@ app.post('/api/contact', async (req, res) => {
       zipCode,
       subject,
       message
-    });
+    }, files || []);
+
+    // Clean up uploaded files after sending email
+    if (files && files.length > 0) {
+      files.forEach(file => {
+        const filePath = path.join(uploadDir, file.filename);
+        if (fs.existsSync(filePath)) {
+          fs.unlinkSync(filePath);
+        }
+      });
+    }
 
     if (emailSent) {
       res.json({
@@ -496,9 +574,144 @@ app.post('/api/contact', async (req, res) => {
     }
   } catch (error) {
     console.error('Error processing contact form:', error);
+
+    // Clean up uploaded files on error
+    if (req.files && Array.isArray(req.files)) {
+      req.files.forEach(file => {
+        const filePath = path.join(uploadDir, file.filename);
+        if (fs.existsSync(filePath)) {
+          fs.unlinkSync(filePath);
+        }
+      });
+    }
+
     res.status(500).json({
       success: false,
       error: 'Failed to process your message. Please try again later.'
+    });
+  }
+};
+
+if (upload) {
+  app.post('/api/contact', upload.array('attachments', 10), contactHandler);
+} else {
+  app.post('/api/contact', contactHandler);
+}
+
+// Consultation endpoint
+app.post('/api/consultation', express.json(), async (req, res) => {
+  try {
+    const {
+      fullName,
+      email,
+      phone,
+      serviceAddress,
+      consultationType,
+      preferredTime,
+      lookingFor,
+      installTimeline,
+      numberOfWindows,
+      budgetRange,
+      additionalInfo
+    } = req.body;
+
+    // Validate required fields
+    if (!fullName || !email || !serviceAddress || !consultationType) {
+      return res.status(400).json({
+        success: false,
+        error: 'Missing required fields: fullName, email, serviceAddress, and consultationType are required'
+      });
+    }
+
+    // Log the submission
+    console.log('Consultation form submission:', {
+      fullName,
+      email,
+      phone,
+      serviceAddress,
+      consultationType,
+      preferredTime,
+      lookingFor,
+      installTimeline,
+      numberOfWindows,
+      budgetRange,
+      additionalInfo
+    });
+
+    // Send email
+    const emailSent = await sendConsultationEmail({
+      fullName,
+      email,
+      phone,
+      serviceAddress,
+      consultationType,
+      preferredTime: preferredTime || [],
+      lookingFor: lookingFor || [],
+      installTimeline,
+      numberOfWindows: numberOfWindows || [],
+      budgetRange,
+      additionalInfo
+    });
+
+    if (emailSent) {
+      res.json({
+        success: true,
+        message: 'Thank you for scheduling a consultation! We will contact you soon.'
+      });
+    } else {
+      // Still return success to user, but log the error
+      console.error('Failed to send email, but consultation submission was received');
+      res.json({
+        success: true,
+        message: 'Thank you for scheduling a consultation! We will contact you soon.'
+      });
+    }
+  } catch (error) {
+    console.error('Error processing consultation form:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Failed to process your consultation request. Please try again later.'
+    });
+  }
+});
+
+// Quote endpoint
+app.post('/api/quote', express.json(), async (req, res) => {
+  try {
+    const { formData, windows } = req.body;
+
+    // Validate required fields
+    if (!formData || !windows || !Array.isArray(windows) || windows.length === 0) {
+      return res.status(400).json({
+        success: false,
+        error: 'Missing required fields: formData and windows are required'
+      });
+    }
+
+    // Log the submission
+    console.log('Quote form submission:', { formData, windowCount: windows.length });
+
+    // Send email
+    const emailSent = await sendQuoteEmail({ formData, windows });
+
+    if (emailSent) {
+      res.json({
+        success: true,
+        message: 'Thank you for your quote request! We will review your information and send you a detailed quote shortly.'
+      });
+    } else {
+      // Still return success to user, but log the error
+      console.error('Failed to send email, but quote submission was received');
+      res.json({
+        success: true,
+        message: 'Thank you for your quote request! We will review your information and send you a detailed quote shortly.'
+      });
+    }
+  } catch (error) {
+    console.error('Error processing quote form:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Failed to process your quote request. Please try again later.'
     });
   }
 });

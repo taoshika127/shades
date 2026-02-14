@@ -1,24 +1,74 @@
-# Email Setup Guide
+# Email Setup Guide - Resend
 
-This guide explains how to configure email functionality for the contact form.
+This guide explains how to configure email functionality for the contact form using Resend.
 
-## Important: Understanding the Two Email Addresses
+## What is Resend?
+
+Resend is a modern email API service that makes sending emails simple and reliable. Instead of configuring SMTP servers, you just need an API key and a verified domain.
+
+## Benefits of Resend
+
+- ✅ **Simple Setup** - Just an API key, no SMTP configuration needed
+- ✅ **Better Deliverability** - Professional email infrastructure
+- ✅ **Easy Domain Verification** - Simple DNS setup
+- ✅ **Built-in Analytics** - Track email opens, clicks, etc.
+- ✅ **Free Tier** - 3,000 emails/month free
+
+## Important: Understanding the Email Addresses
 
 There are **two different email addresses** you need to configure:
 
-1. **SMTP Sending Account** (`SMTP_USER`, `SMTP_FROM`): This is the email account that will **SEND** the emails. You need SMTP credentials for this account.
-2. **Recipient Email** (`CONTACT_EMAIL`): This is where contact form submissions will be **DELIVERED TO** (e.g., `info@pacificlightshades.com`).
+1. **RESEND_FROM_EMAIL**: This is the email address that appears in the **"From" field** of the email. This must be a verified domain in Resend (e.g., `info@pacificlightshades.com` or `noreply@pacificlightshades.com`).
+2. **CONTACT_EMAIL**: This is where contact form submissions will be **DELIVERED TO** (e.g., `info@pacificlightshades.com`). This can be any email address.
 
-**Example:** If you have email hosting for `pacificlightshades.com`, you should use that SMTP server. The sending account could be `noreply@pacificlightshades.com` or `contact@pacificlightshades.com`, and it will send emails TO `info@pacificlightshades.com`.
+**Important:** The customer's email address will be:
+- **Visible in the email body** - The customer's email is clearly displayed in the email content
+- **Set as the Reply-To address** - When you click "Reply", it will automatically reply to the customer's email address
+- **Shown in the "From" field** - The email will appear to come from your verified domain (e.g., `info@pacificlightshades.com`), but the Reply-To field ensures replies go to the customer
+
+This way, you can see all contact form submissions in your inbox, but when you reply, it goes directly to the customer.
 
 ## Installation
 
-First, install the required packages:
+First, install the required package:
 
 ```bash
 cd backend
-npm install nodemailer @types/nodemailer
+npm install resend
 ```
+
+## Getting Your Resend API Key
+
+1. **Sign up for Resend**: Go to [https://resend.com](https://resend.com) and create an account
+2. **Get your API Key**:
+   - Log into your Resend dashboard
+   - Go to **API Keys** section
+   - Click **Create API Key**
+   - Give it a name (e.g., "Pacific Light Shades Backend")
+   - Copy the API key (you'll only see it once!)
+
+## Domain Verification
+
+To send emails from your domain (`pacificlightshades.com`), you need to verify it in Resend:
+
+1. **Add Domain**:
+   - In Resend dashboard, go to **Domains**
+   - Click **Add Domain**
+   - Enter `pacificlightshades.com`
+
+2. **Add DNS Records**:
+   - Resend will provide you with DNS records to add
+   - You'll need to add these to your domain's DNS settings (in GoDaddy or wherever your domain is hosted)
+   - Typically includes:
+     - SPF record
+     - DKIM record
+     - DMARC record (optional but recommended)
+
+3. **Verify Domain**:
+   - Once DNS records are added, Resend will verify your domain (can take a few minutes to 24 hours)
+   - You'll see a green checkmark when verified
+
+**Note**: Until your domain is verified, you can use Resend's test domain (`onboarding@resend.dev`) for testing, but emails will show as coming from Resend.
 
 ## Environment Variables
 
@@ -28,190 +78,127 @@ Create a `.env` file in the `backend` directory with the following variables:
 # Server Configuration
 PORT=5001
 
-# Email Configuration (SMTP) - The account that SENDS emails
-SMTP_HOST=smtp.your-email-provider.com
-SMTP_PORT=587
-SMTP_SECURE=false
-SMTP_USER=your-sending-email@yourdomain.com
-SMTP_PASS=your-password
-SMTP_FROM=your-sending-email@yourdomain.com
+# Resend Configuration
+RESEND_API_KEY=re_your_api_key_here
+
+# Email From Address (must be from verified domain)
+RESEND_FROM_EMAIL=info@pacificlightshades.com
 
 # Contact Form Recipient Email - Where emails are DELIVERED TO
 CONTACT_EMAIL=info@pacificlightshades.com
 ```
 
-## SMTP Configuration Examples
+## Configuration Examples
 
-### Custom Domain Email (Recommended if you have email hosting for pacificlightshades.com)
+### Using Your Verified Domain
 
-If you have email hosting for your domain (through cPanel, Google Workspace, Microsoft 365, etc.), use those SMTP settings:
+Once your domain is verified in Resend:
 
-**Example for cPanel/Standard Web Hosting:**
 ```env
-SMTP_HOST=mail.pacificlightshades.com  # or smtp.pacificlightshades.com
-SMTP_PORT=587
-SMTP_SECURE=false
-SMTP_USER=noreply@pacificlightshades.com  # or contact@pacificlightshades.com
-SMTP_PASS=your-email-password
-SMTP_FROM=noreply@pacificlightshades.com
+RESEND_API_KEY=re_abc123xyz...
+RESEND_FROM_EMAIL=info@pacificlightshades.com
 CONTACT_EMAIL=info@pacificlightshades.com
 ```
 
-**Example for Google Workspace (if you use Google for your domain):**
+### Using Alias Email
+
+If you want emails to appear from `noreply@pacificlightshades.com`:
+
 ```env
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_SECURE=false
-SMTP_USER=noreply@pacificlightshades.com  # Your Google Workspace email
-SMTP_PASS=your-app-password
-SMTP_FROM=noreply@pacificlightshades.com
+RESEND_API_KEY=re_abc123xyz...
+RESEND_FROM_EMAIL=noreply@pacificlightshades.com
 CONTACT_EMAIL=info@pacificlightshades.com
 ```
 
-### Microsoft 365 from GoDaddy (Recommended for pacificlightshades.com)
+**Note**: The email in `RESEND_FROM_EMAIL` must be from a verified domain in Resend.
 
-**Important:** You must enable SMTP Auth in your GoDaddy email dashboard before this will work.
+### Testing (Before Domain Verification)
 
-1. Log into your GoDaddy account
-2. Go to your email settings/dashboard
-3. Enable SMTP Authentication for your email account
+For testing before your domain is verified:
 
-**Configuration:**
 ```env
-SMTP_HOST=smtp.office365.com
-SMTP_PORT=587
-SMTP_SECURE=false
-SMTP_USER=info@pacificlightshades.com  # Your Microsoft 365 email address
-SMTP_PASS=your-email-password
-SMTP_FROM=info@pacificlightshades.com
+RESEND_API_KEY=re_abc123xyz...
+RESEND_FROM_EMAIL=onboarding@resend.dev
 CONTACT_EMAIL=info@pacificlightshades.com
 ```
 
-**Note:**
-- Port 587 with `SMTP_SECURE=false` uses STARTTLS encryption (this is correct)
-- Use the same email address for both `SMTP_USER` and `SMTP_FROM` if you want emails to appear from `info@pacificlightshades.com`
-- Or use a different sending address like `noreply@pacificlightshades.com` if you have multiple email accounts
-
-### Gmail (Personal Account - Not Recommended for Business)
-```env
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_SECURE=false
-SMTP_USER=your-email@gmail.com
-SMTP_PASS=your-app-password  # Use App Password, not regular password
-SMTP_FROM=your-email@gmail.com
-```
-
-**Note:** For Gmail personal accounts, you need to:
-1. Enable 2-Factor Authentication
-2. Generate an App Password: https://myaccount.google.com/apppasswords
-3. Use the App Password (not your regular password) in `SMTP_PASS`
-
-**Note:** If you have a business email at `pacificlightshades.com`, you should use your domain's email hosting instead of a personal Gmail account.
-
-### Outlook/Hotmail
-```env
-SMTP_HOST=smtp-mail.outlook.com
-SMTP_PORT=587
-SMTP_SECURE=false
-SMTP_USER=your-email@outlook.com
-SMTP_PASS=your-password
-SMTP_FROM=your-email@outlook.com
-```
-
-### SendGrid
-```env
-SMTP_HOST=smtp.sendgrid.net
-SMTP_PORT=587
-SMTP_SECURE=false
-SMTP_USER=apikey
-SMTP_PASS=your-sendgrid-api-key
-SMTP_FROM=your-verified-sender@yourdomain.com
-```
-
-### AWS SES
-```env
-SMTP_HOST=email-smtp.us-east-1.amazonaws.com  # Use your region
-SMTP_PORT=587
-SMTP_SECURE=false
-SMTP_USER=your-ses-smtp-username
-SMTP_PASS=your-ses-smtp-password
-SMTP_FROM=your-verified-email@yourdomain.com
-```
+**Note**: Emails sent from `onboarding@resend.dev` will show as coming from Resend, not your domain.
 
 ## How It Works
 
-1. When a user submits the contact form, the data is sent to `/api/contact`
-2. The backend validates the form data
-3. An email is **sent FROM** the `SMTP_FROM` address **TO** `info@pacificlightshades.com` (or the email specified in `CONTACT_EMAIL`)
-4. The email includes:
-   - Customer's name and email (as reply-to address)
-   - Phone number (if provided)
-   - ZIP code (if provided)
-   - Subject
-   - Message content
-5. You can reply directly to the email to respond to the customer (the reply will go to the customer's email address)
+1. Customer fills out the contact form on your website
+2. Form data is sent to your backend server
+3. Your server uses Resend API to send an email
+4. An email is **sent FROM** the `RESEND_FROM_EMAIL` address **TO** `info@pacificlightshades.com` (or the email specified in `CONTACT_EMAIL`)
+5. The email includes:
+   - Customer's name, email, phone, zip code, subject, and message
+   - Customer's email is set as the **Reply-To** address
+   - Any file attachments from the form
 
-**Example Flow:**
-- Customer fills out form with email: `customer@example.com`
-- Your server sends email FROM: `noreply@pacificlightshades.com` TO: `info@pacificlightshades.com`
-- When you reply, it goes TO: `customer@example.com`
+## Quick Setup Steps
 
-## Quick Setup for GoDaddy Microsoft 365
-
-1. **Enable SMTP Auth in GoDaddy:**
-   - Log into your GoDaddy account
-   - Navigate to your email dashboard
-   - Enable SMTP Authentication for your email account
-
-2. **Create `.env` file in the `backend` directory:**
+1. **Sign up for Resend**: [https://resend.com](https://resend.com)
+2. **Get API Key**: Copy your API key from the Resend dashboard
+3. **Add Domain** (optional but recommended):
+   - Add `pacificlightshades.com` in Resend dashboard
+   - Add DNS records to your domain
+   - Wait for verification
+4. **Create `.env` file** in `backend/` directory:
    ```env
-   PORT=5001
-   SMTP_HOST=smtp.office365.com
-   SMTP_PORT=587
-   SMTP_SECURE=false
-   SMTP_USER=info@pacificlightshades.com
-   SMTP_PASS=your-email-password
-   SMTP_FROM=info@pacificlightshades.com
+   RESEND_API_KEY=re_your_api_key_here
+   RESEND_FROM_EMAIL=info@pacificlightshades.com
    CONTACT_EMAIL=info@pacificlightshades.com
    ```
-
-3. **Install dependencies:**
+5. **Install dependencies**:
    ```bash
    cd backend
    npm install
    ```
-
-4. **Restart your backend server** (environment variables are loaded at startup)
-
-5. **Test it:**
-   - Submit a test form from the contact page
-   - Check your email inbox at `info@pacificlightshades.com`
+6. **Restart your backend server**
 
 ## Testing
 
-After setting up your `.env` file:
-
-1. Restart your backend server (environment variables are loaded at startup)
-2. Submit a test form from the contact page
-3. Check your email inbox at `info@pacificlightshades.com`
+1. Fill out the contact form on your website
+2. Submit the form
+3. Check your email inbox (`info@pacificlightshades.com` or whatever you set in `CONTACT_EMAIL`)
+4. You should receive an email with the form submission
+5. Try replying to the email - it should go to the customer's email address
 
 ## Troubleshooting
 
-### Email not sending
-- Check that all SMTP environment variables are set correctly
-- Verify your SMTP credentials are correct
-- Check server logs for error messages
-- For Gmail, make sure you're using an App Password, not your regular password
+### "Resend client not configured"
+- Make sure `RESEND_API_KEY` is set in your `.env` file
+- Restart your backend server after adding the API key
 
-### "Email transporter not configured" warning
-- Make sure your `.env` file exists in the `backend` directory
-- Verify all required SMTP variables are set (SMTP_HOST, SMTP_USER, SMTP_PASS)
-- Restart the server after creating/updating the `.env` file
+### "Invalid API key"
+- Verify your API key is correct
+- Make sure there are no extra spaces or quotes around the API key
+- Check that you copied the full API key from Resend dashboard
 
-### GoDaddy Microsoft 365 specific issues
-- **"Authentication failed"**: Make sure SMTP Auth is enabled in your GoDaddy email dashboard
-- **"Connection timeout"**: Verify `SMTP_HOST=smtp.office365.com` and `SMTP_PORT=587`
-- **"Invalid credentials"**: Double-check your email password is correct
-- **"STARTTLS error"**: Make sure `SMTP_SECURE=false` (STARTTLS is used automatically on port 587)
+### "Domain not verified"
+- If using a custom domain, make sure it's verified in Resend
+- Check that DNS records are correctly added
+- Wait a few hours for DNS propagation
 
+### "Email not received"
+- Check your spam folder
+- Verify `CONTACT_EMAIL` is correct
+- Check Resend dashboard for email logs and any errors
+- Make sure you haven't exceeded your Resend plan limits
+
+### "Attachments not working"
+- Check file size limits (Resend has limits on attachment sizes)
+- Verify file types are supported
+- Check server logs for specific error messages
+
+## Resend Pricing
+
+- **Free Tier**: 3,000 emails/month
+- **Pro**: Starting at $20/month for 50,000 emails
+- See [Resend Pricing](https://resend.com/pricing) for current plans
+
+## Additional Resources
+
+- [Resend Documentation](https://resend.com/docs)
+- [Resend API Reference](https://resend.com/docs/api-reference)
+- [Domain Verification Guide](https://resend.com/docs/dashboard/domains/introduction)

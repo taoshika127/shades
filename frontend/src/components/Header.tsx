@@ -116,7 +116,6 @@ function Header({ currentPage = 'home' }: HeaderProps) {
       <div className="max-w-container mx-auto flex justify-between items-center">
         <Logo />
         <nav className="flex gap-[60px] md:gap-20">
-          <a href="/" className={`no-underline text-brown text-xl md:text-lg font-medium hover:text-primary transition-colors uppercase ${currentPage === 'home' ? 'text-primary' : ''}`} style={{ fontFamily: 'Fjalla One, sans-serif' }}>Home</a>
           <div
             className="relative"
             onMouseEnter={() => setShowShadesDropdown(true)}
@@ -255,18 +254,6 @@ function Header({ currentPage = 'home' }: HeaderProps) {
               <div className="absolute top-full left-0 pt-1 w-56 bg-transparent z-50">
                 <div className="bg-white border border-gray-200 rounded-lg shadow-lg py-2">
                   <a
-                    href="/contact"
-                    onClick={(e) => {
-                      e.preventDefault()
-                      navigate('/contact')
-                      setShowContactDropdown(false)
-                    }}
-                    className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200 cursor-pointer font-[500]"
-                    style={{ fontFamily: 'Montserrat, sans-serif' }}
-                  >
-                    General Inquiry
-                  </a>
-                  <a
                     href="/quote"
                     onClick={(e) => {
                       e.preventDefault()
@@ -288,7 +275,19 @@ function Header({ currentPage = 'home' }: HeaderProps) {
                     className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200 cursor-pointer font-[500]"
                     style={{ fontFamily: 'Montserrat, sans-serif' }}
                   >
-                    Schedule a Free Consultation
+                    Schedule a Consultation
+                  </a>
+                  <a
+                    href="/contact"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      navigate('/contact')
+                      setShowContactDropdown(false)
+                    }}
+                    className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200 cursor-pointer font-[500]"
+                    style={{ fontFamily: 'Montserrat, sans-serif' }}
+                  >
+                    Contact Form
                   </a>
                 </div>
               </div>

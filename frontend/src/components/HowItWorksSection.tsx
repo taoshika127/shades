@@ -4,14 +4,14 @@ function HowItWorksSection() {
   const fullServiceSteps = [
     {
       number: 1,
-      title: 'Quote in Seconds',
-      description: 'Measure the windows you want to put shade on, provide lengths and widths, and you will get the estimated cost range right away.',
+      title: 'Get a Free Quote',
+      description: 'Fill out our online form with your window dimensions and we will get you a free quote right away.',
       imageLabel: 'Person Measuring Window with Tape Measure',
     },
     {
       number: 2,
       title: 'In-Person Consulting & Measurement',
-      description: 'You can choose our in-person consulting and measurement for a more thorough measurement and get a recommendation from our experts!',
+      description: 'Fill out our in-person consulting form for a more thorough measurement and get a recommendation from our experts!',
       imageLabel: 'Professional Consultant Measuring Window',
     },
     {
@@ -23,7 +23,7 @@ function HowItWorksSection() {
     {
       number: 4,
       title: 'Aftercare',
-      description: 'Within the warranty period, if your product has any unexpected issues, we will come to fix it for free!',
+      description: 'Within the warranty period, if your product has any unexpected issues, please use our Contact Form to fill out a request and we will come to fix it for free!',
       imageLabel: 'Service Technician Fixing Shade',
     },
   ]
@@ -31,14 +31,14 @@ function HowItWorksSection() {
   const diySteps = [
     {
       number: 1,
-      title: 'Quote in Seconds',
-      description: 'Measure the windows you want to put shade on, and you will get the estimated cost range right away.',
+      title: 'Get a Free Quote',
+      description: 'Fill out our online form with your window dimensions and we will get you a free quote right away.',
       imageLabel: 'Person Measuring Window with Tape Measure',
     },
     {
       number: 2,
       title: 'Design Recommendation',
-      description: "During follow up, after we get your requirements and room photos, our experienced interior design will recommend several shade options that matches your vibe and budget",
+      description: "Please use our Contact Form to send us your project details and room photos, we will recommend several shade options that matches your vibe and budget",
       imageLabel: 'Design Consultation and Recommendations',
     },
     {
@@ -50,7 +50,7 @@ function HowItWorksSection() {
     {
       number: 4,
       title: 'Installation',
-      description: "We'll deliver your shades with detailed installation instructions and all necessary hardware. (Note: we can also help you find your local installer for free if you need)",
+      description: "We'll deliver your shades with detailed installation instructions and all necessary hardware. (Note: we can also help you find your local installer if you need, please use our Contact Form to fill out a request)",
       imageLabel: 'Homeowner Installing Shade with Instructions',
     },
   ]
@@ -97,7 +97,66 @@ function HowItWorksSection() {
         </div>
         <div className="flex flex-col md:flex-row gap-4 md:gap-6 ml-4 items-start">
           <p className="text-lg md:text-xl text-brown leading-relaxed flex-1 font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-            {step.description}
+            {step.description.includes('online form') ? (
+              <>
+                {step.description.split('online form').map((part, index, array) => (
+                  <span key={index}>
+                    {part}
+                    {index < array.length - 1 && (
+                      <a
+                        href="/quote"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-bold text-primary hover:text-brown underline cursor-pointer"
+                        style={{ fontFamily: 'Montserrat, sans-serif' }}
+                      >
+                        online form
+                      </a>
+                    )}
+                  </span>
+                ))}
+              </>
+            ) : step.description.includes('in-person consulting form') ? (
+              <>
+                {step.description.split('in-person consulting form').map((part, index, array) => (
+                  <span key={index}>
+                    {part}
+                    {index < array.length - 1 && (
+                      <a
+                        href="/contact/schedule-consultation"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-bold text-primary hover:text-brown underline cursor-pointer"
+                        style={{ fontFamily: 'Montserrat, sans-serif' }}
+                      >
+                        in-person consulting form
+                      </a>
+                    )}
+                  </span>
+                ))}
+              </>
+            ) : step.description.includes('Contact Form') ? (
+              <>
+                {step.description.split('Contact Form').map((part, index, array) => (
+                  <span key={index}>
+                    {part}
+                    {index < array.length - 1 && (
+                      <a
+                        href="/contact"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-bold text-primary hover:text-brown underline cursor-pointer"
+                        style={{ fontFamily: 'Montserrat, sans-serif' }}
+                      >
+                        Contact Form
+                      </a>
+                    )}
+                  </span>
+                ))}
+              </>
+            ) : (
+              step.description
+            )}
           </p>
           <div className="overflow-hidden flex-shrink-0">
             {imageSrc ? (
