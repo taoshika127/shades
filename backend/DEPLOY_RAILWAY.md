@@ -76,12 +76,13 @@ These are already correct!
 2. Click on **Variables** tab
 3. Add the following environment variables:
 
-**Important**: Also add `NODE_VERSION=20` to ensure Node 20 is used (required for better-sqlite3)
+**Critical**: Add `NODE_VERSION=20` FIRST - This ensures Node 20 is used (required for better-sqlite3)
 
-#### Required Variables:
+#### Required Variables (Add in this order):
 
 ```env
-# Node Version (required for better-sqlite3)
+# Node Version (REQUIRED - must be 20+ for better-sqlite3)
+# Railway will auto-detect from .nvmrc, but you can also set this explicitly
 NODE_VERSION=20
 
 # Server Port (Railway will set this automatically, but you can override)
@@ -94,6 +95,12 @@ RESEND_FROM_EMAIL=noreply@pacificlightshades.com
 # Contact Email (where form submissions are sent)
 CONTACT_EMAIL=info@pacificlightshades.com
 ```
+
+**Important Notes**:
+- Railway will auto-detect Node.js from your `package.json` and `.nvmrc` file (which specifies Node 20)
+- The `.nvmrc` file in the `backend` folder tells Railway to use Node 20
+- For `better-sqlite3` compilation, Railway's build environment should include Python automatically
+- If you still get Python errors, you may need to add a `nixpacks.toml` with just Python (see troubleshooting section)
 
 #### How to Add Variables:
 
@@ -261,6 +268,31 @@ Replace `https://your-app.railway.app` with your actual Railway URL.
 2. Test build locally: `cd backend && npm run build`
 3. Ensure all dependencies are in `package.json` (not just `devDependencies`)
 4. Check TypeScript errors: `npm run build`
+5. Verify Root Directory is set to `backend` in Railway settings
+6. Ensure `.nvmrc` file exists with `20` (for Node 20)
+
+### "npm: command not found"
+
+**Problem**: npm is not available during build
+
+**Solutions**:
+1. **Remove `nixpacks.toml`** - Let Railway auto-detect Node.js from `package.json` and `.nvmrc`
+2. Verify `.nvmrc` file exists in `backend/` with content `20`
+3. Check Root Directory is set to `backend` in Railway settings
+4. Railway should auto-detect Node.js - if it doesn't, check that `package.json` is in the root directory Railway is looking at
+
+### "Python not found" or "better-sqlite3 compilation fails"
+
+**Problem**: `better-sqlite3` needs Python to compile native bindings
+
+**Solutions**:
+1. Railway's build environment should include Python automatically
+2. If not, create a minimal `nixpacks.toml` in `backend/`:
+   ```toml
+   [phases.setup]
+   nixPkgs = ["python3"]
+   ```
+3. This adds Python without interfering with Node.js auto-detection
 
 ### Server Won't Start
 
