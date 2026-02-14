@@ -56,14 +56,17 @@ These are already correct!
 
 ### 3.2 Configure Service Settings
 
-1. Railway should auto-detect the backend folder, but verify:
+1. **IMPORTANT - Set Root Directory**:
    - Click on your service
    - Go to **Settings** tab
-   - Check **Root Directory**: Should be `backend` (or leave empty if repo root is backend)
-   - If your repo root is the project root, set **Root Directory** to `backend`
+   - Scroll to **"Root Directory"** section
+   - Set **Root Directory** to: `backend`
+   - This tells Railway to use the `backend` folder, not the root
 
-2. **Build Command**: Should auto-detect as `npm run build`
-3. **Start Command**: Should auto-detect as `npm start`
+2. **Build Command**: Should auto-detect as `npm run build` (runs from backend folder)
+3. **Start Command**: Should auto-detect as `npm start` (runs from backend folder)
+
+**Critical**: If Root Directory is not set to `backend`, Railway will try to build from the root and fail!
 
 ## Step 4: Configure Environment Variables
 
