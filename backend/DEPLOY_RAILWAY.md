@@ -76,9 +76,14 @@ These are already correct!
 2. Click on **Variables** tab
 3. Add the following environment variables:
 
+**Important**: Also add `NODE_VERSION=20` to ensure Node 20 is used (required for better-sqlite3)
+
 #### Required Variables:
 
 ```env
+# Node Version (required for better-sqlite3)
+NODE_VERSION=20
+
 # Server Port (Railway will set this automatically, but you can override)
 PORT=5001
 
