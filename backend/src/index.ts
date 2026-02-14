@@ -23,7 +23,7 @@ type MulterFile = {
 };
 
 const app = express();
-const PORT = process.env.PORT || 5001;
+const PORT = Number(process.env.PORT) || 5001;
 
 app.use(cors());
 app.use(express.json());
@@ -76,7 +76,13 @@ try {
 app.use('/assets', express.static(path.join(__dirname, '../assets')));
 
 // Initialize database (this will create the directory if needed)
-initializeDatabase();
+try {
+  initializeDatabase();
+  console.log('Database initialized successfully');
+} catch (error) {
+  console.error('Error initializing database:', error);
+  // Don't crash the app - it can still serve API requests
+}
 
 // Mock data for products - expanded to 32 items for Shades page
 interface Product {
@@ -203,6 +209,15 @@ const socialImages = [
   'https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=300&h=300&fit=crop',
   'https://images.unsplash.com/photo-1549497538-303791108f95?w=300&h=300&fit=crop'
 ];
+
+// Health check route
+app.get('/', (req, res) => {
+  res.json({
+    status: 'ok',
+    message: 'Pacific Light Shades Backend API is running',
+    timestamp: new Date().toISOString()
+  });
+});
 
 // Routes
 app.get('/api/products', (req, res) => {
@@ -729,6 +744,8 @@ app.post('/api/quote', express.json(), async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server is running on port ${PORT}`);
+  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+  console.log(`Health check available at: http://0.0.0.0:${PORT}/`);
 });
