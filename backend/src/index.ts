@@ -215,6 +215,16 @@ app.get('/', (req, res) => {
   res.json({
     status: 'ok',
     message: 'Pacific Light Shades Backend API is running',
+    timestamp: new Date().toISOString(),
+    port: PORT
+  });
+});
+
+// Additional health check endpoint (Railway sometimes checks /health)
+app.get('/health', (req, res) => {
+  res.status(200).json({
+    status: 'ok',
+    message: 'Service is healthy',
     timestamp: new Date().toISOString()
   });
 });
