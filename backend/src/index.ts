@@ -220,6 +220,7 @@ app.get('/', (req, res) => {
   });
 });
 
+
 // Additional health check endpoint (Railway sometimes checks /health)
 app.get('/health', (req, res) => {
   res.status(200).json({
