@@ -514,10 +514,16 @@ app.post('/api/newsletter', (req, res) => {
   res.json({ success: true, message: 'Successfully subscribed to newsletter' });
 });
 
-const contactHandler = async (req: Request & { files?: MulterFile[] }, res: express.Response) => {
+const contactHandler = async (req: Request, res: express.Response) => {
   try {
     const { name, email, phone, zipCode, subject, message } = req.body;
-    const files = (req.files || []) as MulterFile[];
+    // Handle multer files - can be array or object
+    const multerFiles = req.files;
+    const files: MulterFile[] = Array.isArray(multerFiles)
+      ? multerFiles as MulterFile[]
+      : multerFiles && typeof multerFiles === 'object' && 'attachments' in multerFiles
+      ? (multerFiles.attachments as MulterFile[])
+      : [];
 
     // Validate required fields
     if (!name || !email || !subject || !message) {
@@ -576,8 +582,15 @@ const contactHandler = async (req: Request & { files?: MulterFile[] }, res: expr
     console.error('Error processing contact form:', error);
 
     // Clean up uploaded files on error
-    if (req.files && Array.isArray(req.files)) {
-      req.files.forEach(file => {
+    const errorFiles = req.files;
+    if (errorFiles) {
+      const filesToClean: MulterFile[] = Array.isArray(errorFiles)
+        ? errorFiles as MulterFile[]
+        : errorFiles && typeof errorFiles === 'object' && 'attachments' in errorFiles
+        ? (errorFiles.attachments as MulterFile[])
+        : [];
+
+      filesToClean.forEach(file => {
         const filePath = path.join(uploadDir, file.filename);
         if (fs.existsSync(filePath)) {
           fs.unlinkSync(filePath);
