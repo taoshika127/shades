@@ -65,10 +65,11 @@ function QuoteSummary() {
     }).format(amount)
   }
 
-  const formatCurrencyRange = (min: number, max: number) => {
-    if (min === max) return formatCurrency(min)
-    return `${formatCurrency(min)} - ${formatCurrency(max)}`
-  }
+  // Reserved for future currency range formatting
+  // const formatCurrencyRange = (min: number, max: number) => {
+  //   if (min === max) return formatCurrency(min)
+  //   return `${formatCurrency(min)} - ${formatCurrency(max)}`
+  // }
 
   const handleAcceptQuote = () => {
     // Handle quote acceptance
@@ -85,17 +86,18 @@ function QuoteSummary() {
     console.log('Downloading PDF')
   }
 
-  const shadePriceRanges: Record<string, { min: number, max: number }> = {
-    'Zebra Shades': { min: 280, max: 520 },
-    'Roller Shades': { min: 220, max: 460 },
-    'Honeycomb Shades': { min: 260, max: 520 },
-    'Bamboo Shades': { min: 200, max: 420 },
-    'Shangri-La Shades': { min: 320, max: 650 },
-    'Roman Shades': { min: 300, max: 620 },
-    'Draperies': { min: 350, max: 740 },
-    'Outdoor Shades': { min: 280, max: 620 },
-    'Dream Shades': { min: 300, max: 650 },
-  }
+  // Reserved for future price range display
+  // const shadePriceRanges: Record<string, { min: number, max: number }> = {
+  //   'Zebra Shades': { min: 280, max: 520 },
+  //   'Roller Shades': { min: 220, max: 460 },
+  //   'Honeycomb Shades': { min: 260, max: 520 },
+  //   'Bamboo Shades': { min: 200, max: 420 },
+  //   'Shangri-La Shades': { min: 320, max: 650 },
+  //   'Roman Shades': { min: 300, max: 620 },
+  //   'Draperies': { min: 350, max: 740 },
+  //   'Outdoor Shades': { min: 280, max: 620 },
+  //   'Dream Shades': { min: 300, max: 650 },
+  // }
 
   const stripParentheses = (value: string) => value.replace(/\s*\([^)]*\)\s*/g, ' ').replace(/\s+/g, ' ').trim()
 

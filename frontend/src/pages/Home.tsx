@@ -32,7 +32,7 @@ interface GalleryImage {
 }
 
 function Home() {
-  const [products, setProducts] = useState<Product[]>([])
+  const [_products, _setProducts] = useState<Product[]>([])
   const [categories, setCategories] = useState<Category[]>([])
   const [galleryImages, setGalleryImages] = useState<GalleryImage[]>([])
 
@@ -40,7 +40,7 @@ function Home() {
     // Fetch products
     fetch('/api/products')
       .then(res => res.json())
-      .then(data => setProducts(data))
+      .then(data => _setProducts(data))
 
     // Fetch categories
     fetch('/api/categories')

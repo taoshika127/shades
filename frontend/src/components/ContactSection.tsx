@@ -49,7 +49,7 @@ function ContactSection() {
       })
 
       if (response.ok) {
-        const data = await response.json()
+        await response.json()
         // Navigate to success page
         navigate('/form-success', { state: { formType: 'contact' } })
       } else {

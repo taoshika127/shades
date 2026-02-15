@@ -1,21 +1,22 @@
-import { useEffect, useState, useMemo } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams, useNavigate, useLocation } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import FilterBar from '../components/FilterBar'
-import Pagination from '../components/Pagination'
-import FeatureHighlights from '../components/FeatureHighlights'
+// import FilterBar from '../components/FilterBar'
+// import Pagination from '../components/Pagination'
+// import FeatureHighlights from '../components/FeatureHighlights'
 import { slugToCategoryName } from '../utils/slug'
 
-interface Product {
-  id: number
-  name: string
-  description: string
-  price: number
-  discount?: number
-  image: string
-  badge?: 'sale' | 'new'
-}
+// Reserved for future product display
+// interface Product {
+//   id: number
+//   name: string
+//   description: string
+//   price: number
+//   discount?: number
+//   image: string
+//   badge?: 'sale' | 'new'
+// }
 
 interface Category {
   id: number
@@ -27,13 +28,14 @@ function CategoryPage() {
   const { categorySlug } = useParams<{ categorySlug?: string }>()
   const location = useLocation()
   const navigate = useNavigate()
-  const [products, setProducts] = useState<Product[]>([])
+  // const [products, setProducts] = useState<Product[]>([]) // Reserved for future product display
   const [categories, setCategories] = useState<Category[]>([])
-  const [currentPage, setCurrentPage] = useState(1)
-  const [itemsPerPage, setItemsPerPage] = useState(16)
-  const [sortBy, setSortBy] = useState('default')
-  const [gridView, setGridView] = useState<'small' | 'large'>('small')
-  const [showFilter, setShowFilter] = useState(false)
+  // Reserved for future pagination/filtering features
+  // const [currentPage, setCurrentPage] = useState(1)
+  // const [itemsPerPage] = useState(16)
+  // const [sortBy] = useState('default')
+  const [_gridView, _setGridView] = useState<'small' | 'large'>('small')
+  const [_showFilter, _setShowFilter] = useState(false)
   const [pdfContainerRef, setPdfContainerRef] = useState<HTMLDivElement | null>(null)
   const [pdfLoading, setPdfLoading] = useState(false)
 
@@ -101,10 +103,10 @@ function CategoryPage() {
         : (slug ? categoryPdfMap[slug] : null)
 
   useEffect(() => {
-    // Fetch products
-    fetch('/api/products')
-      .then(res => res.json())
-      .then(data => setProducts(data))
+    // Reserved for future product display
+    // fetch('/api/products')
+    //   .then(res => res.json())
+    //   .then(data => setProducts(data))
 
     // Fetch categories
     fetch('/api/categories')
@@ -236,47 +238,46 @@ function CategoryPage() {
     }
   }, [pdfFilename, pdfContainerRef, categoryName])
 
-  // Filter products by category (for now, we'll show all products since products don't have category association)
-  // In a real app, you'd filter by category
-  const filteredProducts = useMemo(() => {
-    // TODO: Filter products by category when product-category relationship is implemented
-    // For now, return all products
-    return products
-  }, [products, categoryName])
+  // Reserved for future product filtering feature
+  // const filteredProducts = useMemo(() => {
+  //   // TODO: Filter products by category when product-category relationship is implemented
+  //   // For now, return all products
+  //   return products
+  // }, [products, categoryName])
 
-  // Sort products based on sortBy
-  const sortedProducts = useMemo(() => {
-    const sorted = [...filteredProducts]
-    switch (sortBy) {
-      case 'price-low':
-        return sorted.sort((a, b) => a.price - b.price)
-      case 'price-high':
-        return sorted.sort((a, b) => b.price - a.price)
-      case 'name-asc':
-        return sorted.sort((a, b) => a.name.localeCompare(b.name))
-      case 'name-desc':
-        return sorted.sort((a, b) => b.name.localeCompare(a.name))
-      default:
-        return sorted
-    }
-  }, [filteredProducts, sortBy])
+  // Reserved for future product sorting feature
+  // const sortedProducts = useMemo(() => {
+  //   const sorted = [...filteredProducts]
+  //   switch (sortBy) {
+  //     case 'price-low':
+  //       return sorted.sort((a, b) => a.price - b.price)
+  //     case 'price-high':
+  //       return sorted.sort((a, b) => b.price - a.price)
+  //     case 'name-asc':
+  //       return sorted.sort((a, b) => a.name.localeCompare(b.name))
+  //     case 'name-desc':
+  //       return sorted.sort((a, b) => b.name.localeCompare(a.name))
+  //     default:
+  //       return sorted
+  //   }
+  // }, [filteredProducts, sortBy])
 
-  // Calculate pagination
-  const totalProducts = sortedProducts.length
-  const totalPages = Math.ceil(totalProducts / itemsPerPage)
-  const startIndex = (currentPage - 1) * itemsPerPage
-  const endIndex = startIndex + itemsPerPage
-  const displayedProducts = sortedProducts.slice(startIndex, endIndex)
+  // Calculate pagination (reserved for future pagination feature)
+  // const totalProducts = sortedProducts.length
+  // const totalPages = Math.ceil(totalProducts / itemsPerPage)
+  // const startIndex = (currentPage - 1) * itemsPerPage
+  // const endIndex = startIndex + itemsPerPage
+  // const displayedProducts = sortedProducts.slice(startIndex, endIndex)
 
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page)
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
+  // const handlePageChange = (page: number) => { // Reserved for future pagination feature
+  //   setCurrentPage(page)
+  //   window.scrollTo({ top: 0, behavior: 'smooth' })
+  // }
 
-  // Reset to page 1 when itemsPerPage or sortBy changes
-  useEffect(() => {
-    setCurrentPage(1)
-  }, [itemsPerPage, sortBy])
+  // Reserved for future pagination feature
+  // useEffect(() => {
+  //   setCurrentPage(1)
+  // }, [itemsPerPage, sortBy])
 
   // Redirect if category not found (but allow cassette routes, control options route, and curtain rods route)
   useEffect(() => {

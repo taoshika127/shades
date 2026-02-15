@@ -20,7 +20,7 @@ function ScheduleConsultation() {
     additionalInfo: ''
   })
   const [zipcodeInServiceArea, setZipcodeInServiceArea] = useState<boolean | null>(null)
-  const [checkingZipcode, setCheckingZipcode] = useState(false)
+  const [_checkingZipcode, setCheckingZipcode] = useState(false)
 
   const checkZipcode = async (zipcode: string) => {
     if (!zipcode || zipcode.trim() === '') {
