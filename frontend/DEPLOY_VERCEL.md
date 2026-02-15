@@ -34,15 +34,21 @@ This guide will walk you through deploying your React frontend to Vercel.
 ### Update `vercel.json`
 
 1. Open `frontend/vercel.json`
-2. Replace `https://your-backend-url.com` with your actual backend URL:
+2. Replace `https://your-backend-url.com` with your actual Railway backend URL:
    ```json
    {
      "source": "/api/:path*",
-     "destination": "https://your-backend.railway.app/api/:path*"
+     "destination": "https://shades-production.up.railway.app/api/:path*"
+   },
+   {
+     "source": "/assets/:path*",
+     "destination": "https://shades-production.up.railway.app/assets/:path*"
    }
    ```
 
-**Important**: Update both `/api` and `/assets` rewrites with your backend URL.
+   **Note:** Your `vercel.json` is already configured with the correct Railway URL (`https://shades-production.up.railway.app`), so you can skip this step.
+
+✅ **Step Complete**: Both `/api` and `/assets` rewrites are already configured with your Railway backend URL (`https://shades-production.up.railway.app`).
 
 ## Step 3: Deploy via Vercel Dashboard (Easiest)
 
@@ -124,11 +130,11 @@ Edit `frontend/vercel.json` and replace the placeholder URLs:
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://your-actual-backend-url.com/api/:path*"
+      "destination": "https://shades-production.up.railway.app/api/:path*"
     },
     {
       "source": "/assets/:path*",
-      "destination": "https://your-actual-backend-url.com/assets/:path*"
+      "destination": "https://shades-production.up.railway.app/assets/:path*"
     }
   ]
 }
@@ -146,9 +152,11 @@ git push
 
 1. Go to Vercel Dashboard → Your Project → **Settings** → **Environment Variables**
 2. Add:
-   - `VITE_API_URL` = `https://your-backend-url.com`
+   - `VITE_API_URL` = `https://shades-production.up.railway.app`
 3. Update your frontend code to use `import.meta.env.VITE_API_URL`
 4. Redeploy
+
+**Note:** Since your frontend uses relative URLs (`/api/...`), you don't need to set `VITE_API_URL`. The `vercel.json` rewrites handle the routing automatically.
 
 ## Step 6: Custom Domain (Optional)
 
