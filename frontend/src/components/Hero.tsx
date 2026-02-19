@@ -111,47 +111,11 @@ function Hero() {
       </div>
 
       <div className="relative z-10 w-full h-full max-h-[100vh] flex items-center justify-center md:justify-start px-5 md:px-20 overflow-hidden">
-        <div className="max-w-container w-full flex flex-col md:flex-row justify-center md:justify-between gap-8 md:gap-12">
-          {/* Left Section - Promotional Content */}
-          <div className="p-6 md:p-10 relative top-[-20px] rounded-[10px] max-w-full md:max-w-[643px] md:ml-20">
-            <p className="text-[28px] md:text-[28px] mb-6 font-[500] text-[#f0e8d5]" style={{ fontFamily: 'Montserrat, sans-serif' }}>We <span className="font-bold">customize</span>, <span className="font-bold">measure</span> and <span className="font-bold">install</span></p>
-            <h2 className="text-[60px] md:text-[60px] font-bold text-[#dbc697] leading-tight m-0 mb-10" style={{ fontFamily: 'Fjalla One, sans-serif' }}>Shades that fit your lifestyle and budget</h2>
-
-            {/* Benefits List */}
-            <ul className="space-y-5 mb-10">
-              {[
-                'Fully Customizable to Your Windows',
-                'Any size, various fabrics, opacities, cassette styles, motorized options, and more...',
-                '50% Less Than Big Box Store Prices',
-                'Professional Service & DIY Options',
-              ].map((benefit, index) => (
-                <li key={index} className="flex items-center gap-3">
-                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-[#f0e8d5]
- flex items-center justify-center">
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M2 6L5 9L10 2" stroke="#5c4717" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </div>
-                  <span className="text-base md:text-[20px] text-[#f0e8d5] font-semibold" style={{ fontFamily: 'Montserrat, sans-serif' }}>{benefit}</span>
-                </li>
-              ))}
-            </ul>
-
-            {/* Call-to-Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-8 justify-start">
-              <button onClick={() => navigate('/quote')} className="bg-primary text-white px-8 py-3 md:px-10 md:py-4 font-semibold text-base md:text-lg hover:bg-opacity-90 transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-100 uppercase whitespace-nowrap" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                Get Free Quote
-              </button>
-              <button onClick={() => navigate('/contact/schedule-consultation')} className="bg-white text-primary px-8 py-3 md:px-10 md:py-4 font-semibold text-base md:text-lg hover:bg-gray-50 transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-100 uppercase whitespace-nowrap" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                Schedule a Consultation
-              </button>
-            </div>
-          </div>
-
-          {/* Right Section - Vertical Carousel Price Cards */}
-          <div className="w-full md:w-[780px] flex justify-center items-center">
-            <div className="carousel-wrapper" style={{ width: '100%', maxWidth: '650px', height: '220px', marginTop: '-100px', marginLeft: '100px' }}>
-              <div className="carousel" style={{ height: '220px' }}>
+        <div className="max-w-container w-full flex flex-col md:flex-row justify-center md:justify-between gap-0 md:gap-12">
+          {/* Right Section - Vertical Carousel Price Cards - On top for mobile */}
+          <div className="w-full md:w-[780px] flex justify-center items-center order-1 md:order-2">
+            <div className="carousel-wrapper md:block ml-0 md:-mt-[50px] md:ml-[100px] h-[270px] md:h-[220px]" style={{ width: '100%', maxWidth: '650px' }}>
+              <div className="carousel h-[270px] md:h-[220px]">
                 {[
                   {
                     serviceType: 'DIY',
@@ -257,10 +221,10 @@ function Hero() {
                             {card.serviceType}
                           </span>
                         </div>
-                        <p className="title" style={{ fontFamily: 'Montserrat, sans-serif', color: '#5c4717', marginBottom: '8px', marginTop: '15px' }}>
+                        <p className="title text-sm md:text-base" style={{ fontFamily: 'Montserrat, sans-serif', color: '#5c4717', marginBottom: '8px', marginTop: '15px' }}>
                           {card.titleLine1}
-                          <br />
-                          {card.titleLine2}
+                          <br className="hidden md:block" />
+                          <span className="hidden md:inline">{card.titleLine2}</span>
                         </p>
                         <p style={{ fontFamily: 'Montserrat, sans-serif', color: '#9F9F9F', fontSize: '12px', marginBottom: '12px' }}>
                           {card.description}
@@ -293,6 +257,42 @@ function Hero() {
                   )
                 })}
               </div>
+            </div>
+          </div>
+
+          {/* Left Section - Promotional Content - Below carousel on mobile */}
+          <div className="p-6 md:p-10 relative top-[-20px] rounded-[10px] max-w-full md:max-w-[643px] md:ml-20 order-2 md:order-1">
+            <p className="text-[18px] md:text-[28px] mb-3 md:mb-6 font-[500] text-[#f0e8d5]" style={{ fontFamily: 'Montserrat, sans-serif' }}>We <span className="font-bold">customize</span>, <span className="font-bold">measure</span> and <span className="font-bold">install</span></p>
+            <h2 className="text-[32px] md:text-[60px] font-bold text-[#dbc697] leading-tight m-0 mb-3 md:mb-10" style={{ fontFamily: 'Fjalla One, sans-serif' }}>Shades that fit your lifestyle and budget</h2>
+
+            {/* Benefits List */}
+            <ul className="space-y-3 md:space-y-5 mb-4 md:mb-10">
+              {[
+                'Fully Customizable to Your Windows',
+                'Any size, various fabrics, opacities, cassette styles, motorized options, and more...',
+                '50% Less Than Big Box Store Prices',
+                'Professional Service & DIY Options',
+              ].map((benefit, index) => (
+                <li key={index} className="flex items-center gap-3">
+                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-[#f0e8d5]
+ flex items-center justify-center">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2 6L5 9L10 2" stroke="#5c4717" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                  <span className="text-base md:text-[20px] text-[#f0e8d5] font-semibold" style={{ fontFamily: 'Montserrat, sans-serif' }}>{benefit}</span>
+                </li>
+              ))}
+            </ul>
+
+            {/* Call-to-Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-8 justify-start">
+              <button onClick={() => navigate('/quote')} className="bg-primary text-white px-8 py-3 md:px-10 md:py-4 font-semibold text-base md:text-lg hover:bg-opacity-90 transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-100 uppercase whitespace-nowrap" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                Get Free Quote
+              </button>
+              <button onClick={() => navigate('/contact/schedule-consultation')} className="bg-white text-primary px-8 py-3 md:px-10 md:py-4 font-semibold text-base md:text-lg hover:bg-gray-50 transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-100 uppercase whitespace-nowrap" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                Schedule a Consultation
+              </button>
             </div>
           </div>
         </div>

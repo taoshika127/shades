@@ -90,6 +90,21 @@ iframe[title*="Fabric Catalog"]::before {
   flex-direction: column;
 }
 
+/* Mobile: Horizontal carousel */
+@media (max-width: 767px) {
+  .carousel {
+    flex-direction: row;
+    overflow: hidden;
+    height: 270px;
+  }
+
+  .carousel__item {
+    min-width: 100%;
+    width: 100%;
+    flex-shrink: 0;
+  }
+}
+
 .carousel__item {
   display: flex;
   align-items: center;
@@ -100,6 +115,13 @@ iframe[title*="Fabric Catalog"]::before {
   filter: drop-shadow(0 2px 2px #555);
   will-change: transform, opacity;
   animation: carousel-animate-vertical var(--animation-timing) linear infinite;
+}
+
+/* Mobile: Use horizontal animation */
+@media (max-width: 767px) {
+  .carousel__item {
+    animation: carousel-animate-horizontal var(--animation-timing) linear infinite;
+  }
 }
 
 .carousel__item:nth-child(1) {
@@ -169,6 +191,14 @@ iframe[title*="Fabric Catalog"]::before {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Mobile: Fixed height for carousel card */
+@media (max-width: 767px) {
+  .carousel__item-body {
+    height: 240px;
+    min-height: 240px;
+  }
+}
+
 .carousel__item-body:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -179,6 +209,13 @@ iframe[title*="Fabric Catalog"]::before {
   font-size: 16px;
   margin-top: 10px;
   font-weight: bold;
+}
+
+/* Mobile: Smaller title font */
+@media (max-width: 767px) {
+  .carousel__item-body .title {
+    font-size: 14px;
+  }
 }
 
 @keyframes carousel-animate-vertical {
@@ -212,6 +249,43 @@ iframe[title*="Fabric Catalog"]::before {
   }
   100% {
     transform: translateY(-100%) scale(0.5);
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* Horizontal animation for mobile */
+@keyframes carousel-animate-horizontal {
+  0% {
+    transform: translateX(100%) scale(0.5);
+    opacity: 0;
+    visibility: hidden;
+  }
+  3%,
+  11.11% {
+    transform: translateX(100%) scale(0.7);
+    opacity: 0.4;
+    visibility: visible;
+  }
+  14.11%,
+  22.22% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+    visibility: visible;
+  }
+  25.22%,
+  33.33% {
+    transform: translateX(-100%) scale(0.7);
+    opacity: 0.4;
+    visibility: visible;
+  }
+  36.33% {
+    transform: translateX(-100%) scale(0.5);
+    opacity: 0;
+    visibility: visible;
+  }
+  100% {
+    transform: translateX(-100%) scale(0.5);
     opacity: 0;
     visibility: hidden;
   }
