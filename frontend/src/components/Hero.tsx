@@ -52,10 +52,23 @@ function Hero() {
   const [nextIndex, setNextIndex] = useState(1)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const currentIndexRef = useRef(0)
+  const [screenHeight, setScreenHeight] = useState(typeof window !== 'undefined' ? window.innerHeight : 932)
 
   useEffect(() => {
     currentIndexRef.current = currentIndex
   }, [currentIndex])
+
+  // Track screen height for responsive padding
+  useEffect(() => {
+    const updateScreenHeight = () => {
+      setScreenHeight(window.innerHeight)
+    }
+
+    updateScreenHeight()
+    window.addEventListener('resize', updateScreenHeight)
+
+    return () => window.removeEventListener('resize', updateScreenHeight)
+  }, [])
 
   useEffect(() => {
     // Preload all images
@@ -114,7 +127,16 @@ function Hero() {
         <div className="max-w-container w-full flex flex-col md:flex-row justify-center md:justify-between gap-0 md:gap-12">
           {/* Right Section - Vertical Carousel Price Cards - On top for mobile */}
           <div className="w-full md:w-[780px] flex justify-center items-center order-1 md:order-2">
-            <div className="carousel-wrapper md:block ml-0 md:-mt-[50px] md:ml-[100px] h-[270px] md:h-[220px]" style={{ width: '100%', maxWidth: '650px' }}>
+            <div
+              className="carousel-wrapper md:block ml-0 md:-mt-[50px] md:ml-[100px] h-[270px] md:h-[220px]"
+              style={{
+                width: '100%',
+                maxWidth: '650px',
+                paddingTop: typeof window !== 'undefined' && window.innerWidth < 768
+                  ? (screenHeight > 800 ? '80px' : screenHeight > 700 ? '180px' : '250px')
+                  : undefined
+              }}
+            >
               <div className="carousel h-[270px] md:h-[220px]">
                 {[
                   {
@@ -216,11 +238,13 @@ function Hero() {
                       onClick={() => navigate(`/${categorySlug}`)}
                     >
                       <div style={{ flex: 1, paddingRight: '16px' }}>
-                        <div style={{ position: 'absolute', top: '8px', left: '20px' }}>
-                          <span className="px-2 py-1 text-xs font-semibold text-brown" style={{ backgroundColor: `rgba(184, 142, 47, ${card.serviceType === 'Full Service' ? 0.3 : 0.2})`, fontFamily: 'Montserrat, sans-serif', display: 'inline-block' }}>
-                            {card.serviceType}
-                          </span>
-                        </div>
+                        {card.serviceType === 'Full Service' && (
+                          <div style={{ position: 'absolute', top: '8px', left: '20px' }}>
+                            <span className="px-2 py-1 text-xs font-semibold text-brown" style={{ backgroundColor: 'rgba(184, 142, 47, 0.3)', fontFamily: 'Montserrat, sans-serif', display: 'inline-block' }}>
+                              {card.serviceType}
+                            </span>
+                          </div>
+                        )}
                         <p className="title text-sm md:text-base" style={{ fontFamily: 'Montserrat, sans-serif', color: '#5c4717', marginBottom: '8px', marginTop: '15px' }}>
                           {card.titleLine1}
                           <br className="hidden md:block" />

@@ -174,7 +174,7 @@ function Quote() {
             <div className="absolute top-6 right-6 md:top-8 md:right-12">
               <Logo mainTextSize="text-2xl md:text-3xl" subTextSize="text-[10px] md:text-[13px]" />
             </div>
-            <div className="mb-8 pr-32 md:pr-40">
+            <div className="mb-8 md:pr-40">
               <h1 className="text-2xl md:text-3xl font-bold text-brown mb-3 mt-20" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
                 Get Your Free Quote
               </h1>
@@ -486,7 +486,7 @@ function Quote() {
               <div className="flex flex-col items-center gap-4">
                 <button
                   type="submit"
-                  className="px-8 py-4 bg-primary text-white font-bold text-lg hover:bg-[#9a7828] transition-colors flex items-center gap-2 uppercase"
+                  className="px-4 md:px-8 py-3 md:py-4 bg-primary text-white font-bold text-sm md:text-lg hover:bg-[#9a7828] transition-colors flex items-center gap-2 uppercase"
                   style={{ fontFamily: 'Montserrat, sans-serif' }}
                 >
                   Get My Quote

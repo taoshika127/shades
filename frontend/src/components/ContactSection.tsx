@@ -97,7 +97,7 @@ function ContactSection() {
           <div className="absolute top-6 right-6 md:top-8 md:right-12">
             <Logo mainTextSize="text-2xl md:text-3xl" subTextSize="text-[10px] md:text-[13px]" />
           </div>
-          <div className="text-left mb-8 pr-32 md:pr-40">
+          <div className="text-left mb-8 md:pr-40">
             <h2 className="text-2xl md:text-3xl font-bold text-brown mb-3 mt-20" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
               Contact Form
             </h2>
@@ -327,7 +327,7 @@ function ContactSection() {
             <div className="flex justify-center pt-2">
               <button
                 type="submit"
-                className="w-full md:w-auto px-8 py-3 bg-primary text-white text-lg font-semibold hover:bg-opacity-90 transition-colors"
+                className="w-full md:w-auto px-4 md:px-8 py-3 md:py-4 bg-primary text-white text-sm md:text-lg font-semibold hover:bg-opacity-90 transition-colors"
                 style={{ fontFamily: 'Montserrat, sans-serif' }}
               >
                 SUBMIT

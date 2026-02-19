@@ -1,6 +1,8 @@
+import { useState } from 'react'
 import { MdOutlineKeyboardDoubleArrowDown } from 'react-icons/md'
 
 function HowItWorksSection() {
+  const [expandedOption, setExpandedOption] = useState<string | null>(null)
   const fullServiceSteps = [
     {
       number: 1,
@@ -89,13 +91,13 @@ function HowItWorksSection() {
           <div className="w-12 h-12 rounded-full bg-brown border-2 border-white flex items-center justify-center flex-shrink-0 relative z-10">
             <span className="text-white text-xl font-bold">{step.number}</span>
           </div>
-          <div className="bg-primary rounded-lg pl-6 md:pl-8 pr-4 md:pr-6 py-2 md:py-3 -ml-6 relative z-0">
+          <div className="bg-primary rounded-lg pl-8 md:pl-8 pr-4 md:pr-6 py-2 md:py-3 -ml-6 relative z-0">
             <h3 className="text-base md:text-lg font-bold text-white m-0" style={{ fontFamily: 'Montserrat, sans-serif' }}>
               {step.title}
             </h3>
           </div>
         </div>
-        <div className="flex flex-col md:flex-row gap-4 md:gap-6 ml-4 items-start">
+        <div className="flex flex-col md:flex-row gap-4 md:gap-6 ml-4 items-center md:items-start">
           <p className="text-lg md:text-xl text-brown leading-relaxed flex-1 font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
             {step.description.includes('online form') ? (
               <>
@@ -158,15 +160,15 @@ function HowItWorksSection() {
               step.description
             )}
           </p>
-          <div className="overflow-hidden flex-shrink-0">
+          <div className="overflow-hidden flex-shrink-0 mx-auto md:mx-0">
             {imageSrc ? (
               <img
                 src={imageSrc}
                 alt={step.imageLabel}
-                className="w-[200px] md:w-[250px] h-[140px] md:h-[175px] object-cover"
+                className="w-[300px] md:w-[250px] h-[210px] md:h-[175px] object-cover"
               />
             ) : (
-              <div className="w-[200px] md:w-[250px] h-[140px] md:h-[175px] bg-gray-200 flex items-center justify-center">
+              <div className="w-[300px] md:w-[250px] h-[210px] md:h-[175px] bg-gray-200 flex items-center justify-center">
                 <span className="text-white text-base md:text-lg font-medium">
                   {step.imageLabel}
                 </span>
@@ -191,7 +193,15 @@ function HowItWorksSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 relative">
           {/* Option 1: Full Service */}
           <div className="flex flex-col">
-            <div className="rounded-lg p-6 md:p-8 mb-6 md:mb-[80px] relative md:h-[280px] md:flex md:flex-col" style={{ backgroundColor: '#FFF3E3', boxShadow: '0 0 24px rgba(0, 0, 0, 0.24)' }}>
+            <div
+              className={`rounded-lg p-6 md:p-8 mb-6 md:mb-[80px] relative md:h-[280px] md:flex md:flex-col cursor-pointer md:cursor-default ${expandedOption === 'option1' ? 'md:mb-[80px]' : ''}`}
+              style={{ backgroundColor: '#FFF3E3', boxShadow: '0 0 24px rgba(0, 0, 0, 0.24)' }}
+              onClick={() => {
+                if (window.innerWidth < 768) {
+                  setExpandedOption(expandedOption === 'option1' ? null : 'option1')
+                }
+              }}
+            >
               {/* Recommended tag */}
               <div className="absolute top-0 left-0 bg-primary text-white px-3 py-1.5 rounded-tl-lg flex items-center gap-2 text-xs md:text-sm font-bold z-10" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 75%, 85% 100%, 0 100%)' }}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -208,8 +218,31 @@ function HowItWorksSection() {
               <p className="text-lg md:text-xl text-brown md:flex-1 font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                 Our team handles everything for you, from precise measurements to expert installation. You'll get <span className="font-bold">personalized recommendations</span>, <span className="font-bold">professional installation and maintenance</span> for a seamless, worry-free experience.
               </p>
+              {expandedOption !== 'option1' ? (
+                <p className="text-base md:hidden text-primary font-semibold mt-4 text-center" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                  Tap to see the steps →
+                </p>
+              ) : (
+                <p className="text-base md:hidden text-primary font-semibold mt-4 text-center" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                  Tap to hide steps ↑
+                </p>
+              )}
+              {/* Steps inside box on mobile, outside on desktop */}
+              <div className={`space-y-0 mt-6 ${expandedOption === 'option1' ? 'block' : 'hidden'} md:hidden`}>
+                {fullServiceSteps.map((step, index) => (
+                  <div key={step.number}>
+                    {renderStep(step, false)}
+                    {index < fullServiceSteps.length - 1 && (
+                      <div className="flex justify-center items-center my-10">
+                        <MdOutlineKeyboardDoubleArrowDown className="w-[50px] h-[50px] text-brown" />
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="space-y-0">
+            {/* Steps outside box on desktop */}
+            <div className="hidden md:block space-y-0">
               {fullServiceSteps.map((step, index) => (
                 <div key={step.number}>
                   {renderStep(step, false)}
@@ -225,7 +258,15 @@ function HowItWorksSection() {
 
           {/* Option 2: DIY Installation */}
           <div className="flex flex-col md:pl-8 md:border-l md:border-gray-300">
-            <div className="rounded-lg p-6 md:p-8 mb-6 md:mb-[80px] bg-white md:h-[280px] md:flex md:flex-col" style={{ boxShadow: '0 0 24px rgba(0, 0, 0, 0.24)' }}>
+            <div
+              className={`rounded-lg p-6 md:p-8 mb-6 md:mb-[80px] bg-white md:h-[280px] md:flex md:flex-col cursor-pointer md:cursor-default ${expandedOption === 'option2' ? 'md:mb-[80px]' : ''}`}
+              style={{ boxShadow: '0 0 24px rgba(0, 0, 0, 0.24)' }}
+              onClick={() => {
+                if (window.innerWidth < 768) {
+                  setExpandedOption(expandedOption === 'option2' ? null : 'option2')
+                }
+              }}
+            >
               <h3 className="text-2xl md:text-3xl font-bold text-brown mb-2" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
                 Option 2: DIY Installation
               </h3>
@@ -235,8 +276,31 @@ function HowItWorksSection() {
               <p className="text-lg md:text-xl text-brown md:flex-1 font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                 Select your custom shades online and install them on your own schedule. We provide <span className="font-bold">clear measuring instructions</span> and <span className="font-bold">easy-to-follow installation guidance</span> so you can achieve a great fit with confidence.
               </p>
+              {expandedOption !== 'option2' ? (
+                <p className="text-base md:hidden text-primary font-semibold mt-4 text-center" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                  Tap to see the steps →
+                </p>
+              ) : (
+                <p className="text-base md:hidden text-primary font-semibold mt-4 text-center" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                  Tap to hide steps ↑
+                </p>
+              )}
+              {/* Steps inside box on mobile, outside on desktop */}
+              <div className={`space-y-0 mt-6 ${expandedOption === 'option2' ? 'block' : 'hidden'} md:hidden`}>
+                {diySteps.map((step, index) => (
+                  <div key={step.number}>
+                    {renderStep(step, true)}
+                    {index < diySteps.length - 1 && (
+                      <div className="flex justify-center items-center my-10">
+                        <MdOutlineKeyboardDoubleArrowDown className="w-[50px] h-[50px] text-brown" />
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="space-y-0">
+            {/* Steps outside box on desktop */}
+            <div className="hidden md:block space-y-0">
               {diySteps.map((step, index) => (
                 <div key={step.number}>
                   {renderStep(step, true)}
@@ -247,7 +311,7 @@ function HowItWorksSection() {
                   )}
                 </div>
               ))}
-      </div>
+            </div>
           </div>
         </div>
       </div>

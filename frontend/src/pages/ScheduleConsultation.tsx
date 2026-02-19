@@ -145,7 +145,7 @@ function ScheduleConsultation() {
               <Logo mainTextSize="text-2xl md:text-3xl" subTextSize="text-[10px] md:text-[13px]" />
             </div>
             {/* Header */}
-            <div className="text-left mb-8 pr-32 md:pr-40">
+            <div className="text-left mb-8 md:pr-40">
               <h1 className="text-2xl md:text-3xl font-bold text-brown mb-3 mt-20" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
             Schedule a Consultation
           </h1>
@@ -446,7 +446,7 @@ function ScheduleConsultation() {
               <div className="flex flex-col items-center gap-4 pt-4">
                 <button
                   type="submit"
-                  className="w-full md:w-auto px-8 py-4 bg-primary text-white text-lg font-semibold hover:bg-opacity-90 transition-colors uppercase"
+                  className="w-full md:w-auto px-4 md:px-8 py-3 md:py-4 bg-primary text-white text-sm md:text-lg font-semibold hover:bg-opacity-90 transition-colors uppercase"
                   style={{ fontFamily: 'Montserrat, sans-serif' }}
                 >
                   SCHEDULE MY CONSULTATION
