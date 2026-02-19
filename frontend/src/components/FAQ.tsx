@@ -122,20 +122,20 @@ function FAQ() {
         <div className="max-w-4xl mx-auto">
           {faqs.map((faq, index) => (
             <div key={index} className="relative">
-              {/* Dark brown square with number - positioned outside */}
-              <div className="absolute left-0 top-0 w-14 h-14 md:w-16 md:h-16 border-r-2 border-r-white border-b-2 border-b-white bg-brown flex items-center justify-center z-10">
-                <span className="text-white text-xl md:text-2xl font-bold">
-                  {index + 1}
-                </span>
-              </div>
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full relative flex items-center border-b-2 border-b-white bg-primary hover:opacity-90 transition-opacity pl-6 md:pl-8 h-14 md:h-16"
+                className="w-full relative flex items-center border-b-2 border-b-white bg-primary hover:opacity-90 transition-opacity pl-6 md:pl-8 min-h-14 md:h-16 py-2 md:py-0"
                 style={{ paddingLeft: '3.5rem' }}
               >
+                {/* Dark brown square with number - positioned outside */}
+                <div className="absolute left-0 top-0 w-14 h-full md:w-16 md:h-16 md:border-r-2 md:border-r-white md:border-b-2 md:border-b-white bg-brown flex items-center justify-center z-10">
+                  <span className="text-white text-xl md:text-2xl font-bold">
+                    {index + 1}
+                  </span>
+                </div>
                 {/* Question text */}
-                <div className="flex-1 px-4 md:px-6 py-4 md:py-5 text-left">
-                  <span className="text-white text-base md:text-lg font-semibold" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                <div className="flex-1 px-4 md:px-6 py-1 md:py-5 text-left">
+                  <span className="text-white text-sm md:text-lg font-semibold" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                     {faq.question}
                   </span>
                 </div>
@@ -179,9 +179,9 @@ function FAQ() {
                 </div>
               </button>
               {openIndices.has(index) && (
-                <div className="mt-2 pb-4 pl-[4.5rem] md:pl-[5rem] pr-4 md:pr-6">
+                <div className="mt-1 md:mt-2 pb-2 md:pb-4 pl-[4.5rem] md:pl-[5rem] pr-4 md:pr-6">
                   <div
-                    className="text-base text-brown leading-relaxed mb-6 font-[500]"
+                    className="text-sm md:text-base text-brown leading-relaxed mb-2 md:mb-6 font-[500]"
                     style={{ fontFamily: 'Montserrat, sans-serif' }}
                     dangerouslySetInnerHTML={{ __html: faq.answer }}
                   />
