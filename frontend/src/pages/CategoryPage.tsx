@@ -156,14 +156,20 @@ function CategoryPage() {
           // Get container width to calculate optimal scale
           const containerWidth = pdfContainerRef.offsetWidth || 1200
 
+          // Check if mobile (screen width < 768px)
+          const isMobile = window.innerWidth < 768
+
           // Get first page to calculate scale once (all pages usually same size)
           const firstPage = await pdf.getPage(1)
           const defaultViewport = firstPage.getViewport({ scale: 1.0 })
 
           // Calculate optimal scale - use 1.5-2x for good quality without being too slow
           // Limit max scale to avoid huge canvases
+          // On mobile, use a smaller scale to reduce size
           const baseScale = containerWidth / defaultViewport.width
-          const scale = Math.min(Math.max(1.5, baseScale * 1.5), 2.0) // Between 1.5x and 2.0x max
+          const scale = isMobile
+            ? Math.min(Math.max(1.0, baseScale * 1.0), 1.5) // Between 1.0x and 1.5x max on mobile
+            : Math.min(Math.max(1.5, baseScale * 1.5), 2.0) // Between 1.5x and 2.0x max on desktop
 
           // Set device pixel ratio (but cap it to avoid massive canvases)
           const devicePixelRatio = Math.min(window.devicePixelRatio || 1, 2) // Cap at 2x
@@ -335,7 +341,7 @@ function CategoryPage() {
       {/* PDF Embed Section - Show if PDF exists for this category */}
       {pdfFilename && (
         <div
-          className="bg-[#F5F5F5] w-full py-[10px] px-[200px] md:px-[250px] lg:px-[300px]"
+          className="bg-[#F5F5F5] w-full py-[10px] px-4 md:px-[250px] lg:px-[300px]"
         >
           {/* Loading Spinner */}
           {pdfLoading && (

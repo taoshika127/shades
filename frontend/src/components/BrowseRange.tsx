@@ -24,14 +24,14 @@ function BrowseRange({ categories }: BrowseRangeProps) {
         <p className="text-base font-[500] md:text-xl text-center mb-6 md:mb-8 max-w-3xl mx-auto" style={{ color: '#937125', fontFamily: 'Montserrat, sans-serif' }}>
           Explore our extensive collection of high-quality window shades, <br />crafted to fit your style.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {categories.map((category) => (
             <div
               key={category.id}
               className="flex flex-col gap-4 cursor-pointer group"
               onClick={() => handleCategoryClick(category)}
             >
-              <div className="w-full h-[210px] md:h-[336px] overflow-hidden">
+              <div className="w-full h-[160px] md:h-[336px] overflow-hidden">
                 <img
                   src={category.image}
                   alt={category.name}
