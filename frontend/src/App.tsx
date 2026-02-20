@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { Analytics } from '@vercel/analytics/react'
 import Home from './pages/Home'
 import Contact from './pages/Contact'
 import ScheduleConsultation from './pages/ScheduleConsultation'
@@ -12,6 +13,7 @@ import FormError from './pages/FormError'
 function App() {
   return (
     <Router>
+      <Analytics />
       <Routes>
         <Route path="/" element={<Home />} />
         {/* Direct category routes */}
