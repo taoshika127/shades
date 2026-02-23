@@ -261,7 +261,7 @@ function Quote() {
                     />
                     {showZipcodeError && (
                       <p className="mt-2 text-sm text-red-500" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                        We don't currently offer full-service installation in your area. However, you can still choose our <b>DIY option </b> and we'll ship your shades along with <b>detailed installation guidance!</b>
+                        We don't currently offer full-service installation in your area. You can choose our <b>Coordinated Installation Service</b> (we connect you with local installers) or our <b>DIY option</b> and we'll ship your shades with detailed installation guidance!
                       </p>
                     )}
                   </div>
@@ -296,7 +296,7 @@ function Quote() {
                     <h2 className="text-xl md:text-2xl font-bold text-brown" style={{ fontFamily: 'Fjalla One, sans-serif' }}>Service Option <span className="text-red-500">*</span></h2>
                   </div>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <label className={`relative flex flex-col p-6 border-2 rounded-lg cursor-pointer transition-all ${
                     formData.serviceOption === 'Full Service'
                       ? 'border-primary bg-primary bg-opacity-5'
@@ -315,7 +315,30 @@ function Quote() {
                       <div className="flex-1">
                         <h3 className="text-lg font-bold text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>Full Service</h3>
                         <p className="text-sm text-brown leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                          Complete end-to-end service with professional installation and support. We handle everything from start to finish.
+                          Complete end-to-end service with professional installation and support. We handle everything from start to finish. Available in the Bay Area.
+                        </p>
+                      </div>
+                    </div>
+                  </label>
+                  <label className={`relative flex flex-col p-6 border-2 rounded-lg cursor-pointer transition-all ${
+                    formData.serviceOption === 'Coordinated Installation Service'
+                      ? 'border-primary bg-primary bg-opacity-5'
+                      : 'border-gray-300 bg-white hover:border-primary hover:border-opacity-50'
+                  }`}>
+                    <div className="flex items-start gap-4">
+                      <input
+                        type="radio"
+                        name="serviceOption"
+                        value="Coordinated Installation Service"
+                        checked={formData.serviceOption === 'Coordinated Installation Service'}
+                        onChange={handleInputChange}
+                        className="mt-1 w-5 h-5 text-primary focus:ring-primary"
+                        required
+                      />
+                      <div className="flex-1">
+                        <h3 className="text-lg font-bold text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>Coordinated Installation Service</h3>
+                        <p className="text-sm text-brown leading-relaxed" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                          Outside the Bay Area? We connect you with high-rated local installers for a quote. You choose your installer and pay them directly for measurement and installation.
                         </p>
                       </div>
                     </div>

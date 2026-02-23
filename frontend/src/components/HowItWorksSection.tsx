@@ -57,24 +57,66 @@ function HowItWorksSection() {
     },
   ]
 
-  const getImageSrc = (imageLabel: string, isOption2: boolean = false, stepNumber: number = 1) => {
+  const coordinatedSteps = [
+    {
+      number: 1,
+      title: 'Get a Free Quote',
+      description: 'Fill out our online form with your window dimensions and we will get you a free quote right away.',
+      imageLabel: 'Person Measuring Window with Tape Measure',
+    },
+    {
+      number: 2,
+      title: 'Connect with a Local Installer',
+      description: "Outside the Bay Area? We'll connect you with high-rated installers in your area who can provide measurement and installation quotes.",
+      imageLabel: 'Design Consultation and Recommendations',
+    },
+    {
+      number: 3,
+      title: 'Coordinate Installation',
+      description: "After you have received your custom shades, we will coordinate with you and your installer to schedule the installation. ",
+      imageLabel: 'Measuring Instructions and Order Placement',
+    },
+    {
+      number: 4,
+      title: 'Aftercare',
+      description: 'If there are any quality issues within the warranty period, please use our Contact Form to fill out a request and we will mail you the replacement for free!',
+      imageLabel: 'Installer Installing Window Shade',
+    },
+  ]
+
+  const getImageSrc = (imageLabel: string, isOption2: boolean = false, stepNumber: number = 1, isCoordinated: boolean = false) => {
     if (imageLabel.includes('Measuring Window with Tape Measure') || imageLabel.includes('Person Measuring Window')) {
-      // Use different image for Option 2, Step 1
+      // Coordinated (Option 2) step 1: self-measure / quote
+      if (isCoordinated && stepNumber === 1) {
+        return '/assets/how-it-works/coordinated_self_measure.jpg'
+      }
+      // DIY (Option 3) step 1
       if (isOption2 && stepNumber === 1) {
         return '/assets/how-it-works/measuring_window_option2.jpg'
       }
       return '/assets/how-it-works/measuring_window.jpg'
     } else if (imageLabel.includes('Measuring Instructions and Order Placement') || imageLabel.includes('Order Placement')) {
-      // Use placing_order.jpg for Option 2, Step 3
+      // Coordinated (Option 2) step 3: coordinate installation
+      if (isCoordinated && stepNumber === 3) {
+        return '/assets/how-it-works/coorindated_installation.jpg'
+      }
       return '/assets/how-it-works/placing_order.jpg'
     } else if (imageLabel.includes('Homeowner Installing') || (imageLabel.includes('Installing') && isOption2 && stepNumber === 4)) {
       // Use different image for Option 2, Step 4
       return '/assets/how-it-works/installing_shade_option2.jpg'
     } else if (imageLabel.includes('Design Consultation and Recommendations')) {
+      // Coordinated (Option 2) step 2: local installer taking measurements
+      if (isCoordinated && stepNumber === 2) {
+        return '/assets/how-it-works/coordinated_installer.jpg'
+      }
       return '/assets/how-it-works/design_recommendation.jpg'
     } else if (imageLabel.includes('Consultant') || imageLabel.includes('Professional Consultant') || imageLabel.includes('Design Consultation')) {
       return '/assets/how-it-works/consulting_shades.jpg'
     } else if (imageLabel.includes('Installer Installing') || imageLabel.includes('Installer')) {
+      // Coordinated (Option 2) step 4: installer completes the job
+      if (isCoordinated && stepNumber === 4) {
+        return '/assets/how-it-works/coordinate_complete.jpg'
+      }
       return '/assets/how-it-works/installing_shade.jpg'
     } else if (imageLabel.includes('Fixing Shade') || imageLabel.includes('Service Technician')) {
       return '/assets/how-it-works/fixing_shade.jpg'
@@ -82,8 +124,8 @@ function HowItWorksSection() {
     return null
   }
 
-  const renderStep = (step: typeof fullServiceSteps[0], isOption2: boolean = false) => {
-    const imageSrc = getImageSrc(step.imageLabel, isOption2, step.number)
+  const renderStep = (step: typeof fullServiceSteps[0], isOption2: boolean = false, isCoordinated: boolean = false) => {
+    const imageSrc = getImageSrc(step.imageLabel, isOption2, step.number, isCoordinated)
 
     return (
       <div className="mb-8 md:mb-12">
@@ -97,8 +139,8 @@ function HowItWorksSection() {
             </h3>
           </div>
         </div>
-        <div className="flex flex-col md:flex-row gap-4 md:gap-6 ml-4 items-center md:items-start">
-          <p className="text-lg md:text-xl text-brown leading-relaxed flex-1 font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+        <div className="flex flex-col gap-4 md:gap-6 ml-4 items-start">
+          <p className="text-lg md:text-xl text-brown leading-relaxed font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
             {step.description.includes('online form') ? (
               <>
                 {step.description.split('online form').map((part, index, array) => (
@@ -160,15 +202,15 @@ function HowItWorksSection() {
               step.description
             )}
           </p>
-          <div className="overflow-hidden flex-shrink-0 mx-auto md:mx-0">
+          <div className="overflow-hidden flex-shrink-0 w-full max-w-[300px] md:max-w-[350px]">
             {imageSrc ? (
               <img
                 src={imageSrc}
                 alt={step.imageLabel}
-                className="w-[300px] md:w-[250px] h-[210px] md:h-[175px] object-cover"
+                className="w-full h-[210px] md:h-[220px] object-cover"
               />
             ) : (
-              <div className="w-[300px] md:w-[250px] h-[210px] md:h-[175px] bg-gray-200 flex items-center justify-center">
+              <div className="w-full h-[210px] md:h-[220px] bg-gray-200 flex items-center justify-center">
                 <span className="text-white text-base md:text-lg font-medium">
                   {step.imageLabel}
                 </span>
@@ -186,37 +228,34 @@ function HowItWorksSection() {
         <h2 className="text-3xl md:text-4xl font-bold text-brown text-center mb-4" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
           How It Works
         </h2>
-        <p className="text-base md:text-xl text-center mb-6 md:mb-8 max-w-3xl mx-auto font-[500]" style={{ color: '#937125', fontFamily: 'Montserrat, sans-serif' }}>
-          <span className="font-bold">Choose the service option that works best for you. </span>Whether you want a hands-off, professionally managed experience or prefer to take care of installation yourself, we make the process simple and transparent.
+        <p className="text-base md:text-xl text-center mb-12 md:mb-16 max-w-3xl mx-auto font-[500]" style={{ color: '#937125', fontFamily: 'Montserrat, sans-serif' }}>
+        <span className="font-bold">Full Service Available in the Bay Area, California</span><br/>
+        We offer in-home consultation, professional measurement, and expert installation throughout the Bay Area. <br /><br />
+        <span className="font-bold">Outside our service area? No problem.</span><br />
+        Choose our <span className="font-bold">Coordinated Installation Service</span> and we'll connect you with high-rated local installers for a quote, or go <span className="font-bold">DIY</span> with step-by-step guidance.<br />
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 relative">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 relative">
           {/* Option 1: Full Service */}
           <div className="flex flex-col">
             <div
-              className={`rounded-lg p-6 md:p-8 mb-6 md:mb-[80px] relative md:h-[280px] md:flex md:flex-col cursor-pointer md:cursor-default ${expandedOption === 'option1' ? 'md:mb-[80px]' : ''}`}
-              style={{ backgroundColor: '#FFF3E3', boxShadow: '0 0 24px rgba(0, 0, 0, 0.24)' }}
+              className={`rounded-lg p-6 md:p-8 mb-6 md:mb-[80px] relative md:flex md:flex-col cursor-pointer md:cursor-default ${expandedOption === 'option1' ? 'md:mb-[80px]' : ''}`}
+              style={{ backgroundColor: 'white', boxShadow: '0 0 24px rgba(0, 0, 0, 0.24)' }}
               onClick={() => {
                 if (window.innerWidth < 768) {
                   setExpandedOption(expandedOption === 'option1' ? null : 'option1')
                 }
               }}
             >
-              {/* Recommended tag */}
+              {/* Within Bay Area tag */}
               <div className="absolute top-0 left-0 bg-primary text-white px-3 py-1.5 rounded-tl-lg flex items-center gap-2 text-xs md:text-sm font-bold z-10" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 75%, 85% 100%, 0 100%)' }}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M20 6L9 17L4 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-                <span>Recommended</span>
+                <span>Within Bay Area, CA</span>
               </div>
-              <h3 className="text-2xl md:text-3xl font-bold text-brown mb-2 mt-5" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
+              <h3 className="text-2xl md:text-3xl font-bold text-brown mb-4 mt-5" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
                 Option 1: Full Service
               </h3>
-              <p className="text-base md:text-lg mb-4 font-[500]" style={{ color: '#937125', fontFamily: 'Montserrat, sans-serif' }}>
-                Hands-off, worry-free experience
-              </p>
               <p className="text-lg md:text-xl text-brown md:flex-1 font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                Our team handles everything for you, from precise measurements to expert installation. You'll get <span className="font-bold">personalized recommendations</span>, <span className="font-bold">professional installation and maintenance</span> for a seamless, worry-free experience.
+              Professional <span className="font-bold">in-home consultation</span>, precise <span className="font-bold">measurements</span>, expert  <span className="font-bold">installation</span>, and <span className="font-bold">warranty-backed service</span>, we take care of everything for you.
               </p>
               {expandedOption !== 'option1' ? (
                 <p className="text-base md:hidden text-primary font-semibold mt-4 text-center" style={{ fontFamily: 'Montserrat, sans-serif' }}>
@@ -256,10 +295,10 @@ function HowItWorksSection() {
             </div>
           </div>
 
-          {/* Option 2: DIY Installation */}
+          {/* Option 2: Coordinated Installation Service */}
           <div className="flex flex-col md:pl-8 md:border-l md:border-gray-300">
             <div
-              className={`rounded-lg p-6 md:p-8 mb-6 md:mb-[80px] bg-white md:h-[280px] md:flex md:flex-col cursor-pointer md:cursor-default ${expandedOption === 'option2' ? 'md:mb-[80px]' : ''}`}
+              className={`rounded-lg p-6 md:p-8 mb-6 md:mb-[80px] bg-white md:flex md:flex-col cursor-pointer md:cursor-default relative ${expandedOption === 'option2' ? 'md:mb-[80px]' : ''}`}
               style={{ boxShadow: '0 0 24px rgba(0, 0, 0, 0.24)' }}
               onClick={() => {
                 if (window.innerWidth < 768) {
@@ -267,14 +306,15 @@ function HowItWorksSection() {
                 }
               }}
             >
-              <h3 className="text-2xl md:text-3xl font-bold text-brown mb-2" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
-                Option 2: DIY Installation
+              {/* Outside of Bay Area tag */}
+              <div className="absolute top-0 left-0 bg-primary text-white px-3 py-1.5 rounded-tl-lg flex items-center gap-2 text-xs md:text-sm font-bold z-10" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 75%, 85% 100%, 0 100%)' }}>
+                <span>Outside of Bay Area, CA</span>
+              </div>
+              <h3 className="text-2xl md:text-3xl font-bold text-brown mb-4 mt-5" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
+                Option 2: Coordinated Installation Service
               </h3>
-              <p className="text-base md:text-lg mb-4 font-[500]" style={{ color: '#937125', fontFamily: 'Montserrat, sans-serif' }}>
-                Best for confident DIYers
-              </p>
               <p className="text-lg md:text-xl text-brown md:flex-1 font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                Select your custom shades online and install them on your own schedule. We provide <span className="font-bold">clear measuring instructions</span> and <span className="font-bold">easy-to-follow installation guidance</span> so you can achieve a great fit with confidence.
+                We connect you with <span className="font-bold">high-rated local installers</span> in your area for a quote. You <span className="font-bold">pay them directly</span> for installation and/or measurement.
               </p>
               {expandedOption !== 'option2' ? (
                 <p className="text-base md:hidden text-primary font-semibold mt-4 text-center" style={{ fontFamily: 'Montserrat, sans-serif' }}>
@@ -287,6 +327,61 @@ function HowItWorksSection() {
               )}
               {/* Steps inside box on mobile, outside on desktop */}
               <div className={`space-y-0 mt-6 ${expandedOption === 'option2' ? 'block' : 'hidden'} md:hidden`}>
+                {coordinatedSteps.map((step, index) => (
+                  <div key={step.number}>
+                    {renderStep(step, false, true)}
+                    {index < coordinatedSteps.length - 1 && (
+                      <div className="flex justify-center items-center my-10">
+                        <MdOutlineKeyboardDoubleArrowDown className="w-[50px] h-[50px] text-brown" />
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* Steps outside box on desktop */}
+            <div className="hidden md:block space-y-0">
+              {coordinatedSteps.map((step, index) => (
+                <div key={step.number}>
+                  {renderStep(step, false, true)}
+                  {index < coordinatedSteps.length - 1 && (
+                    <div className="flex justify-center items-center my-10 md:my-15">
+                      <MdOutlineKeyboardDoubleArrowDown className="w-[50px] h-[50px] text-brown" />
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Option 3: DIY Installation */}
+          <div className="flex flex-col md:pl-8 md:border-l md:border-gray-300">
+            <div
+              className={`rounded-lg p-6 md:p-8 mb-6 md:mb-[80px] bg-white md:flex md:flex-col cursor-pointer md:cursor-default ${expandedOption === 'option3' ? 'md:mb-[80px]' : ''}`}
+              style={{ boxShadow: '0 0 24px rgba(0, 0, 0, 0.24)' }}
+              onClick={() => {
+                if (window.innerWidth < 768) {
+                  setExpandedOption(expandedOption === 'option3' ? null : 'option3')
+                }
+              }}
+            >
+              <h3 className="text-2xl md:text-3xl font-bold text-brown mb-4" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
+                Option 3: DIY Installation
+              </h3>
+              <p className="text-lg md:text-xl text-brown md:flex-1 font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                We provide <span className="font-bold">clear measuring instructions</span> and <span className="font-bold">easy-to-follow installation guidance</span> so you can install in as little as 20 minutes.
+              </p>
+              {expandedOption !== 'option3' ? (
+                <p className="text-base md:hidden text-primary font-semibold mt-4 text-center" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                  Tap to see the steps →
+                </p>
+              ) : (
+                <p className="text-base md:hidden text-primary font-semibold mt-4 text-center" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                  Tap to hide steps ↑
+                </p>
+              )}
+              {/* Steps inside box on mobile, outside on desktop */}
+              <div className={`space-y-0 mt-6 ${expandedOption === 'option3' ? 'block' : 'hidden'} md:hidden`}>
                 {diySteps.map((step, index) => (
                   <div key={step.number}>
                     {renderStep(step, true)}

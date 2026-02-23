@@ -20,7 +20,7 @@ function FAQ() {
     },
     {
       question: "What areas do you serve?",
-      answer: "Our DIY option does not have a serivce area limit. You can order from anywhere in the United States. As for the full service (including measurement and installation), we are based in the Bay Area, California. Our installation team are local and can serve the entire Bay Area an surrounding areas. If you are outside of the Bay Area, we can still serve you with our DIY option."
+      answer: "Our DIY option does not have a service area limit—you can order from anywhere in the United States. Full service (measurement and installation) is available in the Bay Area, California, where our local team serves the entire Bay Area and surrounding areas. Outside the Bay Area, we offer our Coordinated Installation Service: we connect you with high-rated local installers for a quote, and you choose your installer and pay them directly. You can also choose DIY and we'll ship your shades with detailed guidance."
     },
     {
       question: "How long does it take to receive custom shades after I place my order?",

@@ -104,7 +104,7 @@ function QuoteSummary() {
   const buildEstimate = () => {
     const materialsTotal = quoteData.windows.reduce((sum, w) => sum + w.price, 0)
     const shipping = 75
-    const installation = quoteData.serviceOption === 'Full Service' ? 280 : 0
+    const installation = quoteData.serviceOption === 'Full Service' ? 280 : 0 // Coordinated and DIY: customer pays installer separately or self-installs
     const total = materialsTotal + shipping + installation
 
     return {
@@ -150,6 +150,16 @@ function QuoteSummary() {
             </span>
             <span className="text-sm font-semibold text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>
               {formatCurrency(estimate.installation)}
+            </span>
+          </div>
+        )}
+        {quoteData.serviceOption === 'Coordinated Installation Service' && (
+          <div className="flex justify-between items-center">
+            <span className="text-sm text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+              Installation
+            </span>
+            <span className="text-sm font-semibold text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+              Quoted separately by local installer
             </span>
           </div>
         )}

@@ -238,7 +238,7 @@ function Hero() {
                       onClick={() => navigate(`/${categorySlug}`)}
                     >
                       <div style={{ flex: 1, paddingRight: '16px' }}>
-                        {card.serviceType === 'Full Service' && (
+                        {(card.serviceType === 'Full Service' || card.serviceType === 'Coordinated Installation Service') && (
                           <div style={{ position: 'absolute', top: '8px', left: '20px' }}>
                             <span className="px-2 py-1 text-xs font-semibold text-brown" style={{ backgroundColor: 'rgba(184, 142, 47, 0.3)', fontFamily: 'Montserrat, sans-serif', display: 'inline-block' }}>
                               {card.serviceType}
@@ -292,10 +292,10 @@ function Hero() {
             {/* Benefits List */}
             <ul className="space-y-3 md:space-y-5 mb-4 md:mb-10">
               {[
-                'Fully Customizable to Your Windows',
+                <>Proudly Based in the Bay Area, California <br /> Serving Nationwide</>,
+                'Warranty-backed products and installation',
                 'Any size, various fabrics, opacities, cassette styles, motorized options, and more...',
-                '50% Less Than Big Box Store Prices',
-                'Professional Service & DIY Options',
+                'Factory-direct pricing - up to 50% Less Than Big Box Stores',
               ].map((benefit, index) => (
                 <li key={index} className="flex items-center gap-3">
                   <div className="flex-shrink-0 w-5 h-5 rounded-full bg-[#f0e8d5]

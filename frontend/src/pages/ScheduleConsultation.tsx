@@ -270,7 +270,7 @@ function ScheduleConsultation() {
                     </div>
                     {formData.consultationType === 'In-Home' && zipcodeInServiceArea === false && (
                       <p className="mt-3 text-sm text-red-500" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                        This is not our service area. Please select Virtual consultation or choose our DIY option.
+                        This is not our service area. Please select Virtual consultation, or choose our Coordinated Installation Service or DIY option when you get a quote.
                       </p>
                     )}
                   </div>
