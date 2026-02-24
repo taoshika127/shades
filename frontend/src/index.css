@@ -67,7 +67,7 @@ iframe[title*="Fabric Catalog"]::before {
 
 /* Vertical Carousel Styles */
 :root {
-  --animation-timing: 54s;
+  --animation-timing: 90s; /* 9 cards × 10s per card */
   --carousel-items: 9;
   --animation-delay-fraction: calc(var(--animation-timing) / var(--carousel-items));
   --animation-steps-fraction: calc(100 / var(--carousel-items));

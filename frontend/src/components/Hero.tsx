@@ -250,18 +250,15 @@ function Hero() {
                           <br className="hidden md:block" />
                           <span className="hidden md:inline">{card.titleLine2}</span>
                         </p>
-                        <p style={{ fontFamily: 'Montserrat, sans-serif', color: '#9F9F9F', fontSize: '12px', marginBottom: '12px' }}>
+                        <p style={{ fontFamily: 'Montserrat, sans-serif', color: '#5c4717', fontSize: '14px', marginBottom: '12px' }}>
                           {card.description}
                         </p>
                         <div style={{ marginBottom: '8px' }}>
                           <span style={{ fontFamily: 'Fjalla One, sans-serif', fontSize: '24px', fontWeight: 'bold', color: '#B88E2F' }}>
                             {card.price}
                           </span>
-                          <span style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '12px', color: '#5c4717', marginLeft: '4px' }}>
-                            total
-                          </span>
                         </div>
-                        <p style={{ fontFamily: 'Montserrat, sans-serif', color: '#9F9F9F', fontSize: '11px' }}>
+                        <p style={{ fontFamily: 'Montserrat, sans-serif', color: '#5c4717', fontSize: '14px' }}>
                           {card.details}
                         </p>
                       </div>
