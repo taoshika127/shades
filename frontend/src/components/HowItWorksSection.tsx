@@ -113,9 +113,9 @@ function HowItWorksSection() {
     } else if (imageLabel.includes('Consultant') || imageLabel.includes('Professional Consultant') || imageLabel.includes('Design Consultation')) {
       return '/assets/how-it-works/consulting_shades.jpg'
     } else if (imageLabel.includes('Installer Installing') || imageLabel.includes('Installer')) {
-      // Coordinated (Option 2) step 4: installer completes the job
+      // Coordinated (Option 2) step 4: aftercare / delivery complete
       if (isCoordinated && stepNumber === 4) {
-        return '/assets/how-it-works/coordinate_complete.jpg'
+        return '/assets/how-it-works/coordinated_aftercare.jpg'
       }
       return '/assets/how-it-works/installing_shade.jpg'
     } else if (imageLabel.includes('Fixing Shade') || imageLabel.includes('Service Technician')) {
