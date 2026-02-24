@@ -155,7 +155,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
             onMouseEnter={() => setShowShadesDropdown(true)}
             onMouseLeave={() => setShowShadesDropdown(false)}
           >
-            <a href="/#browse-the-range" onClick={handleShadesClick} className={`no-underline text-brown text-xl md:text-lg font-medium hover:text-primary transition-colors uppercase ${currentPage === 'shades' ? 'text-primary' : ''}`} style={{ fontFamily: 'Fjalla One, sans-serif' }}>Shades</a>
+            <a href="/#browse-the-range" onClick={handleShadesClick} className={`no-underline text-brown text-xl md:text-xl font-medium hover:text-primary transition-colors uppercase ${currentPage === 'shades' ? 'text-primary' : ''}`} style={{ fontFamily: 'Fjalla One, sans-serif' }}>Shades</a>
             {showShadesDropdown && categories.length > 0 && (
               <div className="absolute top-full left-0 pt-1 w-48 bg-transparent z-50">
                 <div className="bg-white border border-gray-200 rounded-lg shadow-lg py-2">
@@ -182,7 +182,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
             onMouseEnter={() => setShowServiceDropdown(true)}
             onMouseLeave={() => setShowServiceDropdown(false)}
           >
-            <a href="/#how-it-works" onClick={handleHowItWorksClick} className="no-underline text-brown text-xl md:text-lg font-medium hover:text-primary transition-colors uppercase" style={{ fontFamily: 'Fjalla One, sans-serif' }}>Service</a>
+            <a href="/#how-it-works" onClick={handleHowItWorksClick} className="no-underline text-brown text-xl md:text-xl font-medium hover:text-primary transition-colors uppercase" style={{ fontFamily: 'Fjalla One, sans-serif' }}>Service</a>
             {showServiceDropdown && (
               <div className="absolute top-full left-0 pt-1 w-56 bg-transparent z-50">
                 <div className="bg-white border border-gray-200 rounded-lg shadow-lg py-2">
@@ -219,7 +219,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
             onMouseEnter={() => setShowGalleryDropdown(true)}
             onMouseLeave={() => setShowGalleryDropdown(false)}
           >
-            <a href="/#our-gallery" onClick={handleGalleryClick} className="no-underline text-brown text-xl md:text-lg font-medium hover:text-primary transition-colors uppercase" style={{ fontFamily: 'Fjalla One, sans-serif' }}>Gallery</a>
+            <a href="/#our-gallery" onClick={handleGalleryClick} className="no-underline text-brown text-xl md:text-xl font-medium hover:text-primary transition-colors uppercase" style={{ fontFamily: 'Fjalla One, sans-serif' }}>Gallery</a>
             {showGalleryDropdown && (
               <div className="absolute top-full left-0 pt-1 w-96 bg-transparent z-50">
                 <div className="bg-white border border-gray-200 rounded-lg shadow-lg py-2">
@@ -248,7 +248,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
             onMouseEnter={() => setShowWhyUsDropdown(true)}
             onMouseLeave={() => setShowWhyUsDropdown(false)}
           >
-            <a href="/#why-us" onClick={handleWhyUsClick} className="no-underline text-brown text-xl md:text-lg font-medium hover:text-primary transition-colors uppercase" style={{ fontFamily: 'Fjalla One, sans-serif' }}>Why Us</a>
+            <a href="/#why-us" onClick={handleWhyUsClick} className="no-underline text-brown text-xl md:text-xl font-medium hover:text-primary transition-colors uppercase" style={{ fontFamily: 'Fjalla One, sans-serif' }}>Why Us</a>
             {showWhyUsDropdown && (
               <div className="absolute top-full left-0 pt-1 w-56 bg-transparent z-50">
                 <div className="bg-white border border-gray-200 rounded-lg shadow-lg py-2">
@@ -283,7 +283,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
             onMouseEnter={() => setShowContactDropdown(true)}
             onMouseLeave={() => setShowContactDropdown(false)}
           >
-            <a href="/contact" className="no-underline text-brown text-xl md:text-lg font-medium hover:text-primary transition-colors uppercase" style={{ fontFamily: 'Fjalla One, sans-serif' }}>Contact Us</a>
+            <a href="/contact" className="no-underline text-brown text-xl md:text-xl font-medium hover:text-primary transition-colors uppercase" style={{ fontFamily: 'Fjalla One, sans-serif' }}>Contact Us</a>
             {showContactDropdown && (
               <div className="absolute top-full left-0 pt-1 w-56 bg-transparent z-50">
                 <div className="bg-white border border-gray-200 rounded-lg shadow-lg py-2">

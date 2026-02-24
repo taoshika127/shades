@@ -97,8 +97,8 @@ function Hero() {
 
 
   return (
-    <section className="w-full h-screen max-h-[100vh] relative overflow-hidden">
-      <div className="w-full h-full absolute inset-0 max-h-[100vh]">
+    <section className="w-full min-h-0 md:h-screen md:max-h-[100vh] relative overflow-hidden">
+      <div className="w-full min-h-0 absolute inset-0 md:max-h-[100vh]">
         {/* Current image layer */}
         <div
           className={`absolute inset-0 bg-cover bg-bottom bg-no-repeat ${
@@ -123,10 +123,10 @@ function Hero() {
         <div className="absolute inset-0 bg-black/65 z-[3]" />
       </div>
 
-      <div className="relative z-10 w-full h-full max-h-[100vh] flex items-center justify-center md:justify-start px-5 md:px-20 overflow-hidden">
+      <div className="relative z-10 w-full min-h-0 md:h-full md:max-h-[100vh] flex items-start md:items-center justify-center md:justify-start px-5 md:px-20 overflow-hidden py-6 md:py-0">
         <div className="max-w-container w-full flex flex-col md:flex-row justify-center md:justify-between gap-0 md:gap-12">
-          {/* Right Section - Vertical Carousel Price Cards - On top for mobile */}
-          <div className="w-full md:w-[780px] flex justify-center items-center order-1 md:order-2">
+          {/* Right Section - Carousel - Hidden on mobile, visible on desktop */}
+          <div className="hidden md:flex w-full md:w-[780px] justify-center items-center order-1 md:order-2">
             <div
               className="carousel-wrapper md:block ml-0 md:-mt-[50px] md:ml-[100px] h-[270px] md:h-[220px]"
               style={{
@@ -284,12 +284,12 @@ function Hero() {
           {/* Left Section - Promotional Content - Below carousel on mobile */}
           <div className="p-6 md:p-10 relative top-[-20px] rounded-[10px] max-w-full md:max-w-[643px] md:ml-20 order-2 md:order-1">
             <p className="text-[18px] md:text-[28px] mb-3 md:mb-6 font-[500] text-[#f0e8d5]" style={{ fontFamily: 'Montserrat, sans-serif' }}>We <span className="font-bold">customize</span>, <span className="font-bold">measure</span> and <span className="font-bold">install</span></p>
-            <h2 className="text-[32px] md:text-[52px] font-bold text-[#dbc697] leading-tight m-0 mb-3 md:mb-10" style={{ fontFamily: 'Fjalla One, sans-serif' }}>Luxury Quality Shades at Factory-Direct Pricing</h2>
+            <h2 className="text-[32px] md:text-[52px] font-bold text-[#dbc697] leading-tight m-0 mb-3 md:mb-10" style={{ fontFamily: 'Fjalla One, sans-serif' }}>Premium Shades Up to 50% Less Than Big Box Stores</h2>
 
             {/* Benefits List */}
             <ul className="space-y-3 md:space-y-5 mb-4 md:mb-10">
               {[
-                'No showroom markup. No retail overhead - up to 50% Less Than Big Box Stores',
+                'No showroom markup. No retail overhead. Factory-direct pricing.',
                 <>Proudly Based in the Bay Area, California <br /> Serving Nationwide</>,
                 'Warranty-backed products and installation',
                 'Any size, various fabrics, opacities, cassette styles, motorized options, and more...',
@@ -311,7 +311,7 @@ function Hero() {
               <button onClick={() => navigate('/quote')} className="bg-primary text-white px-8 py-3 md:px-10 md:py-4 font-semibold text-base md:text-lg hover:bg-opacity-90 transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-100 uppercase whitespace-nowrap" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                 Get Free Quote
               </button>
-              <button onClick={() => navigate('/contact/schedule-consultation')} className="bg-white text-primary px-8 py-3 md:px-10 md:py-4 font-semibold text-base md:text-lg hover:bg-gray-50 transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-100 uppercase whitespace-nowrap" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+              <button onClick={() => navigate('/contact/schedule-consultation')} className="hidden bg-white text-primary px-8 py-3 md:px-10 md:py-4 font-semibold text-base md:text-lg hover:bg-gray-50 transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-100 uppercase whitespace-nowrap" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                 Schedule a Consultation
               </button>
             </div>
