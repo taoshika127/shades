@@ -2,19 +2,24 @@ import { useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import Logo from '../components/Logo'
 
 function FormSuccess() {
   const navigate = useNavigate()
   const location = useLocation()
+
+  // Get form type from location state or URL
+  const formType = location.state?.formType || 'form'
 
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
 
-  // Get form type from location state or URL
-  const formType = location.state?.formType || 'form'
+  // Meta Pixel: track Lead when user lands on success page (contact, consultation, or quote submitted)
+  useEffect(() => {
+    const w = window as unknown as { fbq?: (...args: unknown[]) => void }
+    if (w.fbq) w.fbq('track', 'Lead', { content_name: formType })
+  }, [formType])
 
   const getFormTitle = () => {
     switch (formType) {
@@ -66,12 +71,7 @@ function FormSuccess() {
       >
         <div className="max-w-container mx-auto flex justify-center">
           <div className="w-full bg-white rounded-lg shadow-lg p-8 md:p-12 relative" style={{ maxWidth: '946px' }}>
-            {/* Logo in top right corner */}
-            <div className="absolute top-6 right-6 md:top-8 md:right-12">
-              <Logo mainTextSize="text-2xl md:text-3xl" subTextSize="text-[10px] md:text-[13px]" />
-            </div>
-
-            <div className="text-center mt-20 md:mt-12">
+            <div className="text-center">
               {/* Success Icon */}
               <div className="mb-6 flex justify-center">
                 <div className="w-20 h-20 md:w-24 md:h-24 bg-green-100 rounded-full flex items-center justify-center">

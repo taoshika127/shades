@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import Logo from '../components/Logo'
 
 function ScheduleConsultation() {
   const navigate = useNavigate()
@@ -21,6 +20,10 @@ function ScheduleConsultation() {
   })
   const [zipcodeInServiceArea, setZipcodeInServiceArea] = useState<boolean | null>(null)
   const [_checkingZipcode, setCheckingZipcode] = useState(false)
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   const checkZipcode = async (zipcode: string) => {
     if (!zipcode || zipcode.trim() === '') {
@@ -140,13 +143,9 @@ function ScheduleConsultation() {
       >
         <div className="max-w-container mx-auto">
           <div className="mx-auto bg-white rounded-lg shadow-lg p-8 md:p-12 relative" style={{ maxWidth: '1100px' }}>
-            {/* Logo in top right corner */}
-            <div className="absolute top-6 right-6 md:top-8 md:right-12">
-              <Logo mainTextSize="text-2xl md:text-3xl" subTextSize="text-[10px] md:text-[13px]" />
-            </div>
             {/* Header */}
-            <div className="text-left mb-8 md:pr-40">
-              <h1 className="text-2xl md:text-3xl font-bold text-brown mb-3 mt-20" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
+            <div className="text-left mb-8">
+              <h1 className="text-2xl md:text-3xl font-bold text-brown mb-3" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
             Schedule a Consultation
           </h1>
           <p className="text-base md:text-lg text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>
@@ -188,7 +187,7 @@ function ScheduleConsultation() {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      placeholder="@email.com"
+                      placeholder="Enter your email address"
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg text-base text-brown bg-white focus:outline-none focus:border-primary"
                       required
                       style={{ fontFamily: 'Montserrat, sans-serif' }}
@@ -197,7 +196,7 @@ function ScheduleConsultation() {
 
                   <div className="mb-[10px]">
                     <label htmlFor="phone" className="block text-base font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                      Phone Number<span className="text-red-500">*</span>
+                      Phone Number
                     </label>
                     <div className="relative">
                       <span className="absolute left-4 top-1/2 -translate-y-1/2 text-brown text-base" style={{ fontFamily: 'Montserrat, sans-serif' }}>+1</span>
@@ -209,7 +208,6 @@ function ScheduleConsultation() {
                         onChange={handleChange}
                         placeholder="(555) 123-4567"
                         className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg text-base text-brown bg-white focus:outline-none focus:border-primary"
-                        required
                         style={{ fontFamily: 'Montserrat, sans-serif' }}
                       />
                     </div>

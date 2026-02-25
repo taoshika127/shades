@@ -1,12 +1,10 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Logo from './Logo'
 
 function ContactSection() {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
+    name: '',
     email: '',
     phone: '',
     zipCode: '',
@@ -31,7 +29,7 @@ function ContactSection() {
     e.preventDefault()
     try {
       const formDataToSend = new FormData()
-      formDataToSend.append('name', `${formData.firstName} ${formData.lastName}`)
+      formDataToSend.append('name', formData.name)
       formDataToSend.append('email', formData.email)
       formDataToSend.append('phone', formData.phone)
       formDataToSend.append('zipCode', formData.zipCode)
@@ -93,12 +91,8 @@ function ContactSection() {
     >
       <div className="max-w-container mx-auto flex justify-center">
         <div className="w-full bg-white rounded-lg shadow-lg p-8 md:p-10 relative" style={{ maxWidth: '946px' }}>
-          {/* Logo in top right corner */}
-          <div className="absolute top-6 right-6 md:top-8 md:right-12">
-            <Logo mainTextSize="text-2xl md:text-3xl" subTextSize="text-[10px] md:text-[13px]" />
-          </div>
-          <div className="text-left mb-8 md:pr-40">
-            <h2 className="text-2xl md:text-3xl font-bold text-brown mb-3 mt-20" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
+          <div className="text-left mb-8">
+            <h2 className="text-2xl md:text-3xl font-bold text-brown mb-3" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
               Contact Form
             </h2>
             <p className="text-base md:text-lg text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>
@@ -107,61 +101,40 @@ function ContactSection() {
           </div>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-            {/* First Name and Last Name on same line */}
+            {/* Name and Email on same line on desktop */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* First Name */}
               <div>
-                <label htmlFor="firstName" className="block text-base font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                  First Name<span className="text-red-500">*</span>
+                <label htmlFor="name" className="block text-base font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                  Name<span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
-                  id="firstName"
-                  name="firstName"
-                  value={formData.firstName}
+                  id="name"
+                  name="name"
+                  value={formData.name}
                   onChange={handleChange}
-                  placeholder="Enter your first name"
+                  placeholder="Enter your name"
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg text-base text-brown bg-white focus:outline-none focus:border-primary"
                   required
                   style={{ fontFamily: 'Montserrat, sans-serif' }}
                 />
               </div>
-
-              {/* Last Name */}
               <div>
-                <label htmlFor="lastName" className="block text-base font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                  Last Name<span className="text-red-500">*</span>
+                <label htmlFor="email" className="block text-base font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                  Email<span className="text-red-500">*</span>
                 </label>
                 <input
-                  type="text"
-                  id="lastName"
-                  name="lastName"
-                  value={formData.lastName}
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
                   onChange={handleChange}
-                  placeholder="Enter your last name"
+                  placeholder="Enter your email address"
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg text-base text-brown bg-white focus:outline-none focus:border-primary"
                   required
                   style={{ fontFamily: 'Montserrat, sans-serif' }}
                 />
               </div>
-            </div>
-
-            {/* Email Address */}
-            <div>
-              <label htmlFor="email" className="block text-base font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                Email Address<span className="text-red-500">*</span>
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Enter your email address"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg text-base text-brown bg-white focus:outline-none focus:border-primary"
-                required
-                style={{ fontFamily: 'Montserrat, sans-serif' }}
-              />
             </div>
 
             {/* Phone Number and ZIP Code on same line */}

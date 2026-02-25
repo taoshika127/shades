@@ -1,8 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Fragment } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import Logo from '../components/Logo'
 import { HiMiniWrenchScrewdriver } from 'react-icons/hi2'
 
 interface Window {
@@ -17,6 +16,11 @@ interface Window {
 
 function Quote() {
   const navigate = useNavigate()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -170,16 +174,12 @@ function Quote() {
       >
         <div className="mx-auto" style={{ maxWidth: '946px' }}>
           <div className="bg-white rounded-lg shadow-lg p-8 md:p-12 relative">
-            {/* Logo in top right corner */}
-            <div className="absolute top-6 right-6 md:top-8 md:right-12">
-              <Logo mainTextSize="text-2xl md:text-3xl" subTextSize="text-[10px] md:text-[13px]" />
-            </div>
-            <div className="mb-8 md:pr-40">
-              <h1 className="text-2xl md:text-3xl font-bold text-brown mb-3 mt-20" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
+            <div className="mb-8">
+              <h1 className="text-2xl md:text-3xl font-bold text-brown mb-3" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
                 Get Your Free Quote
               </h1>
               <p className="text-base md:text-lg text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                Add your window measurements and preferences to receive an instant estimate.
+                Add your window measurements and preferences to receive an estimate for your project.
               </p>
             </div>
 
@@ -288,7 +288,8 @@ function Quote() {
                 </div>
               </div>
 
-              {/* Service Option Section */}
+              {/* Service Option Section - hidden for now */}
+              <div className="hidden">
               <div className="mb-[80px]">
                 <div className="flex items-end gap-3 mb-6">
                   <HiMiniWrenchScrewdriver className="text-primary text-2xl mb-1" />
@@ -310,7 +311,7 @@ function Quote() {
                         checked={formData.serviceOption === 'Full Service'}
                         onChange={handleInputChange}
                         className="mt-1 w-5 h-5 text-primary focus:ring-primary"
-                        required
+                        required={false}
                       />
                       <div className="flex-1">
                         <h3 className="text-lg font-bold text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>Full Service</h3>
@@ -333,7 +334,7 @@ function Quote() {
                         checked={formData.serviceOption === 'Coordinated Installation Service'}
                         onChange={handleInputChange}
                         className="mt-1 w-5 h-5 text-primary focus:ring-primary"
-                        required
+                        required={false}
                       />
                       <div className="flex-1">
                         <h3 className="text-lg font-bold text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>Coordinated Installation Service</h3>
@@ -356,7 +357,7 @@ function Quote() {
                         checked={formData.serviceOption === 'DIY'}
                         onChange={handleInputChange}
                         className="mt-1 w-5 h-5 text-primary focus:ring-primary"
-                        required
+                        required={false}
                       />
                       <div className="flex-1">
                         <h3 className="text-lg font-bold text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>DIY (Do It Yourself)</h3>
@@ -367,6 +368,7 @@ function Quote() {
                     </div>
                   </label>
                 </div>
+              </div>
               </div>
 
               {/* Window Measurements Section */}
@@ -381,7 +383,7 @@ function Quote() {
                   <button
                     type="button"
                     onClick={addWindow}
-                    className="px-3 md:px-4 py-1.5 md:py-2 bg-white text-primary border-2 border-primary font-semibold text-xs md:text-sm hover:bg-gray-50 transition-all duration-300 flex items-center gap-2 uppercase"
+                    className="hidden md:inline-flex px-3 md:px-4 py-1.5 md:py-2 bg-white text-primary border-2 border-primary font-semibold text-xs md:text-sm hover:bg-gray-50 transition-all duration-300 items-center gap-2 uppercase"
                     style={{ fontFamily: 'Montserrat, sans-serif' }}
                   >
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -392,7 +394,8 @@ function Quote() {
                 </div>
 
                 {windows.map((window, index) => (
-                  <div key={window.id} className="mb-4 p-4 bg-gray-50 rounded-lg">
+                  <Fragment key={window.id}>
+                  <div className="mb-4 p-4 bg-gray-50 rounded-lg">
                     <div className="flex items-center justify-between mb-4">
                       <h3 className="text-lg font-bold text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>Window {index + 1}</h3>
                       {windows.length > 1 && (
@@ -502,6 +505,22 @@ function Quote() {
                       </div>
                     </div>
                   </div>
+                  {index === windows.length - 1 && (
+                    <div className="mb-4 md:hidden flex justify-center">
+                      <button
+                        type="button"
+                        onClick={addWindow}
+                        className="px-4 py-2 md:py-3 bg-white text-primary border-2 border-primary font-semibold text-[12px] md:text-sm hover:bg-gray-50 transition-all duration-300 flex items-center justify-center gap-2 uppercase"
+                        style={{ fontFamily: 'Montserrat, sans-serif' }}
+                      >
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 5V19M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                        Add Another Window
+                      </button>
+                    </div>
+                  )}
+                  </Fragment>
                 ))}
               </div>
 

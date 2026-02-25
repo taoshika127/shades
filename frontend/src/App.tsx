@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { useEffect } from 'react'
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import { Analytics } from '@vercel/analytics/react'
 import Home from './pages/Home'
 import Contact from './pages/Contact'
@@ -10,10 +11,20 @@ import GalleryPage from './pages/GalleryPage'
 import FormSuccess from './pages/FormSuccess'
 import FormError from './pages/FormError'
 
+function MetaPixelPageView() {
+  const location = useLocation()
+  useEffect(() => {
+    const w = window as unknown as { fbq?: (...args: unknown[]) => void }
+    if (w.fbq) w.fbq('track', 'PageView')
+  }, [location.pathname])
+  return null
+}
+
 function App() {
   return (
     <Router>
       <Analytics />
+      <MetaPixelPageView />
       <Routes>
         <Route path="/" element={<Home />} />
         {/* Direct category routes */}

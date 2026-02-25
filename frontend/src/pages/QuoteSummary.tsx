@@ -1,7 +1,7 @@
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import Logo from '../components/Logo'
 import { HiMiniWrenchScrewdriver } from 'react-icons/hi2'
 import { HiOutlineListBullet } from 'react-icons/hi2'
 import { HiOutlineCalculator } from 'react-icons/hi2'
@@ -11,6 +11,10 @@ import { HiOutlineUser } from 'react-icons/hi2'
 
 function QuoteSummary() {
   const navigate = useNavigate()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   // Sample data - replace with actual data from form submission
   const quoteData = {
@@ -187,14 +191,9 @@ function QuoteSummary() {
       <section className="py-10 md:py-20 px-5 md:px-20">
         <div className="max-w-7xl mx-auto">
           <div className="bg-white rounded-lg shadow-lg p-8 md:p-12 relative">
-            {/* Logo in top right corner */}
-            <div className="absolute top-6 right-6 md:top-8 md:right-12">
-              <Logo mainTextSize="text-2xl md:text-3xl" subTextSize="text-[10px] md:text-[13px]" />
-            </div>
-
             {/* Header Section */}
-            <div className="mb-8 pr-32 md:pr-40">
-              <div className="mb-4 mt-20">
+            <div className="mb-8">
+              <div className="mb-4">
                 <h1 className="text-2xl md:text-3xl font-bold text-brown mb-2" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
                   Quote Summary
                 </h1>

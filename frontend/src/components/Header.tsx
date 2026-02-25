@@ -113,7 +113,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
   }
 
   return (
-    <header className="sticky top-0 z-50 py-2 md:py-3 px-5 md:px-20 bg-white border-b border-gray-100 shadow-sm">
+    <header className="sticky top-0 z-50 py-2 md:py-3 px-3 md:px-20 bg-white border-b border-gray-100 shadow-sm">
       <div className="max-w-container mx-auto flex justify-between items-center">
         {/* Mobile Hamburger Menu Button */}
         <button
@@ -141,7 +141,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
               e.preventDefault()
               navigate('/quote')
             }}
-            className="px-4 py-2 bg-primary text-white font-semibold text-xs hover:bg-opacity-90 transition-all duration-300 no-underline flex items-center justify-center uppercase whitespace-nowrap"
+            className="px-5 py-3 bg-primary text-white font-semibold text-sm hover:bg-opacity-90 transition-all duration-300 no-underline flex items-center justify-center uppercase whitespace-nowrap"
             style={{ fontFamily: 'Montserrat, sans-serif' }}
           >
             Get Free Quote
@@ -565,7 +565,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
                   navigate('/quote')
                   setIsMobileMenuOpen(false)
                 }}
-                className="block w-full px-6 py-4 bg-primary text-white font-semibold text-base hover:bg-opacity-90 transition-all duration-300 text-center uppercase"
+                className="block w-full px-6 py-5 bg-primary text-white font-semibold text-lg hover:bg-opacity-90 transition-all duration-300 text-center uppercase"
                 style={{ fontFamily: 'Montserrat, sans-serif' }}
               >
                 Get Free Quote
