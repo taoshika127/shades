@@ -357,7 +357,7 @@ const galleryImageMap: { [key: number]: GalleryData | string[] } = {
   },
   2: {
     images: ['/assets/our-gallery/gallery2/gallery2.jpg', '/assets/our-gallery/gallery2/gallery2-1.jpg', '/assets/our-gallery/gallery2/gallery2-2.jpg', '/assets/our-gallery/gallery2/gallery2-3.jpg'],
-    location: 'Tokyo, Japan',
+    location: 'Bay Area, CA',
     description: 'This customer was discouraged by local pricing, which started very high with installation included. After finding us, they followed our measurement guide, selected the fabric, color, and style, and customized a total of 18 window shades for multiple rooms. The final cost was significantly lower than local quotes, even with international air shipping included. Delivery was fast, installation was smooth with our video guidance, and the customer shared that the overall experience was much easier than expected.',
     design: {
       'Living Room & Balcony': 'Sheer / light-filtering curtains',
