@@ -1,8 +1,8 @@
-# About Pacific Light Shades & Blinds
+# About Pacific Light Shades
 
-## Welcome to Pacific Light Shades & Blinds
+## Welcome to Pacific Light Shades
 
-At Pacific Light Shades & Blinds, we believe that beautiful, functional window treatments shouldn't break the bank. We're a direct-to-consumer custom window shades and blinds company dedicated to bringing you premium quality at unbeatable prices—typically **50% less than major retailers** like Home Depot.
+At Pacific Light Shades, we believe that beautiful, functional window treatments shouldn't break the bank. We're a direct-to-consumer custom window shades and blinds company dedicated to bringing you premium quality at unbeatable prices—typically **50% less than major retailers** like Home Depot.
 
 ## Our Mission
 
@@ -50,7 +50,7 @@ We offer an extensive collection of window treatments to suit every style and ne
 
 ## Our Commitment to You
 
-At Pacific Light Shades & Blinds, we're committed to:
+At Pacific Light Shades, we're committed to:
 
 ✅ **Quality** - Premium materials and craftsmanship in every product
 ✅ **Affordability** - Factory-direct pricing that saves you money
@@ -67,5 +67,5 @@ Ready to transform your windows? Get your **free quote in seconds** by measuring
 
 ---
 
-*Pacific Light Shades & Blinds - Custom shades that fit your lifestyle and budget.*
+*Pacific Light Shades - Custom shades that fit your lifestyle and budget.*
 

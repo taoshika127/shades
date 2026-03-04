@@ -102,7 +102,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
   }
 
   const handleWhyUsDropdownClick = (item: string) => {
-    if (item === 'Why Choose Pacific Light Shades & Blinds') {
+    if (item === 'Why Choose Pacific Light Shades') {
       setShowWhyUsDropdown(false)
         window.location.href = '/#why-us'
     } else if (item === 'FAQ') {
@@ -129,7 +129,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
         <div className="flex-1 md:flex-none flex justify-center md:justify-start">
           <Logo
             mainTextSize="text-2xl md:text-4xl"
-            subTextSize="text-xs md:text-base"
+            subTextSize="text-[8px] md:text-base"
           />
         </div>
 
@@ -256,12 +256,12 @@ function Header({ currentPage = 'home' }: HeaderProps) {
                     href="/#why-us"
                     onClick={(e) => {
                       e.preventDefault()
-                      handleWhyUsDropdownClick('Why Choose Pacific Light Shades & Blinds')
+                      handleWhyUsDropdownClick('Why Choose Pacific Light Shades')
                     }}
                     className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200 cursor-pointer font-[500]"
                     style={{ fontFamily: 'Montserrat, sans-serif' }}
                   >
-                    Why Choose Pacific Light Shades & Blinds
+                    Why Choose Pacific Light Shades
                   </a>
                   <a
                     href="/#faq"
@@ -481,13 +481,13 @@ function Header({ currentPage = 'home' }: HeaderProps) {
                   href="/#why-us"
                   onClick={(e) => {
                     e.preventDefault()
-                    handleWhyUsDropdownClick('Why Choose Pacific Light Shades & Blinds')
+                    handleWhyUsDropdownClick('Why Choose Pacific Light Shades')
                     setIsMobileMenuOpen(false)
                   }}
                   className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200"
                   style={{ fontFamily: 'Montserrat, sans-serif' }}
                 >
-                  Why Choose Pacific Light Shades & Blinds
+                  Why Choose Pacific Light Shades
                 </a>
                 <a
                   href="/#faq"

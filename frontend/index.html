@@ -2,9 +2,23 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <!-- Loading favicon (real file so browser never shows default earth icon) -->
+    <link rel="icon" id="favicon" type="image/svg+xml" href="/favicon-loading.svg" />
+    <script>
+      (function() {
+        var img = new Image();
+        img.onload = function() {
+          var link = document.getElementById('favicon');
+          if (link) {
+            link.href = '/favicon.png?v=2';
+            link.type = 'image/png';
+          }
+        };
+        img.src = '/favicon.png';
+      })();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pacific Light Shades & Blinds - Modern Home Decor</title>
+    <title>Pacific Light Shades</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">

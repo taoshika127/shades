@@ -111,14 +111,14 @@ function FormSuccess() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button
                   onClick={() => navigate('/')}
-                  className="px-8 py-3 bg-primary text-white text-lg font-semibold hover:bg-opacity-90 transition-colors"
+                  className="px-8 py-3 bg-primary text-white text-sm md:text-lg font-semibold hover:bg-opacity-90 transition-colors"
                   style={{ fontFamily: 'Montserrat, sans-serif' }}
                 >
                   Return to Home
                 </button>
                 <button
                   onClick={() => navigate(getReturnPath())}
-                  className="px-8 py-3 bg-white text-primary border-2 border-primary text-lg font-semibold hover:bg-gray-50 transition-colors"
+                  className="px-8 py-3 bg-white text-primary border-2 border-primary text-sm md:text-lg font-semibold hover:bg-gray-50 transition-colors"
                   style={{ fontFamily: 'Montserrat, sans-serif' }}
                 >
                   Submit Another {formType === 'contact' ? 'Form' : formType === 'consultation' ? 'Request' : 'Quote'}

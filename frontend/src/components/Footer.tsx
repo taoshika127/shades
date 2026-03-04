@@ -1,132 +1,267 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { categoryNameToSlug } from '../utils/slug'
-import Logo from './Logo'
+import { FaInstagram, FaFacebookF, FaPhone, FaMapMarkerAlt, FaEnvelope } from 'react-icons/fa'
+import { HiChevronDown } from 'react-icons/hi2'
 
-interface Category {
-  id: number
-  name: string
-  image: string
+const linkClass = 'text-brown no-underline text-base hover:text-primary transition-colors font-[500]'
+const linkStyle = { fontFamily: 'Montserrat, sans-serif' as const }
+
+const companyLinks = [
+  { label: 'About Us', href: '/#about' },
+  { label: 'Service Area', href: '/#how-it-works' },
+  { label: 'Gallery', href: '/#our-gallery' },
+  { label: 'Why Pacific Light', href: '/#why-us' }
+]
+
+const productSlugs = [
+  'zebra-shades',
+  'roller-shades',
+  'honeycomb-shades',
+  'roman-shades',
+  'bamboo-shades',
+  'draperies',
+  'outdoor-shades'
+]
+
+const productLabels: Record<string, string> = {
+  'zebra-shades': 'Zebra Shades',
+  'roller-shades': 'Roller Shades',
+  'honeycomb-shades': 'Honeycomb Shades',
+  'roman-shades': 'Roman Shades',
+  'bamboo-shades': 'Bamboo Shades',
+  'draperies': 'Draperies',
+  'outdoor-shades': 'Outdoor Shades'
 }
+
+const supportLinks = [
+  { label: 'Get Free Quote', href: '/quote' },
+  { label: 'Schedule Consultation', href: '/contact/schedule-consultation' },
+  { label: 'Contact', href: '/contact' },
+  { label: 'Privacy Policy', href: '/#privacy' }
+]
+
+const sectionHeaderClass = 'text-brown font-bold uppercase text-sm tracking-wide m-0 mb-4'
+const sectionHeaderStyle = { fontFamily: 'Montserrat, sans-serif' as const }
+
+type AccordionKey = 'company' | 'products' | 'support' | null
 
 function Footer() {
   const navigate = useNavigate()
-  const [categories, setCategories] = useState<Category[]>([])
+  const [openAccordion, setOpenAccordion] = useState<AccordionKey>(null)
 
-  useEffect(() => {
-    // Fetch categories
-    fetch('/api/categories')
-      .then(res => res.json())
-      .then(data => setCategories(data))
-      .catch(err => console.error('Error fetching categories:', err))
-  }, [])
+  const toggleAccordion = (key: AccordionKey) => {
+    setOpenAccordion((prev) => (prev === key ? null : key))
+  }
+
+  const handleLink = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith('/') && !href.startsWith('//')) {
+      e.preventDefault()
+      if (href === '/') {
+        navigate('/')
+      } else if (href.startsWith('/#')) {
+        window.location.href = href
+      } else {
+        navigate(href)
+      }
+    }
+  }
 
   return (
-    <footer className="bg-gray-100 border-t border-gray-100 py-10 md:py-20 px-5 md:px-20">
-      <div className="max-w-container mx-auto">
-        {/* Mobile: Logo and description */}
-        <div className="flex flex-col gap-6 mb-8 md:hidden">
-          <div style={{ width: '191px' }}>
-            <Logo />
-          </div>
-          <p className="text-base text-brown leading-relaxed m-0 font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-            Contact us for any questions or inquiries.
+    <footer className="bg-[#f5f3ef] border-t border-[#e8e4dc]">
+      {/* Mobile layout */}
+      <div className="md:hidden py-8 px-5">
+        <div className="flex flex-col items-center text-center">
+          <a href="/" className="block w-[160px] mb-3" onClick={(e) => { e.preventDefault(); navigate('/') }}>
+            <img src="/logo.png" alt="Pacific Light Shades & Blinds" className="w-full h-auto" />
+          </a>
+          <p className="text-base text-brown m-0 font-[500] leading-snug" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+            Custom Window Treatments
+          </p>
+          <p className="text-sm text-brown mt-1 mb-6 font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+            Factory Direct Pricing • Premium Quality
           </p>
         </div>
 
-        {/* Mobile: Two column layout */}
-        <div className="grid grid-cols-2 md:hidden gap-8 mb-10">
-          {/* Column 1: Categories */}
-          <div className="flex flex-col gap-6">
-            <ul className="list-none p-0 m-0 flex flex-col gap-4">
-              {categories.map((category) => {
-                const slug = categoryNameToSlug(category.name)
-                return (
-                  <li key={category.id}>
-                    <a
-                      href={`/${slug}`}
-                      onClick={(e) => {
-                        e.preventDefault()
-                        navigate(`/${slug}`)
-                      }}
-                      className="text-brown no-underline text-base hover:text-primary transition-colors font-[500]"
-                      style={{ fontFamily: 'Montserrat, sans-serif' }}
-                    >
-                      {category.name}
-                    </a>
-                  </li>
-                )
-              })}
-            </ul>
+        {/* Contact info with icons */}
+        <div className="flex flex-col gap-3 items-center text-center mb-6" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+          <a href="sms:+16505616086" className="flex items-center justify-center gap-3 text-brown no-underline hover:text-primary transition-colors text-base font-[500]">
+            <FaPhone className="w-4 h-4 flex-shrink-0 text-brown" />
+            (650) 561-6086
+          </a>
+          <div className="flex items-center justify-center gap-3 text-brown text-base font-[500]">
+            <FaMapMarkerAlt className="w-4 h-4 flex-shrink-0 text-brown" />
+            Serving Bay Area, CA
           </div>
-
-          {/* Column 2: Other links */}
-          <div className="flex flex-col gap-6">
-            <ul className="list-none p-0 m-0 flex flex-col gap-4">
-              <li><a href="/" className="text-brown no-underline text-base hover:text-primary transition-colors font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>Home</a></li>
-              <li><a href="/#our-gallery" className="text-brown no-underline text-base hover:text-primary transition-colors font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>Gallery</a></li>
-              <li><a href="/#how-it-works" className="text-brown no-underline text-base hover:text-primary transition-colors font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>Service</a></li>
-              <li><a href="/#why-us" className="text-brown no-underline text-base hover:text-primary transition-colors font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>Why Us</a></li>
-              <li><a href="/contact" className="text-brown no-underline text-base hover:text-primary transition-colors font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>Contact</a></li>
-              <li><a href="/quote" className="text-brown no-underline text-base hover:text-primary transition-colors font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>Get Free Quote</a></li>
-              <li><a href="/schedule-consultation" className="text-brown no-underline text-base hover:text-primary transition-colors font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>Schedule a Consultation</a></li>
-            </ul>
-          </div>
+          <a href="mailto:info@pacificlightshades.com" className="flex items-center justify-center gap-3 text-brown no-underline hover:text-primary transition-colors text-base font-[500]">
+            <FaEnvelope className="w-4 h-4 flex-shrink-0 text-brown" />
+            info@pacificlightshades.com
+          </a>
+          <p className="text-base text-brown m-0 font-[500]">Mon - Fri: 8:00 AM – 5:00 PM</p>
         </div>
 
-        {/* Desktop: Original layout */}
-        <div className="hidden md:grid md:grid-cols-2 lg:flex lg:flex-row gap-8 md:gap-15 lg:gap-20 mb-10 lg:justify-between">
-          <div className="flex flex-col gap-6 lg:w-auto lg:flex-shrink-0">
-            <div style={{ width: '191px' }}>
-              <Logo />
-            </div>
-            <p className="text-base text-brown leading-relaxed m-0 font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-              Contact us for any questions or inquiries.
+        {/* Accordions */}
+        <div className="border-t border-[#e0dcd4]">
+          <button type="button" onClick={() => toggleAccordion('company')} className="w-full flex items-center justify-between py-4 text-left border-b border-[#e0dcd4] bg-transparent">
+            <span className="text-brown font-bold uppercase text-sm tracking-wide" style={sectionHeaderStyle}>Company</span>
+            <HiChevronDown className={`w-5 h-5 text-brown transition-transform ${openAccordion === 'company' ? 'rotate-180' : ''}`} />
+          </button>
+          {openAccordion === 'company' && (
+            <ul className="list-none p-0 m-0 py-3 px-0 flex flex-col gap-2 border-b border-[#e0dcd4]">
+              {companyLinks.map(({ label, href }) => (
+                <li key={label}>
+                  <a href={href} className={linkClass} style={linkStyle} onClick={(e) => handleLink(e, href)}>
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
+          <button type="button" onClick={() => toggleAccordion('products')} className="w-full flex items-center justify-between py-4 text-left border-b border-[#e0dcd4] bg-transparent">
+            <span className="text-brown font-bold uppercase text-sm tracking-wide" style={sectionHeaderStyle}>Products</span>
+            <HiChevronDown className={`w-5 h-5 text-brown transition-transform ${openAccordion === 'products' ? 'rotate-180' : ''}`} />
+          </button>
+          {openAccordion === 'products' && (
+            <ul className="list-none p-0 m-0 py-3 px-0 flex flex-col gap-2 border-b border-[#e0dcd4]">
+              {productSlugs.map((slug) => (
+                <li key={slug}>
+                  <a href={`/${slug}`} className={linkClass} style={linkStyle} onClick={(e) => { e.preventDefault(); navigate(`/${slug}`) }}>
+                    {productLabels[slug] || slug}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
+          <button type="button" onClick={() => toggleAccordion('support')} className="w-full flex items-center justify-between py-4 text-left border-b border-[#e0dcd4] bg-transparent">
+            <span className="text-brown font-bold uppercase text-sm tracking-wide" style={sectionHeaderStyle}>Support</span>
+            <HiChevronDown className={`w-5 h-5 text-brown transition-transform ${openAccordion === 'support' ? 'rotate-180' : ''}`} />
+          </button>
+          {openAccordion === 'support' && (
+            <ul className="list-none p-0 m-0 py-3 px-0 flex flex-col gap-2 border-b border-[#e0dcd4]">
+              {supportLinks.map(({ label, href }) => (
+                <li key={label}>
+                  <a href={href} className={linkClass} style={linkStyle} onClick={(e) => handleLink(e, href)}>
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+
+        {/* CTA */}
+        <p className="text-center text-brown font-[500] mt-6 mb-3" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+          Ready to Upgrade Your Windows?
+        </p>
+        <a
+          href="/quote"
+          onClick={(e) => { e.preventDefault(); navigate('/quote') }}
+          className="block w-full max-w-[280px] mx-auto px-6 py-4 bg-primary text-white font-semibold text-center text-base hover:bg-opacity-90 transition-all duration-300 no-underline uppercase"
+          style={{ fontFamily: 'Montserrat, sans-serif' }}
+        >
+          Get Free Quote
+        </a>
+      </div>
+
+      {/* Desktop: Main content 4 columns */}
+      <div className="max-w-container mx-auto py-10 md:py-14 px-5 md:px-10 lg:px-20 hidden md:block">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
+          {/* Column 1: Logo, tagline, CTA */}
+          <div className="flex flex-col items-center text-center lg:items-center lg:text-center mr-[60px]">
+            <a href="/" className="block w-[191px]" onClick={(e) => { e.preventDefault(); navigate('/') }}>
+              <img src="/logo.png" alt="Pacific Light Shades & Blinds" className="w-full h-auto" />
+            </a>
+            <p className="text-base text-brown m-0 font-[500] leading-snug" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+              Custom Window Treatments
             </p>
+            <p className="text-sm text-brown mt-2 mb-6 font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+              Factory Direct Pricing · Premium Quality
+            </p>
+            <a
+              href="/quote"
+              onClick={(e) => { e.preventDefault(); navigate('/quote') }}
+              className="px-6 md:px-8 py-3 md:py-4 bg-primary text-white font-semibold text-sm md:text-base hover:bg-opacity-90 transition-all duration-300 no-underline flex items-center justify-center uppercase"
+              style={{ fontFamily: 'Montserrat, sans-serif' }}
+            >
+              Get Free Quote
+            </a>
           </div>
-          <div className="flex flex-col gap-6 lg:w-auto lg:flex-shrink-0">
-            <ul className="list-none p-0 m-0 flex flex-col gap-4">
-              <li><a href="/" className="text-brown no-underline text-base hover:text-primary transition-colors font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>Home</a></li>
-              <li><a href="/#our-gallery" className="text-brown no-underline text-base hover:text-primary transition-colors font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>Gallery</a></li>
-              <li><a href="/#how-it-works" className="text-brown no-underline text-base hover:text-primary transition-colors font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>Service</a></li>
-              <li><a href="/#why-us" className="text-brown no-underline text-base hover:text-primary transition-colors font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>Why Us</a></li>
+
+          {/* Column 2: COMPANY + SUPPORT */}
+          <div className="lg:pl-4 lg:border-l border-[#e0dcd4]">
+            <h3 className={sectionHeaderClass} style={sectionHeaderStyle}>Company</h3>
+            <ul className="list-none p-0 m-0 flex flex-col gap-2">
+              {companyLinks.map(({ label, href }) => (
+                <li key={label}>
+                  <a href={href} className={linkClass} style={linkStyle} onClick={(e) => handleLink(e, href)}>
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <h3 className={`${sectionHeaderClass} mt-6`} style={sectionHeaderStyle}>Support</h3>
+            <ul className="list-none p-0 m-0 flex flex-col gap-2">
+              {supportLinks.map(({ label, href }) => (
+                <li key={label}>
+                  <a href={href} className={linkClass} style={linkStyle} onClick={(e) => handleLink(e, href)}>
+                    {label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
-          <div className="flex flex-col gap-6 lg:w-auto lg:flex-shrink-0">
-            <ul className="list-none p-0 m-0 flex flex-col gap-4">
-              {categories.map((category) => {
-                const slug = categoryNameToSlug(category.name)
-                return (
-                  <li key={category.id}>
-                    <a
-                      href={`/${slug}`}
-                      onClick={(e) => {
-                        e.preventDefault()
-                        navigate(`/${slug}`)
-                      }}
-                      className="text-brown no-underline text-base hover:text-primary transition-colors font-[500]"
-                      style={{ fontFamily: 'Montserrat, sans-serif' }}
-                    >
-                      {category.name}
-                    </a>
-                  </li>
-                )
-              })}
+
+          {/* Column 3: PRODUCTS */}
+          <div className="lg:pl-4 lg:border-l border-[#e0dcd4]">
+            <h3 className={sectionHeaderClass} style={sectionHeaderStyle}>Products</h3>
+            <ul className="list-none p-0 m-0 flex flex-col gap-2">
+              {productSlugs.map((slug) => (
+                <li key={slug}>
+                  <a
+                    href={`/${slug}`}
+                    className={linkClass} style={linkStyle}
+                    onClick={(e) => { e.preventDefault(); navigate(`/${slug}`) }}
+                  >
+                    {productLabels[slug] || slug}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
-          <div className="flex flex-col gap-6 lg:w-auto lg:flex-shrink-0">
-            <ul className="list-none p-0 m-0 flex flex-col gap-4">
-              <li><a href="/contact" className="text-brown no-underline text-base hover:text-primary transition-colors font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>Contact</a></li>
-              <li><a href="/quote" className="text-brown no-underline text-base hover:text-primary transition-colors font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>Get Free Quote</a></li>
-              <li><a href="/schedule-consultation" className="text-brown no-underline text-base hover:text-primary transition-colors font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>Schedule a Consultation</a></li>
-            </ul>
+
+          {/* Column 4: CONTACT US */}
+          <div className="lg:pl-4 lg:border-l border-[#e0dcd4]">
+            <h3 className={sectionHeaderClass} style={sectionHeaderStyle}>Contact Us</h3>
+            <p className="text-base text-brown m-0 font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+              <a href="sms:+16505616086" className="text-brown no-underline hover:text-primary transition-colors">(650) 561-6086</a>
+              <br />
+              <a href="mailto:info@pacificlightshades.com" className="text-brown no-underline hover:text-primary transition-colors block my-2">info@pacificlightshades.com</a>
+              <span className="block text-base text-brown font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>Mon - Fri: 9:00 AM - 5:00 PM</span>
+            </p>
+            <div className="flex items-center gap-3 mt-4">
+              <a href="https://www.instagram.com/beckypl_interiors/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-brown flex items-center justify-center text-white hover:opacity-90 transition-opacity" aria-label="Instagram">
+                <FaInstagram className="w-4 h-4" />
+              </a>
+              <a href="https://www.facebook.com/pacificlightshades" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-brown flex items-center justify-center text-white hover:opacity-90 transition-opacity" aria-label="Facebook">
+                <FaFacebookF className="w-4 h-4" />
+              </a>
+            </div>
           </div>
         </div>
-        <div className="pt-10 border-t border-gray-100">
-          <div className="lg:flex lg:flex-row lg:justify-center">
-            <div className="lg:w-auto lg:flex-shrink-0">
-              <p className="text-base text-brown m-0 text-left font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>2026 Pacific Light Shades & Blinds. All rights reserved</p>
-            </div>
+      </div>
+
+      {/* Bottom strip: copyright; on mobile also social icons */}
+      <div className="bg-[#e8e4dc] border-t border-[#ddd9d0] py-4 px-5 md:px-10 lg:px-20">
+        <div className="max-w-container mx-auto flex flex-row items-center justify-between md:justify-center">
+          <p className="text-sm text-brown m-0 font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+            © 2026 Pacific Light Window Treatments. All rights reserved.
+          </p>
+          <div className="flex items-center gap-3 md:hidden">
+            <a href="https://www.instagram.com/beckypl_interiors/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-brown flex items-center justify-center text-white hover:opacity-90 transition-opacity" aria-label="Instagram">
+              <FaInstagram className="w-4 h-4" />
+            </a>
+            <a href="https://www.facebook.com/pacificlightshades" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-brown flex items-center justify-center text-white hover:opacity-90 transition-opacity" aria-label="Facebook">
+              <FaFacebookF className="w-4 h-4" />
+            </a>
           </div>
         </div>
       </div>

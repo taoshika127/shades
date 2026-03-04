@@ -90,31 +90,36 @@ function FormError() {
               </p>
 
               <p
-                className="text-sm md:text-base text-gray-600 mb-8 max-w-2xl mx-auto"
+                className="text-sm md:text-base text-gray-600 mb-4 max-w-2xl mx-auto"
                 style={{ fontFamily: 'Montserrat, sans-serif' }}
               >
-                Please check your connection and try again. If the problem persists, please contact us directly.
+                Please check your connection and try again. If the problem persists, contact us:
+              </p>
+              <p className="text-base text-brown mb-8 font-medium" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                <a href="tel:+16505616086" className="text-brown no-underline hover:text-primary transition-colors">(650) 561-6086</a>
+                <br />
+                <a href="mailto:info@pacificlightshades.com" className="text-brown no-underline hover:text-primary transition-colors">info@pacificlightshades.com</a>
               </p>
 
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button
                   onClick={() => navigate(getReturnPath())}
-                  className="px-8 py-3 bg-primary text-white text-lg font-semibold hover:bg-opacity-90 transition-colors"
+                  className="px-8 py-3 bg-primary text-white text-sm md:text-lg font-semibold hover:bg-opacity-90 transition-colors"
                   style={{ fontFamily: 'Montserrat, sans-serif' }}
                 >
                   Try Again
                 </button>
                 <button
                   onClick={() => navigate('/contact')}
-                  className="px-8 py-3 bg-white text-primary border-2 border-primary text-lg font-semibold hover:bg-gray-50 transition-colors"
+                  className="px-8 py-3 bg-white text-primary border-2 border-primary text-sm md:text-lg font-semibold hover:bg-gray-50 transition-colors"
                   style={{ fontFamily: 'Montserrat, sans-serif' }}
                 >
                   Contact Us Directly
                 </button>
                 <button
                   onClick={() => navigate('/')}
-                  className="px-8 py-3 bg-gray-200 text-gray-700 text-lg font-semibold hover:bg-gray-300 transition-colors"
+                  className="px-8 py-3 bg-gray-200 text-gray-700 text-sm md:text-lg font-semibold hover:bg-gray-300 transition-colors"
                   style={{ fontFamily: 'Montserrat, sans-serif' }}
                 >
                   Return to Home

@@ -1,7 +1,7 @@
 {
   "name": "light-shade-backend",
   "version": "1.0.0",
-  "description": "Pacific Light Shades & Blinds Backend API",
+  "description": "Pacific Light Shades Backend API",
   "main": "dist/index.js",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only --ignore-watch node_modules src/index.ts",

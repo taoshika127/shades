@@ -1,4 +1,4 @@
-# Pacific Light Shades & Blinds - E-commerce Website
+# Pacific Light Shades - E-commerce Website
 
 A modern, full-stack e-commerce website built with React, TypeScript, and Node.js.
 

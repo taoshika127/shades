@@ -7,13 +7,13 @@ interface LogoProps {
 
 function Logo({
   mainTextSize = 'text-3xl md:text-4xl',
-  subTextSize = 'text-sm md:text-base',
+  subTextSize = 'text-xs md:text-base',
   centerSubtext = true,
   className = ''
 }: LogoProps) {
   return (
-    <a href="/" className={`inline-flex flex-col gap-0 no-underline ${className}`}>
-      <h1 className={`${mainTextSize} font-bold m-0 leading-tight flex items-baseline text-brown`} style={{ fontFamily: 'Fjalla One, sans-serif', letterSpacing: '-0.02em' }}>
+    <a href="/" className={`inline-flex flex-col gap-0 no-underline items-center ${className}`}>
+      <h1 className={`${mainTextSize} font-bold m-0 leading-tight flex items-baseline justify-center text-brown w-full`} style={{ fontFamily: 'Fjalla One, sans-serif', letterSpacing: '-0.02em' }}>
         PACIFIC L
         <span
           className="inline-block mx-[2.5px] bg-brown"
@@ -28,7 +28,7 @@ function Logo({
         GHT
       </h1>
       <h2 className={`${subTextSize} font-semibold m-0 leading-tight uppercase ${centerSubtext ? 'text-center' : ''}`} style={{ fontFamily: 'Montserrat, sans-serif', color: '#6c592e' }}>
-        SHADES & BLINDS
+        SHADES • DRAPERIES • BLINDS
       </h2>
     </a>
   )
