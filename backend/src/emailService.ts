@@ -218,6 +218,10 @@ interface QuoteFormData {
     projectTimeline: string;
     zipcode: string;
     serviceOption: string;
+    serviceType?: string;
+    numberOfWindows?: string;
+    shadeInterest?: string[];
+    spaceNotes?: string;
   };
   windows: Array<{
     id: number;
@@ -241,7 +245,11 @@ export const sendQuoteEmail = async (quoteData: QuoteFormData): Promise<boolean>
   const recipientEmail = process.env.CONTACT_EMAIL || 'info@pacificlightshades.com';
   const fromEmail = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
 
-  const windowsHtml = quoteData.windows.map((window, index) => `
+  const fd = quoteData.formData;
+  const windowsWithMeasurements = quoteData.windows.filter(w => (w.width && w.width.trim()) && (w.height && w.height.trim()));
+
+  const windowsHtml = windowsWithMeasurements.length > 0
+    ? windowsWithMeasurements.map((window, index) => `
     <div style="border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 5px;">
       <h4 style="color: #5c4717; margin-top: 0;">Window ${index + 1}</h4>
       <p><strong>Room:</strong> ${window.roomName || 'Not specified'}</p>
@@ -250,18 +258,26 @@ export const sendQuoteEmail = async (quoteData: QuoteFormData): Promise<boolean>
       <p><strong>Shade Type:</strong> ${window.shadeType || 'Not specified'}</p>
       <p><strong>Motorized:</strong> ${window.motorized || 'Not specified'}</p>
     </div>
-  `).join('');
+  `).join('')
+    : '<p><em>Window measurements not provided (full-service or not yet measured).</em></p>';
+
+  const numberOfWindowsDisplay = fd.numberOfWindows
+    ? fd.numberOfWindows
+    : (windowsWithMeasurements.length > 0 ? String(windowsWithMeasurements.length) : 'Not specified');
 
   const htmlContent = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
       <h2 style="color: #5c4717;">New Quote Request</h2>
       <div style="background-color: #f5f5f5; padding: 20px; border-radius: 5px; margin: 20px 0;">
-        <p><strong>Name:</strong> ${quoteData.formData.fullName}</p>
-        <p><strong>Email:</strong> <a href="mailto:${quoteData.formData.email}">${quoteData.formData.email}</a></p>
-        <p><strong>Location:</strong> ${quoteData.formData.city}, ${quoteData.formData.state} ${quoteData.formData.zipcode}</p>
-        <p><strong>Service Option:</strong> ${quoteData.formData.serviceOption}</p>
-        <p><strong>Project Timeline:</strong> ${quoteData.formData.projectTimeline || 'Not specified'}</p>
-        <p><strong>Number of Windows:</strong> ${quoteData.windows.length}</p>
+        <p><strong>Name:</strong> ${fd.fullName}</p>
+        <p><strong>Email:</strong> <a href="mailto:${fd.email}">${fd.email}</a></p>
+        <p><strong>Location:</strong> ${fd.city}, ${fd.state} ${fd.zipcode}</p>
+        <p><strong>Service Option:</strong> ${fd.serviceOption}</p>
+        ${fd.serviceType ? `<p><strong>Service Type:</strong> ${fd.serviceType === 'full-service' ? 'Full-Service' : fd.serviceType === 'measurements-ready' ? 'I Have Measurements Ready' : fd.serviceType}</p>` : ''}
+        <p><strong>Number of Windows:</strong> ${numberOfWindowsDisplay}</p>
+        ${(fd.shadeInterest && fd.shadeInterest.length > 0) ? `<p><strong>Shade Interest:</strong> ${fd.shadeInterest.join(', ')}</p>` : ''}
+        ${fd.spaceNotes ? `<p><strong>Tell Us About Your Space:</strong><br/>${fd.spaceNotes.replace(/\n/g, '<br/>')}</p>` : ''}
+        <p><strong>Project Timeline:</strong> ${fd.projectTimeline || 'Not specified'}</p>
       </div>
       <div style="margin: 20px 0;">
         <h3 style="color: #5c4717;">Window Details:</h3>
@@ -274,31 +290,35 @@ export const sendQuoteEmail = async (quoteData: QuoteFormData): Promise<boolean>
     </div>
   `;
 
-  const windowsText = quoteData.windows.map((window, index) => `
+  const windowsText = windowsWithMeasurements.length > 0
+    ? windowsWithMeasurements.map((window, index) => `
 Window ${index + 1}:
   Room: ${window.roomName || 'Not specified'}
   Window Name: ${window.windowName || 'Not specified'}
   Dimensions: ${window.width}" × ${window.height}"
   Shade Type: ${window.shadeType || 'Not specified'}
   Motorized: ${window.motorized || 'Not specified'}
-  `).join('\n');
+  `).join('\n')
+    : 'Window measurements not provided (full-service or not yet measured).';
 
   const textContent = `
 New Quote Request
 
-Name: ${quoteData.formData.fullName}
-Email: ${quoteData.formData.email}
-Location: ${quoteData.formData.city}, ${quoteData.formData.state} ${quoteData.formData.zipcode}
-Service Option: ${quoteData.formData.serviceOption}
-Project Timeline: ${quoteData.formData.projectTimeline || 'Not specified'}
-Number of Windows: ${quoteData.windows.length}
+Name: ${fd.fullName}
+Email: ${fd.email}
+Location: ${fd.city}, ${fd.state} ${fd.zipcode}
+Service Option: ${fd.serviceOption}
+${fd.serviceType ? `Service Type: ${fd.serviceType === 'full-service' ? 'Full-Service' : fd.serviceType === 'measurements-ready' ? 'I Have Measurements Ready' : fd.serviceType}\n` : ''}
+Number of Windows: ${numberOfWindowsDisplay}
+${(fd.shadeInterest && fd.shadeInterest.length > 0) ? `Shade Interest: ${fd.shadeInterest.join(', ')}\n` : ''}${fd.spaceNotes ? `Tell Us About Your Space: ${fd.spaceNotes}\n` : ''}
+Project Timeline: ${fd.projectTimeline || 'Not specified'}
 
 Window Details:
 ${windowsText}
 
 ---
 This email was sent from the Pacific Light Shades quote form.
-You can reply directly to this email to respond to ${quoteData.formData.fullName}.
+You can reply directly to this email to respond to ${fd.fullName}.
   `.trim();
 
   try {
@@ -306,7 +326,7 @@ You can reply directly to this email to respond to ${quoteData.formData.fullName
       from: `Pacific Light Shades Quote Form <${fromEmail}>`,
       to: [recipientEmail],
       reply_to: quoteData.formData.email,
-      subject: `Quote Request: ${quoteData.windows.length} Window(s) - ${quoteData.formData.city}, ${quoteData.formData.state}`,
+      subject: `Quote Request: ${windowsWithMeasurements.length > 0 ? `${windowsWithMeasurements.length} Window(s) - ` : ''}${fd.serviceType === 'full-service' ? 'Full-Service - ' : ''}${fd.city}, ${fd.state}`,
       html: htmlContent,
       text: textContent,
     });
