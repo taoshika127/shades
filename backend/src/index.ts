@@ -714,24 +714,30 @@ app.post('/api/consultation', express.json(), async (req, res) => {
   }
 });
 
-// Quote endpoint
+// Quote endpoint (JSON body)
 app.post('/api/quote', express.json(), async (req, res) => {
   try {
-    const { formData, windows } = req.body;
+    const { formData, windows, helpMeasuring } = req.body;
 
-    // Validate required fields
-    if (!formData || !windows || !Array.isArray(windows) || windows.length === 0) {
+    // Validate required fields (windows can be empty when helpMeasuring is present)
+    if (!formData || !windows || !Array.isArray(windows)) {
       return res.status(400).json({
         success: false,
         error: 'Missing required fields: formData and windows are required'
       });
     }
+    if (windows.length === 0 && !helpMeasuring) {
+      return res.status(400).json({
+        success: false,
+        error: 'At least one window or help-measuring data is required'
+      });
+    }
 
     // Log the submission
-    console.log('Quote form submission:', { formData, windowCount: windows.length });
+    console.log('Quote form submission:', { formData, windowCount: windows.length, helpMeasuring: !!helpMeasuring });
 
     // Send email
-    const emailSent = await sendQuoteEmail({ formData, windows });
+    const emailSent = await sendQuoteEmail({ formData, windows, helpMeasuring });
 
     if (emailSent) {
       res.json({
@@ -754,6 +760,61 @@ app.post('/api/quote', express.json(), async (req, res) => {
     });
   }
 });
+
+// Quote with photo uploads (multipart)
+const quoteWithPhotosHandler = async (req: Request, res: express.Response) => {
+  const uploadDir = path.join(__dirname, '../uploads');
+  let filesToClean: { path: string }[] = [];
+  try {
+    const formDataRaw = req.body.formData as string;
+    const windowsRaw = req.body.windows as string;
+    const helpMeasuringRaw = req.body.helpMeasuring as string;
+    if (!formDataRaw || !windowsRaw || !helpMeasuringRaw) {
+      return res.status(400).json({
+        success: false,
+        error: 'Missing required fields: formData, windows, and helpMeasuring are required'
+      });
+    }
+    const formData = JSON.parse(formDataRaw);
+    const windows = JSON.parse(windowsRaw);
+    const helpMeasuring = JSON.parse(helpMeasuringRaw);
+    const multerFiles = (req as any).files as MulterFile[] | undefined;
+    const attachments = multerFiles && Array.isArray(multerFiles)
+      ? multerFiles.map((f: MulterFile) => ({ originalname: f.originalname, path: f.path }))
+      : [];
+    filesToClean = attachments.map((a: { path: string }) => ({ path: a.path }));
+
+    const emailSent = await sendQuoteEmail({ formData, windows, helpMeasuring, attachments });
+    if (emailSent) {
+      res.json({
+        success: true,
+        message: 'Thank you for your quote request! We will review your information and send you a detailed quote shortly.'
+      });
+    } else {
+      console.error('Failed to send quote email, but submission was received');
+      res.json({
+        success: true,
+        message: 'Thank you for your quote request! We will review your information and send you a detailed quote shortly.'
+      });
+    }
+  } catch (error) {
+    console.error('Error processing quote form with photos:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Failed to process your quote request. Please try again later.'
+    });
+  } finally {
+    for (const f of filesToClean) {
+      try {
+        if (fs.existsSync(f.path)) fs.unlinkSync(f.path);
+      } catch (_) {}
+    }
+  }
+};
+
+if (upload) {
+  app.post('/api/quote-with-photos', upload.array('photos', 10), quoteWithPhotosHandler);
+}
 
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server is running on port ${PORT}`);

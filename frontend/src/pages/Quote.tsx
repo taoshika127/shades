@@ -13,11 +13,25 @@ interface Window {
   motorized: string
 }
 
+interface Category {
+  id: number
+  name: string
+}
+
 function Quote() {
   const navigate = useNavigate()
 
+  const [categories, setCategories] = useState<Category[]>([])
+
   useEffect(() => {
     window.scrollTo(0, 0)
+  }, [])
+
+  useEffect(() => {
+    fetch('/api/categories')
+      .then(res => res.json())
+      .then((data: Category[]) => setCategories(Array.isArray(data) ? data : []))
+      .catch(() => setCategories([]))
   }, [])
 
   const [formData, setFormData] = useState({
@@ -28,10 +42,24 @@ function Quote() {
     projectTimeline: '',
     zipcode: '',
     serviceOption: '',
-    serviceType: '' as '' | 'full-service' | 'measurements-ready',
+    serviceType: '' as '' | 'full-service' | 'measurements-ready' | 'help-measuring',
     numberOfWindows: '' as '' | '1-3' | '4-7' | '8+',
     shadeInterest: [] as string[],
     spaceNotes: ''
+  })
+
+  const HELP_MEASURING_WINDOW_OPTS = ['1-2', '3-5', '6-10', '10+'] as const
+  const HELP_MEASURING_ROOMS = ['Living Room', 'Bedroom', 'Kitchen', 'Office', 'Whole House', 'Other'] as const
+  const HELP_MEASURING_HELP_WITH = ['Virtual measuring guidance', 'In-home measurement (Bay Area only)', 'Just a quote for now'] as const
+
+  const [helpMeasuring, setHelpMeasuring] = useState({
+    spaceDescription: '',
+    numberOfWindows: '' as '' | '1-2' | '3-5' | '6-10' | '10+',
+    rooms: [] as string[],
+    shadeTypes: [] as string[],
+    helpWith: [] as string[],
+    notes: '',
+    photos: [] as File[]
   })
 
   const [windows, setWindows] = useState<Window[]>([
@@ -42,7 +70,7 @@ function Quote() {
   const [zipcodeInServiceArea, setZipcodeInServiceArea] = useState<boolean | null>(null)
   const [_checkingZipcode, setCheckingZipcode] = useState(false)
 
-  const shadeTypes = [
+  const shadeTypesFallback = [
     'Zebra Shades',
     'Honeycomb Shades',
     'Roller Shades',
@@ -53,6 +81,8 @@ function Quote() {
     'Outdoor Shades',
     'Dream Shades'
   ]
+  const shadeTypes = categories.length > 0 ? categories.map(c => c.name) : shadeTypesFallback
+  const helpMeasuringShadeTypes = [...shadeTypes, 'Not sure yet']
 
   // Reserved for future state selection feature
   // const usStates = [
@@ -150,16 +180,55 @@ function Quote() {
         }
       }
     }
+    if (zipcodeInServiceArea === false) {
+      if (!formData.serviceType) {
+        setStep2Error('Please choose a service type (I need help measuring or I have measurements ready).')
+        return
+      }
+      if (formData.serviceType === 'help-measuring') {
+        if (!helpMeasuring.numberOfWindows) {
+          setStep2Error('Please select how many windows need shades.')
+          return
+        }
+        if (!helpMeasuring.helpWith || helpMeasuring.helpWith.length === 0) {
+          setStep2Error('Please select at least one option for "Would you like help with".')
+          return
+        }
+      }
+    }
     // Window measurements path: required attributes on inputs handle validation
 
+    const payload = {
+      formData,
+      windows,
+      helpMeasuring: formData.serviceType === 'help-measuring'
+        ? { ...helpMeasuring, photos: [] }
+        : undefined
+    }
+    const hasPhotos = formData.serviceType === 'help-measuring' && helpMeasuring.photos.length > 0
+
     try {
-      const response = await fetch('/api/quote', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ formData, windows }),
-      })
+      let response: Response
+      if (hasPhotos) {
+        const formDataToSend = new FormData()
+        formDataToSend.append('formData', JSON.stringify(formData))
+        formDataToSend.append('windows', JSON.stringify(windows))
+        formDataToSend.append('helpMeasuring', JSON.stringify({
+          ...helpMeasuring,
+          photos: [] // files sent separately
+        }))
+        helpMeasuring.photos.forEach((file) => formDataToSend.append('photos', file))
+        response = await fetch('/api/quote-with-photos', {
+          method: 'POST',
+          body: formDataToSend,
+        })
+      } else {
+        response = await fetch('/api/quote', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        })
+      }
 
       if (response.ok) {
         // Navigate to success page
@@ -413,6 +482,175 @@ function Quote() {
                     </div>
                   )}
 
+                  {zipcodeInServiceArea === false && (
+                    <div>
+                      <h2 className="text-xl md:text-2xl font-bold text-brown mb-4" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
+                        Choose Your Service Type <span className="text-red-500">*</span>
+                      </h2>
+                      <div className="flex flex-col gap-4">
+                        <label className={`flex flex-col p-4 border-2 rounded-lg cursor-pointer transition-all ${formData.serviceType === 'help-measuring' ? 'border-primary bg-primary/5' : 'border-gray-300 hover:border-primary/50'}`}>
+                          <div className="flex items-start gap-3">
+                            <input
+                              type="radio"
+                              name="serviceTypeOutOfArea"
+                              checked={formData.serviceType === 'help-measuring'}
+                              onChange={() => setFormData(prev => ({ ...prev, serviceType: 'help-measuring' }))}
+                              className="mt-1 w-5 h-5 text-primary"
+                            />
+                            <div>
+                              <span className="font-semibold text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>I need help measuring</span>
+                              <p className="text-sm text-brown mt-1 m-0" style={{ fontFamily: 'Montserrat, sans-serif' }}>We'll guide you through measuring or connect you with local help.</p>
+                            </div>
+                          </div>
+                        </label>
+                        <label className={`flex flex-col p-4 border-2 rounded-lg cursor-pointer transition-all ${formData.serviceType === 'measurements-ready' ? 'border-primary bg-primary/5' : 'border-gray-300 hover:border-primary/50'}`}>
+                          <div className="flex items-start gap-3">
+                            <input
+                              type="radio"
+                              name="serviceTypeOutOfArea"
+                              checked={formData.serviceType === 'measurements-ready'}
+                              onChange={() => setFormData(prev => ({ ...prev, serviceType: 'measurements-ready' }))}
+                              className="mt-1 w-5 h-5 text-primary"
+                            />
+                            <div>
+                              <span className="font-semibold text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>I have measurements ready</span>
+                              <p className="text-sm text-brown mt-1 m-0" style={{ fontFamily: 'Montserrat, sans-serif' }}>We'll build your shades to your exact specs.</p>
+                            </div>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+                  )}
+
+                  {zipcodeInServiceArea === false && formData.serviceType === 'help-measuring' && (
+                    <div className="space-y-6 pt-8">
+                      <div>
+                        <h2 className="text-xl md:text-2xl font-bold text-brown mb-4" style={{ fontFamily: 'Fjalla One, sans-serif' }}>Would you like help with: <span className="text-red-500">*</span></h2>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-y-2 gap-x-4">
+                          {HELP_MEASURING_HELP_WITH.map((item) => {
+                            const checked = helpMeasuring.helpWith.includes(item)
+                            return (
+                              <label key={item} className="inline-flex items-center gap-2 cursor-pointer">
+                                <input
+                                  type="checkbox"
+                                  checked={checked}
+                                  onChange={() => setHelpMeasuring(prev => ({ ...prev, helpWith: checked ? prev.helpWith.filter(h => h !== item) : [...prev.helpWith, item] }))}
+                                  className="w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary"
+                                />
+                                <span className="text-sm text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>{item}</span>
+                              </label>
+                            )
+                          })}
+                        </div>
+                      </div>
+                      <div className="pt-8">
+                        <h2 className="text-xl md:text-2xl font-bold text-brown mb-4" style={{ fontFamily: 'Fjalla One, sans-serif' }}>Tell Us About Your Space</h2>
+                      </div>
+                      <div>
+                        <p className="text-sm font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>How many windows need shades? <span className="text-red-500">*</span></p>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                          {HELP_MEASURING_WINDOW_OPTS.map((opt) => (
+                            <label key={opt} className="inline-flex items-center gap-2 cursor-pointer">
+                              <input
+                                type="radio"
+                                name="helpMeasuringWindows"
+                                checked={helpMeasuring.numberOfWindows === opt}
+                                onChange={() => setHelpMeasuring(prev => ({ ...prev, numberOfWindows: opt }))}
+                                className="w-4 h-4 text-primary"
+                              />
+                              <span className="text-sm text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>{opt}</span>
+                            </label>
+                          ))}
+                        </div>
+                      </div>
+                      <div>
+                        <p className="text-sm font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>Which rooms need shades?</p>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-y-2 gap-x-4">
+                          {HELP_MEASURING_ROOMS.map((room) => {
+                            const checked = helpMeasuring.rooms.includes(room)
+                            return (
+                              <label key={room} className="inline-flex items-center gap-2 cursor-pointer">
+                                <input
+                                  type="checkbox"
+                                  checked={checked}
+                                  onChange={() => setHelpMeasuring(prev => ({ ...prev, rooms: checked ? prev.rooms.filter(r => r !== room) : [...prev.rooms, room] }))}
+                                  className="w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary"
+                                />
+                                <span className="text-sm text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>{room}</span>
+                              </label>
+                            )
+                          })}
+                        </div>
+                      </div>
+                      <div>
+                        <p className="text-sm font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>What type of shades are you interested in?</p>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-y-2 gap-x-4">
+                          {helpMeasuringShadeTypes.map((type) => {
+                            const checked = helpMeasuring.shadeTypes.includes(type)
+                            return (
+                              <label key={type} className="inline-flex items-center gap-2 cursor-pointer">
+                                <input
+                                  type="checkbox"
+                                  checked={checked}
+                                  onChange={() => {
+                                    if (type === 'Not sure yet') {
+                                      setHelpMeasuring(prev => ({ ...prev, shadeTypes: checked ? [] : ['Not sure yet'] }))
+                                    } else {
+                                      setHelpMeasuring(prev => ({
+                                        ...prev,
+                                        shadeTypes: checked
+                                          ? prev.shadeTypes.filter(t => t !== type)
+                                          : [...prev.shadeTypes.filter(t => t !== 'Not sure yet'), type]
+                                      }))
+                                    }
+                                  }}
+                                  className="w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary"
+                                />
+                                <span className="text-sm text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>{type}</span>
+                              </label>
+                            )
+                          })}
+                        </div>
+                      </div>
+                      <div>
+                        <label htmlFor="helpMeasuringNotes" className="block text-sm font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>Notes</label>
+                        <textarea
+                          id="helpMeasuringNotes"
+                          value={helpMeasuring.notes}
+                          onChange={e => setHelpMeasuring(prev => ({ ...prev, notes: e.target.value }))}
+                          placeholder="Any other details..."
+                          rows={2}
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                          style={{ fontFamily: 'Montserrat, sans-serif' }}
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>Upload photos of your space (up to 10)</label>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          multiple
+                          onChange={e => {
+                            const newFiles = e.target.files ? Array.from(e.target.files) : []
+                            setHelpMeasuring(prev => ({
+                              ...prev,
+                              photos: [...prev.photos, ...newFiles].slice(0, 10)
+                            }))
+                            e.target.value = ''
+                          }}
+                          className="w-full text-sm text-brown file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-medium file:bg-primary file:text-white hover:file:bg-primary/90"
+                          style={{ fontFamily: 'Montserrat, sans-serif' }}
+                        />
+                        {helpMeasuring.photos.length > 0 && (
+                          <p className="text-xs text-brown mt-1 flex items-center gap-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                            {helpMeasuring.photos.length} file(s) selected (max 10)
+                            <button type="button" onClick={() => setHelpMeasuring(prev => ({ ...prev, photos: [] }))} className="text-primary hover:underline text-xs font-medium">Clear</button>
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  )}
+
                   {zipcodeInServiceArea === true && formData.serviceType === 'full-service' && (
                     <div>
                       <h2 className="text-xl md:text-2xl font-bold text-brown mb-4" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
@@ -421,7 +659,7 @@ function Quote() {
                       <div className="flex flex-col gap-6">
                         <div>
                           <p className="text-sm font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>How many windows need shades? <span className="text-red-500">*</span></p>
-                          <div className="flex flex-wrap gap-2">
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                             {(['1-3', '4-7', '8+'] as const).map((opt) => (
                               <button
                                 key={opt}
@@ -437,7 +675,7 @@ function Quote() {
                         </div>
                         <div>
                           <p className="text-sm font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>What type of shades are you interested in? <span className="text-red-500">*</span></p>
-                          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-2 gap-x-6">
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-y-2 gap-x-4">
                             {shadeTypes.map((type) => {
                               const isChecked = formData.shadeInterest.includes(type)
                               return (
@@ -483,7 +721,7 @@ function Quote() {
                           </div>
                         </div>
                         <div>
-                          <label htmlFor="step2-timeline" className="block text-sm font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>Preferred installation timeline (optional)</label>
+                          <label htmlFor="step2-timeline" className="block text-sm font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>Preferred installation timeline</label>
                           <select
                             id="step2-timeline"
                             name="projectTimeline"
@@ -499,7 +737,7 @@ function Quote() {
                           </select>
                         </div>
                         <div>
-                          <label htmlFor="spaceNotes" className="block text-sm font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>Notes (optional)</label>
+                          <label htmlFor="spaceNotes" className="block text-sm font-medium text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>Notes (optional)</label>
                           <textarea
                             id="spaceNotes"
                             name="spaceNotes"
@@ -507,7 +745,7 @@ function Quote() {
                             onChange={handleInputChange}
                             placeholder="Any other details about your project..."
                             rows={3}
-                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                            className="w-full px-4 py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                             style={{ fontFamily: 'Montserrat, sans-serif' }}
                           />
                         </div>
@@ -515,7 +753,7 @@ function Quote() {
                     </div>
                   )}
 
-                  {(zipcodeInServiceArea !== true || formData.serviceType === 'measurements-ready') && (
+                  {formData.serviceType === 'measurements-ready' && (
                     <div>
                       <h2 className="text-xl md:text-2xl font-bold text-brown mb-4" style={{ fontFamily: 'Fjalla One, sans-serif' }}>Window Measurements</h2>
                       <div className="flex flex-col gap-4">
@@ -627,7 +865,7 @@ function Quote() {
                   <p className="text-red-500 text-sm font-medium mt-4" style={{ fontFamily: 'Montserrat, sans-serif' }}>{step2Error}</p>
                 )}
 
-                {(zipcodeInServiceArea !== true || formData.serviceType === 'measurements-ready') && windows.length > 0 && (
+                {formData.serviceType === 'measurements-ready' && windows.length > 0 && (
                   <div className="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
                     <h3 className="text-sm font-semibold text-brown mb-3" style={{ fontFamily: 'Montserrat, sans-serif' }}>Your windows</h3>
                     <ul className="space-y-2">

@@ -129,7 +129,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
         <div className="flex-1 md:flex-none flex justify-center md:justify-start">
           <Logo
             mainTextSize="text-2xl md:text-4xl"
-            subTextSize="text-[8px] md:text-base"
+            subTextSize="text-[8px] md:text-[12px]"
           />
         </div>
 
