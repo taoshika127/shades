@@ -7,7 +7,6 @@ function GalleryPage() {
   const location = useLocation()
   const navigate = useNavigate()
   const [images, setImages] = useState<string[]>([])
-  const [galleryLocation, setGalleryLocation] = useState<string>('')
   const [galleryDescription, setGalleryDescription] = useState<string>('')
   const [galleryDesign, setGalleryDesign] = useState<{ [roomType: string]: string } | undefined>(undefined)
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -32,7 +31,6 @@ function GalleryPage() {
       })
       .then(data => {
         setImages(data.images || [])
-        setGalleryLocation(data.location || '')
         setGalleryDescription(data.description || '')
         setGalleryDesign(data.design || undefined)
         setCurrentIndex(0)
@@ -161,7 +159,7 @@ function GalleryPage() {
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-10 md:gap-20 items-start">
             <div className="flex flex-col gap-6">
               <h2 className="text-2xl md:text-4xl font-bold text-brown leading-tight m-0" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
-                {galleryLocation || 'Gallery Location'}
+                Gallery {idNumber}
               </h2>
               <p className="text-base md:text-xl text-brown leading-relaxed m-0 whitespace-pre-line font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                 {galleryDescription || 'Our designer already made a lot of beautiful prototype of rooms that inspire you'}

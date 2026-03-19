@@ -235,7 +235,8 @@ function Header({ currentPage = 'home' }: HeaderProps) {
                         className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200 cursor-pointer font-[500]"
                         style={{ fontFamily: 'Montserrat, sans-serif' }}
                       >
-                        Gallery {galleryNum}{galleryLocations[galleryNum] ? `: ${galleryLocations[galleryNum]}` : ''}
+                        Gallery {galleryNum}
+                        {galleryLocations[galleryNum] ? <span className="hidden">: {galleryLocations[galleryNum]}</span> : null}
                       </a>
                     ))}
                   </div>
@@ -458,7 +459,8 @@ function Header({ currentPage = 'home' }: HeaderProps) {
                     className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200"
                     style={{ fontFamily: 'Montserrat, sans-serif' }}
                   >
-                    Gallery {galleryNum}{galleryLocations[galleryNum] ? `: ${galleryLocations[galleryNum]}` : ''}
+                    Gallery {galleryNum}
+                    {galleryLocations[galleryNum] ? <span className="hidden">: {galleryLocations[galleryNum]}</span> : null}
                   </a>
                 ))}
               </div>
