@@ -9,15 +9,15 @@ function FAQ() {
   const [openIndices, setOpenIndices] = useState<Set<number>>(new Set())
 
   const faqs: FAQItem[] = [
-    {
-      question: "Why are your prices so much lower than big box stores?",
-      answer: "We work directly with manufacturers and ship factory-direct, which allows us to eliminate brand premiums, dealer markups, and showroom overhead. Traditional retailers rely on multiple layers of distribution and physical showrooms, all of which add significant cost to the final price. <br />" +
-      "By using a more efficient supply chain, we’re able to offer high-quality custom shades at prices that are typically 50% or less than big box stores, without cutting corners on materials or craftsmanship."
-    },
-    {
-      question: "Does a lower price mean lower quality?",
-      answer: 'Absolutely not! Our shades are made using high-quality materials and modern manufacturing techniques comparable to those used by major brands. The difference isn’t the product itself — it’s the business model behind it. <br />' + 'Instead of spending on brand markups, large sales teams, and showroom expenses, we focus our investment on product quality, customization, and reliable service. That’s how we deliver premium shades at a more accessible price.'
-    },
+    // {
+    //   question: "Why are your prices so much lower than big box stores?",
+    //   answer: "We work directly with manufacturers and ship factory-direct, which allows us to eliminate brand premiums, dealer markups, and showroom overhead. Traditional retailers rely on multiple layers of distribution and physical showrooms, all of which add significant cost to the final price. <br />" +
+    //   "By using a more efficient supply chain, we’re able to offer high-quality custom shades at prices that are typically 50% or less than big box stores, without cutting corners on materials or craftsmanship."
+    // },
+    // {
+    //   question: "Does a lower price mean lower quality?",
+    //   answer: 'Absolutely not! Our shades are made using high-quality materials and modern manufacturing techniques comparable to those used by major brands. The difference isn’t the product itself — it’s the business model behind it. <br />' + 'Instead of spending on brand markups, large sales teams, and showroom expenses, we focus our investment on product quality, customization, and reliable service. That’s how we deliver premium shades at a more accessible price.'
+    // },
     {
       question: "What areas do you serve?",
       answer: "Our DIY option does not have a service area limit—you can order from anywhere in the United States. Full service (measurement and installation) is available in the Bay Area, California, where our local team serves the entire Bay Area and surrounding areas. Outside the Bay Area, we offer our Coordinated Installation Service: we connect you with high-rated local installers for a quote, and you choose your installer and pay them directly. You can also choose DIY and we'll ship your shades with detailed guidance."
@@ -185,92 +185,6 @@ function FAQ() {
                     style={{ fontFamily: 'Montserrat, sans-serif' }}
                     dangerouslySetInnerHTML={{ __html: faq.answer }}
                   />
-                  {index === 0 && (
-                    <div className="mt-8 bg-light-beige rounded-lg p-6 md:p-8">
-                      <h4 className="text-xl md:text-2xl font-bold text-brown text-center mb-6">
-                        How We Deliver Superior Value
-                      </h4>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 relative">
-                        {/* VS Icon */}
-                        <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
-                          <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center border-4 border-light-beige">
-                            <span className="text-white font-bold text-lg">VS</span>
-                          </div>
-                        </div>
-
-                        {/* Traditional Retail */}
-                        <div className="bg-white rounded-lg p-6 shadow-md">
-                          <h5 className="text-lg md:text-xl font-bold text-brown text-center mb-4">
-                            Traditional Retail
-                          </h5>
-                          <div className="mb-4">
-                            {/* Stacked blocks */}
-                            <div className="relative">
-                              <div className="bg-primary p-4 rounded-lg shadow-sm z-10 relative">
-                                <div className="flex items-center gap-3 mb-2">
-                                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-white">
-                                    <path d="M3 21H21M5 21V7L13 2L21 7V21M9 9V21M15 9V21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                  </svg>
-                                  <span className="text-white font-bold text-lg">$$$$ Higher Cost</span>
-                                </div>
-                              </div>
-                              <div className="bg-brown bg-opacity-20 p-3 rounded-lg -mt-2 ml-2 relative z-0">
-                                <p className="text-brown text-sm font-medium"> Showroom & Sales Overhead + $$</p>
-                              </div>
-                              <div className="bg-brown bg-opacity-20 p-3 rounded-lg -mt-2 ml-4 relative z-0">
-                                <p className="text-brown text-sm font-medium">Dealer Markup + $$</p>
-                              </div>
-                              <div className="bg-brown bg-opacity-20 p-3 rounded-lg -mt-2 ml-6 relative z-0">
-                                <p className="text-brown text-sm font-medium">Factory Cost + $$</p>
-                              </div>
-                            </div>
-                          </div>
-                          <p className="text-brown text-sm text-center mb-3">Multiple Layers of Markup & Overhead</p>
-                        </div>
-
-                        {/* Factory-Direct */}
-                        <div className="bg-white rounded-lg p-6 shadow-md">
-                          <h5 className="text-lg md:text-xl font-bold text-brown text-center mb-4">
-                            Factory-Direct
-                          </h5>
-                          <div className="bg-primary bg-opacity-10 p-6 rounded-lg mb-4">
-                            <div className="bg-new-green px-4 py-2 rounded-lg text-center mb-3">
-                                <span className="text-white font-bold text-lg">$$ Lower Cost</span>
-                            </div>
-                            <div className="flex items-center justify-center">
-                              <img src="/assets/faq/factory.png" alt="Factory" className="w-24 h-24 object-contain" />
-                            </div>
-                            <ul className="space-y-3">
-                              <li className="flex items-center gap-2">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="text-new-green flex-shrink-0">
-                                  <path d="M20 6L9 17L4 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                </svg>
-                                <span className="text-brown text-sm">Factory Pricing</span>
-                              </li>
-                              <li className="flex items-center gap-2">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="text-new-green flex-shrink-0">
-                                  <path d="M20 6L9 17L4 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                </svg>
-                                <span className="text-brown text-sm">No Middlemen</span>
-                              </li>
-                              <li className="flex items-center gap-2">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="text-new-green flex-shrink-0">
-                                  <path d="M20 6L9 17L4 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                </svg>
-                                <span className="text-brown text-sm">No Showroom Overhead</span>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="mt-6 text-center">
-                        <p className="text-brown font-semibold mb-2">Direct from Factory = No Middlemen</p>
-                        <p className="text-brown text-lg">
-                          You Get <span className="text-new-green font-bold">Quality Shades at 50% Less!</span>
-                        </p>
-                      </div>
-                    </div>
-                  )}
                 </div>
               )}
             </div>

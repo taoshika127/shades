@@ -357,12 +357,12 @@ function Hero() {
           {/* Left Section - Promotional Content - Below carousel on mobile */}
           <div className="p-6 md:p-10 relative top-[-20px] rounded-[10px] max-w-full md:max-w-[643px] md:ml-20 order-2 md:order-1">
             <p className="text-[18px] md:text-[28px] mb-3 md:mb-6 font-[500] text-[#f0e8d5]" style={{ fontFamily: 'Montserrat, sans-serif' }}>We <span className="font-bold">customize</span>, <span className="font-bold">measure</span> and <span className="font-bold">install</span></p>
-            <h2 className="text-[32px] md:text-[52px] font-bold text-[#dbc697] leading-tight m-0 mb-3 md:mb-10" style={{ fontFamily: 'Fjalla One, sans-serif' }}>Premium Shades Up to 50% Less Than Big Box Stores</h2>
+            <h2 className="text-[32px] md:text-[52px] font-bold text-[#dbc697] leading-tight m-0 mb-3 md:mb-10" style={{ fontFamily: 'Fjalla One, sans-serif' }}>Premium Shades, Draperies and Blinds</h2>
 
             {/* Benefits List */}
             <ul className="space-y-3 md:space-y-5 mb-4 md:mb-10">
               {[
-                'No showroom markup. No retail overhead. Factory-direct pricing.',
+                // 'No showroom markup. No retail overhead. Factory-direct pricing.',
                 <>Proudly Based in the Bay Area, California <br /> Serving Nationwide</>,
                 'Warranty-backed products and installation',
                 'Any size, various fabrics, opacities, cassette styles, motorized options, and more...',
