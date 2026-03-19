@@ -16,7 +16,6 @@ function OurGallery({ images }: OurGalleryProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
   const [visibleCount, setVisibleCount] = useState(5) // For mobile: number of images to show
-  const [galleryLocations, setGalleryLocations] = useState<{ [key: number]: string }>({})
 
   // Use the images array directly, or fallback to placeholder if empty
   const galleryImages = images.length > 0
@@ -88,27 +87,6 @@ function OurGallery({ images }: OurGalleryProps) {
     }
   }, [totalImages])
 
-  // Fetch gallery locations
-  useEffect(() => {
-    const fetchGalleryLocations = async () => {
-      const locations: { [key: number]: string } = {}
-      const promises = galleryImages.map(async (img) => {
-        try {
-          const res = await fetch(`/api/gallery/${img.id}`)
-          if (res.ok) {
-            const data = await res.json()
-            locations[img.id] = data.location || ''
-          }
-        } catch (error) {
-          console.error(`Error fetching location for gallery ${img.id}:`, error)
-        }
-      })
-      await Promise.all(promises)
-      setGalleryLocations(locations)
-    }
-    fetchGalleryLocations()
-  }, [galleryImages])
-
   const visibleImages = getVisibleImages()
 
   // Get images to display on mobile (first visibleCount images)
@@ -147,14 +125,6 @@ function OurGallery({ images }: OurGalleryProps) {
                   className="w-full h-auto object-contain transition-all duration-300 group-hover:brightness-110"
                 />
                 <div className="absolute inset-0 bg-primary bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 pointer-events-none" />
-                {/* Location stripe at bottom */}
-                {galleryLocations[img.id] && (
-                  <div className="absolute bottom-0 left-0 right-0 bg-white bg-opacity-70 px-4 py-2">
-                    <p className="text-brown text-sm font-medium" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                      {galleryLocations[img.id]}
-                    </p>
-                  </div>
-                )}
               </div>
             ))}
           </div>
