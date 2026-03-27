@@ -364,7 +364,7 @@ function Hero() {
               {[
                 // 'No showroom markup. No retail overhead. Factory-direct pricing.',
                 <>Proudly Based in the Bay Area, California <br /> Serving Nationwide</>,
-                'Warranty-backed products and installation',
+                'Designed for challenging windows: angled, oversized, Eichler, and custom shapes',
                 'Any size, various fabrics, opacities, cassette styles, motorized options, and more...',
               ].map((benefit, index) => (
                 <li key={index} className="flex items-center gap-3">
