@@ -37,7 +37,7 @@ const supportLinks = [
   { label: 'Get Free Quote', href: '/quote' },
   { label: 'Schedule Consultation', href: '/contact/schedule-consultation' },
   { label: 'Contact', href: '/contact' },
-  { label: 'Privacy Policy', href: '/#privacy' }
+  { label: 'Privacy Policy', href: '/privacy-policy' }
 ]
 
 const sectionHeaderClass = 'text-brown font-bold uppercase text-sm tracking-wide m-0 mb-4'

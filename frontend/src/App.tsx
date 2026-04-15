@@ -10,6 +10,7 @@ import CategoryPage from './pages/CategoryPage'
 import GalleryPage from './pages/GalleryPage'
 import FormSuccess from './pages/FormSuccess'
 import FormError from './pages/FormError'
+import PrivacyPolicy from './pages/PrivacyPolicy'
 
 function MetaPixelPageView() {
   const location = useLocation()
@@ -65,6 +66,7 @@ function App() {
         <Route path="/contact/schedule-consultation" element={<ScheduleConsultation />} />
         <Route path="/quote" element={<Quote />} />
         <Route path="/quote-summary" element={<QuoteSummary />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/form-success" element={<FormSuccess />} />
         <Route path="/form-error" element={<FormError />} />
       </Routes>

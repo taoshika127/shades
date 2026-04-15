@@ -6,8 +6,8 @@ export default defineConfig({
   server: {
     port: 3000,
     watch: {
-      usePolling: false,
-      interval: 100,
+      usePolling: true,
+      interval: 300,
     },
     hmr: {
       overlay: true,
