@@ -7,8 +7,7 @@ const linkClass = 'text-brown no-underline text-base hover:text-primary transiti
 const linkStyle = { fontFamily: 'Montserrat, sans-serif' as const }
 
 const companyLinks = [
-  { label: 'About Us', href: '/#about' },
-  { label: 'Service Area', href: '/#how-it-works' },
+  { label: 'About Me', href: '/about-me' },
   { label: 'Gallery', href: '/#our-gallery' },
   { label: 'Why Pacific Light', href: '/#why-us' }
 ]
@@ -67,7 +66,7 @@ function Footer() {
   }
 
   return (
-    <footer className="bg-[#f5f3ef] border-t border-[#e8e4dc]">
+    <footer className="bg-gray-100 border-t border-[#ddd9d0]">
       {/* Mobile layout */}
       <div className="md:hidden py-8 px-5">
         <div className="flex flex-col items-center text-center">
@@ -75,10 +74,10 @@ function Footer() {
             <img src="/logo.png" alt="Pacific Light Shades & Blinds" className="w-full h-auto" />
           </a>
           <p className="text-base text-brown m-0 font-[500] leading-snug" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-            Custom Window Treatments
+            Custom Solutions for Every Window
           </p>
           <p className="text-sm text-brown mt-1 mb-6 font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-            Factory Direct Pricing • Premium Quality
+            Factory Direct Pricing · Premium Quality
           </p>
         </div>
 
@@ -164,17 +163,17 @@ function Footer() {
 
       {/* Desktop: Main content 4 columns */}
       <div className="max-w-container mx-auto py-10 md:py-14 px-5 md:px-10 lg:px-20 hidden md:block">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.35fr_1fr_1fr_1fr] gap-8 lg:gap-6">
           {/* Column 1: Logo, tagline, CTA */}
-          <div className="flex flex-col items-center text-center lg:items-center lg:text-center mr-[60px]">
+          <div className="flex flex-col items-center text-center lg:items-center lg:text-center">
             <a href="/" className="block w-[191px]" onClick={(e) => { e.preventDefault(); navigate('/') }}>
               <img src="/logo.png" alt="Pacific Light Shades & Blinds" className="w-full h-auto" />
             </a>
-            <p className="text-base text-brown m-0 font-[500] leading-snug" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-              Custom Window Treatments
+            <p className="text-base text-brown m-0 font-[700] leading-snug" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+              CUSTOM SOLUTIONS FOR EVERY WINDOW
             </p>
             <p className="text-sm text-brown mt-2 mb-6 font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-              Factory Direct Pricing · Premium Quality
+            Oversized • Arched • Angled • High Ceilings
             </p>
             <a
               href="/quote"
@@ -250,7 +249,7 @@ function Footer() {
       </div>
 
       {/* Bottom strip: copyright; on mobile also social icons */}
-      <div className="bg-[#e8e4dc] border-t border-[#ddd9d0] py-4 px-5 md:px-10 lg:px-20">
+      <div className="bg-[#e4e2df] border-t border-[#ddd9d0] py-4 px-5 md:px-10 lg:px-20">
         <div className="max-w-container mx-auto flex flex-row items-center justify-between md:justify-center">
           <p className="text-sm text-brown m-0 font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
             © 2026 Pacific Light Window Treatments. All rights reserved.

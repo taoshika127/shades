@@ -126,7 +126,7 @@ function Hero() {
         <div className="absolute inset-0 bg-black/65 z-[3]" />
       </div>
 
-      <div className="relative z-10 w-full min-h-0 md:h-full md:max-h-[100vh] flex items-start md:items-center justify-center md:justify-start px-5 md:px-20 overflow-hidden py-6 md:py-0">
+      <div className="relative z-10 w-full min-h-0 md:h-full md:max-h-[100vh] flex items-start md:items-center justify-center md:justify-start px-5 md:px-20 overflow-hidden py-4 md:py-0">
         <div className="max-w-container w-full flex flex-col md:flex-row justify-center md:justify-between gap-0 md:gap-12">
           {/* Right Section - Carousel - Hidden on mobile, visible on desktop */}
           {showHeroCarousel && (
@@ -355,17 +355,17 @@ function Hero() {
           )}
 
           {/* Left Section - Promotional Content - Below carousel on mobile */}
-          <div className="p-6 pt-12 md:p-10 relative top-[-20px] rounded-[10px] max-w-full md:max-w-[643px] md:ml-20 order-2 md:order-1">
-            <p className="text-[18px] md:text-[28px] mb-3 md:mb-6 font-[500] text-[#f0e8d5]" style={{ fontFamily: 'Montserrat, sans-serif' }}>We <span className="font-bold">customize</span>, <span className="font-bold">measure</span> and <span className="font-bold">install</span></p>
-            <h2 className="text-[32px] md:text-[52px] font-bold text-[#dbc697] leading-tight m-0 mb-3 md:mb-10" style={{ fontFamily: 'Fjalla One, sans-serif' }}>Premium Shades, Draperies and Blinds</h2>
+          <div className="p-6 pt-6 md:px-10 md:pb-10 md:pt-4 relative top-[-20px] rounded-[10px] max-w-full md:ml-20 order-2 md:order-1">
+            <p className="hidden md:block text-[18px] md:text-[28px] mb-2 md:mb-3 font-[500] text-[#f0e8d5]" style={{ fontFamily: 'Montserrat, sans-serif' }}>From <span className="font-bold">everyday</span> to <span className="font-bold">complex </span> conditions, we provide</p>
+            <h2 className="text-[32px] md:text-[52px] font-bold text-[#dbc697] leading-tight m-0 mb-2 md:mb-5" style={{ fontFamily: 'Fjalla One, sans-serif' }}>CUSTOM SOLUTIONS FOR EVERY WINDOW</h2>
 
             {/* Benefits List */}
             <ul className="space-y-3 md:space-y-5 mb-4 md:mb-10">
               {[
                 // 'No showroom markup. No retail overhead. Factory-direct pricing.',
                 <>Proudly Based in the Bay Area, California <br /> Serving Nationwide</>,
-                'Designed for challenging windows: angled, oversized, Eichler, and custom shapes',
-                'Any size, various fabrics, opacities, cassette styles, motorized options, and more...',
+                'Personalized fabrics, patterns, opacities, cassette styles, motorized options, and more...',
+                'Specialized in everyday and challenging windows and spaces: L shaped, oversized, angled, arched, and high ceilings',
               ].map((benefit, index) => (
                 <li key={index} className="flex items-center gap-3">
                   <div className="flex-shrink-0 w-5 h-5 rounded-full bg-[#f0e8d5]
@@ -381,8 +381,14 @@ function Hero() {
 
             {/* Call-to-Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-8 justify-start">
-              <button onClick={() => navigate('/quote')} className="bg-primary text-white px-8 py-3 md:px-10 md:py-4 font-semibold text-base md:text-lg hover:bg-opacity-90 transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-100 uppercase whitespace-nowrap" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                Get Free Quote
+              <button
+                onClick={() => {
+                  window.location.href = '/#browse-the-range'
+                }}
+                className="bg-primary text-white px-8 py-3 md:px-10 md:py-4 font-semibold text-base md:text-lg hover:bg-opacity-90 transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-100 uppercase whitespace-nowrap"
+                style={{ fontFamily: 'Montserrat, sans-serif' }}
+              >
+                Explore Shades & Draperies
               </button>
               <button onClick={() => navigate('/contact/schedule-consultation')} className="hidden bg-white text-primary px-8 py-3 md:px-10 md:py-4 font-semibold text-base md:text-lg hover:bg-gray-50 transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-100 uppercase whitespace-nowrap" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                 Schedule a Consultation

@@ -18,7 +18,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
   const [categories, setCategories] = useState<Category[]>([])
   const [galleryLocations, setGalleryLocations] = useState<{ [key: number]: string }>({})
   const [showShadesDropdown, setShowShadesDropdown] = useState(false)
-  const [showWhyUsDropdown, setShowWhyUsDropdown] = useState(false)
+  const [showOurStoryDropdown, setShowOurStoryDropdown] = useState(false)
   const [showContactDropdown, setShowContactDropdown] = useState(false)
   const [showGalleryDropdown, setShowGalleryDropdown] = useState(false)
   const [showServiceDropdown, setShowServiceDropdown] = useState(false)
@@ -80,19 +80,9 @@ function Header({ currentPage = 'home' }: HeaderProps) {
     setShowGalleryDropdown(false)
   }
 
-  const handleWhyUsClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleOurStoryClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
-
-
-      // If on another page, navigate to home with hash
-      window.location.href = '/#why-us'
-
-    }
-
-  const handleFAQClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault()
-    // Always navigate to home with hash, let Home page handle the scroll
-    window.location.href = '/#faq'
+    navigate('/about-me')
   }
 
   const handleCategoryClick = (category: Category) => {
@@ -101,15 +91,13 @@ function Header({ currentPage = 'home' }: HeaderProps) {
     setShowShadesDropdown(false)
   }
 
-  const handleWhyUsDropdownClick = (item: string) => {
-    if (item === 'Why Choose Pacific Light Shades') {
-      setShowWhyUsDropdown(false)
-        window.location.href = '/#why-us'
-    } else if (item === 'FAQ') {
-      setShowWhyUsDropdown(false)
-      window.location.href = '/#faq'
+  const handleOurStoryDropdownClick = (item: string) => {
+    setShowOurStoryDropdown(false)
+    if (item === 'About Me') {
+      navigate('/about-me')
+    } else if (item === 'Why Choose Pacific Light Shades') {
+      window.location.href = '/#why-us'
     }
-    setShowWhyUsDropdown(false)
   }
 
   return (
@@ -246,34 +234,34 @@ function Header({ currentPage = 'home' }: HeaderProps) {
           </div>
           <div
             className="relative"
-            onMouseEnter={() => setShowWhyUsDropdown(true)}
-            onMouseLeave={() => setShowWhyUsDropdown(false)}
+            onMouseEnter={() => setShowOurStoryDropdown(true)}
+            onMouseLeave={() => setShowOurStoryDropdown(false)}
           >
-            <a href="/#why-us" onClick={handleWhyUsClick} className="no-underline text-brown text-xl md:text-xl font-medium hover:text-primary transition-colors uppercase" style={{ fontFamily: 'Fjalla One, sans-serif' }}>Why Us</a>
-            {showWhyUsDropdown && (
-              <div className="absolute top-full left-0 pt-1 w-56 bg-transparent z-50">
+            <a href="/about-me" onClick={handleOurStoryClick} className="no-underline text-brown text-xl md:text-xl font-medium hover:text-primary transition-colors uppercase" style={{ fontFamily: 'Fjalla One, sans-serif' }}>Our Story</a>
+            {showOurStoryDropdown && (
+              <div className="absolute top-full left-0 pt-1 w-64 bg-transparent z-50">
                 <div className="bg-white border border-gray-200 rounded-lg shadow-lg py-2">
+                  <a
+                    href="/about-me"
+                    onClick={(e) => {
+                      e.preventDefault()
+                      handleOurStoryDropdownClick('About Me')
+                    }}
+                    className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200 cursor-pointer font-[500]"
+                    style={{ fontFamily: 'Montserrat, sans-serif' }}
+                  >
+                    About Me
+                  </a>
                   <a
                     href="/#why-us"
                     onClick={(e) => {
                       e.preventDefault()
-                      handleWhyUsDropdownClick('Why Choose Pacific Light Shades')
+                      handleOurStoryDropdownClick('Why Choose Pacific Light Shades')
                     }}
                     className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200 cursor-pointer font-[500]"
                     style={{ fontFamily: 'Montserrat, sans-serif' }}
                   >
                     Why Choose Pacific Light Shades
-                  </a>
-                  <a
-                    href="/#faq"
-                    onClick={(e) => {
-                      e.preventDefault()
-                      handleFAQClick(e)
-                    }}
-                    className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200 cursor-pointer font-[500]"
-                    style={{ fontFamily: 'Montserrat, sans-serif' }}
-                  >
-                    FAQ
                   </a>
                 </div>
               </div>
@@ -466,42 +454,42 @@ function Header({ currentPage = 'home' }: HeaderProps) {
               </div>
             </div>
 
-            {/* Why Us */}
+            {/* Our Story */}
             <div className="border-b border-gray-100 pb-2 mb-2">
               <button
                 onClick={() => {
-                  window.location.href = '/#why-us'
+                  navigate('/about-me')
                   setIsMobileMenuOpen(false)
                 }}
                 className="w-full text-left px-4 py-3 text-brown text-lg font-medium hover:text-primary transition-colors uppercase"
                 style={{ fontFamily: 'Fjalla One, sans-serif' }}
               >
-                Why Us
+                Our Story
               </button>
               <div className="pl-4 space-y-1">
+                <a
+                  href="/about-me"
+                  onClick={(e) => {
+                    e.preventDefault()
+                    handleOurStoryDropdownClick('About Me')
+                    setIsMobileMenuOpen(false)
+                  }}
+                  className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200"
+                  style={{ fontFamily: 'Montserrat, sans-serif' }}
+                >
+                  About Me
+                </a>
                 <a
                   href="/#why-us"
                   onClick={(e) => {
                     e.preventDefault()
-                    handleWhyUsDropdownClick('Why Choose Pacific Light Shades')
+                    handleOurStoryDropdownClick('Why Choose Pacific Light Shades')
                     setIsMobileMenuOpen(false)
                   }}
                   className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200"
                   style={{ fontFamily: 'Montserrat, sans-serif' }}
                 >
                   Why Choose Pacific Light Shades
-                </a>
-                <a
-                  href="/#faq"
-                  onClick={(e) => {
-                    e.preventDefault()
-                    handleFAQClick(e)
-                    setIsMobileMenuOpen(false)
-                  }}
-                  className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200"
-                  style={{ fontFamily: 'Montserrat, sans-serif' }}
-                >
-                  FAQ
                 </a>
               </div>
             </div>

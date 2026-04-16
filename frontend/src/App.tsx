@@ -11,6 +11,7 @@ import GalleryPage from './pages/GalleryPage'
 import FormSuccess from './pages/FormSuccess'
 import FormError from './pages/FormError'
 import PrivacyPolicy from './pages/PrivacyPolicy'
+import AboutMe from './pages/AboutMe'
 
 function MetaPixelPageView() {
   const location = useLocation()
@@ -67,6 +68,7 @@ function App() {
         <Route path="/quote" element={<Quote />} />
         <Route path="/quote-summary" element={<QuoteSummary />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/about-me" element={<AboutMe />} />
         <Route path="/form-success" element={<FormSuccess />} />
         <Route path="/form-error" element={<FormError />} />
       </Routes>
