@@ -232,10 +232,10 @@ function HowItWorksSection() {
         <span className="font-bold">Full Service Available in the Bay Area, California</span><br/>
         We offer in-home consultation, professional measurement, and expert installation throughout the Bay Area. <br /><br />
         <span className="font-bold">Outside our service area? No problem.</span><br />
-        Choose our <span className="font-bold">Coordinated Installation Service</span> and we'll connect you with high-rated local installers for a quote, or go <span className="font-bold">DIY</span> with step-by-step guidance.<br />
+        Contact us at info@pacificlightshades.com or give us a call at (650) 561-6086 for more information about our DIY option.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 relative">
+        <div className="grid grid-cols-1 gap-8 md:gap-12 relative max-w-4xl mx-auto">
           {/* Option 1: Full Service */}
           <div className="flex flex-col">
             <div
@@ -295,8 +295,9 @@ function HowItWorksSection() {
             </div>
           </div>
 
-          {/* Option 2: Coordinated Installation Service */}
-          <div className="flex flex-col md:pl-8 md:border-l md:border-gray-300">
+          {/* Option 2: Coordinated Installation Service — remove wrapper `hidden` to show again */}
+          <div className="hidden" aria-hidden="true">
+            <div className="flex flex-col md:pl-8 md:border-l md:border-gray-300">
             <div
               className={`rounded-lg p-6 md:p-8 mb-6 md:mb-[80px] bg-white md:flex md:flex-col cursor-pointer md:cursor-default relative ${expandedOption === 'option2' ? 'md:mb-[80px]' : ''}`}
               style={{ boxShadow: '0 0 24px rgba(0, 0, 0, 0.24)' }}
@@ -353,9 +354,11 @@ function HowItWorksSection() {
               ))}
             </div>
           </div>
+          </div>
 
-          {/* Option 3: DIY Installation */}
-          <div className="flex flex-col md:pl-8 md:border-l md:border-gray-300">
+          {/* Option 3: DIY Installation — remove wrapper `hidden` to show again */}
+          <div className="hidden" aria-hidden="true">
+            <div className="flex flex-col md:pl-8 md:border-l md:border-gray-300">
             <div
               className={`rounded-lg p-6 md:p-8 mb-6 md:mb-[80px] bg-white md:flex md:flex-col cursor-pointer md:cursor-default ${expandedOption === 'option3' ? 'md:mb-[80px]' : ''}`}
               style={{ boxShadow: '0 0 24px rgba(0, 0, 0, 0.24)' }}
@@ -406,6 +409,7 @@ function HowItWorksSection() {
                   )}
                 </div>
               ))}
+            </div>
             </div>
           </div>
         </div>

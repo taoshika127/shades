@@ -387,7 +387,8 @@ function Hero() {
                 className="bg-primary text-white px-8 py-3 md:px-10 md:py-4 font-semibold text-base md:text-lg hover:bg-opacity-90 transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-100 uppercase whitespace-nowrap"
                 style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
               >
-                Explore Shades & Draperies
+                <span className="md:hidden">Explore Shades</span>
+                <span className="hidden md:inline">Explore Shades & Draperies</span>
               </button>
               <button onClick={() => navigate('/contact/schedule-consultation')} className="hidden bg-white text-primary px-8 py-3 md:px-10 md:py-4 font-semibold text-base md:text-lg hover:bg-gray-50 transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-100 uppercase whitespace-nowrap" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                 Schedule a Consultation

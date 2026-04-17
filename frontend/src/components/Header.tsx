@@ -102,36 +102,35 @@ function Header({ currentPage = 'home' }: HeaderProps) {
 
   return (
     <header className="sticky top-0 z-50 py-2 px-3 md:px-10 lg:px-14 bg-base">
-      <div className="max-w-container mx-auto flex w-full items-center md:justify-between">
-        {/* Mobile: left slot + logo (content-sized) + right slot — avoids flex-1 on the logo column (which looked like huge side “padding”) */}
-        <div className="md:hidden flex flex-1 min-w-0 justify-start">
+      <div className="max-w-container mx-auto flex w-full items-center md:justify-between gap-2 sm:gap-3">
+        {/* Mobile: hamburger + logo (left, 20px gap) | CTA (right) */}
+        <div className="flex min-w-0 flex-1 items-center gap-5 md:flex-none md:shrink-0 md:gap-0">
           <button
+            type="button"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="flex flex-col gap-1.5 p-2 text-brown hover:text-primary transition-colors flex-shrink-0"
+            className="md:hidden flex flex-col gap-1.5 p-2 text-brown hover:text-primary transition-colors flex-shrink-0"
             aria-label="Toggle menu"
           >
             <span className="w-6 h-0.5 bg-current transition-all duration-300"></span>
             <span className="w-6 h-0.5 bg-current transition-all duration-300"></span>
           </button>
+          <div className="flex min-w-0 flex-1 items-center justify-start md:flex-none">
+            <Logo
+              mainTextSize="text-xl sm:text-2xl md:text-4xl"
+              subTextSize="text-[7px] sm:text-[8px] md:text-[12px]"
+              centerSubtext={false}
+            />
+          </div>
         </div>
 
-        {/* Logo — text mark; shrink-0 so the link stays content-sized */}
-        <div className="flex shrink-0 justify-center md:justify-start">
-          <Logo
-            mainTextSize="text-2xl md:text-4xl"
-            subTextSize="text-[8px] md:text-[12px]"
-          />
-        </div>
-
-        {/* Mobile Get Free Quote Button - Right side on mobile */}
-        <div className="md:hidden flex flex-1 min-w-0 justify-end">
+        <div className="md:hidden flex-shrink-0">
           <a
             href="/quote"
             onClick={(e) => {
               e.preventDefault()
               navigate('/quote')
             }}
-            className="px-5 py-3 bg-primary text-white font-medium text-sm hover:bg-opacity-90 transition-all duration-300 no-underline flex items-center justify-center uppercase whitespace-nowrap flex-shrink-0"
+            className="px-3 py-2.5 sm:px-5 sm:py-3 bg-primary text-white font-medium text-xs sm:text-sm hover:bg-opacity-90 transition-all duration-300 no-underline flex items-center justify-center uppercase whitespace-nowrap"
           >
             Get Free Quote
           </a>

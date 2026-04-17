@@ -14,7 +14,7 @@ function Logo({
   return (
     <a
       href="/"
-      className={`inline-flex w-fit max-w-full shrink-0 flex-col gap-0.5 no-underline ${centerSubtext ? 'items-center text-center' : 'items-start text-left'} ${className}`}
+      className={`inline-flex w-fit max-w-full min-w-0 shrink flex-col gap-0.5 no-underline ${centerSubtext ? 'items-center text-center' : 'items-start text-left'} ${className}`}
     >
       <span
         className={`${mainTextSize} font-[500] leading-tight m-0 text-brown`}
