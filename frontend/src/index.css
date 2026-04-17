@@ -9,13 +9,36 @@
   }
 
   body {
-    color: #5c4717;
-    @apply bg-white;
+    color: #71482D;
+    background-color: #F4EFE8;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
       'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Buttons & primary CTAs: Gotham medium (500). !important beats Tailwind font-semibold on the same element. */
+@layer components {
+  button,
+  input[type='submit'],
+  input[type='button'],
+  input[type='reset'],
+  input::file-selector-button {
+    font-family: 'Gotham', 'Gotham A', sans-serif !important;
+    font-weight: 500 !important;
+  }
+
+  a.bg-primary {
+    font-family: 'Gotham', 'Gotham A', sans-serif !important;
+    font-weight: 500 !important;
+  }
+
+  a.bg-white.text-primary,
+  a.border-primary.text-primary {
+    font-family: 'Gotham', 'Gotham A', sans-serif !important;
+    font-weight: 500 !important;
   }
 }
 

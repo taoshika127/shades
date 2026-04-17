@@ -80,7 +80,7 @@ function SeeWhatsCustomizable() {
         <h2 className="text-3xl md:text-4xl font-bold text-brown text-center mb-4" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
           See What's Customizable
         </h2>
-        <p className="text-base md:text-xl text-center mb-8 md:mb-12 max-w-3xl mx-auto font-[500]" style={{ color: '#937125', fontFamily: 'Montserrat, sans-serif' }}>
+        <p className="text-base md:text-xl text-center mb-8 md:mb-12 max-w-3xl mx-auto font-[500] text-primary" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
           Discover the endless possibilities to create window treatments that perfectly match your style and functional needs.
         </p>
 
@@ -101,16 +101,16 @@ function SeeWhatsCustomizable() {
 
               {/* Content */}
               <div className="p-6 flex-1 flex flex-col">
-                <h3 className="text-xl font-bold text-brown mb-3" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                <h3 className="text-xl font-bold text-brown mb-3" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                   {option.title}
                 </h3>
-                <p className="text-base font-[500] text-brown mb-4 flex-1" style={{ fontFamily: 'Montserrat, sans-serif' }} dangerouslySetInnerHTML={{ __html: option.description }}>
+                <p className="text-base font-[500] text-brown mb-4 flex-1" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }} dangerouslySetInnerHTML={{ __html: option.description }}>
                 </p>
 
                 {/* Fabrics and Patterns and Cassette have dropdown, others have Learn more link */}
                 {option.title === 'Fabrics and Patterns' ? (
                   <div className="space-y-1">
-                    <p className="text-sm text-primary font-medium" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                    <p className="text-sm text-primary font-medium" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                       See fabrics and patterns in:
                     </p>
                     <div className="flex gap-2">
@@ -118,7 +118,7 @@ function SeeWhatsCustomizable() {
                         value={selectedCategory}
                         onChange={(e) => setSelectedCategory(e.target.value)}
                         className="flex-1 px-3 py-2 border border-gray-300 rounded text-sm text-brown bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                        style={{ fontFamily: 'Montserrat, sans-serif' }}
+                        style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                       >
                         <option value="">Select category</option>
                         {categories.map((category) => (
@@ -131,7 +131,7 @@ function SeeWhatsCustomizable() {
                         onClick={handleViewFabrics}
                         disabled={!selectedCategory}
                         className="px-4 py-2 bg-brown text-white rounded hover:bg-opacity-90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
-                        style={{ fontFamily: 'Montserrat, sans-serif' }}
+                        style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                       >
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -141,7 +141,7 @@ function SeeWhatsCustomizable() {
                   </div>
                 ) : option.title === 'Cassette' ? (
                   <div className="space-y-1">
-                    <p className="text-sm text-primary font-medium" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                    <p className="text-sm text-primary font-medium" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                       See Cassette Options in:
                     </p>
                     <div className="flex gap-2">
@@ -149,7 +149,7 @@ function SeeWhatsCustomizable() {
                         value={selectedCassetteCategory}
                         onChange={(e) => setSelectedCassetteCategory(e.target.value)}
                         className="flex-1 px-3 py-2 border border-gray-300 rounded text-sm text-brown bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                        style={{ fontFamily: 'Montserrat, sans-serif' }}
+                        style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                       >
                         <option value="">Select category</option>
                         {cassetteOptions.map((option) => (
@@ -162,7 +162,7 @@ function SeeWhatsCustomizable() {
                         onClick={handleViewCassette}
                         disabled={!selectedCassetteCategory}
                         className="px-4 py-2 bg-brown text-white rounded hover:bg-opacity-90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
-                        style={{ fontFamily: 'Montserrat, sans-serif' }}
+                        style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                       >
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -187,7 +187,7 @@ function SeeWhatsCustomizable() {
                       }
                     }}
                     className="text-primary text-base font-[500] hover:text-opacity-80 transition-colors inline-flex items-center gap-1"
-                    style={{ fontFamily: 'Montserrat, sans-serif', position: 'relative', top: '-10px' }}
+                    style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif", position: 'relative', top: '-10px' }}
                   >
                     Learn more...
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

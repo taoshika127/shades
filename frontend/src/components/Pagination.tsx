@@ -19,7 +19,7 @@ function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) 
                 ? 'bg-primary text-white'
                 : 'bg-light-beige text-brown hover:bg-primary hover:text-white'
             }`}
-            style={{ fontFamily: 'Montserrat, sans-serif' }}
+            style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
           >
             {page}
           </button>
@@ -28,7 +28,7 @@ function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) 
           <button
             onClick={() => onPageChange(currentPage + 1)}
             className="px-4 py-2 text-base font-medium bg-light-beige text-brown hover:bg-primary hover:text-white transition-colors uppercase"
-            style={{ fontFamily: 'Montserrat, sans-serif' }}
+            style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
           >
             Next
           </button>

@@ -127,7 +127,7 @@ function GalleryPage() {
             <button
               onClick={() => navigate('/#our-gallery')}
               className="text-brown hover:text-primary flex items-center gap-2"
-              style={{ fontFamily: 'Montserrat, sans-serif' }}
+              style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -138,7 +138,7 @@ function GalleryPage() {
               {parseInt(idNumber) > 1 && (
                 <button
                   className="px-4 py-2.5 bg-primary text-white text-base font-semibold border-0 cursor-pointer w-fit hover:bg-[#9a7828] transition-colors uppercase"
-                  style={{ fontFamily: 'Montserrat, sans-serif' }}
+                  style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                   onClick={() => navigate(`/gallery${parseInt(idNumber) - 1}`)}
                 >
                   Previous Gallery
@@ -147,7 +147,7 @@ function GalleryPage() {
               {parseInt(idNumber) < 15 && (
                 <button
                   className="px-4 py-2.5 bg-primary text-white text-base font-semibold border-0 cursor-pointer w-fit hover:bg-[#9a7828] transition-colors uppercase"
-                  style={{ fontFamily: 'Montserrat, sans-serif' }}
+                  style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                   onClick={() => navigate(`/gallery${parseInt(idNumber) + 1}`)}
                 >
                   Next Gallery
@@ -161,14 +161,14 @@ function GalleryPage() {
               <h2 className="text-2xl md:text-4xl font-bold text-brown leading-tight m-0" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
                 Gallery {idNumber}
               </h2>
-              <p className="text-base md:text-xl text-brown leading-relaxed m-0 whitespace-pre-line font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+              <p className="text-base md:text-xl text-brown leading-relaxed m-0 whitespace-pre-line font-[500]" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                 {galleryDescription || 'Our designer already made a lot of beautiful prototype of rooms that inspire you'}
               </p>
               {galleryDesign && (
                 <div className="mt-4">
                   <ul className="space-y-2">
                     {Object.entries(galleryDesign).map(([roomType, description]) => (
-                      <li key={roomType} className="text-base md:text-lg leading-relaxed font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                      <li key={roomType} className="text-base md:text-lg leading-relaxed font-[500]" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                         <span className="font-bold text-brown italic">{roomType}:</span>{' '}
                         <span className="text-brown">{description}</span>
                       </li>
@@ -178,7 +178,7 @@ function GalleryPage() {
               )}
             </div>
             <div className="relative">
-              <div className="relative w-full overflow-hidden flex justify-center items-center bg-gray-100 h-[400px] md:h-[450px] lg:h-[620px]">
+              <div className="relative w-full overflow-hidden flex justify-center items-center bg-secondary h-[400px] md:h-[450px] lg:h-[620px]">
                 <img
                   ref={imgRef}
                   src={currentImage}

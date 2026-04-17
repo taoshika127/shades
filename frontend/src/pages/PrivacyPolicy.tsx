@@ -10,19 +10,19 @@ function PrivacyPolicy() {
   return (
     <div className="min-h-screen">
       <Header />
-      <main className="py-10 md:py-16 px-5 md:px-20 bg-gray-100">
+      <main className="py-10 md:py-16 px-5 md:px-20 bg-secondary">
         <div className="max-w-container mx-auto">
           <header className="mb-8 md:mb-10 text-center">
             <h1 className="text-3xl md:text-4xl font-bold text-brown mb-3" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
               Privacy Policy — Pacific Light Shades
             </h1>
-            <p className="text-base md:text-lg text-primary m-0" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+            <p className="text-base md:text-lg text-primary m-0" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
               Last Updated: <span className="font-[500]">April 15, 2026</span>
             </p>
           </header>
 
           <section className="bg-white rounded-lg shadow-sm border border-gray-100 p-6 md:p-10">
-            <div className="space-y-7 text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+            <div className="space-y-7 text-brown" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
               <section>
                 <h2 className="text-xl md:text-2xl font-bold mb-2" style={{ fontFamily: 'Fjalla One, sans-serif' }}>1. Introduction</h2>
                 <p className="m-0 leading-relaxed">
@@ -37,7 +37,7 @@ function PrivacyPolicy() {
                   We may collect the following types of information:
                 </p>
 
-                <h3 className="text-base md:text-lg font-semibold mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>Personal Information</h3>
+                <h3 className="text-base md:text-lg font-semibold mb-2" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>Personal Information</h3>
                 <p className="m-0 leading-relaxed mb-2">When you submit a form or contact us, we may collect:</p>
                 <ul className="list-disc pl-6 m-0 space-y-1 leading-relaxed">
                   <li>Name</li>
@@ -46,7 +46,7 @@ function PrivacyPolicy() {
                   <li>Address or project location (if provided)</li>
                 </ul>
 
-                <h3 className="text-base md:text-lg font-semibold mt-5 mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>Usage Data</h3>
+                <h3 className="text-base md:text-lg font-semibold mt-5 mb-2" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>Usage Data</h3>
                 <p className="m-0 leading-relaxed mb-2">
                   We may automatically collect certain information when you visit our website, such as:
                 </p>

@@ -6,33 +6,36 @@ interface LogoProps {
 }
 
 function Logo({
-  mainTextSize = 'text-3xl md:text-4xl',
-  subTextSize = 'text-xs md:text-base',
+  mainTextSize = 'text-2xl md:text-3xl',
+  subTextSize = 'text-[8px] md:text-[10px]',
   centerSubtext = true,
-  className = ''
+  className = '',
 }: LogoProps) {
   return (
-    <a href="/" className={`inline-flex flex-col gap-0 no-underline items-center ${className}`}>
-      <h1 className={`${mainTextSize} font-bold m-0 leading-tight flex items-baseline justify-center text-brown w-full`} style={{ fontFamily: 'Fjalla One, sans-serif', letterSpacing: '-0.02em' }}>
-        PACIFIC L
-        <span
-          className="inline-block mx-[2.5px] bg-brown"
-          style={{
-            width: '0.35em',
-            height: '0.93em',
-            backgroundImage: 'repeating-linear-gradient(0deg, #6c592e 0%, #6c592e 25%, white 25%, white 50%)',
-            backgroundSize: '100% 28%',
-            verticalAlign: 'baseline'
-          }}
-        />
-        GHT
-      </h1>
-      <h2 className={`${subTextSize} font-semibold m-0 leading-tight uppercase ${centerSubtext ? 'text-center' : ''}`} style={{ fontFamily: 'Montserrat, sans-serif', color: '#6c592e' }}>
-        SHADES • DRAPERIES • BLINDS
-      </h2>
+    <a
+      href="/"
+      className={`inline-flex w-fit max-w-full shrink-0 flex-col gap-0.5 no-underline ${centerSubtext ? 'items-center text-center' : 'items-start text-left'} ${className}`}
+    >
+      <span
+        className={`${mainTextSize} font-[500] leading-tight m-0 text-brown`}
+        style={{
+          fontFamily: "'Gotham', 'Gotham A', sans-serif",
+          letterSpacing: '-0.02em',
+        }}
+      >
+        PACIFIC LIGHT
+      </span>
+      <span
+        className={`${subTextSize} font-semibold leading-tight uppercase m-0 tracking-[0.14em]`}
+        style={{
+          fontFamily: "'Gotham', 'Gotham A', sans-serif",
+          color: '#B38F6F',
+        }}
+      >
+        SHADES · DRAPERIES · BLINDS
+      </span>
     </a>
   )
 }
 
 export default Logo
-

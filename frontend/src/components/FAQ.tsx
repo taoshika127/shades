@@ -91,7 +91,7 @@ function FAQ() {
         <h2 className="text-3xl md:text-4xl font-bold text-brown text-center mb-4" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
           Frequently Asked Questions
         </h2>
-        <p className="text-base md:text-xl text-center mb-6 md:mb-8 max-w-3xl mx-auto font-[500]" style={{ color: '#937125', fontFamily: 'Montserrat, sans-serif' }}>
+        <p className="text-base md:text-xl text-center mb-6 md:mb-8 max-w-3xl mx-auto font-[500]" style={{ color: '#937125', fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
           Get clear answers about our pricing, quality, and service.
         </p>
 
@@ -103,14 +103,14 @@ function FAQ() {
                 <p className="text-base md:text-2xl font-bold mb-1 text-brown" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
                   Still have questions?
                 </p>
-                <p className="text-base md:text-lg text-brown font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                <p className="text-base md:text-lg text-brown font-[500]" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                   Reach out to our team at any time!
                 </p>
               </div>
               <a
                 href="/contact"
                 className="px-3 md:px-4 py-1.5 md:py-2 bg-white text-primary border-2 border-primary font-semibold text-xs md:text-sm hover:bg-gray-50 transition-all duration-300 no-underline whitespace-nowrap uppercase"
-                style={{ fontFamily: 'Montserrat, sans-serif' }}
+                style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
               >
                 Contact Us
               </a>
@@ -135,7 +135,7 @@ function FAQ() {
                 </div>
                 {/* Question text */}
                 <div className="flex-1 px-4 md:px-6 py-1 md:py-5 text-left">
-                  <span className="text-white text-sm md:text-lg font-semibold" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                  <span className="text-white text-sm md:text-lg font-semibold" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                     {faq.question}
                   </span>
                 </div>
@@ -181,8 +181,8 @@ function FAQ() {
               {openIndices.has(index) && (
                 <div className="mt-1 md:mt-2 pb-2 md:pb-4 pl-[4.5rem] md:pl-[5rem] pr-4 md:pr-6">
                   <div
-                    className="text-sm md:text-base text-brown leading-relaxed mb-2 md:mb-6 font-[500]"
-                    style={{ fontFamily: 'Montserrat, sans-serif' }}
+                    className="text-sm text-brown leading-relaxed mb-2 md:mb-6 font-[500]"
+                    style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                     dangerouslySetInnerHTML={{ __html: faq.answer }}
                   />
                 </div>

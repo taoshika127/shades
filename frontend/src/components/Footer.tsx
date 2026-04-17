@@ -4,7 +4,7 @@ import { FaInstagram, FaFacebookF, FaPhone, FaMapMarkerAlt, FaEnvelope } from 'r
 import { HiChevronDown } from 'react-icons/hi2'
 
 const linkClass = 'text-brown no-underline text-base hover:text-primary transition-colors font-[500]'
-const linkStyle = { fontFamily: 'Montserrat, sans-serif' as const }
+const linkStyle = { fontFamily: "'Gotham', 'Gotham A', sans-serif" as const }
 
 const companyLinks = [
   { label: 'About Me', href: '/about-me' },
@@ -40,7 +40,7 @@ const supportLinks = [
 ]
 
 const sectionHeaderClass = 'text-brown font-bold uppercase text-sm tracking-wide m-0 mb-4'
-const sectionHeaderStyle = { fontFamily: 'Montserrat, sans-serif' as const }
+const sectionHeaderStyle = { fontFamily: "'Gotham', 'Gotham A', sans-serif" as const }
 
 type AccordionKey = 'company' | 'products' | 'support' | null
 
@@ -66,23 +66,23 @@ function Footer() {
   }
 
   return (
-    <footer className="bg-gray-100 border-t border-[#ddd9d0]">
+    <footer className="bg-gradient-to-b from-base to-secondary border-t border-[#ddd9d0]">
       {/* Mobile layout */}
       <div className="md:hidden py-8 px-5">
         <div className="flex flex-col items-center text-center">
           <a href="/" className="block w-[160px] mb-3" onClick={(e) => { e.preventDefault(); navigate('/') }}>
-            <img src="/logo.png" alt="Pacific Light Shades & Blinds" className="w-full h-auto" />
+            <img src="/assets/logo/pacific_light_transparent.png" alt="Pacific Light Shades & Blinds" className="w-full h-auto" />
           </a>
-          <p className="text-base text-brown m-0 font-[500] leading-snug" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+          {/* <p className="text-base text-brown m-0 font-[500] leading-snug" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
             Custom Solutions for Every Window
           </p>
-          <p className="text-sm text-brown mt-1 mb-6 font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+          <p className="text-sm text-brown mt-1 mb-6 font-[500]" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
             Factory Direct Pricing · Premium Quality
-          </p>
+          </p> */}
         </div>
 
         {/* Contact info with icons */}
-        <div className="flex flex-col gap-3 items-center text-center mb-6" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+        <div className="flex flex-col gap-3 items-center text-center mb-6" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
           <a href="sms:+16505616086" className="flex items-center justify-center gap-3 text-brown no-underline hover:text-primary transition-colors text-base font-[500]">
             <FaPhone className="w-4 h-4 flex-shrink-0 text-brown" />
             (650) 561-6086
@@ -148,14 +148,14 @@ function Footer() {
         </div>
 
         {/* CTA */}
-        <p className="text-center text-brown font-[500] mt-6 mb-3" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+        <p className="text-center text-brown font-[500] mt-6 mb-3" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
           Ready to Upgrade Your Windows?
         </p>
         <a
           href="/quote"
           onClick={(e) => { e.preventDefault(); navigate('/quote') }}
           className="block w-full max-w-[280px] mx-auto px-6 py-4 bg-primary text-white font-semibold text-center text-base hover:bg-opacity-90 transition-all duration-300 no-underline uppercase"
-          style={{ fontFamily: 'Montserrat, sans-serif' }}
+          style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
         >
           Get Free Quote
         </a>
@@ -166,20 +166,20 @@ function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.35fr_1fr_1fr_1fr] gap-8 lg:gap-6">
           {/* Column 1: Logo, tagline, CTA */}
           <div className="flex flex-col items-center text-center lg:items-center lg:text-center">
-            <a href="/" className="block w-[191px]" onClick={(e) => { e.preventDefault(); navigate('/') }}>
-              <img src="/logo.png" alt="Pacific Light Shades & Blinds" className="w-full h-auto" />
+            <a href="/" className="block w-[200px]" onClick={(e) => { e.preventDefault(); navigate('/') }}>
+              <img src="/assets/logo/pacific_light_transparent.png" alt="Pacific Light Shades & Blinds" className="w-full h-auto md:my-10" />
             </a>
-            <p className="text-base text-brown m-0 font-[700] leading-snug" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+            {/* <p className="text-base text-brown m-0 font-[700] leading-snug" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
               CUSTOM SOLUTIONS FOR EVERY WINDOW
             </p>
-            <p className="text-sm text-brown mt-2 mb-6 font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+            <p className="text-sm text-brown mt-2 mb-6 font-[500]" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
             Oversized • Arched • Angled • High Ceilings
-            </p>
+            </p> */}
             <a
               href="/quote"
               onClick={(e) => { e.preventDefault(); navigate('/quote') }}
               className="px-6 md:px-8 py-3 md:py-4 bg-primary text-white font-semibold text-sm md:text-base hover:bg-opacity-90 transition-all duration-300 no-underline flex items-center justify-center uppercase"
-              style={{ fontFamily: 'Montserrat, sans-serif' }}
+              style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
             >
               Get Free Quote
             </a>
@@ -230,11 +230,11 @@ function Footer() {
           {/* Column 4: CONTACT US */}
           <div className="lg:pl-4 lg:border-l border-[#e0dcd4]">
             <h3 className={sectionHeaderClass} style={sectionHeaderStyle}>Contact Us</h3>
-            <p className="text-base text-brown m-0 font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+            <p className="text-base text-brown m-0 font-[500]" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
               <a href="sms:+16505616086" className="text-brown no-underline hover:text-primary transition-colors">(650) 561-6086</a>
               <br />
               <a href="mailto:info@pacificlightshades.com" className="text-brown no-underline hover:text-primary transition-colors block my-2">info@pacificlightshades.com</a>
-              <span className="block text-base text-brown font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>Mon - Fri: 9:00 AM - 5:00 PM</span>
+              <span className="block text-base text-brown font-[500]" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>Mon - Fri: 9:00 AM - 5:00 PM</span>
             </p>
             <div className="flex items-center gap-3 mt-4">
               <a href="https://www.instagram.com/beckypl_interiors/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-brown flex items-center justify-center text-white hover:opacity-90 transition-opacity" aria-label="Instagram">
@@ -251,7 +251,7 @@ function Footer() {
       {/* Bottom strip: copyright; on mobile also social icons */}
       <div className="bg-[#e4e2df] border-t border-[#ddd9d0] py-4 px-5 md:px-10 lg:px-20">
         <div className="max-w-container mx-auto flex flex-row items-center justify-between md:justify-center">
-          <p className="text-sm text-brown m-0 font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+          <p className="text-sm text-brown m-0 font-[500]" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
             © 2026 Pacific Light Window Treatments. All rights reserved.
           </p>
           <div className="flex items-center gap-3 md:hidden">

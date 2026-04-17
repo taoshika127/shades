@@ -101,7 +101,7 @@ function OurGallery({ images }: OurGalleryProps) {
     <section id="our-gallery" className="py-10 md:py-20 px-5 md:px-20 bg-white">
       <div className="max-w-container mx-auto">
       <h2 className="text-3xl md:text-4xl font-bold text-brown text-center mb-4" style={{ fontFamily: 'Fjalla One, sans-serif' }}>Our Gallery</h2>
-        <p className="text-base md:text-xl text-center mb-6 md:mb-8 max-w-3xl mx-auto font-[500]" style={{ color: '#937125', fontFamily: 'Montserrat, sans-serif' }}>
+        <p className="text-base md:text-xl text-center mb-6 md:mb-8 max-w-3xl mx-auto font-[500] text-primary" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
           Explore our curated collection of stunning window shade installations. From modern minimalism to classic elegance, discover the
           perfect inspiration for your space.
         </p>
@@ -135,7 +135,7 @@ function OurGallery({ images }: OurGalleryProps) {
               <button
                 onClick={loadMore}
                 className="text-primary font-medium hover:underline cursor-pointer transition-all duration-300"
-                style={{ fontFamily: 'Montserrat, sans-serif' }}
+                style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
               >
                 See More...
               </button>

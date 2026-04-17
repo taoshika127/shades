@@ -95,7 +95,7 @@ function ContactSection() {
             <h2 className="text-2xl md:text-3xl font-bold text-brown mb-3" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
               Contact Form
             </h2>
-            <p className="text-base md:text-lg text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+            <p className="text-base md:text-lg text-brown" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
               Have a question? We're here to help. Send us a message and we'll respond as soon as possible.
             </p>
           </div>
@@ -104,7 +104,7 @@ function ContactSection() {
             {/* Name and Email on same line on desktop */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="name" className="block text-base font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                <label htmlFor="name" className="block text-base font-medium text-brown mb-2" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                   Name<span className="text-red-500">*</span>
                 </label>
                 <input
@@ -116,11 +116,11 @@ function ContactSection() {
                   placeholder="Enter your name"
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg text-base text-brown bg-white focus:outline-none focus:border-primary"
                   required
-                  style={{ fontFamily: 'Montserrat, sans-serif' }}
+                  style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-base font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                <label htmlFor="email" className="block text-base font-medium text-brown mb-2" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                   Email<span className="text-red-500">*</span>
                 </label>
                 <input
@@ -132,7 +132,7 @@ function ContactSection() {
                   placeholder="Enter your email address"
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg text-base text-brown bg-white focus:outline-none focus:border-primary"
                   required
-                  style={{ fontFamily: 'Montserrat, sans-serif' }}
+                  style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                 />
               </div>
             </div>
@@ -141,7 +141,7 @@ function ContactSection() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Phone Number */}
               <div>
-                <label htmlFor="phone" className="block text-base font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                <label htmlFor="phone" className="block text-base font-medium text-brown mb-2" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                   Phone Number
                 </label>
                 <input
@@ -152,13 +152,13 @@ function ContactSection() {
                   onChange={handleChange}
                   placeholder="(555) 123-4567"
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg text-base text-brown bg-white focus:outline-none focus:border-primary"
-                  style={{ fontFamily: 'Montserrat, sans-serif' }}
+                  style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                 />
               </div>
 
               {/* ZIP Code */}
               <div>
-                <label htmlFor="zipCode" className="block text-base font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                <label htmlFor="zipCode" className="block text-base font-medium text-brown mb-2" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                   ZIP Code<span className="text-red-500">*</span>
                 </label>
                 <input
@@ -170,14 +170,14 @@ function ContactSection() {
                   placeholder="Enter your ZIP code"
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg text-base text-brown bg-white focus:outline-none focus:border-primary"
                   required
-                  style={{ fontFamily: 'Montserrat, sans-serif' }}
+                  style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                 />
               </div>
             </div>
 
             {/* Subject Dropdown */}
             <div>
-              <label htmlFor="subject" className="block text-base font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+              <label htmlFor="subject" className="block text-base font-medium text-brown mb-2" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                 Subject<span className="text-red-500">*</span>
               </label>
               <div className="relative">
@@ -188,7 +188,7 @@ function ContactSection() {
                   onChange={handleChange}
                   className="w-full px-4 py-3 pr-10 border border-gray-300 rounded-lg text-base text-brown bg-white focus:outline-none focus:border-primary appearance-none cursor-pointer"
                   required
-                  style={{ fontFamily: 'Montserrat, sans-serif' }}
+                  style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                 >
                   <option value="">Select a topic</option>
                   <option value="general">General Inquiry</option>
@@ -210,7 +210,7 @@ function ContactSection() {
 
             {/* Your Question */}
             <div>
-              <label htmlFor="question" className="block text-base font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+              <label htmlFor="question" className="block text-base font-medium text-brown mb-2" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                 Your Question<span className="text-red-500">*</span>
               </label>
               <textarea
@@ -222,13 +222,13 @@ function ContactSection() {
                 rows={6}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg text-base text-brown bg-white focus:outline-none focus:border-primary resize-y"
                 required
-                style={{ fontFamily: 'Montserrat, sans-serif' }}
+                style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
               />
             </div>
 
             {/* File Attachments */}
             <div>
-              <label htmlFor="attachments" className="block text-base font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+              <label htmlFor="attachments" className="block text-base font-medium text-brown mb-2" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                 Attach Files (Optional)
               </label>
               <input
@@ -239,16 +239,16 @@ function ContactSection() {
                 accept="image/*,.pdf,.doc,.docx,.txt,.xls,.xlsx"
                 onChange={handleFileChange}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg text-base text-brown bg-white focus:outline-none focus:border-primary file:mr-4 file:py-2 file:px-4 file:border-0 file:text-sm file:font-semibold file:bg-primary file:text-white hover:file:bg-opacity-90 file:cursor-pointer cursor-pointer"
-                style={{ fontFamily: 'Montserrat, sans-serif' }}
+                style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
               />
-              <p className="text-sm text-gray-600 mt-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+              <p className="text-sm text-gray-600 mt-2" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                 Accepted formats: Images (JPG, PNG, GIF, WEBP), Documents (PDF, DOC, DOCX, TXT, XLS, XLSX)
               </p>
 
               {/* Display selected files */}
               {attachedFiles.length > 0 && (
                 <div className="mt-4 space-y-2">
-                  <p className="text-sm font-medium text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                  <p className="text-sm font-medium text-brown" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                     Selected Files ({attachedFiles.length}):
                   </p>
                   <div className="space-y-2">
@@ -259,7 +259,7 @@ function ContactSection() {
                             <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#5c4717" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                             <path d="M14 2V8H20" stroke="#5c4717" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                           </svg>
-                          <span className="text-sm text-brown truncate" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                          <span className="text-sm text-brown truncate" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                             {file.name} ({(file.size / 1024).toFixed(1)} KB)
                           </span>
                         </div>
@@ -291,7 +291,7 @@ function ContactSection() {
                 className="mt-1 w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary cursor-pointer"
                 required
               />
-              <label htmlFor="agreeToPrivacy" className="text-sm text-gray-700 cursor-pointer" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+              <label htmlFor="agreeToPrivacy" className="text-sm text-gray-700 cursor-pointer" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                 I agree to receive email communications and understand my information will be handled according to the privacy policy.
               </label>
             </div>
@@ -301,7 +301,7 @@ function ContactSection() {
               <button
                 type="submit"
                 className="w-full md:w-auto px-4 md:px-8 py-3 md:py-4 bg-primary text-white text-sm md:text-lg font-semibold hover:bg-opacity-90 transition-colors"
-                style={{ fontFamily: 'Montserrat, sans-serif' }}
+                style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
               >
                 SUBMIT
               </button>

@@ -134,13 +134,13 @@ function HowItWorksSection() {
             <span className="text-white text-xl font-bold">{step.number}</span>
           </div>
           <div className="bg-primary rounded-lg pl-8 md:pl-8 pr-4 md:pr-6 py-2 md:py-3 -ml-6 relative z-0">
-            <h3 className="text-base md:text-lg font-bold text-white m-0" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+            <h3 className="text-base md:text-lg font-bold text-white m-0" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
               {step.title}
             </h3>
           </div>
         </div>
         <div className="flex flex-col gap-4 md:gap-6 ml-4 items-start">
-          <p className="text-lg md:text-xl text-brown leading-relaxed font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+          <p className="text-lg md:text-xl text-brown leading-relaxed font-[500]" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
             {step.description.includes('online form') ? (
               <>
                 {step.description.split('online form').map((part, index, array) => (
@@ -152,7 +152,7 @@ function HowItWorksSection() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="font-bold text-primary hover:text-brown underline cursor-pointer"
-                        style={{ fontFamily: 'Montserrat, sans-serif' }}
+                        style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                       >
                         online form
                       </a>
@@ -171,7 +171,7 @@ function HowItWorksSection() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="font-bold text-primary hover:text-brown underline cursor-pointer"
-                        style={{ fontFamily: 'Montserrat, sans-serif' }}
+                        style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                       >
                         in-person consulting form
                       </a>
@@ -190,7 +190,7 @@ function HowItWorksSection() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="font-bold text-primary hover:text-brown underline cursor-pointer"
-                        style={{ fontFamily: 'Montserrat, sans-serif' }}
+                        style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                       >
                         Contact Form
                       </a>
@@ -228,7 +228,7 @@ function HowItWorksSection() {
         <h2 className="text-3xl md:text-4xl font-bold text-brown text-center mb-4" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
           How It Works
         </h2>
-        <p className="text-base md:text-xl text-center mb-12 md:mb-16 max-w-3xl mx-auto font-[500]" style={{ color: '#937125', fontFamily: 'Montserrat, sans-serif' }}>
+        <p className="text-base md:text-xl text-center mb-12 md:mb-16 max-w-3xl mx-auto font-[500] text-primary" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
         <span className="font-bold">Full Service Available in the Bay Area, California</span><br/>
         We offer in-home consultation, professional measurement, and expert installation throughout the Bay Area. <br /><br />
         <span className="font-bold">Outside our service area? No problem.</span><br />
@@ -254,15 +254,15 @@ function HowItWorksSection() {
               <h3 className="text-2xl md:text-3xl font-bold text-brown mb-4 mt-5" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
                 Option 1: Full Service
               </h3>
-              <p className="text-lg md:text-xl text-brown md:flex-1 font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+              <p className="text-lg md:text-xl text-brown md:flex-1 font-[500]" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
               Professional <span className="font-bold">in-home consultation</span>, precise <span className="font-bold">measurements</span>, expert  <span className="font-bold">installation</span>, and <span className="font-bold">warranty-backed service</span>, we take care of everything for you.
               </p>
               {expandedOption !== 'option1' ? (
-                <p className="text-base md:hidden text-primary font-semibold mt-4 text-center" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                <p className="text-base md:hidden text-primary font-semibold mt-4 text-center" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                   Tap to see the steps →
                 </p>
               ) : (
-                <p className="text-base md:hidden text-primary font-semibold mt-4 text-center" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                <p className="text-base md:hidden text-primary font-semibold mt-4 text-center" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                   Tap to hide steps ↑
                 </p>
               )}
@@ -313,15 +313,15 @@ function HowItWorksSection() {
               <h3 className="text-2xl md:text-3xl font-bold text-brown mb-4 mt-5" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
                 Option 2: Coordinated Installation Service
               </h3>
-              <p className="text-lg md:text-xl text-brown md:flex-1 font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+              <p className="text-lg md:text-xl text-brown md:flex-1 font-[500]" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                 We connect you with <span className="font-bold">high-rated local installers</span> in your area for a quote. You <span className="font-bold">pay them directly</span> for installation and/or measurement.
               </p>
               {expandedOption !== 'option2' ? (
-                <p className="text-base md:hidden text-primary font-semibold mt-4 text-center" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                <p className="text-base md:hidden text-primary font-semibold mt-4 text-center" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                   Tap to see the steps →
                 </p>
               ) : (
-                <p className="text-base md:hidden text-primary font-semibold mt-4 text-center" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                <p className="text-base md:hidden text-primary font-semibold mt-4 text-center" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                   Tap to hide steps ↑
                 </p>
               )}
@@ -368,15 +368,15 @@ function HowItWorksSection() {
               <h3 className="text-2xl md:text-3xl font-bold text-brown mb-4" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
                 Option 3: DIY Installation
               </h3>
-              <p className="text-lg md:text-xl text-brown md:flex-1 font-[500]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+              <p className="text-lg md:text-xl text-brown md:flex-1 font-[500]" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                 We provide <span className="font-bold">clear measuring instructions</span> and <span className="font-bold">easy-to-follow installation guidance</span> so you can install in as little as 20 minutes.
               </p>
               {expandedOption !== 'option3' ? (
-                <p className="text-base md:hidden text-primary font-semibold mt-4 text-center" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                <p className="text-base md:hidden text-primary font-semibold mt-4 text-center" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                   Tap to see the steps →
                 </p>
               ) : (
-                <p className="text-base md:hidden text-primary font-semibold mt-4 text-center" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                <p className="text-base md:hidden text-primary font-semibold mt-4 text-center" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                   Tap to hide steps ↑
                 </p>
               )}

@@ -35,7 +35,7 @@ function RoomInspiration({ inspirations }: RoomInspirationProps) {
             <p className="text-base md:text-xl text-light-gray leading-relaxed m-0">
               Our designer already made a lot of beautiful prototype of rooms that inspire you
             </p>
-            <button className="px-8 py-3.5 bg-primary text-white text-base font-semibold border-0 cursor-pointer w-fit hover:bg-[#9a7828] transition-colors uppercase" style={{ fontFamily: 'Montserrat, sans-serif' }}>Explore More</button>
+            <button className="px-8 py-3.5 bg-primary text-white text-base font-semibold border-0 cursor-pointer w-fit hover:bg-[#9a7828] transition-colors uppercase" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>Explore More</button>
           </div>
           <div className="relative">
             <div className="w-full rounded-[10px] overflow-hidden">

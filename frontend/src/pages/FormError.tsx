@@ -84,18 +84,18 @@ function FormError() {
               {/* Error Message */}
               <p
                 className="text-base md:text-lg text-red-600 mb-2 max-w-2xl mx-auto"
-                style={{ fontFamily: 'Montserrat, sans-serif' }}
+                style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
               >
                 {errorMessage}
               </p>
 
               <p
                 className="text-sm md:text-base text-gray-600 mb-4 max-w-2xl mx-auto"
-                style={{ fontFamily: 'Montserrat, sans-serif' }}
+                style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
               >
                 Please check your connection and try again. If the problem persists, contact us:
               </p>
-              <p className="text-base text-brown mb-8 font-medium" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+              <p className="text-base text-brown mb-8 font-medium" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                 <a href="tel:+16505616086" className="text-brown no-underline hover:text-primary transition-colors">(650) 561-6086</a>
                 <br />
                 <a href="mailto:info@pacificlightshades.com" className="text-brown no-underline hover:text-primary transition-colors">info@pacificlightshades.com</a>
@@ -106,21 +106,21 @@ function FormError() {
                 <button
                   onClick={() => navigate(getReturnPath())}
                   className="px-8 py-3 bg-primary text-white text-sm md:text-lg font-semibold hover:bg-opacity-90 transition-colors"
-                  style={{ fontFamily: 'Montserrat, sans-serif' }}
+                  style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                 >
                   Try Again
                 </button>
                 <button
                   onClick={() => navigate('/contact')}
                   className="px-8 py-3 bg-white text-primary border-2 border-primary text-sm md:text-lg font-semibold hover:bg-gray-50 transition-colors"
-                  style={{ fontFamily: 'Montserrat, sans-serif' }}
+                  style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                 >
                   Contact Us Directly
                 </button>
                 <button
                   onClick={() => navigate('/')}
                   className="px-8 py-3 bg-gray-200 text-gray-700 text-sm md:text-lg font-semibold hover:bg-gray-300 transition-colors"
-                  style={{ fontFamily: 'Montserrat, sans-serif' }}
+                  style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                 >
                   Return to Home
                 </button>

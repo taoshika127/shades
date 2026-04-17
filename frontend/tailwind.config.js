@@ -7,14 +7,19 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#B88E2F',
+        primary: '#B38F6F',
         'light-beige': '#FFF3E3',
-        'brown': '#5c4717',
+        brown: '#71482D',
+        base: '#F4EFE8',
+        secondary: '#E6D8C6',
         'medium-gray': '#3A3A3A',
         'light-gray': '#9F9F9F',
         'bg-gray': '#F4F5F7',
         'sale-red': '#E97171',
         'new-green': '#2EC1AC',
+      },
+      fontFamily: {
+        gotham: ['"Gotham"', '"Gotham A"', 'sans-serif'],
       },
       maxWidth: {
         'container': '1440px',

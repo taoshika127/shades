@@ -148,7 +148,7 @@ function ScheduleConsultation() {
               <h1 className="text-2xl md:text-3xl font-bold text-brown mb-3" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
             Schedule a Consultation
           </h1>
-          <p className="text-base md:text-lg text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+          <p className="text-base md:text-lg text-brown" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                 Let's find the perfect shades or blinds for your space. No obligation, just friendly expert advice.
               </p>
             </div>
@@ -161,7 +161,7 @@ function ScheduleConsultation() {
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="mb-[10px]">
-                    <label htmlFor="fullName" className="block text-base font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                    <label htmlFor="fullName" className="block text-base font-medium text-brown mb-2" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                       Full Name<span className="text-red-500">*</span>
                     </label>
                     <input
@@ -173,12 +173,12 @@ function ScheduleConsultation() {
                       placeholder="Enter your full name"
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg text-base text-brown bg-white focus:outline-none focus:border-primary"
                       required
-                      style={{ fontFamily: 'Montserrat, sans-serif' }}
+                      style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                     />
                   </div>
 
                   <div className="mb-[10px]">
-                    <label htmlFor="email" className="block text-base font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                    <label htmlFor="email" className="block text-base font-medium text-brown mb-2" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                       Email<span className="text-red-500">*</span>
                     </label>
                     <input
@@ -190,16 +190,16 @@ function ScheduleConsultation() {
                       placeholder="Enter your email address"
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg text-base text-brown bg-white focus:outline-none focus:border-primary"
                       required
-                      style={{ fontFamily: 'Montserrat, sans-serif' }}
+                      style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                     />
                   </div>
 
                   <div className="mb-[10px]">
-                    <label htmlFor="phone" className="block text-base font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                    <label htmlFor="phone" className="block text-base font-medium text-brown mb-2" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                       Phone Number
                     </label>
                     <div className="relative">
-                      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-brown text-base" style={{ fontFamily: 'Montserrat, sans-serif' }}>+1</span>
+                      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-brown text-base" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>+1</span>
                       <input
                         type="tel"
                         id="phone"
@@ -208,13 +208,13 @@ function ScheduleConsultation() {
                         onChange={handleChange}
                         placeholder="(555) 123-4567"
                         className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg text-base text-brown bg-white focus:outline-none focus:border-primary"
-                        style={{ fontFamily: 'Montserrat, sans-serif' }}
+                        style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                       />
                     </div>
                   </div>
 
                   <div className="mb-[10px]">
-                    <label htmlFor="serviceAddress" className="block text-base font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                    <label htmlFor="serviceAddress" className="block text-base font-medium text-brown mb-2" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                       Service Address / Zip Code<span className="text-red-500">*</span>
                     </label>
                     <input
@@ -226,7 +226,7 @@ function ScheduleConsultation() {
                       placeholder="Enter address or zip code"
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg text-base text-brown bg-white focus:outline-none focus:border-primary"
                       required
-                      style={{ fontFamily: 'Montserrat, sans-serif' }}
+                      style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                     />
                   </div>
                 </div>
@@ -235,7 +235,7 @@ function ScheduleConsultation() {
                 <div className="mt-[34px] grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Preferred Consultation Type */}
                   <div>
-                    <label className="block text-base font-medium text-brown mb-3" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                    <label className="block text-base font-medium text-brown mb-3" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                       Preferred Consultation Type<span className="text-red-500">*</span>
                     </label>
                     <div className="flex flex-col gap-3">
@@ -250,7 +250,7 @@ function ScheduleConsultation() {
                           style={{ accentColor: '#B88E2F' }}
                           required
                         />
-                        <span className="text-base text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>In-Home</span>
+                        <span className="text-base text-brown" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>In-Home</span>
                       </label>
                       <label className="flex items-center gap-2 cursor-pointer">
                         <input
@@ -263,11 +263,11 @@ function ScheduleConsultation() {
                           style={{ accentColor: '#B88E2F' }}
                           required
                         />
-                        <span className="text-base text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>Virtual</span>
+                        <span className="text-base text-brown" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>Virtual</span>
                       </label>
                     </div>
                     {formData.consultationType === 'In-Home' && zipcodeInServiceArea === false && (
-                      <p className="mt-3 text-sm text-red-500" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                      <p className="mt-3 text-sm text-red-500" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                         This is not our service area. Please select Virtual consultation, or choose our Coordinated Installation Service or DIY option when you get a quote.
                       </p>
                     )}
@@ -275,7 +275,7 @@ function ScheduleConsultation() {
 
                 {/* Preferred Time Window */}
                 <div className="mt-[10px]">
-                  <label className="block text-base font-medium text-brown mb-3" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                  <label className="block text-base font-medium text-brown mb-3" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                     Preferred Time Window
                   </label>
                     <div className="grid grid-cols-2 gap-x-6 gap-y-3">
@@ -291,7 +291,7 @@ function ScheduleConsultation() {
                               className="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary cursor-pointer"
                               style={{ accentColor: '#B88E2F' }}
                             />
-                            <span className="text-base text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                            <span className="text-base text-brown" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                               {day} Morning
                             </span>
                           </label>
@@ -305,7 +305,7 @@ function ScheduleConsultation() {
                               className="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary cursor-pointer"
                               style={{ accentColor: '#B88E2F' }}
                             />
-                            <span className="text-base text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                            <span className="text-base text-brown" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                               {day} Afternoon
                             </span>
                           </label>
@@ -324,7 +324,7 @@ function ScheduleConsultation() {
 
                 {/* What are you looking for? */}
                 <div className="mb-[34px]">
-                  <label className="block text-base font-medium text-brown mb-3" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                  <label className="block text-base font-medium text-brown mb-3" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                     What are you looking for?
                   </label>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -339,7 +339,7 @@ function ScheduleConsultation() {
                           className="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary cursor-pointer"
                           style={{ accentColor: '#B88E2F' }}
                         />
-                        <span className="text-base text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>{option}</span>
+                        <span className="text-base text-brown" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>{option}</span>
                       </label>
                     ))}
                   </div>
@@ -347,7 +347,7 @@ function ScheduleConsultation() {
 
                 {/* When are you hoping to install? */}
                 <div className="mb-[34px]">
-                  <label className="block text-base font-medium text-brown mb-3" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                  <label className="block text-base font-medium text-brown mb-3" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                     When are you hoping to install?<span className="text-red-500">*</span>
                   </label>
                   <div className="flex flex-wrap gap-4">
@@ -363,7 +363,7 @@ function ScheduleConsultation() {
                           style={{ accentColor: '#B88E2F' }}
                           required
                         />
-                        <span className="text-base text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>{option}</span>
+                        <span className="text-base text-brown" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>{option}</span>
                       </label>
                     ))}
                   </div>
@@ -371,7 +371,7 @@ function ScheduleConsultation() {
 
                 {/* How many windows? */}
                 <div className="mb-[34px]">
-                  <label className="block text-base font-medium text-brown mb-3" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                  <label className="block text-base font-medium text-brown mb-3" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                     How many windows are we talking about?<span className="text-red-500">*</span>
                   </label>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -387,7 +387,7 @@ function ScheduleConsultation() {
                           style={{ accentColor: '#B88E2F' }}
                           required={formData.numberOfWindows.length === 0}
                         />
-                        <span className="text-base text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>{option}</span>
+                        <span className="text-base text-brown" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>{option}</span>
                       </label>
                     ))}
                   </div>
@@ -395,7 +395,7 @@ function ScheduleConsultation() {
 
                 {/* Budget Range */}
                 <div className="mb-[34px]">
-                  <label className="block text-base font-medium text-brown mb-3" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                  <label className="block text-base font-medium text-brown mb-3" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                     Do you have a budget range in mind?<span className="text-red-500">*</span>
                   </label>
                   <div className="flex flex-wrap gap-4">
@@ -411,7 +411,7 @@ function ScheduleConsultation() {
                           style={{ accentColor: '#B88E2F' }}
                           required
                         />
-                        <span className="text-base text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>{option}</span>
+                        <span className="text-base text-brown" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>{option}</span>
                       </label>
                     ))}
                   </div>
@@ -424,7 +424,7 @@ function ScheduleConsultation() {
                   Additional Information
                 </h2>
                 <div>
-                  <label htmlFor="additionalInfo" className="block text-base font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                  <label htmlFor="additionalInfo" className="block text-base font-medium text-brown mb-2" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                     Anything you'd like us to know before the consultation?
                   </label>
                   <textarea
@@ -435,7 +435,7 @@ function ScheduleConsultation() {
                     placeholder="Style preferences, inspiration photos, concerns, HOA rules, etc."
                     rows={6}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg text-base text-brown bg-white focus:outline-none focus:border-primary resize-y"
-                    style={{ fontFamily: 'Montserrat, sans-serif' }}
+                    style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                   />
                 </div>
               </div>
@@ -445,11 +445,11 @@ function ScheduleConsultation() {
                 <button
                   type="submit"
                   className="w-full md:w-auto px-4 md:px-8 py-3 md:py-4 bg-primary text-white text-sm md:text-lg font-semibold hover:bg-opacity-90 transition-colors uppercase"
-                  style={{ fontFamily: 'Montserrat, sans-serif' }}
+                  style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                 >
                   SCHEDULE MY CONSULTATION
                 </button>
-                <p className="text-sm text-brown text-center" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                <p className="text-sm text-brown text-center" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                   No pressure. No obligation. Just expert advice tailored to your home.
                 </p>
               </div>

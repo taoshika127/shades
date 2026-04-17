@@ -329,9 +329,9 @@ function CategoryPage() {
         <div className="relative z-10 h-full flex flex-col items-center justify-center">
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg" style={{ fontFamily: 'Fjalla One, sans-serif' }}>{category.name}</h1>
           <nav className="text-base text-white/90">
-            <button onClick={() => navigate('/')} className="hover:underline uppercase" style={{ fontFamily: 'Montserrat, sans-serif' }}>Home</button>
+            <button onClick={() => navigate('/')} className="hover:underline uppercase" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>Home</button>
             <span className="mx-2">/</span>
-            <button onClick={() => navigate('/shades')} className="hover:underline uppercase" style={{ fontFamily: 'Montserrat, sans-serif' }}>Shades</button>
+            <button onClick={() => navigate('/shades')} className="hover:underline uppercase" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>Shades</button>
             <span className="mx-2">/</span>
             <span>{category.name}</span>
           </nav>

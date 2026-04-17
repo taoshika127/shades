@@ -132,37 +132,37 @@ function QuoteSummary() {
       </div>
       <div className="bg-gray-50 rounded-lg p-6 space-y-4">
         <div className="flex justify-between items-center">
-          <span className="text-sm text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+          <span className="text-sm text-brown" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
             Materials ({quoteData.windows.length} windows)
           </span>
-          <span className="text-sm font-semibold text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+          <span className="text-sm font-semibold text-brown" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
             {formatCurrency(estimate.materialsTotal)}
           </span>
         </div>
         <div className="flex justify-between items-center">
-          <span className="text-sm text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+          <span className="text-sm text-brown" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
             Shipping & Handling ({quoteData.shippingType})
           </span>
-          <span className="text-sm font-semibold text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+          <span className="text-sm font-semibold text-brown" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
             {formatCurrency(estimate.shipping)}
           </span>
         </div>
         {quoteData.serviceOption === 'Full Service' && (
           <div className="flex justify-between items-center">
-            <span className="text-sm text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+            <span className="text-sm text-brown" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
               Professional Installation (Labor & mounting hardware)
             </span>
-            <span className="text-sm font-semibold text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+            <span className="text-sm font-semibold text-brown" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
               {formatCurrency(estimate.installation)}
             </span>
           </div>
         )}
         {quoteData.serviceOption === 'Coordinated Installation Service' && (
           <div className="flex justify-between items-center">
-            <span className="text-sm text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+            <span className="text-sm text-brown" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
               Installation
             </span>
-            <span className="text-sm font-semibold text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+            <span className="text-sm font-semibold text-brown" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
               Quoted separately by local installer
             </span>
           </div>
@@ -176,7 +176,7 @@ function QuoteSummary() {
               {formatCurrency(estimate.total)}
             </span>
           </div>
-          <p className="text-xs text-light-gray" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+          <p className="text-xs text-light-gray" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
             Including all taxes and fees
           </p>
         </div>
@@ -186,7 +186,7 @@ function QuoteSummary() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-secondary">
       <Header />
       <section className="py-10 md:py-20 px-5 md:px-20">
         <div className="max-w-7xl mx-auto">
@@ -197,7 +197,7 @@ function QuoteSummary() {
                 <h1 className="text-2xl md:text-3xl font-bold text-brown mb-2" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
                   Quote Summary
                 </h1>
-                <p className="text-base md:text-lg text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                <p className="text-base md:text-lg text-brown" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                   Review your custom window shade configuration
                 </p>
               </div>
@@ -219,19 +219,19 @@ function QuoteSummary() {
                     <table className="w-full border-collapse">
                       <thead>
                         <tr className="bg-gray-50 border-b-2 border-gray-200">
-                          <th className="px-4 py-3 text-left text-sm font-semibold text-brown uppercase" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                          <th className="px-4 py-3 text-left text-sm font-semibold text-brown uppercase" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                             Window
                           </th>
-                          <th className="px-4 py-3 text-left text-sm font-semibold text-brown uppercase" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                          <th className="px-4 py-3 text-left text-sm font-semibold text-brown uppercase" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                             Dimensions
                           </th>
-                          <th className="px-4 py-3 text-left text-sm font-semibold text-brown uppercase" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                          <th className="px-4 py-3 text-left text-sm font-semibold text-brown uppercase" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                             Shade Type
                           </th>
-                          <th className="px-4 py-3 text-center text-sm font-semibold text-brown uppercase" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                          <th className="px-4 py-3 text-center text-sm font-semibold text-brown uppercase" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                             Motorization
                           </th>
-                          <th className="px-4 py-3 text-right text-sm font-semibold text-brown uppercase" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                          <th className="px-4 py-3 text-right text-sm font-semibold text-brown uppercase" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                             Price
                           </th>
                         </tr>
@@ -241,24 +241,24 @@ function QuoteSummary() {
                           <tr key={window.id} className="border-b border-gray-200 hover:bg-gray-50 transition-colors">
                             <td className="px-4 py-4">
                               <div>
-                                <p className="text-sm font-semibold text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                                <p className="text-sm font-semibold text-brown" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                                   {window.room}
                                 </p>
-                                <p className="text-xs text-light-gray" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                                <p className="text-xs text-light-gray" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                                   {window.window}
                                 </p>
                               </div>
                             </td>
-                            <td className="px-4 py-4 text-sm text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                            <td className="px-4 py-4 text-sm text-brown" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                               {stripParentheses(window.dimensions)}
                             </td>
-                            <td className="px-4 py-4 text-sm text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                            <td className="px-4 py-4 text-sm text-brown" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                               {window.shadeType}
                             </td>
-                            <td className="px-4 py-4 text-sm text-brown text-center" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                            <td className="px-4 py-4 text-sm text-brown text-center" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                               {window.features ? 'Yes' : 'No'}
                             </td>
-                            <td className="px-4 py-4 text-right text-sm font-semibold text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                            <td className="px-4 py-4 text-right text-sm font-semibold text-brown" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                               {formatCurrency(window.price)}
                             </td>
                           </tr>
@@ -276,7 +276,7 @@ function QuoteSummary() {
                       Service Option
                     </h2>
                   </div>
-                  <div className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white font-semibold rounded-lg uppercase select-none" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                  <div className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white font-semibold rounded-lg uppercase select-none" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                     <HiOutlineUser className="text-lg" />
                     {quoteData.serviceOption}
                   </div>
@@ -292,14 +292,14 @@ function QuoteSummary() {
                   <button
                     onClick={handleAcceptQuote}
                     className="w-full px-6 py-4 bg-primary text-white font-bold text-lg hover:bg-[#9a7828] transition-colors flex items-center justify-center gap-2 uppercase rounded-lg"
-                    style={{ fontFamily: 'Montserrat, sans-serif' }}
+                    style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                   >
                     Continue to Next Step
                   </button>
                   <button
                     onClick={handleModifyQuote}
                     className="w-full px-6 py-4 bg-white text-primary border-2 border-primary font-semibold hover:bg-gray-50 transition-colors flex items-center justify-center gap-2 uppercase rounded-lg"
-                    style={{ fontFamily: 'Montserrat, sans-serif' }}
+                    style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                   >
                     <HiOutlinePencil className="text-xl" />
                     Modify Quote
@@ -307,7 +307,7 @@ function QuoteSummary() {
                   <button
                     onClick={handleDownloadPDF}
                     className="w-full px-6 py-4 bg-white text-primary border-2 border-primary font-semibold hover:bg-gray-50 transition-colors flex items-center justify-center gap-2 uppercase rounded-lg"
-                    style={{ fontFamily: 'Montserrat, sans-serif' }}
+                    style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                   >
                     <HiOutlineArrowDownTray className="text-xl" />
                     Download PDF

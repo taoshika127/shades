@@ -7,13 +7,13 @@ function AboutMe() {
     window.scrollTo(0, 0)
   }, [])
 
-  const bodyStyle = { fontFamily: 'Montserrat, sans-serif' as const }
+  const bodyStyle = { fontFamily: "'Gotham', 'Gotham A', sans-serif" as const }
   const headingStyle = { fontFamily: 'Fjalla One, sans-serif' as const }
 
   return (
     <div className="min-h-screen">
       <Header />
-      <main className="py-10 md:py-16 px-5 md:px-20 bg-gray-100">
+      <main className="py-10 md:py-16 px-5 md:px-20 bg-base">
         <div className="max-w-container mx-auto">
           <header className="mb-8 md:mb-10 text-center">
             <h1 className="text-3xl md:text-4xl font-bold text-brown mb-3" style={headingStyle}>
@@ -71,10 +71,7 @@ function AboutMe() {
                   A well-designed, organized home fosters a sense of control, comfort, and calm, while poor design can create unnecessary stress and disconnection. I’ve always been interested in how people interact with space—how we shape it to meet our needs, how it supports both connection and privacy, and how we experience it through light, texture, and atmosphere.
                 </p>
                 <p className="m-0 leading-relaxed mb-3">
-                  Window treatments play a quiet but powerful role in this. They influence how light enters a space, how private or open a home feels, and how comfortable it is throughout the day.
-                </p>
-                <p className="m-0 leading-relaxed mb-3">
-                  From an aesthetic perspective, they should align seamlessly with the overall design of the home. From a functional standpoint, they need to support light filtering, blackout, privacy, insulation, and energy efficiency.
+                  Window treatments play a quiet but powerful role in this. They influence how light enters a space, how private or open a home feels, and how comfortable it is throughout the day. From an aesthetic perspective, they should align seamlessly with the overall design of the home. From a functional standpoint, they need to support light filtering, blackout, privacy, insulation, and energy efficiency.
                 </p>
                 <p className="m-0 leading-relaxed mb-3">
                   I also enjoy solving more complex window conditions—whether it’s high ceilings, angled or arched windows, Eichler homes, or other unique layouts—where thoughtful customization can make a meaningful difference.

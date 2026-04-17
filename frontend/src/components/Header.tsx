@@ -101,20 +101,22 @@ function Header({ currentPage = 'home' }: HeaderProps) {
   }
 
   return (
-    <header className="sticky top-0 z-50 py-2 md:py-3 px-3 md:px-20 bg-white border-b border-gray-100 shadow-sm">
-      <div className="max-w-container mx-auto flex justify-between items-center">
-        {/* Mobile Hamburger Menu Button */}
-        <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden flex flex-col gap-1.5 p-2 text-brown hover:text-primary transition-colors flex-shrink-0"
-          aria-label="Toggle menu"
-        >
-          <span className="w-6 h-0.5 bg-current transition-all duration-300"></span>
-          <span className="w-6 h-0.5 bg-current transition-all duration-300"></span>
-        </button>
+    <header className="sticky top-0 z-50 py-2 px-3 md:px-10 lg:px-14 bg-base">
+      <div className="max-w-container mx-auto flex w-full items-center md:justify-between">
+        {/* Mobile: left slot + logo (content-sized) + right slot — avoids flex-1 on the logo column (which looked like huge side “padding”) */}
+        <div className="md:hidden flex flex-1 min-w-0 justify-start">
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="flex flex-col gap-1.5 p-2 text-brown hover:text-primary transition-colors flex-shrink-0"
+            aria-label="Toggle menu"
+          >
+            <span className="w-6 h-0.5 bg-current transition-all duration-300"></span>
+            <span className="w-6 h-0.5 bg-current transition-all duration-300"></span>
+          </button>
+        </div>
 
-        {/* Logo - Smaller on mobile, centered on mobile, left on desktop */}
-        <div className="flex-1 md:flex-none flex justify-center md:justify-start">
+        {/* Logo — text mark; shrink-0 so the link stays content-sized */}
+        <div className="flex shrink-0 justify-center md:justify-start">
           <Logo
             mainTextSize="text-2xl md:text-4xl"
             subTextSize="text-[8px] md:text-[12px]"
@@ -122,15 +124,14 @@ function Header({ currentPage = 'home' }: HeaderProps) {
         </div>
 
         {/* Mobile Get Free Quote Button - Right side on mobile */}
-        <div className="md:hidden flex-shrink-0">
+        <div className="md:hidden flex flex-1 min-w-0 justify-end">
           <a
             href="/quote"
             onClick={(e) => {
               e.preventDefault()
               navigate('/quote')
             }}
-            className="px-5 py-3 bg-primary text-white font-semibold text-sm hover:bg-opacity-90 transition-all duration-300 no-underline flex items-center justify-center uppercase whitespace-nowrap"
-            style={{ fontFamily: 'Montserrat, sans-serif' }}
+            className="px-5 py-3 bg-primary text-white font-medium text-sm hover:bg-opacity-90 transition-all duration-300 no-underline flex items-center justify-center uppercase whitespace-nowrap flex-shrink-0"
           >
             Get Free Quote
           </a>
@@ -156,7 +157,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
                         handleCategoryClick(category)
                       }}
                       className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200 cursor-pointer font-[500]"
-                      style={{ fontFamily: 'Montserrat, sans-serif' }}
+                      style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                     >
                       {category.name}
                     </a>
@@ -182,7 +183,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
                       setShowServiceDropdown(false)
                     }}
                     className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200 cursor-pointer font-[500]"
-                    style={{ fontFamily: 'Montserrat, sans-serif' }}
+                    style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                   >
                     See What's Customizable
                   </a>
@@ -194,7 +195,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
                       setShowServiceDropdown(false)
                     }}
                     className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200 cursor-pointer font-[500]"
-                    style={{ fontFamily: 'Montserrat, sans-serif' }}
+                    style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                   >
                     How It Works
                   </a>
@@ -221,7 +222,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
                           handleGalleryItemClick(galleryNum)
                         }}
                         className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200 cursor-pointer font-[500]"
-                        style={{ fontFamily: 'Montserrat, sans-serif' }}
+                        style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                       >
                         Gallery {galleryNum}
                         {galleryLocations[galleryNum] ? <span className="hidden">: {galleryLocations[galleryNum]}</span> : null}
@@ -248,7 +249,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
                       handleOurStoryDropdownClick('About Me')
                     }}
                     className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200 cursor-pointer font-[500]"
-                    style={{ fontFamily: 'Montserrat, sans-serif' }}
+                    style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                   >
                     About Me
                   </a>
@@ -259,7 +260,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
                       handleOurStoryDropdownClick('Why Choose Pacific Light Shades')
                     }}
                     className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200 cursor-pointer font-[500]"
-                    style={{ fontFamily: 'Montserrat, sans-serif' }}
+                    style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                   >
                     Why Choose Pacific Light Shades
                   </a>
@@ -284,7 +285,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
                       setShowContactDropdown(false)
                     }}
                     className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200 cursor-pointer font-[500]"
-                    style={{ fontFamily: 'Montserrat, sans-serif' }}
+                    style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                   >
                     Get Free Quote
                   </a>
@@ -296,7 +297,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
                       setShowContactDropdown(false)
                     }}
                     className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200 cursor-pointer font-[500]"
-                    style={{ fontFamily: 'Montserrat, sans-serif' }}
+                    style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                   >
                     Schedule a Consultation
                   </a>
@@ -308,7 +309,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
                       setShowContactDropdown(false)
                     }}
                     className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200 cursor-pointer font-[500]"
-                    style={{ fontFamily: 'Montserrat, sans-serif' }}
+                    style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                   >
                     Contact Form
                   </a>
@@ -320,7 +321,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
 
         {/* Desktop Get Free Quote Button */}
         <div className="hidden md:flex gap-3">
-          <a href="/quote" className="px-6 md:px-8 py-3 md:py-4 bg-primary text-white font-semibold text-sm md:text-base hover:bg-opacity-90 transition-all duration-300 no-underline flex items-center justify-center uppercase" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+          <a href="/quote" className="px-6 md:px-8 py-3 md:py-4 bg-primary text-white font-medium text-sm md:text-base hover:bg-opacity-90 transition-all duration-300 no-underline flex items-center justify-center uppercase">
             Get Free Quote
           </a>
         </div>
@@ -374,7 +375,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
                       setIsMobileMenuOpen(false)
                     }}
                     className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200"
-                    style={{ fontFamily: 'Montserrat, sans-serif' }}
+                    style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                   >
                     {category.name}
                   </a>
@@ -403,7 +404,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
                     setIsMobileMenuOpen(false)
                   }}
                   className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200"
-                  style={{ fontFamily: 'Montserrat, sans-serif' }}
+                  style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                 >
                   See What's Customizable
                 </a>
@@ -415,7 +416,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
                     setIsMobileMenuOpen(false)
                   }}
                   className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200"
-                  style={{ fontFamily: 'Montserrat, sans-serif' }}
+                  style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                 >
                   How It Works
                 </a>
@@ -445,7 +446,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
                       setIsMobileMenuOpen(false)
                     }}
                     className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200"
-                    style={{ fontFamily: 'Montserrat, sans-serif' }}
+                    style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                   >
                     Gallery {galleryNum}
                     {galleryLocations[galleryNum] ? <span className="hidden">: {galleryLocations[galleryNum]}</span> : null}
@@ -475,7 +476,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
                     setIsMobileMenuOpen(false)
                   }}
                   className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200"
-                  style={{ fontFamily: 'Montserrat, sans-serif' }}
+                  style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                 >
                   About Me
                 </a>
@@ -487,7 +488,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
                     setIsMobileMenuOpen(false)
                   }}
                   className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200"
-                  style={{ fontFamily: 'Montserrat, sans-serif' }}
+                  style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                 >
                   Why Choose Pacific Light Shades
                 </a>
@@ -515,7 +516,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
                     setIsMobileMenuOpen(false)
                   }}
                   className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200"
-                  style={{ fontFamily: 'Montserrat, sans-serif' }}
+                  style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                 >
                   Get Free Quote
                 </a>
@@ -527,7 +528,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
                     setIsMobileMenuOpen(false)
                   }}
                   className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200"
-                  style={{ fontFamily: 'Montserrat, sans-serif' }}
+                  style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                 >
                   Schedule a Consultation
                 </a>
@@ -539,7 +540,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
                     setIsMobileMenuOpen(false)
                   }}
                   className="block px-4 py-2 text-brown text-sm hover:bg-primary hover:bg-opacity-10 hover:text-primary transition-all duration-200"
-                  style={{ fontFamily: 'Montserrat, sans-serif' }}
+                  style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                 >
                   Contact Form
                 </a>
@@ -555,8 +556,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
                   navigate('/quote')
                   setIsMobileMenuOpen(false)
                 }}
-                className="block w-full px-6 py-5 bg-primary text-white font-semibold text-lg hover:bg-opacity-90 transition-all duration-300 text-center uppercase"
-                style={{ fontFamily: 'Montserrat, sans-serif' }}
+                className="block w-full px-6 py-5 bg-primary text-white font-medium text-lg hover:bg-opacity-90 transition-all duration-300 text-center uppercase"
               >
                 Get Free Quote
               </a>

@@ -285,10 +285,10 @@ function Quote() {
                   <h1 className="text-2xl md:text-3xl font-bold text-brown mb-3" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
                     Get Fully Customizable Window Shades at Factory-Direct Pricing
                   </h1>
-                  <h2 className="text-base md:text-lg text-brown mb-4" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                  <h2 className="text-base md:text-lg text-brown mb-4" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                     No obligation. Fast Response.
                   </h2>
-                  <ul className="text-sm md:text-base text-brown mb-8 space-y-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                  <ul className="text-sm md:text-base text-brown mb-8 space-y-2" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                     <li className="flex items-center gap-2">✔ Up to 50% less than big box stores</li>
                     <li className="flex items-center gap-2">✔ Professional measurement available</li>
                     <li className="flex items-center gap-2">✔ Local installation support</li>
@@ -308,7 +308,7 @@ function Quote() {
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <label htmlFor="fullName" className="block text-sm font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                        <label htmlFor="fullName" className="block text-sm font-medium text-brown mb-2" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                           Full Name <span className="text-red-500">*</span>
                         </label>
                         <input
@@ -319,12 +319,12 @@ function Quote() {
                           onChange={handleInputChange}
                           placeholder="Enter your full name"
                           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                          style={{ fontFamily: 'Montserrat, sans-serif' }}
+                          style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                           required
                         />
                       </div>
                       <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                        <label htmlFor="email" className="block text-sm font-medium text-brown mb-2" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                           Email Address <span className="text-red-500">*</span>
                         </label>
                         <input
@@ -335,7 +335,7 @@ function Quote() {
                           onChange={handleInputChange}
                           placeholder="Enter your email address"
                           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                          style={{ fontFamily: 'Montserrat, sans-serif' }}
+                          style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                           required
                         />
                       </div>
@@ -353,7 +353,7 @@ function Quote() {
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <label htmlFor="zipcode" className="block text-sm font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                        <label htmlFor="zipcode" className="block text-sm font-medium text-brown mb-2" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                           Zipcode <span className="text-red-500">*</span>
                         </label>
                         <input
@@ -368,17 +368,17 @@ function Quote() {
                               ? 'border-red-500 text-red-500 focus:ring-red-500'
                               : 'border-gray-300 focus:ring-primary'
                           }`}
-                          style={{ fontFamily: 'Montserrat, sans-serif' }}
+                          style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                           required
                         />
                         {showZipcodeError && (
-                          <p className="mt-2 text-sm text-red-500" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                          <p className="mt-2 text-sm text-red-500" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                             We don't currently offer full-service installation in your area. You can choose our <b>Coordinated Installation Service</b> (we connect you with local installers) or our <b>DIY option</b> and we'll ship your shades with detailed installation guidance!
                           </p>
                         )}
                       </div>
                       <div>
-                        <label htmlFor="projectTimeline" className="block text-sm font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                        <label htmlFor="projectTimeline" className="block text-sm font-medium text-brown mb-2" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                           Preferred Installation Timeline
                         </label>
                         <select
@@ -389,7 +389,7 @@ function Quote() {
                           className={`w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent bg-white ${
                             !formData.projectTimeline ? 'text-light-gray' : 'text-brown'
                           }`}
-                          style={{ fontFamily: 'Montserrat, sans-serif' }}
+                          style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                         >
                           <option value="">Select Timeline</option>
                           <option value="within a month">Within a month</option>
@@ -403,7 +403,7 @@ function Quote() {
 
                 {/* Step 1 footer: step label centered, progress bar, then continue button centered below */}
                 <div className="-mx-8 md:-mx-12 px-6 md:px-12 py-4 mt-8 flex flex-col gap-4 rounded-b-lg">
-                  <p className="text-sm font-[500] text-brown m-0 text-center" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                  <p className="text-sm font-[500] text-brown m-0 text-center" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                     Step 1 of 2
                   </p>
                   <div className="w-full h-2.5 bg-gray-200 rounded-full overflow-hidden">
@@ -420,7 +420,7 @@ function Quote() {
                       type="submit"
                       form="quote-step1"
                       className="px-6 md:px-8 py-3 bg-primary text-white font-semibold text-sm hover:bg-opacity-90 transition-all duration-300 uppercase no-underline"
-                      style={{ fontFamily: 'Montserrat, sans-serif' }}
+                      style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                     >
                       Continue
                     </button>
@@ -435,7 +435,7 @@ function Quote() {
                   type="button"
                   onClick={() => { setCurrentStep(1); setStep2Error('') }}
                   className="text-primary font-medium mb-6 flex items-center gap-1 text-sm"
-                  style={{ fontFamily: 'Montserrat, sans-serif' }}
+                  style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                 >
                   <span className="md:hidden">← Back</span>
                   <span className="hidden md:inline">← Back to Step 1</span>
@@ -458,8 +458,8 @@ function Quote() {
                               className="mt-1 w-5 h-5 text-primary"
                             />
                             <div>
-                              <span className="font-semibold text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>Full-Service (Recommended)</span>
-                              <p className="text-sm text-brown mt-1 m-0" style={{ fontFamily: 'Montserrat, sans-serif' }}>Professional measurement + installation included.</p>
+                              <span className="font-semibold text-brown" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>Full-Service (Recommended)</span>
+                              <p className="text-sm text-brown mt-1 m-0" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>Professional measurement + installation included.</p>
                             </div>
                           </div>
                         </label>
@@ -473,8 +473,8 @@ function Quote() {
                               className="mt-1 w-5 h-5 text-primary"
                             />
                             <div>
-                              <span className="font-semibold text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>I Have Measurements Ready</span>
-                              <p className="text-sm text-brown mt-1 m-0" style={{ fontFamily: 'Montserrat, sans-serif' }}>We'll build your shades to your exact specs.</p>
+                              <span className="font-semibold text-brown" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>I Have Measurements Ready</span>
+                              <p className="text-sm text-brown mt-1 m-0" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>We'll build your shades to your exact specs.</p>
                             </div>
                           </div>
                         </label>
@@ -498,8 +498,8 @@ function Quote() {
                               className="mt-1 w-5 h-5 text-primary"
                             />
                             <div>
-                              <span className="font-semibold text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>I need help measuring</span>
-                              <p className="text-sm text-brown mt-1 m-0" style={{ fontFamily: 'Montserrat, sans-serif' }}>We'll guide you through measuring or connect you with local help.</p>
+                              <span className="font-semibold text-brown" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>I need help measuring</span>
+                              <p className="text-sm text-brown mt-1 m-0" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>We'll guide you through measuring or connect you with local help.</p>
                             </div>
                           </div>
                         </label>
@@ -513,8 +513,8 @@ function Quote() {
                               className="mt-1 w-5 h-5 text-primary"
                             />
                             <div>
-                              <span className="font-semibold text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>I have measurements ready</span>
-                              <p className="text-sm text-brown mt-1 m-0" style={{ fontFamily: 'Montserrat, sans-serif' }}>We'll build your shades to your exact specs.</p>
+                              <span className="font-semibold text-brown" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>I have measurements ready</span>
+                              <p className="text-sm text-brown mt-1 m-0" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>We'll build your shades to your exact specs.</p>
                             </div>
                           </div>
                         </label>
@@ -537,7 +537,7 @@ function Quote() {
                                   onChange={() => setHelpMeasuring(prev => ({ ...prev, helpWith: checked ? prev.helpWith.filter(h => h !== item) : [...prev.helpWith, item] }))}
                                   className="w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary"
                                 />
-                                <span className="text-sm text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>{item}</span>
+                                <span className="text-sm text-brown" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>{item}</span>
                               </label>
                             )
                           })}
@@ -547,7 +547,7 @@ function Quote() {
                         <h2 className="text-xl md:text-2xl font-bold text-brown mb-4" style={{ fontFamily: 'Fjalla One, sans-serif' }}>Tell Us About Your Space</h2>
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>How many windows need shades? <span className="text-red-500">*</span></p>
+                        <p className="text-sm font-medium text-brown mb-2" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>How many windows need shades? <span className="text-red-500">*</span></p>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                           {HELP_MEASURING_WINDOW_OPTS.map((opt) => (
                             <label key={opt} className="inline-flex items-center gap-2 cursor-pointer">
@@ -558,13 +558,13 @@ function Quote() {
                                 onChange={() => setHelpMeasuring(prev => ({ ...prev, numberOfWindows: opt }))}
                                 className="w-4 h-4 text-primary"
                               />
-                              <span className="text-sm text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>{opt}</span>
+                              <span className="text-sm text-brown" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>{opt}</span>
                             </label>
                           ))}
                         </div>
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>Which rooms need shades?</p>
+                        <p className="text-sm font-medium text-brown mb-2" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>Which rooms need shades?</p>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-y-2 gap-x-4">
                           {HELP_MEASURING_ROOMS.map((room) => {
                             const checked = helpMeasuring.rooms.includes(room)
@@ -576,14 +576,14 @@ function Quote() {
                                   onChange={() => setHelpMeasuring(prev => ({ ...prev, rooms: checked ? prev.rooms.filter(r => r !== room) : [...prev.rooms, room] }))}
                                   className="w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary"
                                 />
-                                <span className="text-sm text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>{room}</span>
+                                <span className="text-sm text-brown" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>{room}</span>
                               </label>
                             )
                           })}
                         </div>
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>What type of shades are you interested in?</p>
+                        <p className="text-sm font-medium text-brown mb-2" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>What type of shades are you interested in?</p>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-y-2 gap-x-4">
                           {helpMeasuringShadeTypes.map((type) => {
                             const checked = helpMeasuring.shadeTypes.includes(type)
@@ -606,14 +606,14 @@ function Quote() {
                                   }}
                                   className="w-4 h-4 rounded border-gray-300 text-primary focus:ring-primary"
                                 />
-                                <span className="text-sm text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>{type}</span>
+                                <span className="text-sm text-brown" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>{type}</span>
                               </label>
                             )
                           })}
                         </div>
                       </div>
                       <div>
-                        <label htmlFor="helpMeasuringNotes" className="block text-sm font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>Notes</label>
+                        <label htmlFor="helpMeasuringNotes" className="block text-sm font-medium text-brown mb-2" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>Notes</label>
                         <textarea
                           id="helpMeasuringNotes"
                           value={helpMeasuring.notes}
@@ -621,11 +621,11 @@ function Quote() {
                           placeholder="Any other details..."
                           rows={2}
                           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                          style={{ fontFamily: 'Montserrat, sans-serif' }}
+                          style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>Upload photos of your space (up to 10)</label>
+                        <label className="block text-sm font-medium text-brown mb-2" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>Upload photos of your space (up to 10)</label>
                         <input
                           type="file"
                           accept="image/*"
@@ -639,10 +639,10 @@ function Quote() {
                             e.target.value = ''
                           }}
                           className="w-full text-sm text-brown file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-medium file:bg-primary file:text-white hover:file:bg-primary/90"
-                          style={{ fontFamily: 'Montserrat, sans-serif' }}
+                          style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                         />
                         {helpMeasuring.photos.length > 0 && (
-                          <p className="text-xs text-brown mt-1 flex items-center gap-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                          <p className="text-xs text-brown mt-1 flex items-center gap-2" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                             {helpMeasuring.photos.length} file(s) selected (max 10)
                             <button type="button" onClick={() => setHelpMeasuring(prev => ({ ...prev, photos: [] }))} className="text-primary hover:underline text-xs font-medium">Clear</button>
                           </p>
@@ -658,7 +658,7 @@ function Quote() {
                       </h2>
                       <div className="flex flex-col gap-6">
                         <div>
-                          <p className="text-sm font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>How many windows need shades? <span className="text-red-500">*</span></p>
+                          <p className="text-sm font-medium text-brown mb-2" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>How many windows need shades? <span className="text-red-500">*</span></p>
                           <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
                             {(['1-3', '4-7', '8+'] as const).map((opt) => (
                               <button
@@ -666,7 +666,7 @@ function Quote() {
                                 type="button"
                                 onClick={() => setFormData(prev => ({ ...prev, numberOfWindows: opt }))}
                                 className={`px-4 py-2 rounded-lg border-2 text-sm font-medium transition-all ${formData.numberOfWindows === opt ? 'border-primary bg-primary text-white' : 'border-gray-300 text-brown hover:border-primary/50'}`}
-                                style={{ fontFamily: 'Montserrat, sans-serif' }}
+                                style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                               >
                                 {opt === '8+' ? '8+' : opt}
                               </button>
@@ -674,7 +674,7 @@ function Quote() {
                           </div>
                         </div>
                         <div>
-                          <p className="text-sm font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>What type of shades are you interested in? <span className="text-red-500">*</span></p>
+                          <p className="text-sm font-medium text-brown mb-2" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>What type of shades are you interested in? <span className="text-red-500">*</span></p>
                           <div className="grid grid-cols-1 md:grid-cols-3 gap-y-2 gap-x-4">
                             {shadeTypes.map((type) => {
                               const isChecked = formData.shadeInterest.includes(type)
@@ -682,7 +682,7 @@ function Quote() {
                                 <label
                                   key={type}
                                   className="inline-flex items-center gap-2 cursor-pointer text-brown text-sm"
-                                  style={{ fontFamily: 'Montserrat, sans-serif' }}
+                                  style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                                 >
                                   <input
                                     type="checkbox"
@@ -703,7 +703,7 @@ function Quote() {
                             })}
                             <label
                               className="inline-flex items-center gap-2 cursor-pointer text-brown text-sm"
-                              style={{ fontFamily: 'Montserrat, sans-serif' }}
+                              style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                             >
                               <input
                                 type="checkbox"
@@ -721,14 +721,14 @@ function Quote() {
                           </div>
                         </div>
                         <div>
-                          <label htmlFor="step2-timeline" className="block text-sm font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>Preferred installation timeline</label>
+                          <label htmlFor="step2-timeline" className="block text-sm font-medium text-brown mb-2" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>Preferred installation timeline</label>
                           <select
                             id="step2-timeline"
                             name="projectTimeline"
                             value={formData.projectTimeline}
                             onChange={handleInputChange}
                             className={`w-full max-w-xs px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-white ${!formData.projectTimeline ? 'text-gray-400' : 'text-brown'}`}
-                            style={{ fontFamily: 'Montserrat, sans-serif' }}
+                            style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                           >
                             <option value="">Select timeline</option>
                             <option value="within a month">Within a month</option>
@@ -737,7 +737,7 @@ function Quote() {
                           </select>
                         </div>
                         <div>
-                          <label htmlFor="spaceNotes" className="block text-sm font-medium text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>Notes (optional)</label>
+                          <label htmlFor="spaceNotes" className="block text-sm font-medium text-brown" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>Notes (optional)</label>
                           <textarea
                             id="spaceNotes"
                             name="spaceNotes"
@@ -746,7 +746,7 @@ function Quote() {
                             placeholder="Any other details about your project..."
                             rows={3}
                             className="w-full px-4 py-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                            style={{ fontFamily: 'Montserrat, sans-serif' }}
+                            style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                           />
                         </div>
                       </div>
@@ -762,7 +762,7 @@ function Quote() {
                             type="button"
                             onClick={addWindow}
                             className="px-4 py-2 border-2 border-primary text-primary font-semibold text-sm hover:bg-primary/5 transition-colors"
-                            style={{ fontFamily: 'Montserrat, sans-serif' }}
+                            style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                           >
                             + Add Window
                           </button>
@@ -776,7 +776,7 @@ function Quote() {
                               <div className="flex justify-between items-center gap-2">
                                 <div className="min-w-0 flex-1 flex items-center gap-2">
                                   {/* Desktop: static label. Mobile: editable name with pencil */}
-                                  <span className="hidden md:inline font-semibold text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>Window {index + 1}</span>
+                                  <span className="hidden md:inline font-semibold text-brown" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>Window {index + 1}</span>
                                   {isEditing ? (
                                     <input
                                       type="text"
@@ -796,11 +796,11 @@ function Quote() {
                                       }}
                                       placeholder="Window name"
                                       className="md:hidden flex-1 min-w-0 px-2 py-1 text-base border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary"
-                                      style={{ fontFamily: 'Montserrat, sans-serif' }}
+                                      style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}
                                       autoFocus
                                     />
                                   ) : (
-                                    <span className="md:hidden font-semibold text-brown truncate" style={{ fontFamily: 'Montserrat, sans-serif' }}>{displayName}</span>
+                                    <span className="md:hidden font-semibold text-brown truncate" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>{displayName}</span>
                                   )}
                                 </div>
                                 <div className="flex items-center gap-1 shrink-0">
@@ -810,37 +810,37 @@ function Quote() {
                                     </button>
                                   )}
                                   {windows.length > 1 && (
-                                    <button type="button" onClick={() => removeWindow(win.id)} className="text-red-500 hover:text-red-700 text-sm font-medium" style={{ fontFamily: 'Montserrat, sans-serif' }}>Remove</button>
+                                    <button type="button" onClick={() => removeWindow(win.id)} className="text-red-500 hover:text-red-700 text-sm font-medium" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>Remove</button>
                                   )}
                                 </div>
                               </div>
                               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div className="hidden md:block">
-                                  <label className="block text-sm font-medium text-brown mb-1" style={{ fontFamily: 'Montserrat, sans-serif' }}>Room Name</label>
-                                  <input type="text" value={win.roomName} onChange={e => handleWindowChange(win.id, 'roomName', e.target.value)} placeholder="e.g. Living Room" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" style={{ fontFamily: 'Montserrat, sans-serif' }} />
+                                  <label className="block text-sm font-medium text-brown mb-1" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>Room Name</label>
+                                  <input type="text" value={win.roomName} onChange={e => handleWindowChange(win.id, 'roomName', e.target.value)} placeholder="e.g. Living Room" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }} />
                                 </div>
                                 <div className="hidden md:block">
-                                  <label className="block text-sm font-medium text-brown mb-1" style={{ fontFamily: 'Montserrat, sans-serif' }}>Window Name</label>
-                                  <input type="text" value={win.windowName} onChange={e => handleWindowChange(win.id, 'windowName', e.target.value)} placeholder="e.g. Front Window" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" style={{ fontFamily: 'Montserrat, sans-serif' }} />
+                                  <label className="block text-sm font-medium text-brown mb-1" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>Window Name</label>
+                                  <input type="text" value={win.windowName} onChange={e => handleWindowChange(win.id, 'windowName', e.target.value)} placeholder="e.g. Front Window" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }} />
                                 </div>
                                 <div>
-                                  <label className="block text-sm font-medium text-brown mb-1" style={{ fontFamily: 'Montserrat, sans-serif' }}>Width (in) <span className="text-red-500">*</span></label>
-                                  <input type="number" value={win.width} onChange={e => handleWindowChange(win.id, 'width', e.target.value)} placeholder="Width" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" style={{ fontFamily: 'Montserrat, sans-serif' }} required />
+                                  <label className="block text-sm font-medium text-brown mb-1" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>Width (in) <span className="text-red-500">*</span></label>
+                                  <input type="number" value={win.width} onChange={e => handleWindowChange(win.id, 'width', e.target.value)} placeholder="Width" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }} required />
                                 </div>
                                 <div>
-                                  <label className="block text-sm font-medium text-brown mb-1" style={{ fontFamily: 'Montserrat, sans-serif' }}>Height (in) <span className="text-red-500">*</span></label>
-                                  <input type="number" value={win.height} onChange={e => handleWindowChange(win.id, 'height', e.target.value)} placeholder="Height" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" style={{ fontFamily: 'Montserrat, sans-serif' }} required />
+                                  <label className="block text-sm font-medium text-brown mb-1" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>Height (in) <span className="text-red-500">*</span></label>
+                                  <input type="number" value={win.height} onChange={e => handleWindowChange(win.id, 'height', e.target.value)} placeholder="Height" className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }} required />
                                 </div>
                                 <div>
-                                  <label className="block text-sm font-medium text-brown mb-1" style={{ fontFamily: 'Montserrat, sans-serif' }}>Shade Type <span className="text-red-500">*</span></label>
-                                  <select value={win.shadeType} onChange={e => handleWindowChange(win.id, 'shadeType', e.target.value)} className="w-full px-4 py-2 text-base md:text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-white" style={{ fontFamily: 'Montserrat, sans-serif' }} required>
+                                  <label className="block text-sm font-medium text-brown mb-1" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>Shade Type <span className="text-red-500">*</span></label>
+                                  <select value={win.shadeType} onChange={e => handleWindowChange(win.id, 'shadeType', e.target.value)} className="w-full px-4 py-2 text-base md:text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-white" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }} required>
                                     <option value="">Select type</option>
                                     {shadeTypes.map(t => (<option key={t} value={t}>{t}</option>))}
                                   </select>
                                 </div>
                                 <div>
-                                  <span className="block text-sm font-medium text-brown mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>Motorized <span className="text-red-500">*</span></span>
-                                  <div className="flex flex-wrap gap-4" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                                  <span className="block text-sm font-medium text-brown mb-2" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>Motorized <span className="text-red-500">*</span></span>
+                                  <div className="flex flex-wrap gap-4" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                                     <label className="flex items-center gap-2 cursor-pointer text-base md:text-sm text-brown">
                                       <input type="radio" name={`motorized-${win.id}`} value="Yes" checked={win.motorized === 'Yes'} onChange={e => handleWindowChange(win.id, 'motorized', e.target.value)} className="w-5 h-5 text-primary" required />
                                       Yes
@@ -862,12 +862,12 @@ function Quote() {
                 </form>
 
                 {step2Error && (
-                  <p className="text-red-500 text-sm font-medium mt-4" style={{ fontFamily: 'Montserrat, sans-serif' }}>{step2Error}</p>
+                  <p className="text-red-500 text-sm font-medium mt-4" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>{step2Error}</p>
                 )}
 
                 {formData.serviceType === 'measurements-ready' && windows.length > 0 && (
                   <div className="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
-                    <h3 className="text-sm font-semibold text-brown mb-3" style={{ fontFamily: 'Montserrat, sans-serif' }}>Your windows</h3>
+                    <h3 className="text-sm font-semibold text-brown mb-3" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>Your windows</h3>
                     <ul className="space-y-2">
                       {windows.map((win, index) => {
                         const parts = [
@@ -877,7 +877,7 @@ function Quote() {
                           win.motorized ? `Motorized: ${win.motorized}` : null
                         ].filter(Boolean)
                         return (
-                          <li key={win.id} className="text-sm text-brown" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                          <li key={win.id} className="text-sm text-brown" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                             <span className="font-medium">Window {index + 1}:</span>{' '}
                             {parts.length > 0 ? parts.join(' · ') : '—'}
                           </li>
@@ -889,13 +889,13 @@ function Quote() {
 
                 {/* Step 2 footer */}
                 <div className="-mx-8 md:-mx-12 px-6 md:px-12 py-4 mt-8 flex flex-col gap-4 rounded-b-lg">
-                  <p className="text-sm font-[500] text-brown m-0 text-center" style={{ fontFamily: 'Montserrat, sans-serif' }}>Step 2 of 2</p>
+                  <p className="text-sm font-[500] text-brown m-0 text-center" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>Step 2 of 2</p>
                   <div className="w-full h-2.5 bg-gray-200 rounded-full overflow-hidden">
                     <div className="h-full w-full rounded-full bg-primary" style={{ backgroundImage: 'repeating-linear-gradient(-45deg, transparent, transparent 3px, rgba(255,255,255,0.12) 3px, rgba(255,255,255,0.12) 6px)' }} />
                   </div>
                   <div className="flex justify-center gap-4 pt-4">
-                    <button type="button" onClick={() => { setCurrentStep(1); setStep2Error('') }} className="px-6 py-3 border-2 border-primary text-primary font-semibold text-sm uppercase" style={{ fontFamily: 'Montserrat, sans-serif' }}><span className="md:hidden">Back</span><span className="hidden md:inline">Back to Step 1</span></button>
-                    <button type="submit" form="quote-step2" className="px-6 md:px-8 py-3 bg-primary text-white font-semibold text-sm hover:bg-opacity-90 transition-all duration-300 uppercase" style={{ fontFamily: 'Montserrat, sans-serif' }}>Get My Quote</button>
+                    <button type="button" onClick={() => { setCurrentStep(1); setStep2Error('') }} className="px-6 py-3 border-2 border-primary text-primary font-semibold text-sm uppercase" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}><span className="md:hidden">Back</span><span className="hidden md:inline">Back to Step 1</span></button>
+                    <button type="submit" form="quote-step2" className="px-6 md:px-8 py-3 bg-primary text-white font-semibold text-sm hover:bg-opacity-90 transition-all duration-300 uppercase" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>Get My Quote</button>
                   </div>
                 </div>
               </>

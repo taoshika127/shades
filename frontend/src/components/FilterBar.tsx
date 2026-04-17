@@ -34,12 +34,12 @@ function FilterBar({
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M2.5 5H17.5M5 10H15M7.5 15H12.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
             </svg>
-            <span className="text-base text-brown uppercase" style={{ fontFamily: 'Montserrat, sans-serif' }}>Filter</span>
+            <span className="text-base text-brown uppercase" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>Filter</span>
           </button>
           <div className="flex items-center gap-2">
             <button
               onClick={() => setGridView('small')}
-              className={`p-2 ${gridView === 'small' ? 'bg-gray-200' : 'hover:bg-gray-100'} transition-colors`}
+              className={`p-2 ${gridView === 'small' ? 'bg-gray-200' : 'hover:bg-secondary'} transition-colors`}
               aria-label="Small grid view"
             >
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -51,7 +51,7 @@ function FilterBar({
             </button>
             <button
               onClick={() => setGridView('large')}
-              className={`p-2 ${gridView === 'large' ? 'bg-gray-200' : 'hover:bg-gray-100'} transition-colors`}
+              className={`p-2 ${gridView === 'large' ? 'bg-gray-200' : 'hover:bg-secondary'} transition-colors`}
               aria-label="Large grid view"
             >
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
