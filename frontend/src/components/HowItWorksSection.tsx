@@ -239,7 +239,7 @@ function HowItWorksSection() {
           {/* Option 1: Full Service */}
           <div className="flex flex-col">
             <div
-              className={`rounded-lg p-6 md:p-8 mb-6 md:mb-[80px] relative md:flex md:flex-col cursor-pointer md:cursor-default ${expandedOption === 'option1' ? 'md:mb-[80px]' : ''}`}
+              className="rounded-lg p-6 md:p-8 mb-6 relative cursor-pointer md:cursor-default md:hidden"
               style={{ backgroundColor: 'white', boxShadow: '0 0 24px rgba(0, 0, 0, 0.24)' }}
               onClick={() => {
                 if (window.innerWidth < 768) {
