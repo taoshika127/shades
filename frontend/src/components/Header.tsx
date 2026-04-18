@@ -118,7 +118,6 @@ function Header({ currentPage = 'home' }: HeaderProps) {
             <Logo
               mainTextSize="text-xl sm:text-2xl md:text-4xl"
               subTextSize="text-[7px] sm:text-[8px] md:text-[12px]"
-              centerSubtext={false}
             />
           </div>
         </div>
