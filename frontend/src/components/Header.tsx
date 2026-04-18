@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom'
 import { categoryNameToSlug } from '../utils/slug'
 import Logo from './Logo'
 
+/** “PACIFIC LIGHT” wordmark — Avenir Next when installed (common on Apple); falls back to Avenir / Helvetica Neue */
+const LOGO_WORDMARK_FONT = "'Avenir Next', 'Avenir', 'Helvetica Neue', sans-serif"
+
 interface HeaderProps {
   currentPage?: 'home' | 'shades'
 }
@@ -118,6 +121,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
             <Logo
               mainTextSize="text-xl sm:text-2xl md:text-4xl"
               subTextSize="text-[7px] sm:text-[8px] md:text-[12px]"
+              mainFontFamily={LOGO_WORDMARK_FONT}
             />
           </div>
         </div>
@@ -335,7 +339,7 @@ function Header({ currentPage = 'home' }: HeaderProps) {
         isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
       }`}>
         <div className="p-5 border-b border-gray-200 flex justify-between items-center">
-          <Logo />
+          <Logo mainFontFamily={LOGO_WORDMARK_FONT} />
           <button
             onClick={() => setIsMobileMenuOpen(false)}
             className="p-2 text-brown hover:text-primary transition-colors"
