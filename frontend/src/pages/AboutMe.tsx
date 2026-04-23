@@ -52,7 +52,7 @@ function AboutMe() {
                   <li>A seamless, end-to-end experience without showroom overhead</li>
                 </ul>
                 <p className="m-0 leading-relaxed mt-4">
-                  With my background in the building industry and experience working across design, construction, and operations, I was able to build a business model that leverages both my expertise and network. By integrating technology and AI tools into my workflow—ranging from design support and scheduling to cost estimation and marketing—I’m able to operate efficiently without the traditional overhead.
+                  With my background in the building industry and experience working across design, construction, and operations, I was able to build a business model that leverages both my expertise and network. By integrating technology and AI tools into my workflow—ranging from design support, vibe coding, content creation, and scheduling to cost estimation and marketing—I’m able to operate efficiently without the traditional overhead.
                 </p>
                 <p className="m-0 leading-relaxed mt-3">
                   This allows me to reduce unnecessary costs such as showroom expenses, excessive marketing spend, and administrative inefficiencies, and pass those savings directly to my clients—offering premium-quality window treatments at a more accessible price point compared to traditional retailers.
