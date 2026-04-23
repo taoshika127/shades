@@ -288,11 +288,11 @@ function Quote() {
                   <h2 className="text-base md:text-lg text-brown mb-4" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                     No obligation. Fast Response.
                   </h2>
-                  <ul className="text-sm md:text-base text-brown mb-8 space-y-2" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
-                    <li className="flex items-center gap-2">✔ Up to 50% less than big box stores</li>
-                    <li className="flex items-center gap-2">✔ Professional measurement available</li>
-                    <li className="flex items-center gap-2">✔ Local installation support</li>
-                    <li className="flex items-center gap-2">✔ Fast turnaround</li>
+                  <ul className="text-sm md:text-base mb-8 space-y-2" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
+                    <li className="flex items-center gap-2 text-brown ">✔ Up to 50% less than big box stores</li>
+                    <li className="flex items-center gap-2 text-brown">✔ Professional measurement available</li>
+                    <li className="flex items-center gap-2 text-brown">✔ Local installation support</li>
+                    <li className="flex items-center gap-2 text-brown">✔ Fast turnaround</li>
                   </ul>
                 </div>
 

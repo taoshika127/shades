@@ -73,7 +73,7 @@ function WhyUs() {
   ]
 
   return (
-    <section id="why-us" className="py-10 md:py-20 px-5 md:px-20 bg-gray-50">
+    <section id="why-us" className="bg-[#faf8f5] py-10 md:py-20 px-5 md:px-20">
       <div className="max-w-container mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-brown text-center mb-4" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
           Why Choose Pacific Light Shades & Blinds?

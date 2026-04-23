@@ -18,7 +18,7 @@ function BrowseRange({ categories }: BrowseRangeProps) {
   }
 
   return (
-    <section id="browse-the-range" className="py-10 md:py-20 px-5 md:px-20 bg-gray-50">
+    <section id="browse-the-range" className="bg-[#faf8f5] py-10 md:py-20 px-5 md:px-20">
       <div className="max-w-container mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-brown text-center mb-4" style={{ fontFamily: 'Fjalla One, sans-serif' }}>Browse The Range</h2>
         <p className="text-base font-[500] md:text-xl text-center mb-6 md:mb-8 max-w-3xl mx-auto text-primary" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>

@@ -14,7 +14,7 @@ function PrivacyPolicy() {
         <div className="max-w-container mx-auto">
           <header className="mb-8 md:mb-10 text-center">
             <h1 className="text-3xl md:text-4xl font-bold text-brown mb-3" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
-              Privacy Policy — Pacific Light Shades
+              Privacy Policy — Pacific Light Shades LLC
             </h1>
             <p className="text-base md:text-lg text-primary m-0" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
               Last Updated: <span className="font-[500]">April 15, 2026</span>
@@ -26,7 +26,7 @@ function PrivacyPolicy() {
               <section>
                 <h2 className="text-xl md:text-2xl font-bold mb-2" style={{ fontFamily: 'Fjalla One, sans-serif' }}>1. Introduction</h2>
                 <p className="m-0 leading-relaxed">
-                  Pacific Light Shades (“we,” “our,” or “us”) respects your privacy and is committed to protecting your personal information.
+                  Pacific Light Shades LLC (“we,” “our,” or “us”) respects your privacy and is committed to protecting your personal information.
                   This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website or contact us.
                 </p>
               </section>
@@ -158,6 +158,7 @@ function PrivacyPolicy() {
                   If you have any questions about this Privacy Policy, you may contact us:
                 </p>
                 <div className="space-y-2">
+                  <p className="m-0 leading-relaxed font-semibold">Pacific Light Shades LLC</p>
                   <p className="m-0 leading-relaxed">
                     <span className="font-semibold">Email:</span>{' '}
                     <a href="mailto:becky@pacificlightshades.com" className="text-primary hover:underline">

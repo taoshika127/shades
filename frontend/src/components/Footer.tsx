@@ -66,7 +66,7 @@ function Footer() {
   }
 
   return (
-    <footer className="bg-gradient-to-b from-base to-secondary border-t border-[#ddd9d0]">
+    <footer className="w-full bg-gradient-to-b from-base to-[#eee6db]">
       {/* Mobile layout */}
       <div className="md:hidden py-8 px-5">
         <div className="flex flex-col items-center text-center">
@@ -99,13 +99,13 @@ function Footer() {
         </div>
 
         {/* Accordions */}
-        <div className="border-t border-[#e0dcd4]">
-          <button type="button" onClick={() => toggleAccordion('company')} className="w-full flex items-center justify-between py-4 text-left border-b border-[#e0dcd4] bg-transparent">
+        <div className="border-t border-primary/30">
+          <button type="button" onClick={() => toggleAccordion('company')} className="w-full flex items-center justify-between py-4 text-left border-b border-primary/30 bg-transparent">
             <span className="text-brown font-bold uppercase text-sm tracking-wide" style={sectionHeaderStyle}>Company</span>
             <HiChevronDown className={`w-5 h-5 text-brown transition-transform ${openAccordion === 'company' ? 'rotate-180' : ''}`} />
           </button>
           {openAccordion === 'company' && (
-            <ul className="list-none p-0 m-0 py-3 px-0 flex flex-col gap-2 border-b border-[#e0dcd4]">
+            <ul className="list-none p-0 m-0 py-3 px-0 flex flex-col gap-2 border-b border-primary/30">
               {companyLinks.map(({ label, href }) => (
                 <li key={label}>
                   <a href={href} className={linkClass} style={linkStyle} onClick={(e) => handleLink(e, href)}>
@@ -115,12 +115,12 @@ function Footer() {
               ))}
             </ul>
           )}
-          <button type="button" onClick={() => toggleAccordion('products')} className="w-full flex items-center justify-between py-4 text-left border-b border-[#e0dcd4] bg-transparent">
+          <button type="button" onClick={() => toggleAccordion('products')} className="w-full flex items-center justify-between py-4 text-left border-b border-primary/30 bg-transparent">
             <span className="text-brown font-bold uppercase text-sm tracking-wide" style={sectionHeaderStyle}>Products</span>
             <HiChevronDown className={`w-5 h-5 text-brown transition-transform ${openAccordion === 'products' ? 'rotate-180' : ''}`} />
           </button>
           {openAccordion === 'products' && (
-            <ul className="list-none p-0 m-0 py-3 px-0 flex flex-col gap-2 border-b border-[#e0dcd4]">
+            <ul className="list-none p-0 m-0 py-3 px-0 flex flex-col gap-2 border-b border-primary/30">
               {productSlugs.map((slug) => (
                 <li key={slug}>
                   <a href={`/${slug}`} className={linkClass} style={linkStyle} onClick={(e) => { e.preventDefault(); navigate(`/${slug}`) }}>
@@ -130,12 +130,12 @@ function Footer() {
               ))}
             </ul>
           )}
-          <button type="button" onClick={() => toggleAccordion('support')} className="w-full flex items-center justify-between py-4 text-left border-b border-[#e0dcd4] bg-transparent">
+          <button type="button" onClick={() => toggleAccordion('support')} className="w-full flex items-center justify-between py-4 text-left border-b border-primary/30 bg-transparent">
             <span className="text-brown font-bold uppercase text-sm tracking-wide" style={sectionHeaderStyle}>Support</span>
             <HiChevronDown className={`w-5 h-5 text-brown transition-transform ${openAccordion === 'support' ? 'rotate-180' : ''}`} />
           </button>
           {openAccordion === 'support' && (
-            <ul className="list-none p-0 m-0 py-3 px-0 flex flex-col gap-2 border-b border-[#e0dcd4]">
+            <ul className="list-none p-0 m-0 py-3 px-0 flex flex-col gap-2 border-b border-primary/30">
               {supportLinks.map(({ label, href }) => (
                 <li key={label}>
                   <a href={href} className={linkClass} style={linkStyle} onClick={(e) => handleLink(e, href)}>
@@ -165,7 +165,7 @@ function Footer() {
       <div className="max-w-container mx-auto py-10 md:py-14 px-5 md:px-10 lg:px-20 hidden md:block">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.35fr_1fr_1fr_1fr] gap-8 lg:gap-6">
           {/* Column 1: Logo, tagline, CTA */}
-          <div className="flex flex-col items-center text-center lg:items-center lg:text-center">
+          <div className="flex flex-col items-center text-center lg:items-center lg:text-center lg:pr-10">
             <a href="/" className="block w-[200px]" onClick={(e) => { e.preventDefault(); navigate('/') }}>
               <img src="/assets/logo/pacific_light_transparent.png" alt="Pacific Light Shades & Blinds" className="w-full h-auto md:my-10" />
             </a>
@@ -186,7 +186,7 @@ function Footer() {
           </div>
 
           {/* Column 2: COMPANY + SUPPORT */}
-          <div className="lg:pl-4 lg:border-l border-[#e0dcd4]">
+          <div>
             <h3 className={sectionHeaderClass} style={sectionHeaderStyle}>Company</h3>
             <ul className="list-none p-0 m-0 flex flex-col gap-2">
               {companyLinks.map(({ label, href }) => (
@@ -210,7 +210,7 @@ function Footer() {
           </div>
 
           {/* Column 3: PRODUCTS */}
-          <div className="lg:pl-4 lg:border-l border-[#e0dcd4]">
+          <div>
             <h3 className={sectionHeaderClass} style={sectionHeaderStyle}>Products</h3>
             <ul className="list-none p-0 m-0 flex flex-col gap-2">
               {productSlugs.map((slug) => (
@@ -228,7 +228,7 @@ function Footer() {
           </div>
 
           {/* Column 4: CONTACT US */}
-          <div className="lg:pl-4 lg:border-l border-[#e0dcd4]">
+          <div>
             <h3 className={sectionHeaderClass} style={sectionHeaderStyle}>Contact Us</h3>
             <p className="text-base text-brown m-0 font-[500]" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
               <a href="sms:+16505616086" className="text-brown no-underline hover:text-primary transition-colors">(650) 561-6086</a>
@@ -249,10 +249,10 @@ function Footer() {
       </div>
 
       {/* Bottom strip: copyright; on mobile also social icons */}
-      <div className="bg-[#e4e2df] border-t border-[#ddd9d0] py-4 px-5 md:px-10 lg:px-20">
+      <div className="py-4 px-5 md:px-10 lg:px-20">
         <div className="max-w-container mx-auto flex flex-row items-center justify-between md:justify-center">
           <p className="text-sm text-brown m-0 font-[500]" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
-            © 2026 Pacific Light Window Treatments. All rights reserved.
+            © 2026 Pacific Light Shades LLC. All rights reserved.
           </p>
           <div className="flex items-center gap-3 md:hidden">
             <a href="https://www.instagram.com/beckypl_interiors/" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-brown flex items-center justify-center text-white hover:opacity-90 transition-opacity" aria-label="Instagram">
