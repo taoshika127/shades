@@ -38,7 +38,7 @@ function BrowseRange({ categories }: BrowseRangeProps) {
                   className="w-full h-full object-cover group-hover:scale-105 transition-all duration-300"
                 />
               </div>
-              <h3 className="text-xl md:text-2xl font-semibold text-brown text-center m-0 mb-6 md:mb-8 group-hover:text-medium-gray transition-colors" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
+              <h3 className="text-xl md:text-2xl font-semibold text-brown text-center m-0 mb-6 md:mb-8 group-hover:text-primary transition-colors" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
                 {category.name}
               </h3>
             </div>
