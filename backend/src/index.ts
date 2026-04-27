@@ -407,7 +407,7 @@ const galleryImageMap: { [key: number]: GalleryData | string[] } = {
   7: {
     images: ['/assets/our-gallery/gallery7/gallery7.jpg', '/assets/our-gallery/gallery7/gallery7-1.jpg', '/assets/our-gallery/gallery7/gallery7-2.jpg'],
     location: 'Chicago, IL',
-    description: 'This customer in North America chose to customize and ship window treatments from overseas due to limited local options and higher pricing. We designed different solutions for each space—layered sheers for the living room, waterproof zebra blinds for the kitchen, honeycomb shades for the guest room, and a sheer plus blackout combination for the master bedroom—to balance light control and aesthetics. During consultation, we also advised against a full wall curtain installation based on the actual window structure, which the customer appreciated as honest and thoughtful guidance.',
+    description: 'This customer chose to customize and ship window treatments from overseas due to limited local options and higher pricing. We designed different solutions for each space—layered sheers for the living room, waterproof zebra blinds for the kitchen, honeycomb shades for the guest room, and a sheer plus blackout combination for the master bedroom—to balance light control and aesthetics. During consultation, we also advised against a full wall curtain installation based on the actual window structure, which the customer appreciated as honest and thoughtful guidance.',
     design: {
       'Living Room': 'Double-layer sheers (high-transparency + linen sheer)',
       'Kitchen': 'Waterproof zebra blinds (adjustable light control)',
@@ -418,7 +418,7 @@ const galleryImageMap: { [key: number]: GalleryData | string[] } = {
   8: {
     images: ['/assets/our-gallery/gallery8/gallery8.jpg', '/assets/our-gallery/gallery8/gallery8-1.jpg'],
     location: 'Queen Creek, AZ',
-    description: 'This North American customer followed a structured custom-order process, from one-on-one consultation and style selection to precise measurements and production approval. After payment, quality inspection photos were shared, and the shades were delivered by air freight within days, arriving well-packaged and intact. Installation was completed smoothly with video guidance, and the customer shared that the overall experience was reliable, efficient, and saved over 60% compared to local pricing.',
+    description: 'This customer followed a structured custom-order process, from one-on-one consultation and style selection to precise measurements and production approval. After payment, quality inspection photos were shared, and the shades were delivered by air freight within days, arriving well-packaged and intact. Installation was completed smoothly with video guidance, and the customer shared that the overall experience was reliable, efficient, and saved over 60% compared to local pricing.',
     design: {
       'Bedrooms / Sleeping Areas': 'Honeycomb (cellular) shades. Full blackout option. Energy-efficient structure',
       'Overall': 'Custom-sized shades with air shipping and DIY installation support'
