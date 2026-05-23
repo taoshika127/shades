@@ -37,9 +37,15 @@ cd backend
 npm install resend
 ```
 
+## Project account
+
+- **Resend login:** Google account **taoshika127@gmail.com**
+- **Transactional transport:** Resend API (not Gmail SMTP)
+- **Stack reference:** see root [`TECH_STACK.md`](../TECH_STACK.md)
+
 ## Getting Your Resend API Key
 
-1. **Sign up for Resend**: Go to [https://resend.com](https://resend.com) and create an account
+1. **Sign up for Resend**: Go to [https://resend.com](https://resend.com) and sign in with the Google account above (or your current Resend login)
 2. **Get your API Key**:
    - Log into your Resend dashboard
    - Go to **API Keys** section

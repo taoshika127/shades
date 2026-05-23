@@ -14,16 +14,16 @@ A modern, full-stack e-commerce website built with React, TypeScript, and Node.j
 
 ## Tech Stack
 
-### Frontend
-- React 18
-- TypeScript
-- Vite
-- React Router
+See **[TECH_STACK.md](./TECH_STACK.md)** for the full stack, hosting, email (Resend), accounts, and env vars.
 
-### Backend
-- Node.js
-- Express
-- TypeScript
+**Summary**
+
+| Layer | Stack |
+|-------|--------|
+| Frontend | React 18, TypeScript, Vite, Tailwind CSS, React Router → **Vercel** |
+| Backend | Node.js, Express, TypeScript, SQLite → **Railway** |
+| Email | **Resend** (API; account: `taoshika127@gmail.com`) → delivers to `info@pacificlightshades.com` |
+| Analytics | Vercel Analytics |
 
 ## Getting Started
 

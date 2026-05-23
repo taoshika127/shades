@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { categoryNameToSlug } from '../utils/slug'
 
@@ -8,16 +8,7 @@ function Hero() {
   // Temporarily hide the rotating hero carousel (keep code for later re-enable).
   const showHeroCarousel = false
 
-  const heroImages = [
-    '/assets/home/hero/hero1.png',
-    '/assets/home/hero/hero2.png',
-    '/assets/home/hero/hero3.png',
-    '/assets/home/hero/hero4.png',
-    '/assets/home/hero/hero5.png',
-    '/assets/home/hero/hero6.png',
-    '/assets/home/hero/hero7.png',
-    '/assets/home/hero/hero8.png',
-  ]
+  const heroImage = '/assets/home/hero/hero8.png'
 
   // Map iconType to category name
   const getCategoryName = (iconType: string): string => {
@@ -51,15 +42,7 @@ function Hero() {
     return carouselMap[iconType] || `/assets/home/carousel/carousel${index + 1}_${iconType.toLowerCase()}.jpeg`
   }
 
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [nextIndex, setNextIndex] = useState(1)
-  const [isTransitioning, setIsTransitioning] = useState(false)
-  const currentIndexRef = useRef(0)
   const [screenHeight, setScreenHeight] = useState(typeof window !== 'undefined' ? window.innerHeight : 932)
-
-  useEffect(() => {
-    currentIndexRef.current = currentIndex
-  }, [currentIndex])
 
   // Track screen height for responsive padding
   useEffect(() => {
@@ -73,60 +56,17 @@ function Hero() {
     return () => window.removeEventListener('resize', updateScreenHeight)
   }, [])
 
-  useEffect(() => {
-    // Preload all images
-    heroImages.forEach((src) => {
-      const img = new Image()
-      img.src = src
-    })
-  }, [])
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const current = currentIndexRef.current
-      const next = (current + 1) % heroImages.length
-      setNextIndex(next)
-      setIsTransitioning(true)
-
-      // After transition, update current and stop transitioning
-      setTimeout(() => {
-        setCurrentIndex(next)
-        setIsTransitioning(false)
-      }, 1000) // Match transition duration
-    }, 8000) // Change image every 8 seconds
-
-    return () => clearInterval(interval)
-  }, [heroImages.length])
-
-
   return (
-    <section className="w-full min-h-0 md:h-screen md:max-h-[100vh] relative overflow-hidden">
-      <div className="w-full min-h-0 absolute inset-0 md:max-h-[100vh]">
-        {/* Current image layer */}
+    <section className="w-full min-h-[100svh] h-[100svh] -mt-20 pt-20 md:mt-0 md:pt-0 md:h-screen md:max-h-[100vh] relative overflow-hidden">
+      <div className="w-full h-full absolute inset-0 md:max-h-[100vh]">
         <div
-          className={`absolute inset-0 bg-cover bg-bottom bg-no-repeat ${
-            isTransitioning ? 'transition-opacity duration-1000 ease-in-out opacity-0' : 'opacity-100'
-          }`}
-          style={{
-            backgroundImage: `url('${heroImages[currentIndex]}')`,
-            zIndex: isTransitioning ? 1 : 2
-          }}
+          className="absolute inset-0 bg-cover bg-bottom bg-no-repeat"
+          style={{ backgroundImage: `url('${heroImage}')` }}
         />
-        {/* Next image layer (only visible during transition) */}
-        <div
-          className={`absolute inset-0 bg-cover bg-bottom bg-no-repeat ${
-            isTransitioning ? 'transition-opacity duration-1000 ease-in-out opacity-100' : 'opacity-0'
-          }`}
-          style={{
-            backgroundImage: `url('${heroImages[nextIndex]}')`,
-            zIndex: isTransitioning ? 2 : 1
-          }}
-        />
-        {/* Semi-transparent white overlay */}
-        <div className="absolute inset-0 bg-black/65 z-[3]" />
+        <div className="absolute inset-0 md:bg-white/40 bg-white/70 z-[1]" />
       </div>
 
-      <div className="relative z-10 w-full min-h-0 md:h-full md:max-h-[100vh] flex items-start md:items-center justify-center md:justify-start px-5 md:px-10 lg:px-14 overflow-hidden py-4 md:py-0">
+      <div className="relative z-10 w-full h-full min-h-[100svh] md:min-h-0 md:max-h-[100vh] flex items-center justify-center md:justify-start px-5 md:px-10 lg:px-14 overflow-hidden py-4 md:py-0">
         <div className="max-w-container w-full flex flex-col md:flex-row justify-center md:justify-between gap-0 md:gap-12">
           {/* Right Section - Carousel - Hidden on mobile, visible on desktop */}
           {showHeroCarousel && (
@@ -354,26 +294,24 @@ function Hero() {
           )}
 
           {/* Left Section - Promotional Content - Below carousel on mobile */}
-          <div className="p-6 pt-6 md:px-10 md:pb-10 md:pt-4 relative top-[-20px] rounded-[10px] max-w-full md:ml-20 order-2 md:order-1">
-            <p className="hidden md:block text-[18px] md:text-[28px] mb-2 md:mb-3 font-[500] text-[#f0e8d5]" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>From <span className="font-bold">everyday</span> to <span className="font-bold">complex </span> conditions, we provide</p>
-            <h2 className="text-[32px] md:text-[52px] font-bold text-primary leading-tight m-0 mb-2 md:mb-5" style={{ fontFamily: 'Fjalla One, sans-serif' }}>CUSTOM SOLUTIONS FOR EVERY WINDOW</h2>
+          <div className="relative top-[-60px] md:-top-[100px] max-w-full md:ml-20 order-2 md:order-1 rounded-[10px] p-6 pt-6 md:px-10 md:pb-10 md:pt-4">
+            {/* <p className="hidden md:block text-[18px] md:text-[28px] mb-2 md:mb-3 font-[500] text-primary" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>From <span className="font-bold">everyday</span> to <span className="font-bold">complex </span> conditions, we provide</p> */}
+            <h2 className="text-[32px] md:text-[52px] font-bold text-brown leading-tight m-0 mb-5" style={{ fontFamily: 'Fjalla One, sans-serif' }}>CUSTOM WINDOW TREATMENTS IN　<br /> PALO ALTO AND SURROUNDING AREA</h2>
 
             {/* Benefits List */}
-            <ul className="space-y-3 md:space-y-5 mb-4 md:mb-10">
+            <ul className="space-y-5 mb-[40px] md:mb-10">
               {[
-                // 'No showroom markup. No retail overhead. Factory-direct pricing.',
-                <>Bay Area, California Based  |  Serving Nationwide</>,
-                'Personalized fabrics, patterns, opacities, cassette styles, motorized options, and more...',
+                'Full-service from design consultation to professional installation',
+                'Curated collection of fabrics, personalized opacities, cassettes, motorized options...',
                 'L shaped, oversized, angled, arched, and high ceilings',
               ].map((benefit, index) => (
                 <li key={index} className="flex items-center gap-3">
-                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-[#f0e8d5]
- flex items-center justify-center">
+                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-brown flex items-center justify-center">
                     <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M2 6L5 9L10 2" stroke="#5c4717" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M2 6L5 9L10 2" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </div>
-                  <span className="text-base md:text-[20px] text-[#f0e8d5] font-semibold" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>{benefit}</span>
+                  <span className="text-[16px] md:text-[20px] text-brown font-semibold" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>{benefit}</span>
                 </li>
               ))}
             </ul>
