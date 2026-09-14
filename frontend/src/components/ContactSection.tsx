@@ -92,9 +92,9 @@ function ContactSection() {
       <div className="max-w-container mx-auto flex justify-center">
         <div className="w-full bg-white rounded-lg shadow-lg p-8 md:p-10 relative" style={{ maxWidth: '946px' }}>
           <div className="text-left mb-8">
-            <h2 className="text-2xl md:text-3xl font-bold text-brown mb-3" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
+            <h1 className="text-2xl md:text-3xl font-bold text-brown mb-3" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
               Contact Form
-            </h2>
+            </h1>
             <p className="text-base md:text-lg text-brown" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
               Have a question? We're here to help. Send us a message and we'll respond as soon as possible.
             </p>

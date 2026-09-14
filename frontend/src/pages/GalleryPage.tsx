@@ -158,9 +158,9 @@ function GalleryPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-10 md:gap-20 items-start">
             <div className="flex flex-col gap-6">
-              <h2 className="text-2xl md:text-4xl font-bold text-brown leading-tight m-0" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
+              <h1 className="text-2xl md:text-4xl font-bold text-brown leading-tight m-0" style={{ fontFamily: 'Fjalla One, sans-serif' }}>
                 Gallery {idNumber}
-              </h2>
+              </h1>
               <p className="text-base md:text-xl text-brown leading-relaxed m-0 whitespace-pre-line font-[500]" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>
                 {galleryDescription || 'Our designer already made a lot of beautiful prototype of rooms that inspire you'}
               </p>

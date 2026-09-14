@@ -312,9 +312,15 @@ function CategoryPage() {
     )
   }
 
+  const pageTitle = isCassetteRoute
+    ? `${categoryName ?? 'Shades'} Cassette`
+    : categoryName ?? (slug ? slugToCategoryName(slug) : 'Shades')
+
   return (
     <div className="category-page">
       <Header currentPage="shades" />
+
+      <h1 className="sr-only">{pageTitle}</h1>
 
       {/* Category Banner
       <section className="relative w-full h-[316px] overflow-hidden">

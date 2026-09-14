@@ -296,7 +296,7 @@ function Hero() {
           {/* Left Section - Promotional Content - Below carousel on mobile */}
           <div className="relative top-[-60px] md:-top-[100px] max-w-full md:ml-20 order-2 md:order-1 rounded-[10px] p-6 pt-6 md:px-10 md:pb-10 md:pt-4">
             {/* <p className="hidden md:block text-[18px] md:text-[28px] mb-2 md:mb-3 font-[500] text-primary" style={{ fontFamily: "'Gotham', 'Gotham A', sans-serif" }}>From <span className="font-bold">everyday</span> to <span className="font-bold">complex </span> conditions, we provide</p> */}
-            <h2 className="text-[32px] md:text-[52px] font-bold text-brown leading-tight m-0 mb-5" style={{ fontFamily: 'Fjalla One, sans-serif' }}>CUSTOM WINDOW TREATMENTS IN　<br /> PALO ALTO AND SURROUNDING AREA</h2>
+            <h1 className="text-[32px] md:text-[52px] font-bold text-brown leading-tight m-0 mb-5" style={{ fontFamily: 'Fjalla One, sans-serif' }}>CUSTOM WINDOW TREATMENTS IN　<br /> PALO ALTO AND SURROUNDING AREA</h1>
 
             {/* Benefits List */}
             <ul className="space-y-5 mb-[40px] md:mb-10">
