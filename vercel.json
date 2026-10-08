@@ -3,6 +3,18 @@
   "outputDirectory": "frontend/dist",
   "devCommand": "cd frontend && npm run dev",
   "installCommand": "cd frontend && npm install",
+  "redirects": [
+    {
+      "source": "/booking",
+      "destination": "https://calendly.com/becky-pacificlightshades/pacific-light-shades-in-home-consultation",
+      "statusCode": 301
+    },
+    {
+      "source": "/booking/",
+      "destination": "https://calendly.com/becky-pacificlightshades/pacific-light-shades-in-home-consultation",
+      "statusCode": 301
+    }
+  ],
   "rewrites": [
     {
       "source": "/api/:path*",

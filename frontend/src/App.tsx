@@ -13,6 +13,16 @@ import FormError from './pages/FormError'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import AboutMe from './pages/AboutMe'
 
+const CALENDLY_BOOKING_URL =
+  'https://calendly.com/becky-pacificlightshades/pacific-light-shades-in-home-consultation'
+
+function BookingRedirect() {
+  useEffect(() => {
+    window.location.replace(CALENDLY_BOOKING_URL)
+  }, [])
+  return null
+}
+
 function MetaPixelPageView() {
   const location = useLocation()
   useEffect(() => {
@@ -63,6 +73,7 @@ function App() {
         <Route path="/gallery13" element={<GalleryPage />} />
         <Route path="/gallery14" element={<GalleryPage />} />
         <Route path="/gallery15" element={<GalleryPage />} />
+        <Route path="/booking" element={<BookingRedirect />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/contact/schedule-consultation" element={<ScheduleConsultation />} />
         <Route path="/quote" element={<Quote />} />
