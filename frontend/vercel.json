@@ -5,12 +5,12 @@
   "installCommand": "npm install",
   "redirects": [
     {
-      "source": "/booking",
+      "source": "/book",
       "destination": "https://calendly.com/becky-pacificlightshades/pacific-light-shades-in-home-consultation",
       "statusCode": 301
     },
     {
-      "source": "/booking/",
+      "source": "/book/",
       "destination": "https://calendly.com/becky-pacificlightshades/pacific-light-shades-in-home-consultation",
       "statusCode": 301
     }
